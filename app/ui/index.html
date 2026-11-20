@@ -360,6 +360,64 @@ th.sorted::after{content:" ↓";color:var(--accent)} th.sorted.asc::after{conten
 .bt .muted{font-weight:500;font-size:12px}
 .match{position:relative;margin-bottom:10px;padding-left:12px;border-left:2px solid var(--line-2)}
 .match .bt{margin-bottom:4px}
+.agm{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:16px;align-items:start}
+@media (max-width:1200px){.agm{grid-template-columns:1fr}}
+.agm-l{display:grid;gap:16px}
+.agm-card{display:flex;gap:16px;align-items:center}
+.agm-card small{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.agm-card h3{margin:2px 0 4px;font:700 30px/1.05 var(--display);text-transform:uppercase}
+.agm-card p{margin:0;font-size:12.5px}
+.agm-credit{margin-top:6px !important;font-size:10.5px !important;color:var(--ink-3)}
+.agm-pic{flex:none;width:var(--sz);height:var(--sz);border-radius:50%;overflow:hidden;display:inline-grid;place-items:center;background:var(--panel-2);box-shadow:inset 0 0 0 2px var(--accent)}
+.agm-pic img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.agm-pic.mono{background:linear-gradient(135deg,var(--m-a),var(--m-b));color:#fff;font:700 calc(var(--sz)*.38)/1 var(--display);letter-spacing:.02em}
+.agm-chips{padding:0 16px 10px}
+.agm-notes{list-style:none;margin:0;padding:0}
+.agm-notes li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:12px 16px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.agm-notes li.p3{box-shadow:inset 3px 0 0 var(--accent)}
+.agm-notes .agm-tag{grid-column:1/-1;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.agm-notes li.p3 .agm-tag{color:var(--accent)}
+.agm-notes .more{align-self:end;white-space:nowrap}
+.agm-chat{display:flex;flex-direction:column;min-height:620px;position:sticky;top:14px}
+.agm-log{flex:1;overflow:auto;max-height:520px;padding:4px 16px 12px;display:flex;flex-direction:column;gap:12px}
+.msg{display:flex;gap:10px;align-items:flex-start;max-width:92%}
+.msg.me{align-self:flex-end;flex-direction:row-reverse}
+.msg .bub{padding:10px 14px;border-radius:12px;background:var(--panel-2);border:1px solid var(--line);font-size:13.5px;line-height:1.55;color:var(--ink-2)}
+.msg.me .bub{background:color-mix(in srgb,var(--accent) 18%,var(--panel));border-color:color-mix(in srgb,var(--accent) 35%,transparent);color:var(--ink)}
+.msg .bub b{color:var(--ink)}
+.agm-cmp{margin:8px 0;font-size:12.5px}
+.agm-sugg{display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px 4px}
+.agm-in{display:flex;gap:8px;padding:10px 16px 6px}
+.agm-in input{flex:1;background:var(--panel-2);border:1px solid var(--line-2);border-radius:999px;padding:10px 16px;color:var(--ink);font:inherit;font-size:14px}
+.agm-in input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+.agm-note{margin:0;padding:4px 16px 14px;font-size:11px;color:var(--ink-3)}
+.agm-home{display:flex;align-items:center;gap:14px;margin:0 0 14px;padding:12px 18px;background:var(--panel);border:1px solid var(--line);border-radius:3px;color:var(--ink-2);text-decoration:none}
+.agm-home:hover{border-color:var(--line-2)}
+.agm-home>div{flex:1;min-width:0}
+.agm-home small{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.agm-home p{margin:2px 0 0;font-size:13px;line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fld{display:grid;gap:4px;font-size:12px;color:var(--ink-3)}
+.fld input{width:100%}
+.pobr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:1200px){.pobr{grid-template-columns:1fr}}
+.bt .pood{font:700 13px/1 var(--display);color:var(--accent);min-width:34px;text-align:right}
+.bt.tbd{justify-content:center;border-style:dashed;background:transparent}
+.bt.lost{opacity:.45}
+.rt.fogpot{width:auto;min-width:0;padding:0 6px;white-space:nowrap;letter-spacing:0}
+.pobar{display:grid;grid-template-columns:150px 1fr 46px;align-items:center;gap:10px;margin:6px 0;font-size:13px}
+.pobar span{display:flex;align-items:center;gap:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pobar i{display:block;height:8px;border-radius:4px;background:var(--accent);max-width:100%;min-width:2px}
+.pobar b{font:700 14px/1 var(--display);text-align:right}
+.poplan{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:16px 18px}
+.poplan-h{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.poplan-h small{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.poplan-h h3{margin:2px 0 0;font:700 24px/1.1 var(--display);text-transform:uppercase}
+.poplan-o{margin-left:auto;text-align:right}
+.poplan-o b{display:block;font:700 30px/1 var(--display);color:var(--accent)}
+.poplan-o small{font-size:11px;color:var(--ink-3)}
+.poplan h4{margin:0 0 8px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.porot{margin:0 0 14px;padding-left:18px;font-size:13px}
+.porot li{margin:5px 0}
 .status{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:color-mix(in srgb,var(--accent) 12%,transparent);font-size:13px;font-weight:600}
 
 /* awards */
@@ -579,6 +637,16 @@ th.sorted::after{content:" ↓";color:var(--accent)} th.sorted.asc::after{conten
 .lu li{display:grid;grid-template-columns:24px 40px minmax(0,1fr) auto;gap:6px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:13.5px}
 .lu li::before{counter-increment:o;content:counter(o);font:700 18px var(--display);color:var(--accent)}
 .lu li small{color:var(--ink-3);font-size:11.5px}
+.wpf{list-style:none;margin:10px 0 0;padding:0;width:100%;font-size:11.5px}
+.wpf li{display:flex;justify-content:space-between;gap:10px;padding:2px 0;color:var(--ink-3)}
+.wpf b{font:700 13px/1 var(--display)}
+.lu .btip{display:block;font-size:12px;color:var(--ink-2);margin-top:3px;line-height:1.4}
+
+.lu .btip b,.edge-list b{color:var(--accent)}
+.card.preview p{margin:0;font-size:14px;line-height:1.6;color:var(--ink-2)}
+.trep{display:grid;grid-template-columns:120px 1fr;gap:8px 14px;margin:0;font-size:13px;line-height:1.45}
+.trep dt{font:600 11px/1.6 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.trep dd{margin:0;color:var(--ink-2)}
 .scout{list-style:none;margin:0;padding:0}
 .scout li{padding:9px 0;border-bottom:1px solid var(--line)}
 .scout li:last-child{border-bottom:0}
@@ -1154,10 +1222,11 @@ table.career tr.tot td{border-top:1px solid var(--line-2);font-weight:700}
     <a class="brand" href="#home" title="Clubhouse · MLB The Show 26"><img class="brand-logo" src="brand/emblem.png" alt="Clubhouse"></a>
     <nav class="menu" id="menu" aria-label="Sections">
       <a href="#home" data-nav="home">Home</a>
+      <a href="#playoffs" data-nav="playoffs" id="navpo" hidden>Playoffs</a>
       <div class="dd" data-nav="team series press spring"><button>My team <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <div class="drop"><a href="#team">Team page</a><a href="#spring">Spring training</a><a href="#series">Series plan</a><a href="#press">Press room</a><a href="#fa/contracts">Contracts</a></div></div>
-      <div class="dd" data-nav="trade callups history"><button>Front office <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-        <div class="drop"><a href="#trade">Trade evaluator</a><a href="#callups">September call-ups</a><a href="#minors/prospects">Top prospects</a><a href="#draft/class">Draft class</a><a href="#history">Franchise history</a></div></div>
+      <div class="dd" data-nav="agm trade callups history"><button>Front office <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        <div class="drop"><a href="#agm">Assistant GM</a><a href="#trade">Trade evaluator</a><a href="#callups">September call-ups</a><a href="#minors/prospects">Top prospects</a><a href="#draft/class">Draft class</a><a href="#history">Franchise history</a></div></div>
       <div class="dd" data-nav="standings grades"><button>League <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <div class="drop"><a href="#standings">Standings</a><a href="#standings/wildcard">Wild card race</a><a href="#standings/power">Power rankings</a><a href="#grades">Team grades</a></div></div>
       <div class="dd" data-nav="players"><button>Players <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
@@ -1200,6 +1269,27 @@ const money = n => n >= 1e6 ? `$${(n/1e6).toFixed(n%1e6?1:0)}M` : `$${Math.round
 const ord = n => n + (['th','st','nd','rd'][(n%100-20)%10] || ['th','st','nd','rd'][n%100] || 'th');
 const tierN = v => v>=90?5:v>=80?4:v>=70?3:v>=60?2:1;
 const rt = (v,sm) => v==null ? '<span class="muted">–</span>' : `<span class="rt t${tierN(v)} ${sm?'sm':''}">${v}</span>`;
+/* Fog of war on potential, for every player: nobody knows a ceiling exactly. Each player's potential shows as a
+   seeded range that always contains the true value. Wider for young players, tighter for veterans and for your own
+   organization (you see them every day). Sorting uses the middle of the range, so order doesn't leak the true value.
+   Draft prospects stay fully hidden and just-drafted players keep their own fog (fogRt). */
+function potFog(p){
+  if (!p||p.pot==null) return null;
+  CACHE.potf=CACHE.potf||{}; const k=p.id+':'+(L.season.year||0); if (CACHE.potf[k]) return CACHE.potf[k];
+  const age=p.age||27, own=p.org===ME||p.team===ME;
+  let w=age<=19?14:age<=21?12:age<=23?10:age<=25?8:age<=28?6:age<=31?5:4;
+  if (own) w=Math.max(3,Math.round(w*.65));
+  const r=rng('potfog'+p.id+':'+(L.season.year||0)+(typeof fkey==='function'&&L.slot?fkey():''));
+  const off=Math.floor(r()*(w+1));                      // where the true value sits inside the range
+  let lo=p.pot-off, hi=lo+w;
+  if (hi>99){ lo-=hi-99; hi=99; } if (lo<20){ hi+=20-lo; lo=20; }
+  lo=Math.max(20,lo); hi=Math.min(99,Math.max(hi,p.pot));
+  return CACHE.potf[k]={lo, hi, mid:Math.round((lo+hi)/2)};
+}
+const potV = p => { const f=potFog(p); return f?f.mid:null; };   // sort value
+const potTxt = p => { if (!p) return '–'; if (p.prospect) return '?'; const f=potFog(p); return f?`${f.lo}–${f.hi}`:'–'; };
+const potRt = (p,sm) => { if (!p) return '<span class="muted">–</span>'; if (p.prospect) return '<span class="rt t2 sm" title="Hidden for draft prospects">?</span>';
+  const f=potFog(p); return f?`<span class="rt t${tierN(f.mid)} ${sm?'sm':''} fogpot" title="Potential is an estimate: somewhere in ${f.lo}–${f.hi}">${f.lo}–${f.hi}</span>`:'<span class="muted">–</span>'; };
 const plink = p => `<a class="pl" href="#p/${p.id}" data-pid="${p.id}">${esc(name(p))}</a>`;
 const fullName = t => `${t.city} ${t.name}`.trim();
 const shortName = t => ['Chicago','New York','Los Angeles'].includes(t.city) ? `${t.abbr} ${t.name}` : fullName(t);
@@ -1604,8 +1694,9 @@ function awardRaces(lg){
   const mvpScore=p=>(runsCreated(p.stats.season)+p.stats.season.sb*.25)*(POS_MULT[p.pos]||1);
   const mvp=bat.filter(p=>pa(p.stats.season)>=g*1.5).map(p=>({p,score:mvpScore(p)}));
   const cy=arm.filter(p=>p.stats.season.outs>=g*2.4).map(p=>({p,score:cyScore(p,g,leaders)}));
-  // Rookie: under 130 MLB at-bats / 50 innings last season (an estimate; the save's rookie flag isn't mapped).
-  const rookie=p=>{ const l=p.stats.last; return !l || (p.pos==='P' ? l.outs<150 : l.ab<130); };
+  // Rookie: MLB's rule. Before this season, at most 130 career at-bats AND at most 50 career innings (both, so
+  // two-way players count fully) AND under 45 days of MLB service. Career rows are every MLB season on file.
+  const rookie=p=>isRookie(p);
   const topM=Math.max(1,...mvp.map(x=>x.score)), topC=Math.max(1,...cy.map(x=>x.score));
   const roy=[...bat.filter(p=>rookie(p)&&pa(p.stats.season)>=g).map(p=>({p,score:mvpScore(p)/topM})),
              ...arm.filter(p=>rookie(p)&&(p.stats.season.outs>=g||p.stats.season.sv>=2)).map(p=>({p,score:cyScore(p,g,leaders)/topC}))];
@@ -1642,7 +1733,7 @@ const STF={lg:'',team:'',qual:true,inj:'mlb'};   // stats/injury filters
 const views = {
   home(){
     const t=T[ME]; applyTheme(t);
-    return franchiseStrip() + springBanner() + `<div class="dash">
+    return franchiseStrip() + springBanner() + playoffBanner() + agmHomeCard() + `<div class="dash">
       <div class="dcol">${homePower()}</div>
       <div class="dcol">${homeSpotlight()}<div class="grid g-eq" style="gap:14px">${homeWire()}${homeDraft()}</div></div>
       <div class="dcol">${homeNextGame()}${homeLeaders('bat')}${homeLeaders('pit')}</div>
@@ -1754,7 +1845,7 @@ const views = {
       return `<section class="card aw" style="--i:${i}"><div class="card-h"><h2>${title}</h2><span class="aside">${lg}</span></div>${list.length?`<ol>${list.map((x,j)=>`<li><span class="n">${j+1}</span>${logo(T[x.p.team],28)}<div class="who">${plink(x.p)}<small>${esc(T[x.p.team].abbr)} · ${x.p.pos==='P'?pitLine(x.p.stats.season):batLine(x.p.stats.season)}</small></div><span class="share"><i style="width:${Math.max(4,x.score/top*100)}%"></i></span></li>`).join('')}</ol>`:'<p class="muted">Not enough games played yet.</p>'}</section>`; };
     const al=awardRaces('AL'), nl=awardRaces('NL');
     return `<div class="page-h"><div><div class="kicker">${L.season.year} award races</div><h2>Awards</h2></div></div>
-    <p class="explain">Clubhouse's own estimate from season stats, not the game's voting. MVP: runs created plus steals, with a bonus for premium defensive positions. Cy Young: Bill James' Cy Young Predictor, among pitchers with 0.8 innings per team game. Rookie of the Year: players with under 130 at-bats or 50 innings in the majors last season, scored against each league's leaders. The bar shows each player's score against the leader.</p>
+    <p class="explain">Clubhouse's own estimate from season stats, not the game's voting. MVP: runs created plus steals, with a bonus for premium defensive positions. Cy Young: Bill James' Cy Young Predictor, among pitchers with 0.8 innings per team game. Rookie of the Year: MLB rookies only (before this season, at most 130 career at-bats and 50 career innings in the majors, and under 45 days of service), scored against each league's leaders. The bar shows each player's score against the leader.</p>
     <div class="aw-cols">
       <div class="grid">${race('MVP',al.mvp,'American League',0)}${race('Cy Young',al.cy,'American League',2)}${race('Rookie of the Year',al.roy,'American League',4)}</div>
       <div class="grid" style="align-content:start">${race('MVP',nl.mvp,'National League',1)}${race('Cy Young',nl.cy,'National League',3)}${race('Rookie of the Year',nl.roy,'National League',5)}</div>
@@ -1886,13 +1977,22 @@ function teamTotals(t){
   const ab=sum(b,'ab'),h=sum(b,'h'),bb=sum(b,'bb'),tb=h+sum(b,'2b')+2*sum(b,'3b')+3*sum(b,'hr'),outs=sum(q,'outs');
   return {ops:(ab?(h+bb)/(ab+bb)+tb/ab:0), era:outs?27*sum(q,'er')/outs:0};
 }
-function winChance(us, them, spU, spT, home){
+// One game's win chance. Records are regressed toward .500 (heavily early in the season: true talent spreads far
+// less than records do), so even a great team rarely tops 65% in a single game. Then the starters, home field and
+// bullpen rest nudge it. Clamped to 30-70%: that's the real-world range for one MLB game.
+function winFactors(us, them, spU, spT, home){
   const pw=power(), a=pw.find(x=>x.t.id===us.id).py, b=pw.find(x=>x.t.id===them.id).py;
-  let p=(a-a*b)/((a+b-2*a*b)||1);
-  if (spU&&spT) p+=(spU.ovr-spT.ovr)*.006;
-  if (home!=null) p+=home?.02:-.02;
-  return Math.min(.8,Math.max(.2,p));
+  const g=Math.max(us.games.length, them.games.length), reg=g/(g+75)*.8;
+  const tA=.5+(a-.5)*reg, tB=.5+(b-.5)*reg;
+  const base=(tA-tA*tB)/((tA+tB-2*tA*tB)||1);
+  const sp=spU&&spT ? Math.max(-.06,Math.min(.06,(spU.ovr-spT.ovr)*.0035)) : 0;
+  const hf=home==null?0:home?.02:-.02;
+  const rest=pn=>pn.arms.slice(0,5).filter(p=>penStatus(p)[0]==='st-ok').length;
+  const pen=Math.max(-.015,Math.min(.015,(rest(bullpen(us))-rest(bullpen(them)))*.005));
+  const p=Math.min(.7,Math.max(.3,base+sp+hf+pen));
+  return {p, parts:[['Team strength',base-.5],['Starting pitchers',sp],['Home field',hf],['Bullpen rest',pen]]};
 }
+function winChance(us, them, spU, spT, home){ return winFactors(us,them,spU,spT,home).p; }
 function scoutTips(h, sp){
   const b=h.ratings.batting, hand=sp?sp.throws:'R', pow=hand==='L'?b.powL:b.powR, con=hand==='L'?b.conL:b.conR;
   const tags=[], tips=[], same=h.bats!=='S'&&h.bats===hand;
@@ -1930,9 +2030,240 @@ function bullpen(t){
   const closer=rp.slice().sort((a,b)=>sv(b)-sv(a)||b.ovr-a.ovr)[0];
   return {closer, arms:[closer,...rp.filter(p=>p!==closer).sort((a,b)=>b.ovr-a.ovr)].filter(Boolean)};
 }
+/* ---------- match report: team profiles, edges for both sides, pitch-aware tips ---------- */
+const PCLASS = {Four:'FB','Four-seam':'FB',Sinker:'FB',Cutter:'FB',Curveball:'BRK',Slider:'BRK','Knuckle curve':'BRK',Sweeper:'BRK',Changeup:'OFF',Splitter:'OFF',Forkball:'OFF'};
+function arsenalOf(p){
+  const ars=((p&&p.ratings.arsenal)||[]).filter(a=>a.name&&a.usage>0).map(a=>({...a, cls:PCLASS[a.name]||'FB', q:a.name==='Four-seam'||a.name==='Sinker'||a.name==='Cutter'?a.velocity*.6+a.movement*.4:a.movement*.75+a.velocity*.25}));
+  const best=c=>ars.filter(a=>a.cls===c).sort((x,y)=>y.q-x.q)[0]||null;
+  const used=ars.filter(a=>a.usage>=8);
+  return {all:ars, fb:best('FB'), brk:best('BRK'), off:best('OFF'), top:used.slice().sort((x,y)=>y.q-x.q)[0]||null, weak:used.length>2?used.slice().sort((x,y)=>x.q-y.q)[0]:null, main:ars.slice().sort((x,y)=>y.usage-x.usage)[0]||null};
+}
+const sideOf = (bats, throws) => bats==='S' ? (throws==='L'?'R':'L') : bats;   // the side a switch hitter bats from
+const avgOf = s => s&&s.ab ? s.h/s.ab : null;
+function teamProfile(t){
+  CACHE.tprof=CACHE.tprof||{}; if (CACHE.tprof[t.id]) return CACHE.tprof[t.id];
+  const ros=t.roster.map(id=>P.get(id)).filter(Boolean), S=p=>p.stats.season||{};
+  const H=ros.filter(p=>p.pos!=='P'&&S(p).ab), Pp=ros.filter(p=>p.pos==='P'&&S(p).outs);
+  const sum=(a,f)=>a.reduce((x,p)=>x+(f(p)||0),0), g=Math.max(1,t.games.length);
+  const ab=sum(H,p=>S(p).ab), h=sum(H,p=>S(p).h), bb=sum(H,p=>S(p).bb), so=sum(H,p=>S(p).so), hr=sum(H,p=>S(p).hr);
+  const tb=h+sum(H,p=>S(p)['2b'])+2*sum(H,p=>S(p)['3b'])+3*hr, pa=ab+bb;
+  const split=k=>({ab:sum(H,p=>(S(p)[k]||{}).ab), h:sum(H,p=>(S(p)[k]||{}).h), hr:sum(H,p=>(S(p)[k]||{}).hr)});
+  const SP=Pp.filter(p=>p.role==='SP'), RP=Pp.filter(p=>p.role==='RP'), era=a=>{ const o=sum(a,p=>S(p).outs); return o?27*sum(a,p=>S(p).er)/o:null; };
+  const outs=sum(Pp,p=>S(p).outs), rspA={ab:sum(Pp,p=>(S(p).rsp||{}).ab), h:sum(Pp,p=>(S(p).rsp||{}).h)};
+  const best=bestLineup(ros), cat=(best.spots.find(s=>s.pos==='C')||{}).p;
+  const gr=grades().find(x=>x.t.id===t.id)||{};
+  const r=t.record, hg=r.homeW+r.homeL, ag=(r.w+r.l)-hg;
+  return CACHE.tprof[t.id]={
+    ops:pa&&ab?(h+bb)/pa+tb/ab:null, avg:ab?h/ab:null, vsL:split('vsL'), vsR:split('vsR'), rsp:split('rsp'),
+    kPct:pa?so/pa:null, bbPct:pa?bb/pa:null, hrG:hr/g, sbG:sum(H,p=>S(p).sb)/g, gdpPA:pa?sum(H,p=>S(p).gdp)/pa:null,
+    spEra:era(SP), rpEra:era(RP), k9:outs?27*sum(Pp,p=>S(p).so)/outs:null, bb9:outs?27*sum(Pp,p=>S(p).bb)/outs:null, hr9:outs?27*sum(Pp,p=>S(p).hr)/outs:null,
+    rspAllowed:rspA.ab?rspA.h/rspA.ab:null, catArm:cat?cat.ratings.fielding.armStr:null, cat,
+    zdef:gr.zdef??0, zpen:gr.zpen??0, lefties:best.spots.filter(s=>s.p.bats==='L').length, switchers:best.spots.filter(s=>s.p.bats==='S').length,
+    homePct:hg?r.homeW/hg:null, awayPct:ag?(r.w-r.homeW)/ag:null, home:[r.homeW,r.homeL], away:[r.w-r.homeW,(r.l-r.homeL)],
+    oneRun:[r.oneRunW,r.oneRunL], l10:(r.last10||[]).filter(Boolean).length, l10n:(r.last10||[]).length,
+    hot:ros.filter(p=>p.pos!=='P'&&form(p)==='hot'), cold:ros.filter(p=>p.pos!=='P'&&form(p)==='cold'&&p.ovr>=75),
+    hurt:ros.filter(p=>p.injury&&p.injury.days>0).sort((a,b)=>b.ovr-a.ovr), best,
+  };
+}
+function leagueProfile(){
+  if (CACHE.lgprof) return CACHE.lgprof;
+  const ps=T.map(teamProfile), m=f=>{ const v=ps.map(f).filter(x=>x!=null&&!isNaN(x)); return v.length?v.reduce((a,b)=>a+b,0)/v.length:null; };
+  return CACHE.lgprof={ops:m(p=>p.ops), avg:m(p=>p.avg), vsL:m(p=>avgOf(p.vsL)), vsR:m(p=>avgOf(p.vsR)), rsp:m(p=>avgOf(p.rsp)), kPct:m(p=>p.kPct), bbPct:m(p=>p.bbPct),
+    hrG:m(p=>p.hrG), sbG:m(p=>p.sbG), gdpPA:m(p=>p.gdpPA), spEra:m(p=>p.spEra), rpEra:m(p=>p.rpEra), k9:m(p=>p.k9), bb9:m(p=>p.bb9), hr9:m(p=>p.hr9), rspAllowed:m(p=>p.rspAllowed)};
+}
+// This season's games between two clubs, from the schedule and the scores so far.
+function seasonSeries(a, b){
+  // always count from one club's schedule (the lower id) so both sides of a page agree
+  if (a.id>b.id){ const x=seasonSeries(b,a); return {w:x.l, l:x.w}; }
+  let w=0, l=0;
+  teamSched(a.id).forEach(([day,game,opp])=>{ if (opp===b.id && game<=a.games.length){ const g=a.games[game-1]; if (g) (g.us>g.them?w++:l++); } });
+  return {w, l};
+}
+const pct1 = v => v==null?'–':(v*100).toFixed(1)+'%';
+// Everything A does better than B in this series, weighted so the biggest edges come first. Run both ways.
+function seriesEdges(A, B, games, aSide){   // aSide: 'us' or 'them' (which starters in games[] belong to A)
+  const a=teamProfile(A), b=teamProfile(B), lg=leagueProfile(), out=[], add=(w,txt)=>{ if (w>0) out.push({w,txt}); };
+  const N=x=>esc(x.name), bSide=aSide==='us'?'them':'us';
+  if (a.ops!=null&&b.ops!=null) add((a.ops-b.ops)*120-1.5, `Deeper offense: ${f3(a.ops)} team OPS to ${f3(b.ops)}.`);
+  // platoon: how A hits the hands B is actually starting this series
+  const hands=games.map(g=>g[bSide]).filter(Boolean);
+  ['L','R'].forEach(hd=>{ const n=hands.filter(p=>p.throws===hd).length, av=avgOf(a['vs'+hd]), la=lg['vs'+hd]; if (n&&av!=null&&la!=null&&av-la>=.01)
+    add((av-la)*300*n/Math.max(1,hands.length), `${N(A)} hit ${f3(av)} against ${handName(hd)}-handers (league ${f3(la)}), and ${n} of ${N(B)}'s starters this series ${n===1?'is':'are'} ${hd==='L'?'a lefty':'right-handed'}.`); });
+  // starters, game by game
+  games.forEach((g,i)=>{ const x=g[aSide], y=g[bSide]; if (x&&y&&x.ovr-y.ovr>=4) add((x.ovr-y.ovr)*.45, `Game ${i+1} mound edge: ${esc(x.first+' '+x.last)} (${x.ovr}) over ${esc(y.first+' '+y.last)} (${y.ovr}).`);
+    const w=y&&spWeak(y); if (w&&w.side){ const n=(a.best.spots||[]).filter(s=>sideOf(s.p.bats,y.throws)===w.side).length; if (n>=4) add(1.5+n*.15, `Game ${i+1}: ${esc(y.last)} allows ${f3(w.side==='L'?w.l:w.r)} to ${handName(w.side)}-handed hitters, and ${N(A)} can stack ${n} of them.`); }
+    if (!g.hyp&&y&&restDays(y)>0&&restDays(y)<4&&y.role==='SP') add(1.6, `Game ${i+1}: ${esc(y.last)} is going on short rest (${restDays(y)} game days).`); });
+  if (a.hrG-b.hrG>=.2) add((a.hrG-b.hrG)*6, `More thunder: ${a.hrG.toFixed(2)} home runs a game to ${b.hrG.toFixed(2)}.`);
+  if (a.sbG-lg.sbG>=.12&&b.catArm!=null&&b.catArm<=60) add(2+(a.sbG-lg.sbG)*6, `Run on them: ${N(A)} steal ${a.sbG.toFixed(2)} bases a game, and ${esc(b.cat.last)}'s arm grades ${b.catArm}.`);
+  if (a.bbPct!=null&&b.bb9!=null&&a.bbPct-lg.bbPct>=.008&&b.bb9-lg.bb9>=.25) add(2.2, `Free passes: ${N(A)} walk in ${pct1(a.bbPct)} of trips, and ${N(B)}'s staff gives up ${b.bb9.toFixed(1)} walks per nine.`);
+  if (a.kPct!=null&&b.k9!=null&&lg.kPct-a.kPct>=.015&&b.k9-lg.k9>=.4) add(2, `Contact blunts their stuff: ${N(A)} strike out only ${pct1(a.kPct)} of the time against a staff that fans ${b.k9.toFixed(1)} per nine.`);
+  const ra=avgOf(a.rsp), rb=avgOf(b.rsp); if (ra!=null&&rb!=null&&ra-rb>=.02) add((ra-rb)*90, `Clutch hitting: ${f3(ra)} with runners in scoring position to ${f3(rb)}.`);
+  if (a.rspAllowed!=null&&b.rspAllowed!=null&&b.rspAllowed-a.rspAllowed>=.02) add((b.rspAllowed-a.rspAllowed)*80, `Pitching out of jams: ${N(A)} hold hitters to ${f3(a.rspAllowed)} with runners in scoring position (${N(B)}: ${f3(b.rspAllowed)}).`);
+  if (a.spEra!=null&&b.spEra!=null&&b.spEra-a.spEra>=.35) add((b.spEra-a.spEra)*2.5, `Rotation: ${a.spEra.toFixed(2)} starters' ERA to ${b.spEra.toFixed(2)}.`);
+  if (a.rpEra!=null&&b.rpEra!=null&&b.rpEra-a.rpEra>=.35) add((b.rpEra-a.rpEra)*2.8, `Late innings: ${a.rpEra.toFixed(2)} bullpen ERA to ${b.rpEra.toFixed(2)}.`);
+  const pa=bullpen(A), pb=bullpen(B), rest=pn=>pn.arms.slice(0,5).filter(p=>penStatus(p)[0]==='st-ok').length;
+  if (rest(pa)-rest(pb)>=2) add(2+(rest(pa)-rest(pb))*.4, `Fresher bullpen: ${rest(pa)} of ${N(A)}'s top five relievers are rested, ${rest(pb)} of ${N(B)}'s.`);
+  if (pb.closer&&penStatus(pb.closer)[1]==='Two days in a row') add(3, `${N(B)}'s closer ${esc(pb.closer.last)} has pitched two days running and may be unavailable early in the series.`);
+  if (a.zdef-b.zdef>=.6) add((a.zdef-b.zdef)*2, `Better defense behind the pitchers (${letter(a.zdef)} to ${letter(b.zdef)}): balls in play turn into outs.`);
+  if (a.l10n>=8&&a.l10-b.l10>=3) add((a.l10-b.l10)*.6, `Form: ${a.l10}–${a.l10n-a.l10} in the last ${a.l10n} to ${b.l10}–${b.l10n-b.l10}.`);
+  const ss=seasonSeries(A,B); if (ss.w-ss.l>=2) add(1.2+(ss.w-ss.l)*.3, `Season series: ${N(A)} lead ${ss.w}–${ss.l}.`);
+  const atHome=games.some(g=>g.home!=null) ? (aSide==='us'?games[0].home:!games[0].home) : null;
+  if (atHome===true&&a.homePct!=null&&a.homePct>=.56) add((a.homePct-.5)*20, `Home cooking: ${a.home[0]}–${a.home[1]} at home.`);
+  if (atHome===false&&b.homePct!=null&&b.homePct<=.46) add((.5-b.homePct)*18, `${N(B)} are just ${b.home[0]}–${b.home[1]} at home.`);
+  if (atHome===false&&a.awayPct!=null&&a.awayPct>=.55) add((a.awayPct-.5)*18, `Road warriors: ${a.away[0]}–${a.away[1]} away from home.`);
+  if (a.oneRun[0]+a.oneRun[1]>=10&&a.oneRun[0]/(a.oneRun[0]+a.oneRun[1])>=.58) add(1.4, `Wins the close ones: ${a.oneRun[0]}–${a.oneRun[1]} in one-run games.`);
+  const missing=b.hurt.filter(p=>p.ovr>=80).slice(0,2); if (missing.length) add(1.5+missing.length, `${N(B)} are without ${missing.map(p=>`${esc(p.first+' '+p.last)} (${p.ovr})`).join(' and ')}.`);
+  if (a.hot.length-b.hot.length>=2) add(1.2+a.hot.length*.3, `Hot bats: ${a.hot.slice(0,3).map(p=>esc(p.last)).join(', ')}${a.hot.length>3?' and more':''} are on a tear this month.`);
+  const sinkers=games.map(g=>g[aSide]).filter(p=>p&&arsenalOf(p).all.some(x=>x.name==='Sinker'&&x.usage>=25));
+  if (sinkers.length&&b.gdpPA!=null&&b.gdpPA-lg.gdpPA>=.004) add(1.4, `Double-play chances: ${N(B)} hit into a lot of them, and ${sinkers.map(p=>esc(p.last)).join(' and ')} lean${sinkers.length===1?'s':''} on the sinker.`);
+  return out.sort((x,y)=>y.w-x.w).slice(0,9);
+}
+// A scouting report on one club, written from its numbers.
+function teamReport(t, opp, games, side){
+  const p=teamProfile(t), lg=leagueProfile(), r=rng('trep'+t.id+opp.id+L.season.day), N=esc(t.name);
+  const ops=p.ops??0, identity = p.hrG-lg.hrG>=.25 ? pickR(r,[`${N} live on the long ball`,`${N} are built to slug`,`${N} can change a game with one swing`])
+    : p.kPct!=null&&lg.kPct-p.kPct>=.02 ? pickR(r,[`${N} put the ball in play and make you field it`,`A contact lineup that rarely gives away at-bats`])
+    : p.sbG-lg.sbG>=.15 ? pickR(r,[`${N} play fast and push the action on the bases`,`Speed is ${N}'s weapon`])
+    : (p.spEra??9)<=(lg.spEra??4)-.4 ? pickR(r,[`${N} win with starting pitching`,`The rotation carries ${N}`])
+    : ops>=lg.ops+.02 ? `A balanced lineup with few soft spots` : `${N} grind out runs and lean on their pitching`;
+  const threats=p.best.spots.map(s=>s.p).sort((a,b)=>(opsOf(b.stats.season)||0)-(opsOf(a.stats.season)||0)).slice(0,3);
+  const pen=bullpen(t), lefty=pen.arms.filter(x=>x.throws==='L')[0], setup=pen.arms.filter(x=>x!==pen.closer)[0];
+  const rows=[
+    ['Identity', `${identity}. ${f3(p.ops)} OPS (league ${f3(lg.ops)}), ${p.hrG.toFixed(2)} HR and ${p.sbG.toFixed(2)} steals a game.`],
+    ['Who to fear', threats.map(x=>`${plink(x)} (${x.stats.season&&x.stats.season.ab?f3(opsOf(x.stats.season))+' OPS':x.ovr+' ovr'})`).join(', ')],
+    ['Platoon', `${f3(avgOf(p.vsR))} vs right-handers, ${f3(avgOf(p.vsL))} vs left-handers. ${p.lefties} lefty and ${p.switchers} switch hitter${p.switchers===1?'':'s'} in the best lineup.`],
+    ['Approach', `Strike out in ${pct1(p.kPct)} of trips (league ${pct1(lg.kPct)}), walk in ${pct1(p.bbPct)}. ${f3(avgOf(p.rsp))} with runners in scoring position.`],
+    ['Rotation', `${p.spEra!=null?p.spEra.toFixed(2):'–'} starters' ERA. This series: ${games.map(g=>g[side]).map(x=>x?`${esc(x.last)} (${x.throws}HP, ${x.ovr})`:'TBD').join(', ')}.`],
+    ['Bullpen', `${p.rpEra!=null?p.rpEra.toFixed(2):'–'} ERA. ${pen.closer?`Closer ${plink(pen.closer)} (${penStatus(pen.closer)[1].toLowerCase()})`:'No set closer'}${setup?`, setup ${plink(setup)}`:''}${lefty?`, top lefty ${plink(lefty)}`:', no lefty of note'}.`],
+    ['Defense & arms', `Defense grades ${letter(p.zdef)}. ${p.cat?`Catcher ${plink(p.cat)} has a ${p.catArm} arm${p.catArm<=55?': run on him':p.catArm>=80?': think twice before running':''}.`:''}`],
+    ['Form', `${p.l10}–${p.l10n-p.l10} in the last ${p.l10n}, ${streak(t)} streak. Home ${p.home[0]}–${p.home[1]}, road ${p.away[0]}–${p.away[1]}.${p.hot.length?` Hot: ${p.hot.slice(0,3).map(x=>esc(x.last)).join(', ')}.`:''}${p.cold.length?` Cold: ${p.cold.slice(0,2).map(x=>esc(x.last)).join(', ')}.`:''}`],
+    ...(p.hurt.length?[['Injuries', p.hurt.slice(0,4).map(x=>`${esc(x.first+' '+x.last)} (${x.injury.days} days)`).join(', ')]]:[]),
+  ];
+  return `<dl class="trep">${rows.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>`;
+}
+// How our pitcher should attack one hitter: built from the hitter's ratings and numbers and the pitcher's real arsenal.
+function pitchTips(h, sp, seed){
+  const b=h.ratings.batting, hand=sp?sp.throws:'R', side=sideOf(h.bats,hand), same=side===hand;
+  const pow=hand==='L'?b.powL:b.powR, con=hand==='L'?b.conL:b.conR, s=h.stats.season||{}, pa=(s.ab||0)+(s.bb||0);
+  const A=arsenalOf(sp), r=rng('pt'+seed+h.id+(sp?sp.id:0)), tags=[], c=[];
+  const loc={brkSame:['away, off the edge','bouncing below the zone, glove side','starting at the hip and finishing away'],
+    brkOpp:['at the back foot','backdoor, catching the outside corner','down and in at the back knee'],
+    offOpp:['down and away, fading off the plate','below the zone after a fastball up','at the knees on the outer third'],
+    fbSame:['in on the hands','up and in to move his feet','on the inside corner'],
+    fbOpp:['up and away','at the top of the zone','running away on the outside corner']};
+  const P=(pitch,where)=>`<b>${esc(pitch.name)}</b> ${pickR(r,where)}`;
+  const put = same ? (A.brk?P(A.brk,loc.brkSame):A.off?P(A.off,loc.offOpp):null) : (A.off?P(A.off,loc.offOpp):A.brk?P(A.brk,loc.brkOpp):null);
+  if (put) c.push(['put',3,pickR(r,[`Put-away pitch: ${put}.`,`With two strikes, go to the ${put}.`,`Finish him with the ${put}.`])]);
+  if (A.fb&&(pow<70||b.vision<55)) c.push(['fb',2,pickR(r,[`Establish the ${P(A.fb,same?loc.fbSame:loc.fbOpp)} early; he's late on velocity.`,`Challenge him with the ${P(A.fb,same?loc.fbSame:loc.fbOpp)}.`])]);
+  if (pow>=80) c.push(['danger',4,pickR(r,[`Big power (${pow} vs ${hand}HP): nothing middle-in, and never elevate a fastball he can extend on.`,`One swing changes the game: work the edges and accept a walk before a mistake over the plate.`,`Don't let him get extended: soft stuff away, hard stuff only when it's well in.`])]);
+  if (con>=80&&pow<75) c.push(['contact',3,pickR(r,[`Pure contact (${con}): he'll put the first strike in play, so start him with something off the plate.`,`He rarely misses: induce weak contact early and let the defense work.`,`Won't strike out much: pitch to contact, keep it down, and avoid three-ball counts.`])]);
+  if (b.discipline<50) c.push(['chase',3,pickR(r,[`Chases (discipline ${b.discipline}): once you're ahead, expand off the plate and make him get himself out.`,`Free swinger: get ahead with the first pitch, then nothing in the zone.`,`He'll expand: bury breaking balls in the dirt with two strikes.`])]);
+  else if (b.discipline>=80) c.push(['eye',3,pickR(r,[`Elite eye (${b.discipline}): he won't chase, so win the 0-0 pitch and compete in the zone.`,`Patient: nibbling only puts him on base. Attack early.`])]);
+  if (b.vision<50&&A.brk) c.push(['spin',2,`Struggles to pick up spin (vision ${b.vision}): the ${esc(A.brk.name.toLowerCase())} plays in any count.`]);
+  if (b.vision>=80) c.push(['speeds',2,pickR(r,[`Sees the ball well: change speeds and eye levels, never the same pitch twice in a row.`,`Tracks pitches well: avoid patterns and mix the sequence.`])]);
+  if (A.fb&&A.fb.name==='Sinker'&&(s.gdp||0)>=8) c.push(['gdp',2,`Double-play threat with a man on first: ${s.gdp} GIDP this year, so pound the <b>sinker</b> down.`]);
+  if (h.ratings.running.speed>=80) c.push(['speed',2,pickR(r,[`Keep him off base: ${h.ratings.running.speed} speed. Quick to the plate, vary your holds.`,`Burner (${h.ratings.running.speed} speed): a walk is a double. Throw strikes.`])]);
+  if (b.dragBunt>=70||b.bunt>=75) c.push(['bunt',1,'Bunt threat: corners in a step when he squares early.']);
+  const rspA=avgOf(s.rsp); if (s.rsp&&s.rsp.ab>=25&&rspA>=.3) c.push(['rsp',3,`Dangerous with runners on: ${f3(rspA)} with runners in scoring position. Pitch around him with first base open.`]);
+  const f=form(h); if (f==='hot') c.push(['hot',3,`Locked in: ${f3(s.month.h/s.month.ab)} this month. Give him nothing to hit early.`]); if (f==='cold') c.push(['cold',2,`Scuffling (${f3(s.month.h/s.month.ab)} this month): be aggressive in the zone.`]);
+  if (pa>=60&&s.so/pa>=.28) c.push(['k',2,`Strikes out in ${pct1(s.so/pa)} of trips: get to two strikes and he's yours.`]);
+  const vs=s['vs'+hand]; if (vs&&vs.ab>=40){ const av=vs.h/vs.ab; if (av<=.21) c.push(['split',2,`Just ${f3(av)} against ${handName(hand)}-handers this year.`]); if (av>=.31) c.push(['split',3,`Hits ${handName(hand)}-handers well (${f3(av)}): extra care.`]); }
+  if ((s.hitStreak||0)>=8) c.push(['streak',2,`${s.hitStreak}-game hitting streak on the line.`]);
+  const w=spWeak(sp); if (w&&w.side===side) c.push(['ourweak',2,`Careful: ${esc(sp.last)} allows ${f3(w.side==='L'?w.l:w.r)} to ${handName(side)}-handed hitters.`]);
+  if (pow>=80) tags.push(['danger','Power threat']); if (con>=80) tags.push(['danger','Tough out']);
+  if (b.discipline<50) tags.push(['good','Chases']); if (b.discipline>=80) tags.push(['','Patient']);
+  if (h.ratings.running.speed>=80) tags.push(['','Speed']); if (f) tags.push([f,f==='hot'?'Hot':'Cold']);
+  tags.push(same?['good','Same side as your starter']:['danger',h.bats==='S'?'Switch hitter':'Platoon edge for him']);
+  // keep the strongest tip per category, then the top three
+  const seen=new Set(), tips=c.sort((x,y)=>y[1]-x[1]+(r()-.5)*.6).filter(([k])=>!seen.has(k)&&seen.add(k)).slice(0,3).map(x=>x[2]);
+  return {tags, tips};
+}
+// How one of our hitters should approach their starter.
+function batTips(h, sp, opp, seed){
+  if (!sp) return [];
+  const b=h.ratings.batting, side=sideOf(h.bats,sp.throws), same=side===sp.throws, pi=sp.ratings.pitching, A=arsenalOf(sp), r=rng('bt'+seed+h.id+sp.id), c=[];
+  const con=sp.throws==='L'?b.conL:b.conR, pow=sp.throws==='L'?b.powL:b.powR, slot=+(String(seed).split(':').pop()||0);
+  // Pitcher-level tips are the same for every hitter, so each hitter gets at most one, rotated through the lineup.
+  const gen=[];
+  if (A.weak&&A.weak!==A.top) gen.push(pickR(r,[`Hunt the <b>${esc(A.weak.name.toLowerCase())}</b>: it's ${esc(sp.last)}'s weakest pitch and he still throws it ${A.weak.usage}% of the time.`,`Sit on the <b>${esc(A.weak.name.toLowerCase())}</b> (${A.weak.usage}% usage): his most hittable pitch.`]));
+  if (A.top) gen.push(pickR(r,[`Lay off the <b>${esc(A.top.name.toLowerCase())}</b> early; it's his best pitch. Make him prove he can land it.`,`His <b>${esc(A.top.name.toLowerCase())}</b> is the out pitch: get your damage done before two strikes.`]));
+  if (pi.bb9<45) gen.push(pickR(r,[`He walks people (control ${pi.bb9}): take until he throws a strike.`,`Make him throw strikes. His control grades ${pi.bb9}, and deep counts favor you.`]));
+  else if (pi.bb9>=78) gen.push(pickR(r,[`He lives in the zone (control ${pi.bb9}): be ready to swing at the first good fastball.`,`Don't fall behind: he pounds the zone, so ambush early in the count.`]));
+  if ((pi.k9+pi.k9L)/2>=80) gen.push(`Swing-and-miss stuff: shorten up with two strikes and put it in play.`);
+  if (pi.stamina<58) gen.push(`Short leash (stamina ${pi.stamina}): long at-bats get you to their bullpen by the middle innings.`);
+  if (gen.length) c.push(['gen',1.5,gen[(h.id+slot)%gen.length]]);
+  if (pi.hr9<48&&pow>=65) c.push(['lift',3,`He gives up the long ball (HR rating ${pi.hr9}) and you have ${pow} power against ${handName(sp.throws)}-handers: look for something up to drive.`]);
+  if (A.fb&&pow>=75&&A.fb.velocity<60) c.push(['velo',2.5,`His <b>${esc(A.fb.name.toLowerCase())}</b> doesn't have much velocity (${A.fb.velocity}): be on time for it and do damage.`]);
+  if (A.brk&&b.vision<50) c.push(['spin',2.5,`You struggle to pick up spin (vision ${b.vision}) and his <b>${esc(A.brk.name.toLowerCase())}</b> is real: spit on anything that starts at your hip.`]);
+  if (b.vision>=78&&A.off) c.push(['offs',2,`You track the ball well: wait on his <b>${esc(A.off.name.toLowerCase())}</b> and drive it the other way.`]);
+  const s=h.stats.season||{}, pa=(s.ab||0)+(s.bb||0);
+  if (pa>=60&&s.so/pa>=.27&&(pi.k9+pi.k9L)/2>=70) c.push(['kk',2.5,`You strike out in ${pct1(s.so/pa)} of trips and he misses bats: choke up with two strikes.`]);
+  const rs=avgOf(s.rsp); if (s.rsp&&s.rsp.ab>=25&&rs>=.3) c.push(['rsp',2,`You hit ${f3(rs)} with runners in scoring position: he's the guy you want up with men on.`]);
+  if (b.bunt>=70&&h.ratings.running.speed>=70&&sp.ratings.fielding&&sp.ratings.fielding.fielding<50) c.push(['bunt',1.5,`Bunt for a hit: you have the speed, and ${esc(sp.last)} doesn't field his position well.`]);
+  const w=spWeak(sp); if (w&&w.side===side) c.push(['split',3,`${esc(sp.last)} allows ${f3(side==='L'?w.l:w.r)} to ${handName(side)}-handed hitters: you have the matchup.`]);
+  if (same&&con<55) c.push(['tough',2,`Same-side matchup and contact ${con} against ${handName(sp.throws)}-handers: a pinch-hitter candidate late.`]);
+  if (!same&&con>=75) c.push(['edge',2,`Platoon edge (contact ${con} against ${handName(sp.throws)}-handers): be aggressive.`]);
+  if (h.ratings.running.speed>=75&&opp&&teamProfile(opp).catArm!=null&&teamProfile(opp).catArm<=60) c.push(['run',2,`Green light: ${esc(teamProfile(opp).cat.last)}'s arm is ${teamProfile(opp).catArm}. Get on and run.`]);
+  if (b.discipline>=78) c.push(['eye',1,`Your eye (${b.discipline}) is the weapon: work the count, and the walk is a win.`]);
+  const f=form(h); if (f==='cold') c.push(['cold',1,`Cold this month: simplify, go the other way.`]);
+  if ((h.stats.season||{}).hitStreak>=6) c.push(['streak',1,`${h.stats.season.hitStreak}-game hitting streak: stay with what's working.`]);
+  const seen=new Set();
+  return c.sort((x,y)=>y[1]-x[1]+(r()-.5)*.8).filter(([k])=>!seen.has(k)&&seen.add(k)).slice(0,2).map(x=>x[2]);
+}
+// Late-inning plan: match our rested relievers to their most dangerous hitters, and how to attack their pen.
+function bullpenPlan(me, them, ourSp, theirLineup, seed){
+  const pen=bullpen(me), r=rng('bp'+seed), rest=pen.arms.filter(p=>penStatus(p)[0]!=='st-no');
+  const threat=x=>platoonVal(x.p, 'R')+(form(x.p)==='hot'?5:0);
+  const top=theirLineup.order.slice().sort((a,b)=>threat(b)-threat(a)).slice(0,4).map(x=>x.p);
+  const vsSide=(rp,side)=>{ const s=rp.stats.season&&rp.stats.season['vs'+side]; return s&&s.ab>=15?s.h/s.ab:null; };
+  const score=(rp,hh)=>rp.ovr+(rp.throws===sideOf(hh.bats,rp.throws)?6:0)+((rp.ratings.pitching.k9+rp.ratings.pitching.k9L)/2-60)*.1;
+  const lines=[], usedArm=new Map(), when=['the 6th','the 7th','the 8th','a high-leverage spot'];
+  top.forEach((hh,k)=>{   // spread the work: each arm takes one threat (two only when nobody else fits)
+    const pool=rest.filter(x=>x!==pen.closer).sort((a,b)=>score(b,hh)-(usedArm.get(b.id)||0)*9-score(a,hh)+(usedArm.get(a.id)||0)*9);
+    const best=pool[0]; if (!best) return; usedArm.set(best.id,(usedArm.get(best.id)||0)+1);
+    const side=sideOf(hh.bats,best.throws), v=vsSide(best,side), plat=best.throws===side;
+    lines.push(pickR(r,[`If ${plink(hh)} (${hh.bats}) comes up in ${when[k]}: ${plink(best)}${plat?', the platoon edge':''}${v!=null?`, holds ${handName(side)}-handers to ${f3(v)}`:''}.`,
+      `${plink(best)} for ${plink(hh)} in ${when[k]}${plat?`: ${handName(best.throws)} on ${handName(side)}`:''}${v!=null?` (${f3(v)} allowed to ${handName(side)}-handers)`:''}.`,
+      `Save ${plink(best)} for ${plink(hh)}'s turn in ${when[k]}${plat?'. He takes away the platoon edge':''}${v!=null?`, ${f3(v)} against ${handName(side)}-handers`:''}.`])); });
+  if (pen.closer){ const st=penStatus(pen.closer); lines.push(st[0]==='st-no'?`Closer ${plink(pen.closer)} should rest (${st[1].toLowerCase()}): ${rest[0]?`${plink(rest[0])} gets the ninth.`:'pick your freshest arm for the ninth.'}`:`Ninth inning: ${plink(pen.closer)} is ${st[1].toLowerCase()}.`); }
+  if (ourSp&&ourSp.ratings.pitching.stamina<58){ const lng=rest.filter(x=>x.ratings.pitching.stamina>=45).sort((a,b)=>b.ratings.pitching.stamina-a.ratings.pitching.stamina)[0]; if (lng) lines.push(`${esc(ourSp.last)} has a short leash (stamina ${ourSp.ratings.pitching.stamina}): have ${plink(lng)} ready for length.`); }
+  const tp=bullpen(them), tr=tp.arms.filter(p=>penStatus(p)[0]!=='st-ok');
+  const theirs=[];
+  if (tp.closer&&penStatus(tp.closer)[0]==='st-no') theirs.push(`Their closer ${plink(tp.closer)} is likely down (${penStatus(tp.closer)[1].toLowerCase()}): a late lead is more beatable.`);
+  else if (tp.closer) theirs.push(`Closer ${plink(tp.closer)} (${tp.closer.throws}HP, ${tp.closer.ovr}): ${tp.closer.throws==='L'?'stack right-handed bats for the ninth':'line up your lefties and switch hitters for the ninth'}.`);
+  const lefties=tp.arms.filter(p=>p.throws==='L'); theirs.push(lefties.length?`They have ${lefties.length} lefty reliever${lefties.length===1?'':'s'} (${lefties.slice(0,2).map(p=>esc(p.last)).join(', ')}): hold a right-handed pinch hitter for the moment they come in.`:`No left-handed relievers of note: your lefty bats keep the edge late.`);
+  if (tr.length>=3) theirs.push(`${tr.length} of their relievers worked recently (${tr.slice(0,3).map(p=>esc(p.last)).join(', ')}): make their starter throw pitches and get into that pen.`);
+  const p=teamProfile(them); if (p.rpEra!=null&&p.rpEra>=leagueProfile().rpEra+.4) theirs.push(`Their bullpen ERA is ${p.rpEra.toFixed(2)}: the game opens up after their starter leaves.`);
+  return {ours:lines, theirs};
+}
+// A short broadcast-style preview of the series.
+function seriesPreview(me, them, games, home, key){
+  const r=rng('prev'+key+L.season.day), ss=seasonSeries(me,them), g0=games[0];
+  const pu=teamProfile(me), pt=teamProfile(them), star=p=>p.best.spots.map(s=>s.p).sort((a,b)=>(opsOf(b.stats.season)||0)-(opsOf(a.stats.season)||0)+(form(b)==='hot'?.05:0)-(form(a)==='hot'?.05:0))[0];
+  const su=star(pu), st=star(pt);
+  const open=pickR(r,[`${esc(me.name)} ${home?'welcome':'head out to face'} ${esc(them.city||'')} ${esc(them.name)} for ${games.length} games${g0&&g0.date?`, starting ${shortDate(g0.date)}`:''}.`,
+    `It's ${esc(me.name)} and ${esc(them.name)}, ${games.length} games${home==null?'':home?' at home':' on the road'}.`,
+    `${games.length} games against ${esc(them.name)}${home==null?'':home?', and they come to you':', and you go to them'}.`]);
+  const stand=`${esc(me.name)} (${me.record.w}–${me.record.l}) are ${esc(place(me))}; ${esc(them.name)} (${them.record.w}–${them.record.l}) are ${esc(place(them))}.`;
+  const series=ss.w+ss.l?pickR(r,[`The season series stands ${ss.w}–${ss.l}.`,`You're ${ss.w}–${ss.l} against them this year.`]):pickR(r,['First meeting of the season.','These two haven\'t met yet this year.']);
+  const duel=g0&&g0.us&&g0.them?pickR(r,[`Game 1 sends ${esc(g0.us.first+' '+g0.us.last)} against ${esc(g0.them.first+' '+g0.them.last)}.`,`The opener: ${esc(g0.us.last)} (${g0.us.ovr}) vs ${esc(g0.them.last)} (${g0.them.ovr}).`]):'';
+  const watch=`Watch ${su?plink(su):'your lineup'}${su&&form(su)==='hot'?', who is red-hot,':''} on your side and ${st?plink(st):'their lineup'}${st&&form(st)==='hot'?', who can\'t miss right now,':''} on theirs.`;
+  return [open, stand, series, duel, watch].filter(Boolean).join(' ');
+}
+
 /* schedule: L.schedule[team] = [[day, game, opp, home, time], ...] for all 162 games */
 const dayDate = d => { const x=new Date(L.season.year,2,25+d,12); return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`; };
 const teamSched = tid => (L.schedule&&L.schedule[tid])||[];
+// MLB rookie status (used by the Rookie of the Year race and the assistant GM).
+function isRookie(p){
+  if (!p||p.team==null) return false;
+  const Y=L.season.year; let ab=0, outs=0;
+  (p.career||[]).filter(c=>c.y<Y).forEach(c=>{ if (c.b) ab+=c.b[1]||0; if (c.p) outs+=c.p[6]||0; });
+  const l=p.stats&&p.stats.last;   // last season's line, in case the career table lacks it
+  if (l&&!(p.career||[]).some(c=>c.y===Y-1)){ ab+=l.ab||0; outs+=l.outs||0; }
+  const svc=p.serviceYears!=null ? p.serviceYears*172+(p.serviceDays||0)-(p.seasonServiceDays||0) : 0;
+  return ab<=130 && outs<=150 && svc<45;
+}
 // "Day 21" in season, "Spring day 22" in camp (records, leaders and results are spring games then)
 const dayLbl = () => { const ph=L&&springPhase(); return ph?`Spring day ${ph.day}`:`Day ${L.season.day}`; };
 const schedGame = (tid,k) => { const s=teamSched(tid); return s[k-1]&&s[k-1][1]===k ? s[k-1] : s.find(g=>g[1]===k); };
@@ -1940,6 +2271,12 @@ function seriesList(n=4){
   // Your next series from the full schedule, however far away the next game is.
   // Probable starters come from the save's own list when it covers that game (D_UPCOMING_PI).
   // In spring the team record and the save's upcoming list are spring games; the schedule is the regular season.
+  // In the postseason, the next series is the real one from the save's bracket (never the projection).
+  if (typeof POST==='function'&&POST()){
+    const cur=poMyCurrent(); if (!cur) return [];
+    const c=poScore(cur), left=Math.min(PO_BEST[cur.round]-cur.games.length, 2*c.need-1-c.w1-c.w2), opp=poOpp(cur), home=cur.t1===ME;
+    return [{opp, home, po:cur, games:Array.from({length:Math.max(1,left)},(_,i)=>({game:cur.games.length+i+1, opp, home, time:null, day:null, date:null, sp:null, oppSp:null, listed:false, hyp:true}))}];
+  }
   const spring=!!springPhase(), played=spring?0:T[ME].games.length, named={};
   if (L.upcoming&&!spring) L.upcoming.games.forEach(g=>{ named[g.game]=g; });
   const out=[];
@@ -1980,8 +2317,9 @@ Object.assign(views, {
       idx=Math.min(Math.max(0,+arg||0),list.length-1); key='s'+idx; them=T[list[idx].opp]; games=list[idx].games;
     }
     const picker=`<select class="sel" id="sersel" aria-label="Plan against another team"><option value="">Plan against another team…</option>${T.filter(t=>t.id!==ME).map(t=>`<option value="${t.id}" ${them&&!idx&&idx!==0&&t.id===them.id?'selected':''}>${esc(fullName(t))}</option>`).join('')}</select>`;
-    const serTabs=list.length?tabs('series',list.map((s,i)=>[String(i),`${s.home?'vs':'@'} ${T[s.opp].abbr} · ${shortDate(s.games[0].date).replace(/^\w+, /,'')}${s.games.length>1?'–'+new Date(s.games[s.games.length-1].date+'T12:00:00').getDate():''}`]),idx==null?'':String(idx)):'';
-    const head=`<div class="page-h"><div><div class="kicker">Series plan</div><h2>${them?`${idx!=null?(list[idx].home?'vs ':'at '):'vs '}${esc(them.name)}`:'No series found'}</h2></div><div class="pills" style="align-items:center">${serTabs}${picker}</div></div>`;
+    const serTabs=list.length?tabs('series',list.map((s,i)=>[String(i),s.po?`${poShort(s.po)} vs ${T[s.opp].abbr}`:`${s.home?'vs':'@'} ${T[s.opp].abbr} · ${shortDate(s.games[0].date).replace(/^\w+, /,'')}${s.games.length>1?'–'+new Date(s.games[s.games.length-1].date+'T12:00:00').getDate():''}`]),idx==null?'':String(idx)):'';
+    const po=idx!=null&&list[idx]&&list[idx].po;
+    const head=`<div class="page-h"><div><div class="kicker">${po?`${esc(PO_NAME[po.round])} · ${esc(poScoreTxt(po))}`:'Series plan'}</div><h2>${them?`${idx!=null?(list[idx].home?'vs ':'at '):'vs '}${esc(them.name)}`:'No series found'}</h2></div><div class="pills" style="align-items:center">${serTabs}${picker}</div></div>`;
     if (!them) return head+`<p class="explain">The save doesn’t list upcoming games right now. Pick a team above to plan a series against them.</p>`;
 
     const rotU=projRotation(me), rotT=projRotation(them);
@@ -2008,22 +2346,13 @@ Object.assign(views, {
       ['Team OPS',tu.ops,tt.ops,v=>f3(v),.03],
       ['Team ERA',-tu.era,-tt.era,v=>(-v).toFixed(2),.4],
     ];
-    const good=[], bad=[];
-    ROWS.forEach(([l,u,t,fm,thr])=>{ if(u-t>=thr) good.push(`${l}: ${fm(u)} vs ${fm(t)}`); else if(t-u>=thr) bad.push(`${l}: ${fm(u)} vs ${fm(t)}`); });
-    games.forEach((g,i)=>{
-      if (g.us&&g.them){ const d=g.us.ovr-g.them.ovr;
-        if (d>=5) good.push(`Game ${i+1}: ${esc(g.us.last)} (${g.us.ovr}) outrates ${esc(g.them.last)} (${g.them.ovr})`);
-        if (d<=-5) bad.push(`Game ${i+1}: ${esc(g.them.last)} (${g.them.ovr}) outrates ${esc(g.us.last)} (${g.us.ovr})`); }
-      const w=spWeak(g.them); if (w&&w.side) good.push(`Game ${i+1}: ${esc(g.them.last)} allows ${f3(w.side==='L'?w.l:w.r)} to ${handName(w.side)}-handed hitters`);
-    });
-    const penU=bullpen(me), penT=bullpen(them), restedTop=pn=>pn.arms.slice(0,5).filter(p=>penStatus(p)[0]==='st-ok').length;
-    const ru=restedTop(penU), rtm=restedTop(penT);
-    if (ru-rtm>=2) good.push(`Fresher bullpen: ${ru} of your top 5 relievers are rested, ${rtm} of theirs`);
-    if (rtm-ru>=2) bad.push(`Tired bullpen: ${ru} of your top 5 relievers are rested, ${rtm} of theirs`);
-    if (penT.closer){ const c=penT.closer, opp=c.throws==='L'?'R':'L', pinch=lineupVs(me,c.throws).bench.filter(p=>p.bats===opp||p.bats==='S').sort((a,b)=>platoonVal(b,c.throws)-platoonVal(a,c.throws))[0];
-      good.push(`Their closer ${esc(c.first+' '+c.last)} is ${handName(c.throws)}-handed${pinch?`: save ${esc(pinch.first+' '+pinch.last)} (bats ${pinch.bats}) to pinch-hit late`:''}`); }
+    // edges for both clubs, measured the same way, so neither side's list is padded
+    const homeS=idx!=null?list[idx].home:null;
+    const good=seriesEdges(me,them,games,'us'), bad=seriesEdges(them,me,games,'them');
+    const penU=bullpen(me), penT=bullpen(them);
+    const preview=seriesPreview(me,them,games,homeS,key);
 
-    const series=`${games.length}-game series`, dates=games[0].date?`${shortDate(games[0].date)}${games.length>1?' – '+shortDate(games[games.length-1].date):''}`:'Dates not set';
+    const series=po?`${PO_NAME[po.round]} · best of ${PO_BEST[po.round]}`:`${games.length}-game series`, dates=po?poScoreTxt(po):games[0].date?`${shortDate(games[0].date)}${games.length>1?' – '+shortDate(games[games.length-1].date):''}`:'Dates not set';
     const hero=`<div class="vs-hero" style="--us-a:${themeOf(me).heroA};--them-a:${themeOf(them).heroA}">
       <div class="vs-side">${logo(me,76)}<div><small>${idx!=null&&!list[idx].home?'Away':'Your team'}</small><h3>${esc(me.name)}</h3><div class="rec2">${me.record.w}–${me.record.l}</div></div></div>
       <div class="vs-mid"><b>${idx!=null&&!list[idx].home?'@':'VS'}</b><span>${series}</span><br><span>${dates}</span></div>
@@ -2035,28 +2364,39 @@ Object.assign(views, {
       const wk=spWeak(g.them), hand=g.them?g.them.throws:'R', lu=lineupVs(me,hand,wk&&wk.side), theirs=lineupVs(them,g.us?g.us.throws:'R',(spWeak(g.us)||{}).side);
       const base=bestLineup(me.roster.map(id=>P.get(id)).filter(Boolean));
       const ins=lu.order.filter(x=>!base.spots.some(s=>s.p.id===x.p.id)).map(x=>x.p), outs=base.spots.filter(s=>!lu.order.some(x=>x.p.id===s.p.id)).map(s=>s.p);
-      const wc=winChance(me,them,g.us,g.them,g.home), w=spWeak(g.them);
+      const wf=winFactors(me,them,g.us,g.them,g.home), wc=wf.p, w=spWeak(g.them), bp=bullpenPlan(me,them,g.us,theirs,`${key}:${i}`);
       const open=SER.open[`${key}:${i}`] ?? i===0;
       return `<details class="card game" style="--i:${i+3}" data-gk="${key}:${i}" ${open?'open':''}>
-        <summary><span class="gno">G${i+1}</span><div><div class="gmeta">${g.date?shortDate(g.date):'Date not set'}${g.time?' · '+gameTime(g.time):''}${g.home!=null?' · '+(g.home?'Home':'Away'):''}</div>
+        <summary><span class="gno">G${po&&g.game?g.game:i+1}</span><div><div class="gmeta">${g.date?shortDate(g.date):'Date not set'}${g.time?' · '+gameTime(g.time):''}${g.home!=null?' · '+(g.home?'Home':'Away'):''}</div>
           <div class="gtitle">${g.us?esc(g.us.last):'TBD'} vs ${g.them?esc(g.them.last):'TBD'}</div></div><span class="chev">▾</span></summary>
         <div class="duel">${spCard(g.us,me,`${key}:${i}:us`,g.projU)}
-          <div class="wp"><b>${Math.round(wc*100)}%</b><span>Win chance</span><div class="wpbar"><i style="width:${wc*100}%"></i></div><span style="margin-top:8px">Estimate</span></div>
+          <div class="wp"><b>${Math.round(wc*100)}%</b><span>Win chance</span><div class="wpbar"><i style="width:${wc*100}%"></i></div>
+            <ul class="wpf">${wf.parts.filter(([,v])=>Math.abs(v)>=.003).map(([l,v])=>`<li><span>${l}</span><b class="${v>0?'pos':'neg'}">${v>0?'+':''}${Math.round(v*100)}</b></li>`).join('')||'<li><span>Even matchup</span></li>'}</ul>
+            <span style="margin-top:6px">Estimate, in points from 50%</span></div>
           ${spCard(g.them,them,`${key}:${i}:them`,g.projT)}</div>
         <div class="plan">
           <div><h4>Your lineup vs ${g.them?esc(g.them.last)+' ('+hand+'HP)':'a '+handName(hand)+'-hander'}</h4>
-            <ol class="lu">${lu.order.map(({p,pos,off})=>`<li><span class="posb">${pos}</span><span style="min-width:0">${plink(p)} <span class="muted" style="font-size:11px">${p.bats}</span>${form(p)?` <span class="chipx ${form(p)}">${form(p)==='hot'?'Hot':'Cold'}</span>`:''}${off?' <span class="chipx">out of position</span>':''}<br><small>${splitTxt(p,hand)}</small></span>${rt(p.ovr,1)}</li>`).join('')}</ol>
+            <ol class="lu">${lu.order.map(({p,pos,off})=>{ const bt=batTips(p,g.them,them,`${key}:${i}`); return `<li><span class="posb">${pos}</span><span style="min-width:0">${plink(p)} <span class="muted" style="font-size:11px">${p.bats}</span>${form(p)?` <span class="chipx ${form(p)}">${form(p)==='hot'?'Hot':'Cold'}</span>`:''}${off?' <span class="chipx">out of position</span>':''}<br><small>${splitTxt(p,hand)}</small>${bt.length?`<div class="btip">${bt.join(' ')}</div>`:''}</span>${rt(p.ovr,1)}</li>`; }).join('')}</ol>
             <p class="note">${ins.length?`Platoon changes from your best lineup: <b>in</b> ${ins.map(p=>esc(p.last)).join(', ')}; <b>out</b> ${outs.map(p=>esc(p.last)).join(', ')}.`:'Same nine as your best lineup; the order is tuned for this matchup.'}${w&&w.side?` ${esc(g.them.last)} is weaker against ${handName(w.side)}-handed hitters (${f3(w.side==='L'?w.l:w.r)} allowed), so the lineup leans toward them.`:''}</p></div>
           <div><h4>How ${g.us?esc(g.us.last):'your starter'} should attack them</h4>
-            <ul class="scout">${theirs.order.map(({p,pos})=>{ const s=scoutTips(p,g.us); return `<li><div class="top"><span class="posb">${pos}</span>${plink(p)}<span class="hand">Bats ${p.bats}</span>${s.tags.map(([c,t])=>`<span class="chipx ${c}">${t}</span>`).join('')}</div><div class="how">${s.tips.join(' ')}</div></li>`; }).join('')}</ul></div>
+            <ul class="scout">${theirs.order.map(({p,pos})=>{ const s=pitchTips(p,g.us,`${key}:${i}`); return `<li><div class="top"><span class="posb">${pos}</span>${plink(p)}<span class="hand">Bats ${p.bats}</span>${s.tags.map(([c,t])=>`<span class="chipx ${c}">${t}</span>`).join('')}</div><div class="how">${s.tips.join(' ')}</div></li>`; }).join('')}</ul></div>
+        </div>
+        <div class="plan" style="margin-top:4px">
+          <div><h4>Your bullpen plan</h4><ul class="edge-list">${bp.ours.map(x=>`<li><span>${x}</span></li>`).join('')||'<li><span>No clear matchups: use your best rested arms.</span></li>'}</ul></div>
+          <div><h4>Attacking their bullpen</h4><ul class="edge-list">${bp.theirs.map(x=>`<li><span>${x}</span></li>`).join('')}</ul></div>
         </div></details>`;
     };
     const penTable=(t,pn)=>`<table class="pen"><thead><tr><th>Reliever</th><th>Ovr</th><th>ERA</th><th>SV/HLD</th><th>Status</th></tr></thead><tbody>${pn.arms.slice(0,8).map(p=>{const s=p.stats.season||{}, st=penStatus(p); return `<tr><td>${plink(p)} <span class="muted" style="font-size:11px">${p.throws}HP</span>${p===pn.closer?' <span class="chipx">Closer</span>':''}</td><td>${rt(p.ovr,1)}</td><td>${s.era!=null?s.era.toFixed(2):'–'}</td><td>${s.sv??0}/${s.hld??0}</td><td class="${st[0]}">${st[1]}</td></tr>`;}).join('')}</tbody></table>`;
 
     return head+hero+`<p class="explain">Clubhouse’s suggestions from the ratings and stats in your save, not the game’s own AI. Starters come from the save where it names them; otherwise they’re projected from rest and ratings, and you can change any of them.</p>
-      <div class="edges">
-        <section class="card" style="--i:0"><div class="card-h"><h2>Where you have the edge</h2></div>${good.length?`<ul class="edge-list">${good.map(x=>`<li>${x}</li>`).join('')}</ul>`:'<p class="muted">No clear edges in this series.</p>'}</section>
-        <section class="card" style="--i:1"><div class="card-h"><h2>Where they have the edge</h2></div>${bad.length?`<ul class="edge-list bad">${bad.map(x=>`<li>${x}</li>`).join('')}</ul>`:'<p class="muted">Nothing stands out for them.</p>'}</section>
+      <section class="card preview" style="--i:0"><div class="card-h"><h2>Series preview</h2></div><p>${preview}</p></section>
+      <div class="edges" style="margin-top:14px">
+        <section class="card" style="--i:0"><div class="card-h"><h2>${logo(me,22)} ${esc(me.name)} edges</h2><span class="aside">${good.length}</span></div>${good.length?`<ul class="edge-list">${good.map(x=>`<li><span>${x.txt}</span></li>`).join('')}</ul>`:'<p class="muted">No clear edges for you in this series.</p>'}</section>
+        <section class="card" style="--i:1"><div class="card-h"><h2>${logo(them,22)} ${esc(them.name)} edges</h2><span class="aside">${bad.length}</span></div>${bad.length?`<ul class="edge-list bad">${bad.map(x=>`<li><span>${x.txt}</span></li>`).join('')}</ul>`:'<p class="muted">Nothing stands out for them.</p>'}</section>
+      </div>
+      <div class="grid g-eq" style="margin-top:14px">
+        <section class="card" style="--i:2"><div class="card-h"><h2>Scouting report: ${esc(me.name)}</h2></div>${teamReport(me,them,games,'us')}</section>
+        <section class="card" style="--i:3"><div class="card-h"><h2>Scouting report: ${esc(them.name)}</h2></div>${teamReport(them,me,games,'them')}</section>
       </div>
       <section class="card" style="--i:2;margin-top:18px"><div class="card-h"><h2>Tale of the tape</h2><span class="aside">${esc(me.name)} · ${esc(them.name)}</span></div>${tape}</section>
       ${games.map(gameCard).join('')}
@@ -2232,7 +2572,7 @@ Object.assign(views, {
           {k:'bt',l:'B/T',v:p=>p.bats+p.throws,f:p=>`${p.bats}/${p.throws}`,asc:true},
           {k:'age',l:'Age',v:p=>p.age},
           {k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr)},
-          {k:'pot',l:'Pot',v:p=>p.pot,f:p=>rt(p.pot,1)},
+          {k:'pot',l:'Pot',v:p=>potV(p),f:p=>potRt(p,1)},
           {k:'val',l:'One-year value',v:p=>marketAAV(p.ovr)*ageMult(p.age),f:p=>money2(Math.max(.78e6,marketAAV(p.ovr)*ageMult(p.age)))},
         ],rows,{sort:'ovr'})}</section>`;
     }
@@ -2266,7 +2606,7 @@ Object.assign(views, {
         {k:'pos',l:'Pos',cls:'l',v:p=>p.role,f:p=>`<span class="posb">${p.role}</span>`,asc:true},
         {k:'age',l:'Age next year',v:p=>p.d.age},
         {k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr)},
-        {k:'pot',l:'Pot',v:p=>p.pot,f:p=>rt(p.pot,1)},
+        {k:'pot',l:'Pot',v:p=>potV(p),f:p=>potRt(p,1)},
         {k:'sal',l:`${L.season.year} salary`,v:p=>p.contract.salary,f:p=>money2(p.contract.salary)},
         {k:'deal',l:'Projected deal',v:p=>p.d.total,f:p=>dealText(p.d)},
         {k:'total',l:'Total',v:p=>p.d.total,f:p=>money2(p.d.total)},
@@ -2785,8 +3125,8 @@ function field(best){
 function rosterTable(list,pitch){
   const s=p=>p.stats.season||{};
   return pitch
-  ? `<table><thead><tr><th>Player</th><th class="l">Role</th><th>Ovr</th><th>Pot</th><th>W-L</th><th>ERA</th><th>IP</th><th>SO</th></tr></thead><tbody>${list.map(p=>`<tr><td class="l">${plinkH(p)}</td><td class="l"><span class="posb">${p.role}</span></td><td>${rt(p.ovr)}</td><td>${rt(p.pot,1)}</td><td>${s(p).w??0}-${s(p).l??0}</td><td>${s(p).era!=null?s(p).era.toFixed(2):'–'}</td><td>${s(p).ip??'0.0'}</td><td>${s(p).so??0}</td></tr>`).join('')}</tbody></table>`
-  : `<table><thead><tr><th>Player</th><th class="l">Pos</th><th>Ovr</th><th>Pot</th><th>AVG</th><th>HR</th><th>RBI</th><th>OPS</th></tr></thead><tbody>${list.map(p=>`<tr><td class="l">${plinkH(p)}</td><td class="l"><span class="posb">${p.pos}</span></td><td>${rt(p.ovr)}</td><td>${rt(p.pot,1)}</td><td>${f3(s(p).avg)}</td><td>${s(p).hr??0}</td><td>${s(p).rbi??0}</td><td>${s(p).obp!=null?f3(s(p).obp+s(p).slg):'–'}</td></tr>`).join('')}</tbody></table>`;
+  ? `<table><thead><tr><th>Player</th><th class="l">Role</th><th>Ovr</th><th>Pot</th><th>W-L</th><th>ERA</th><th>IP</th><th>SO</th></tr></thead><tbody>${list.map(p=>`<tr><td class="l">${plinkH(p)}</td><td class="l"><span class="posb">${p.role}</span></td><td>${rt(p.ovr)}</td><td>${potRt(p,1)}</td><td>${s(p).w??0}-${s(p).l??0}</td><td>${s(p).era!=null?s(p).era.toFixed(2):'–'}</td><td>${s(p).ip??'0.0'}</td><td>${s(p).so??0}</td></tr>`).join('')}</tbody></table>`
+  : `<table><thead><tr><th>Player</th><th class="l">Pos</th><th>Ovr</th><th>Pot</th><th>AVG</th><th>HR</th><th>RBI</th><th>OPS</th></tr></thead><tbody>${list.map(p=>`<tr><td class="l">${plinkH(p)}</td><td class="l"><span class="posb">${p.pos}</span></td><td>${rt(p.ovr)}</td><td>${potRt(p,1)}</td><td>${f3(s(p).avg)}</td><td>${s(p).hr??0}</td><td>${s(p).rbi??0}</td><td>${s(p).obp!=null?f3(s(p).obp+s(p).slg):'–'}</td></tr>`).join('')}</tbody></table>`;
 }
 
 /* ---------- player database ---------- */
@@ -2797,7 +3137,7 @@ const H=f=>p=>p.pos==='P'?null:f(p);
 const col={con:H(p=>Math.round((p.ratings.batting.conR+p.ratings.batting.conL)/2)),pow:H(p=>Math.round((p.ratings.batting.powR+p.ratings.batting.powL)/2)),
   vis:H(p=>p.ratings.batting.vision),disc:H(p=>p.ratings.batting.discipline),spd:p=>p.ratings.running.speed,fld:p=>p.ratings.fielding.fielding,arm:p=>p.ratings.fielding.armStr,
   sta:p=>p.ratings.pitching?.stamina??null,k9:p=>p.ratings.pitching?.k9??null,bb9:p=>p.ratings.pitching?.bb9??null,
-  ovr:p=>p.ovr,pot:p=>p.pot,last:p=>p.last,team:p=>p.team!=null?T[p.team].abbr:'~'+(L.clubs[p.club]?.abbr||''),role:p=>p.role};
+  ovr:p=>p.ovr,pot:p=>potV(p),last:p=>p.last,team:p=>p.team!=null?T[p.team].abbr:'~'+(L.clubs[p.club]?.abbr||''),role:p=>p.role};
 function teamCell(p){
   if (p.team!=null) return `<span class="tm">${logo(T[p.team],20)}${esc(T[p.team].abbr)}</span>`;
   const c=L.clubs[p.club]; return c?`<span class="muted">${esc(c.abbr)}</span>`:'<span class="muted">—</span>';
@@ -2816,7 +3156,7 @@ function renderDB(){
   const view=rows.slice(DB.page*DB.size,(DB.page+1)*DB.size);
   $('#cnt').textContent=`${rows.length.toLocaleString()} players`;
   $('#ptable').innerHTML=`<table><thead><tr>${COLS.map(([k,l,c])=>`<th data-k="${k}" class="${c||''} ${DB.sort===k?'sorted'+(DB.asc?' asc':''):''}" scope="col" tabindex="0">${l}</th>`).join('')}</tr></thead><tbody>${
-    view.map(p=>`<tr><td class="l">${plinkH(p)}</td><td class="l">${teamCell(p)}</td><td class="l"><span class="posb">${p.role}</span></td>${FOGSET().has(p.id)?`<td>${fogRt(p,'ovr')}</td><td>${fogRt(p,'pot')}</td>${'<td><span class="muted">~</span></td>'.repeat(10)}`:`<td>${rt(p.ovr)}</td><td>${rt(p.pot,1)}</td>${
+    view.map(p=>`<tr><td class="l">${plinkH(p)}</td><td class="l">${teamCell(p)}</td><td class="l"><span class="posb">${p.role}</span></td>${FOGSET().has(p.id)?`<td>${fogRt(p,'ovr')}</td><td>${fogRt(p,'pot')}</td>${'<td><span class="muted">~</span></td>'.repeat(10)}`:`<td>${rt(p.ovr)}</td><td>${potRt(p,1)}</td>${
       ['con','pow','vis','disc','spd','fld','arm','sta','k9','bb9'].map(k=>`<td>${rt(col[k](p),1)}</td>`).join('')}`}</tr>`).join('')}</tbody></table>`;
   $('#pager').innerHTML=`<button class="btn ghost sm" data-pg="-1" ${DB.page?'':'disabled'}>Previous</button><span>Page ${DB.page+1} of ${pages}</span><button class="btn ghost sm" data-pg="1" ${DB.page<pages-1?'':'disabled'}>Next</button>`;
 }
@@ -2900,7 +3240,7 @@ function pmHero(p){
   const fr=PMFOG?fogRange(p,p.ovr,'ovr'):null;
   const ovr = fr ? `<b style="--c:#fff;font-size:76px">${fr[0]}–${fr[1]}</b><i>Potential grade ${potGrade(p.pot)}</i>`
     : p.prospect ? `<b style="--c:#fff">?</b><i>Potential ?</i>`
-    : `<b style="--c:var(--t-${['','low','avg','good','great','elite'][tierN(p.ovr)]})"${cnt(p.ovr)}>${p.ovr}</b><i>Potential ${p.pot}</i>`;
+    : `<b style="--c:var(--t-${['','low','avg','good','great','elite'][tierN(p.ovr)]})"${cnt(p.ovr)}>${p.ovr}</b><i>Potential ${potTxt(p)}</i>`;
   return `<header class="pm-hero">
     ${wm}
     <div class="pm-num ${p.head?'has-hs':''}"><b>${p.prospect?esc(p.role):p.num}</b>${p.head?`<img class="pm-hs" src="heads/${p.head}.webp" alt="" onerror="this.parentNode.classList.remove('has-hs');this.remove()">`:''}<span>${p.prospect?'Draft':'#'+p.num}<em>${esc(p.role)}</em></span></div>
@@ -3511,7 +3851,7 @@ function eta(p){
     const why=[];
     if (bar.p) why.push(`${bar.p.first} ${bar.p.last} (${bar.p.ovr}) holds ${bar.slot}`);
     const s=lvlStats(p); if (s&&(p.pos==='P'?s.outs:s.ab)) why.push(p.pos==='P'?`${s.era!=null?s.era.toFixed(2):'–'} ERA over ${s.ip} IP at ${p.level}`:`${f3(s.avg)}/${f3(s.obp)}/${f3(s.slg)} with ${s.hr} HR at ${p.level}`);
-    why.push(`${p.ovr} overall now, ${p.pot} potential`);
+    why.push(`${p.ovr} overall now, ${potTxt(p)} potential`);
     r={k,label,range,why,gap,bar};
   }
   return CACHE.eta[p.id]=r;
@@ -3679,7 +4019,7 @@ function tradePlan(){
 /* ---------- small shared pieces ---------- */
 const lvlTag = p => p.level==='MLB'?'MLB':p.level||'FA';
 const pchip = (p, extra='') => `<div class="pchip">${p.team!=null?logo(T[p.team],26):p.org!=null?logo(T[p.org],26):''}<div><a class="pl" href="#p/${p.id}" data-pid="${p.id}">${esc(p.first)} ${esc(p.last)}</a>
-  <small>${esc(p.role)} · ${lvlTag(p)} · age ${p.age} · ${p.ovr}/${p.pot}${extra}</small></div><span class="tv" title="Trade value">${tvTxt(p)}</span></div>`;
+  <small>${esc(p.role)} · ${lvlTag(p)} · age ${p.age} · ${p.ovr} · pot ${potTxt(p)}${extra}</small></div><span class="tv" title="Trade value">${tvTxt(p)}</span></div>`;
 const slotRating = (t,slot) => { const s=teamSlots(t)[slot]; return slot==='SP'||slot==='RP'?s.cmp:s.ovr; };
 
 /* ---------- views ---------- */
@@ -3752,7 +4092,7 @@ Object.assign(views, {
       {k:'name',l:'Prospect',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},
       {k:'pos',l:'Pos',cls:'l',v:p=>p.role,f:p=>`<span class="posb">${p.role}</span>`},
       {k:'lvl',l:'Level',cls:'l',v:p=>LV_ORDER.indexOf(p.level),f:p=>p.level,asc:true},
-      {k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr,1)},{k:'pot',l:'Pot',v:p=>p.pot,f:p=>rt(p.pot,1)},
+      {k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr,1)},{k:'pot',l:'Pot',v:p=>potV(p),f:p=>potRt(p,1)},
       {k:'eta',l:'ETA',cls:'l',v:p=>eta(p).k,f:p=>etaChip(eta(p)),asc:true},
       {k:'tv',l:'Value',v:p=>tradeValue(p),f:p=>tvTxt(p)},
       {k:'tag',l:'Verdict',cls:'l',v:p=>tp.untouch.has(p.id)?0:blockedBy(p)?1:2,f:p=>tp.untouch.has(p.id)?'<span class="av av10">Keep: core prospect</span>':blockedBy(p)?`<span class="av av6">Trade chip: blocked by ${esc(blockedBy(p).last)}</span>`:'<span class="av av4">Tradeable</span>',asc:true},
@@ -3761,7 +4101,7 @@ Object.assign(views, {
       {k:'name',l:'Prospect',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},
       {k:'org',l:'Org',cls:'l',v:p=>T[p.org].abbr,f:p=>orgCell(p),asc:true},
       {k:'pos',l:'Pos',cls:'l',v:p=>p.role,f:p=>`<span class="posb">${p.role}</span>`},
-      {k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr,1)},{k:'pot',l:'Pot',v:p=>p.pot,f:p=>rt(p.pot,1)},
+      {k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr,1)},{k:'pot',l:'Pot',v:p=>potV(p),f:p=>potRt(p,1)},
       {k:'eta',l:'ETA',cls:'l',v:p=>eta(p).k,f:p=>etaChip(eta(p)),asc:true},
       {k:'tv',l:'Value',v:p=>tradeValue(p),f:p=>tvTxt(p)},
       {k:'av',l:'Their stance',cls:'l',v:p=>AVAIL[tradeMode(T[p.org]).k][0],f:p=>{const a=AVAIL[tradeMode(T[p.org]).k];return `<span class="av av${Math.round(a[0]*10)}">${a[1]}</span>`;}},
@@ -3814,7 +4154,7 @@ Object.assign(views, {
         {k:'name',l:'Player',cls:'l',v:x=>x.p.last,f:x=>plinkH(x.p),asc:true},
         {k:'lvl',l:'Level',cls:'l',v:x=>LV_ORDER.indexOf(x.p.level),f:x=>orgCell(x.p),asc:true},
         {k:'pos',l:'Pos',cls:'l',v:x=>x.p.role,f:x=>`<span class="posb">${x.p.role}</span>`,asc:true},
-        {k:'age',l:'Age',v:x=>x.p.age},{k:'ovr',l:'Ovr',v:x=>x.p.ovr,f:x=>rt(x.p.ovr,1)},{k:'pot',l:'Pot',v:x=>x.p.pot,f:x=>rt(x.p.pot,1)},
+        {k:'age',l:'Age',v:x=>x.p.age},{k:'ovr',l:'Ovr',v:x=>x.p.ovr,f:x=>rt(x.p.ovr,1)},{k:'pot',l:'Pot',v:x=>potV(x.p),f:x=>potRt(x.p,1)},
         {k:'line',l:'Line',cls:'l',v:x=>perfZ(x.p),f:x=>{const s=lvlStats(x.p);return s?`<span class="muted" style="font-size:12px">${x.p.pos==='P'?`${s.era!=null?s.era.toFixed(2):'–'} ERA · ${s.ip} IP`:`${f3(s.avg)}/${f3(s.obp)}/${f3(s.slg)} · ${s.hr} HR`}</span>`:'<span class="muted">–</span>';}},
         {k:'kind',l:'Type',cls:'l',v:x=>x.total,f:x=>{const [k,c]=kind(x);return `<span class="chipx ${c}">${k}</span>`;}},
         {k:'eta',l:'ETA',cls:'l',v:x=>eta(x.p).k,f:x=>etaChip(eta(x.p)),asc:true},
@@ -3838,6 +4178,545 @@ Object.assign(views, {
     return head('Your farm system')+minorsHome();
   },
 });
+
+/* ---------- assistant GM (#agm): a briefing that flags what you'd miss, and an offline question engine ----------
+   The persona is each club's real assistant GM (app/ui/agm/agms.json, editable in the app). Everything he says is
+   Clubhouse's own analysis of your save, written in his voice; the page says so. He never reveals hidden ratings
+   (draft prospects, just-drafted players). */
+let AGMS=null;
+async function agmLoad(){ try { AGMS=await api().get_agms()||{}; } catch { AGMS={}; } }
+function agmOf(){ const t=T[ME], a=(AGMS||{})[t.abbr]||{}; return {abbr:t.abbr, name:a.name||'Your assistant GM', title:a.title||'Assistant general manager', portrait:a.portrait||null, credit:a.credit||null, confirmed:!!a.confirmed, edited:!!a.edited}; }
+const agmFirst = () => agmOf().name.split(/\s+/)[0];
+function agmPic(size){
+  const a=agmOf(), h=themeOf(T[ME]);
+  if (a.portrait) return `<span class="agm-pic" style="--sz:${size}px"><img src="${esc(a.portrait)}" alt="${esc(a.name)}"></span>`;
+  const ini=a.name.split(/\s+/).filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  return `<span class="agm-pic mono" style="--sz:${size}px;--m-a:${h.heroA};--m-b:${h.heroB}">${esc(ini)}</span>`;
+}
+const myRoster = () => T[ME].roster.map(id=>P.get(id)).filter(Boolean);
+const myOrgMinors = () => L.players.filter(p=>p.org===ME&&p.level&&p.level!=='MLB'&&!FOGSET().has(p.id));
+const hidden = p => !!(p&&(p.prospect||FOGSET().has(p.id)));
+const lineOf = p => { const s=p.level&&p.level!=='MLB'?lvlStats(p):p.stats.season; if (!s) return null;
+  if (p.pos==='P') return s.outs?`${s.era!=null?s.era.toFixed(2):'–'} ERA, ${s.so} K in ${s.ip} IP${p.level&&p.level!=='MLB'?' at '+p.level:''}`:null;
+  return s.ab?`${f3(s.avg)}/${f3(s.obp)}/${f3(s.slg)}, ${s.hr} HR${p.level&&p.level!=='MLB'?' at '+p.level:''}`:null; };
+// ---- the briefing ----
+function agmNotes(){
+  if (CACHE.agmNotes) return CACHE.agmNotes;
+  const me=T[ME], ros=myRoster(), out=[], add=(pri,cat,html,link)=>out.push({pri,cat,html,link});
+  const day=L.season.day, sp=springPhase(), ph=poPhase();
+  if (sp) { const bt=springBattles(ME), lk=springLook(ME); add(3,'Calendar',`Camp day ${sp.day} of ${sp.total}. ${bt.length?`${bt.length} jobs are still open; the closest is ${esc(bt[0].slot.toLowerCase())}: ${plink(bt[0].a)} vs ${plink(bt[0].b)}.`:'No real battles: the roster looks settled.'} ${lk.length?`I'd get eyes on ${lk.slice(0,3).map(x=>plink(x.p)).join(', ')} this week.`:''}`,'#spring'); }
+  // injuries and the next man up
+  ros.filter(p=>p.injury&&p.injury.days>0&&p.ovr>=75).sort((a,b)=>b.ovr-a.ovr).slice(0,3).forEach(p=>{
+    const busy=new Set([...projRotation(me).map(x=>x.id), ...bestLineup(ros).spots.map(s=>s.p.id), ...bullpen(me).arms.slice(0,4).map(x=>x.id)]);
+    const sub=[...ros.filter(x=>x!==p&&!busy.has(x.id)&&!(x.injury&&x.injury.days>0)), ...myOrgMinors()].filter(x=>p.pos==='P'?x.role===p.role:x.pos===p.pos).sort((a,b)=>b.ovr-a.ovr)[0];
+    add(p.injury.days>30?3:2,'Roster',`${plink(p)} (${p.ovr}) is out about ${p.injury.days} days. ${sub?`Next man up: ${plink(sub)} (${sub.ovr}${sub.level&&sub.level!=='MLB'?', '+sub.level:''}).`:'There is no natural replacement in the organization.'}`,'#team'); });
+  // slumping regulars
+  ros.filter(p=>p.pos!=='P'&&form(p)==='cold'&&p.ovr>=80).slice(0,2).forEach(p=>{ const s=p.stats.season; add(1,'Roster',`${plink(p)} is ice cold: ${f3(s.month.h/s.month.ab)} this month. A day off or a move down the order could help him reset.`,`#p/${p.id}`); });
+  // minor leaguers who are ready now
+  myOrgMinors().filter(p=>eta(p).k===1).sort((a,b)=>b.ovr-a.ovr).slice(0,2).forEach(p=>{ const e=eta(p); add(2,'Prospects',`${plink(p)} (${p.ovr}, ${p.level}) is ready now${e.bar&&e.bar.p?`; he'd take ${e.bar.slot} from ${plink(e.bar.p)} (${e.bar.p.ovr})`:''}. ${lineOf(p)?esc(lineOf(p))+'.':''}`,'#callups'); });
+  myOrgMinors().filter(p=>p.level==='AA'&&perfZ(p)>=1.5&&p.pot>=70).slice(0,1).forEach(p=>add(1,'Prospects',`${plink(p)} is forcing the issue at Double-A (${esc(lineOf(p)||'')}). Worth a look at Triple-A.`,`#p/${p.id}`));
+  // the biggest hole
+  const nd=needs(me)[0]; if (nd&&nd.d<=-5) add(2,'Roster',`Our weakest spot is <b>${nd.slot}</b>: ${nd.p?plink(nd.p):'nobody'} grades ${Math.round(nd.cmp)} against a league average of ${Math.round(nd.lg)}. That's where an upgrade moves the needle most.`,'#trade');
+  // bullpen strain and a struggling starter
+  const taxed=bullpen(me).arms.filter(p=>penStatus(p)[0]==='st-no'); if (taxed.length>=3) add(2,'Roster',`The bullpen is taxed: ${taxed.slice(0,4).map(p=>plink(p)).join(', ')} all need a day. Let the starter go deeper tonight, or bring up a fresh arm.`,'#series');
+  ros.filter(p=>p.role==='SP'&&p.stats.season&&p.stats.season.outs>=120&&p.stats.season.era>=5.25).slice(0,1).forEach(p=>{ const alt=myOrgMinors().filter(x=>x.role==='SP').sort((a,b)=>b.ovr-a.ovr)[0];
+    add(2,'Roster',`${plink(p)} has a ${p.stats.season.era.toFixed(2)} ERA over ${p.stats.season.ip} innings.${alt?` ${plink(alt)} (${alt.ovr}, ${alt.level}) could take a turn.`:''}`,`#p/${p.id}`); });
+  // contracts: walk years and arbitration
+  ros.filter(p=>contractStatus(p).k==='fa'&&p.ovr>=76).sort((a,b)=>b.ovr-a.ovr).slice(0,3).forEach(p=>{ const d=projDeal(p), v=verdict(p);
+    add(p.ovr>=85?3:2,'Contracts',`${plink(p)} hits free agency after the season. The market says about <b>${dealText(d)}</b> (${money2(d.lo)}–${money2(d.hi)} a year). My call: <b>${esc(v[1].toLowerCase())}</b>.`,'#fa'); });
+  const arb=ros.filter(p=>contractStatus(p).k==='arb');
+  if (arb.length){ const cost=arb.reduce((s,p)=>s+arbEst(p,contractStatus(p).n),0), cut=arb.filter(p=>p.ovr<68&&arbEst(p,contractStatus(p).n)>=1.5e6);
+    add(1,'Contracts',`${arb.length} player${arb.length===1?'':'s'} go to arbitration this winter, about <b>${money2(cost)}</b> in raises in all.${cut.length?` I'd consider non-tendering ${cut.slice(0,3).map(p=>`${plink(p)} (~${money2(arbEst(p,contractStatus(p).n))})`).join(', ')}.`:' Everyone looks worth tendering.'}`,'#fa/contracts'); }
+  // the deadline
+  if (!sp&&day<DEADLINE_DAY&&day>=DEADLINE_DAY-35){ const tp=tradePlan(), x=tp.targets[0], s=tp.sells[0];
+    add(3,'Trades',`${DEADLINE_DAY-day} days to the trade deadline, and we're a <b>${esc(tp.mode.label.toLowerCase())}</b> (${Math.round(tp.odds.p*100)}% playoff odds). ${tp.mode.k==='sell'||tp.mode.k==='hold'?(s?`Best piece to move: ${plink(s.p)} (${esc(s.why.toLowerCase())}).`:''):(x?`Top target: ${plink(x.p)} of the ${esc(T[x.p.team].name)} for ${x.n.slot} (+${x.up}).`:'')}`,'#trade'); }
+  // call-ups and the playoff race
+  if (!sp&&day>=SEPT_DAY-12&&day<SEPT_DAY) add(2,'Calendar',`Rosters expand to 28 in ${SEPT_DAY-day} days. I've got a short list ready.`,'#callups');
+  if (ph==='post'){ const cur=poMyCurrent(); if (cur) add(3,'Calendar',`${esc(PO_NAME[cur.round])} against the ${esc(T[poOpp(cur)].name)}: ${esc(poScoreTxt(cur))}. The game plan is ready.`,'#series'); }
+  else if (ph){ const od=poOdds()[ME], mg=poMagic(me); add(3,'Calendar',`${playoffStatus(me)} Playoff odds ${pctTxt(od.po)}${mg?`, ${mg.kind==='magic'?'magic':'tragic'} number ${mg.n}`:''}.`,'#playoffs'); }
+  // pace and streaks
+  ros.filter(p=>p.pos!=='P'&&(p.stats.season||{}).hitStreak>=12).slice(0,1).forEach(p=>add(1,'Roster',`${plink(p)} has a ${p.stats.season.hitStreak}-game hitting streak going.`,`#p/${p.id}`));
+  const g=Math.max(20,me.games.length); ros.filter(p=>p.pos!=='P'&&p.stats.season&&p.stats.season.hr/g*162>=40).slice(0,1).forEach(p=>add(1,'Roster',`${plink(p)} is on pace for ${Math.round(p.stats.season.hr/g*162)} home runs.`,`#p/${p.id}`));
+  // draft, payroll, scouting
+  if (L.draft&&L.draft.order&&!(L.draftResults||[]).length){ const pk=L.draft.order.map((t,i)=>t===ME?i+1:0).filter(Boolean); if (pk.length) add(1,'Draft',`We pick at No. ${pk.slice(0,3).join(', No. ')}${pk.length>3?' and more':''}. ${myBoard().length?`${myBoard().length} prospects on your board.`:'Your draft board is empty: star a few prospects so we have a plan.'}`,'#draft'); }
+  const pay=payroll(me); if (pay.next-pay.now>=15e6) add(1,'Contracts',`Next year's payroll projects to <b>${money2(pay.next)}</b>, up ${money2(pay.next-pay.now)} from today, mostly ${pay.arb>pay.committed-pay.now?'arbitration raises':'existing commitments'}.`,'#fa/contracts');
+  if (typeof SC!=='undefined'&&SC&&SC.reports){ const unread=SC.reports.filter(r=>!(SC.read||{})[r.id]).length, idle=(SC.staff||[]).filter(s=>scLoadOf(s)===0).length;
+    if (unread>=5||idle>=2) add(1,'Scouting',`${unread?`${unread} unread scouting reports`:''}${unread&&idle?' and ':''}${idle?`${idle} idle scout${idle===1?'':'s'}`:''}. Worth ten minutes this week.`,'#scouting'); }
+  return CACHE.agmNotes=out.sort((a,b)=>b.pri-a.pri);
+}
+// ---- understanding a question ----
+const agmNorm = s => String(s||'').normalize('NFKD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9$.' ]+/g,' ').replace(/\s+/g,' ').trim();
+function agmFindPlayers(q){
+  const n=' '+agmNorm(q)+' ', found=[];
+  const pool=[...L.players, ...((L.draft&&L.draft.prospects)||[])];
+  pool.forEach(p=>{ const full=agmNorm(p.first+' '+p.last); if (full.length>4&&n.includes(' '+full+' ')) found.push({p,at:n.indexOf(' '+full+' '),w:3}); });
+  // last names on their own (words not already part of a full name), preferring your organization, then the majors
+  let rest=n; found.forEach(f=>{ rest=rest.replace(' '+agmNorm(f.p.first+' '+f.p.last)+' ',' '); });
+  const words=new Set(rest.trim().split(' ').filter(w=>w.length>=4));
+  pool.filter(p=>words.has(agmNorm(p.last))).sort((a,b)=>((b.org===ME)-(a.org===ME))||((b.team!=null)-(a.team!=null))||b.ovr-a.ovr)
+    .forEach(p=>{ if (!found.some(f=>agmNorm(f.p.last)===agmNorm(p.last))) found.push({p,at:n.indexOf(' '+agmNorm(p.last)+' '),w:1}); });
+  return found.sort((a,b)=>a.at-b.at).map(f=>f.p);
+}
+function agmFindTeam(q){ const n=' '+agmNorm(q)+' '; return T.find(t=>t.id!==ME&&(n.includes(' '+agmNorm(t.name)+' ')||n.includes(' '+agmNorm(t.city)+' '))) || null; }
+// ---- answers ----
+function agmPlayer(p, r){
+  if (p.prospect){ return `${plink(p)} is a ${esc(p.role)} in the draft class, ${p.age} years old, ${p.rank?`No. ${p.rank} on the board`:'unranked'}, asking about ${money2(p.bonus)}. I can't give you more than the scouting staff has: ${typeof scKnow==='function'&&scKnow(scKey(p))?'see his scouting profile':'nobody has seen him yet. Send a scout'}.`; }
+  const t=p.team!=null?T[p.team]:p.org!=null?T[p.org]:null, ours=p.org===ME||p.team===ME, cs=contractStatus(p);
+  const bits=[];
+  if (FOGSET().has(p.id)) bits.push(`${plink(p)} was just drafted, so treat his ratings as a projection: roughly a ${potGrade(p.pot)}-grade ceiling from what we've seen.`);
+  else bits.push(`${plink(p)}: ${esc(p.role)}, ${p.age}, ${p.ovr} overall with ${potTxt(p)} potential${t?`, ${ours?'ours':'with the '+esc(t.name)}`:', unsigned'}${p.level&&p.level!=='MLB'?` (${p.level})`:''}.`);
+  const ln=lineOf(p); if (ln) bits.push(`This year: ${esc(ln)}.`);
+  const f=p.pos!=='P'&&form(p); if (f) bits.push(f==='hot'?'He is red hot this month.':'He is in a slump this month.');
+  if (p.pos!=='P'&&!hidden(p)){ const b=p.ratings.batting; if (Math.abs(b.conR-b.conL)>=12) bits.push(`Big platoon split: contact ${b.conR} against righties, ${b.conL} against lefties.`); }
+  if (p.injury&&p.injury.days>0) bits.push(`Injured, about ${p.injury.days} days.`);
+  if (p.contract) bits.push(`Contract: ${esc(cs.label.toLowerCase())}, ${money2(p.contract.salary)} this year.`);
+  if (p.level&&p.level!=='MLB'&&!hidden(p)) bits.push(`ETA: ${esc(eta(p).label.toLowerCase())}${orgRank(p)?`, No. ${orgRank(p)} in the ${esc(T[p.org].name)} system`:''}.`);
+  if (!hidden(p)) bits.push(`Trade value ${tvTxt(p)} (our scale: about 1 per projected win of surplus).`);
+  const core=ours&&coreSet(T[ME]).has(p.id);
+  bits.push(ours ? (core?pickR(r,['He is part of the core. I would not move him without a clear upgrade coming back.','Core piece. Build around him.']):p.ovr>=70?pickR(r,['Useful player, not untouchable. If the right deal comes, listen.','A tradeable piece if it fills a bigger hole.']):'Depth. Fine to include in a package.')
+    : (t&&['sell','hold'].includes(tradeMode(t).k)?`The ${esc(t.name)} would listen on him.`:t?`The ${esc(t.name)} are contending, so he'd cost a premium.`:''));
+  return bits.filter(Boolean).join(' ');
+}
+function agmTrade(a, b, r){   // a: ours (or null), b: theirs (or null)
+  const tp=tradePlan();
+  if (a&&b){
+    if (hidden(a)||hidden(b)) return `I can't value a player whose ratings we haven't scouted. Ask me once the scouts have seen him.`;
+    const va=tradeValue(a), vb=tradeValue(b), d=vb-va, bt=b.team!=null?T[b.team]:T[b.org];
+    const slot=SLOTS.find(k=>fitsSlot(b,k)&&k!=='DH')||'DH', cur=slotRating(T[ME],slot), up=b.ovr-cur;
+    const verdict = d>=1 ? pickR(r,['I would do that in a heartbeat.','That is a win for us.','Take it.']) : d>=-.5 ? pickR(r,['That is fair value either way.','Close enough to even that fit should decide it.']) : d>=-2 ? pickR(r,['We would be overpaying a little.','I would want a bit more back.']) : pickR(r,['That is too much to give up.','No. We would be selling low.']);
+    const pricey=x=>x.ovr>=82&&tradeValue(x)<1.5&&x.contract&&x.contract.salary>=15e6 ? ` ${esc(x.last)}'s value is low because his ${money2(x.contract.salary)} salary eats most of what he's worth: the question is whether we want that payroll, not the talent.` : '';
+    return `${verdict} ${plink(a)} rates ${va.toFixed(1)} in trade value; ${plink(b)} rates ${vb.toFixed(1)}.${pricey(b)}${pricey(a)} ${up>0?`${esc(b.last)} would upgrade our ${slot} by about ${up} points.`:`He wouldn't start for us at ${slot} (${b.ovr} vs ${Math.round(cur)}).`} ${bt?`The ${esc(bt.name)} are ${esc(tradeMode(bt).label.toLowerCase())}s right now${['buy','lean'].includes(tradeMode(bt).k)?', so prying him loose won\'t be easy':''}.`:''}`;
+  }
+  if (a&&(a.org===ME||a.team===ME)){
+    if (hidden(a)) return `He was just drafted. Teams can't trade him yet in practice, and I wouldn't value him until we know more.`;
+    const v=tradeValue(a), buyers=T.filter(t=>t.id!==ME&&['buy','lean'].includes(tradeMode(t).k));
+    const slot=SLOTS.find(k=>fitsSlot(a,k)&&k!=='DH')||'DH', fits=buyers.map(t=>({t,d:a.ovr-slotRating(t,slot)})).filter(x=>x.d>=2).sort((x,y)=>y.d-x.d).slice(0,3);
+    const back=tp.targets.filter(x=>Math.abs(x.tv-v)<=Math.max(1.5,v*.35)).slice(0,2);
+    return `${plink(a)} carries about ${v.toFixed(1)} in trade value. ${fits.length?`Best fits: ${fits.map(x=>`${esc(x.t.name)} (+${x.d} at ${slot})`).join(', ')}.`:'No contender has a clear hole he fills right now.'} ${back.length?`In that value range we could target ${back.map(x=>`${plink(x.p)} (${esc(T[x.p.team].abbr)}, ${x.n.slot})`).join(' or ')}.`:''} ${coreSet(T[ME]).has(a.id)?'Remember he is in our core; moving him opens a hole.':''}`;
+  }
+  if (b){
+    if (hidden(b)) return `Can't price a player nobody has scouted properly yet.`;
+    const v=tradeValue(b), t=b.team!=null?T[b.team]:T[b.org], ask=v*(['sell','hold'].includes(tradeMode(t).k)?1.05:1.25), pk=packageFrom(ask, tp.pool);
+    return `${plink(b)} would cost around ${ask.toFixed(1)} in trade value (${esc(t.name)}: ${esc(tradeMode(t).label.toLowerCase())}). ${pk.pick.length?`A package that gets close: ${pk.pick.map(p=>`${plink(p)} (${tvTxt(p)})`).join(' + ')}${pk.ok?'':', and they would still want a little more'}.`:'We don\'t have the pieces to get there without touching the core.'} ${tp.untouch.size?`I left ${[...tp.untouch].map(id=>plink(P.get(id))).join(', ')} out: they're our top prospects.`:''}`;
+  }
+  const x=tp.deals[0];
+  return `We're ${esc(tp.mode.label.toLowerCase())}s right now (${Math.round(tp.odds.p*100)}% playoff odds). ${x?`The best deal on the board: ${x.give.map(p=>plink(p)).join(' + ')} to the ${esc(x.team.name)} for ${x.get.map(g=>plink(g.p)).join(' + ')}.`:'Nothing compelling on the board today.'} Ask me about a specific player and I'll price it.`;
+}
+function agmContract(p){
+  if (!p) { const pay=payroll(T[ME]); return `Payroll is ${money2(pay.now)} today. Next year: ${money2(pay.committed)} committed, about ${money2(pay.arb)} in arbitration raises and ${money2(pay.pre)} for pre-arbitration players, so roughly <b>${money2(pay.next)}</b> before any free agents. ${money2(pay.leaving)} comes off with players hitting free agency.`; }
+  if (hidden(p)) return `He is on a draft deal. Nothing to negotiate.`;
+  const cs=contractStatus(p), d=projDeal(p), v=verdict(p);
+  if (cs.k==='arb') { const e=arbEst(p,cs.n); return `${plink(p)} goes to arbitration (year ${cs.n}). I'd expect about <b>${money2(e)}</b>. ${p.ovr>=70||e<1.5e6?'Tender him: he is worth it.':'At that price he is a non-tender candidate.'} ${p.ovr>=80&&cs.n<=2?`He is also an extension candidate: buying out his remaining arbitration years plus a free agent year or two usually saves money.`:''}`; }
+  if (cs.k==='fa') return `${plink(p)} is a free agent after this season. The market says <b>${dealText(d)}</b> (${money2(d.total)} total, range ${money2(d.lo)}–${money2(d.hi)} a year), at age ${d.age}. My call: <b>${esc(v[1].toLowerCase())}</b>.`;
+  if (cs.k==='pre') return `${plink(p)} is pre-arbitration, so he is cheap for now. ${p.ovr>=80&&p.age<=26?'If you believe in him, an early extension is the best value you will find.':'No rush on anything.'}`;
+  return `${plink(p)} is ${esc(cs.label.toLowerCase())} at ${money2(p.contract.salary)} this year. On the open market he'd be worth about ${money2(d.aav)} a year, so his deal is ${p.contract.salary<=d.aav*.85?'a bargain':p.contract.salary>=d.aav*1.25?'on the expensive side':'about right'}.`;
+}
+function agmFreeAgents(){
+  const nd=needs(T[ME]).filter(n=>n.d<0).slice(0,3), cls=L.players.filter(p=>p.team!=null&&p.team!==ME&&contractStatus(p).k==='fa'), now=L.players.filter(p=>p.club===255&&p.ovr>=65);
+  const fits=nd.map(n=>({n, p:cls.filter(p=>fitsSlot(p,n.slot)&&p.ovr>n.cmp).sort((a,b)=>b.ovr-a.ovr)[0]})).filter(x=>x.p);
+  return `${fits.length?`For our weak spots, the best of the upcoming class: ${fits.map(x=>`${plink(x.p)} for ${x.n.slot} (${x.p.ovr}, about ${dealText(projDeal(x.p))})`).join('; ')}.`:'The upcoming class has no clear upgrade at our weak spots.'} ${now.length?`Unsigned right now: ${now.sort((a,b)=>b.ovr-a.ovr).slice(0,3).map(p=>`${plink(p)} (${p.role}, ${p.ovr})`).join(', ')}.`:''}`;
+}
+const AGM_HELP=['Should I trade [player] for [player]?','What can I get for [player]?','What would [player] cost to extend?','Who should I call up?','What is our biggest weakness?','How is [player] doing?','Compare [player] and [player]','What are our playoff chances?','Who should close?','Who are our top prospects?','What does payroll look like next year?','Any free agents worth chasing?'];
+function agmAnswer(q){
+  const r=rng('agmq'+q+(AGMCHAT.length)), n=agmNorm(q), ps=agmFindPlayers(q), me=T[ME], team=agmFindTeam(q);
+  const has=re=>re.test(n), open=pickR(r,['','Here is my read. ','Short version: ','Good question. ','Looked into it. ','Honestly? ']);
+  const ours=p=>p.org===ME||p.team===ME;
+  if (!n) return 'Ask me anything about the roster, trades, contracts or the farm.';
+  if (has(/^(hi|hey|hello|yo|sup|morning|evening)\b/)) return `${pickR(r,['Hey boss.','Morning.','Here.'])} ${agmNotes()[0]?`First thing on my list: ${agmNotes()[0].html}`:'Quiet day. What do you need?'}`;
+  if (has(/\bthank|thx|cheers/)) return pickR(r,['Anytime.','That is what I am here for.','You got it.']);
+  if (has(/^(help|what can you|how do (i|you)|commands)/)) return `I can answer things like: ${AGM_HELP.map(x=>`<i>${esc(x)}</i>`).join(', ')}.`;
+  if (has(/\bcompare|\bvs\b|versus|better/)&&ps.length>=2) { const [a,b]=ps;
+    if (hidden(a)||hidden(b)) return 'One of them has unscouted ratings, so I can only compare what we know: '+agmPlayer(a,r)+' '+agmPlayer(b,r);
+    const row=(l,x,y,inv)=>`<tr><td class="${(inv?x<y:x>y)?'win':''}">${x}</td><td class="mid">${l}</td><td class="${(inv?y<x:y>x)?'win':''}">${y}</td></tr>`;
+    const sa=a.stats.season||{}, sb=b.stats.season||{};
+    return `${open}<table class="tape agm-cmp"><thead><tr><th>${plink(a)}</th><th></th><th>${plink(b)}</th></tr></thead><tbody>${row('Overall',a.ovr,b.ovr)}${row('Potential',potTxt(a),potTxt(b))}${row('Age',a.age,b.age,true)}${a.pos!=='P'&&b.pos!=='P'?row('OPS',f3(opsOf(sa)),f3(opsOf(sb))):a.pos==='P'&&b.pos==='P'?row('ERA',sa.era!=null?sa.era.toFixed(2):'–',sb.era!=null?sb.era.toFixed(2):'–',true):''}${row('Trade value',tvTxt(a),tvTxt(b))}${row('Salary',a.contract?money2(a.contract.salary):'–',b.contract?money2(b.contract.salary):'–',true)}</tbody></table> ${(a.ovr+potV(a)/3)>(b.ovr+potV(b)/3)?`I'd take ${esc(a.last)}.`:`I'd take ${esc(b.last)}.`}`; }
+  if (has(/trade|deal|swap|acquire|get for|move|shop|worth in a|package|pry|pick up/)) { const a=ps.find(ours), b=ps.find(p=>!ours(p)); return open+agmTrade(a||null,b||null,r); }
+  if (has(/\bcost|worth|price|get him/)&&ps.length&&!ours(ps[0])&&!has(/extend|extension|arbitration|tender|free agen/)) return open+agmTrade(null,ps[0],r);
+  if (has(/contract|extend|extension|re ?sign|arbitration|arb\b|tender|salary|pay him|cost|worth|deal for/)&&ps.length) return open+agmContract(ps[0]);
+  if (has(/payroll|budget|money|spend|salar/)) return open+agmContract(null);
+  if (has(/free agen|\bfa\b|sign (a|someone|anyone)|who should we sign/)) return open+agmFreeAgents();
+  if (has(/weak|need|hole|upgrade|improve|problem/)) { const nd=needs(me).slice(0,3); return `${open}Our three weakest spots against the league: ${nd.map(x=>`<b>${x.slot}</b> (${x.p?plink(x.p):'nobody'}, ${Math.round(x.cmp)} vs ${Math.round(x.lg)} average)`).join(', ')}. ${tradePlan().targets[0]?`If we go shopping, ${plink(tradePlan().targets[0].p)} is the name I'd start with.`:''}`; }
+  if (has(/lineup|batting order|who should (start|play|hit)/)) { const b=bestLineup(myRoster()); return `${open}Healthy and by the numbers: ${b.order.map((x,i)=>`${i+1}. ${plink(x.p)} (${x.pos})`).join(', ')}. The series plan tunes it to each starter.`; }
+  if (has(/rotation|starter|starting pitch/)) { const rot=projRotation(me); return `${open}Rotation, most rested first: ${rot.map(p=>`${plink(p)} (${p.ovr}${p.stats.season&&p.stats.season.era!=null?`, ${p.stats.season.era.toFixed(2)} ERA`:''})`).join(', ')}.`; }
+  if (has(/bullpen|closer|close|relie|setup/)) { const bp=bullpen(me); return `${open}${bp.closer?`${plink(bp.closer)} closes (${penStatus(bp.closer)[1].toLowerCase()}).`:''} Behind him: ${bp.arms.slice(1,5).map(p=>`${plink(p)} (${p.ovr}, ${penStatus(p)[1].toLowerCase()})`).join(', ')}.${bp.arms.filter(p=>p.throws==='L').length?'':' We have no lefty in the pen, which hurts against left-heavy lineups.'}`; }
+  if (has(/call ?up|promot|bring up|ready|send down|demot/)) { const rd=myOrgMinors().filter(p=>eta(p).k<=2).sort((a,b)=>eta(a).k-eta(b).k||b.ovr-a.ovr).slice(0,4); return rd.length?`${open}Closest to helping: ${rd.map(p=>`${plink(p)} (${p.level}, ${p.ovr}, ${esc(eta(p).label.toLowerCase())})`).join(', ')}.`:'Nobody in the system is ready to help right now.'; }
+  if (has(/prospect|farm|system|minor/)&&!ps.length) { const tp=topProspects(ME).slice(0,5); return `${open}Our top five: ${tp.map((p,i)=>`${i+1}. ${plink(p)} (${p.pos}, ${p.level}, ETA ${esc(eta(p).range)})`).join(', ')}.`; }
+  if (has(/playoff|postseason|chance|odds|contend|buyer|seller|sell|buy|deadline/)) { const tp=tradePlan(), ph=poPhase(); return `${open}${playoffStatus(me)} ${ph?`Our odds: playoffs ${pctTxt(poOdds()[ME].po)}, pennant ${pctTxt(poOdds()[ME].pen)}.`:`I have us at ${Math.round(tp.odds.p*100)}% to make it.`} That makes us a <b>${esc(tp.mode.label.toLowerCase())}</b>${L.season.day<DEADLINE_DAY&&!springPhase()?`, with ${DEADLINE_DAY-L.season.day} days to the deadline`:''}.`; }
+  if (has(/injur|hurt|\bil\b|disabled/)) { const inj=myRoster().filter(p=>p.injury&&p.injury.days>0); return inj.length?`${open}${inj.map(p=>`${plink(p)} (${p.injury.days} days)`).join(', ')}.`:'Everyone is healthy.'; }
+  if (has(/\bhot\b|cold|slump|streak|struggl/)&&!ps.length) { const h=myRoster().filter(p=>p.pos!=='P'&&form(p)==='hot'), c=myRoster().filter(p=>p.pos!=='P'&&form(p)==='cold'); return `${open}Hot: ${h.map(p=>plink(p)).join(', ')||'nobody'}. Cold: ${c.map(p=>plink(p)).join(', ')||'nobody'}.`; }
+  if (has(/draft|pick/)) { const pk=L.draft&&L.draft.order?L.draft.order.map((t,i)=>t===ME?i+1:0).filter(Boolean):[]; return `${open}${pk.length?`We pick at No. ${pk.join(', ')}.`:'No picks stored right now.'} ${myBoard().length?`${myBoard().length} prospects on your board.`:'Your board is empty.'} Ratings stay hidden until the scouts see them, so lean on the scouting reports.`; }
+  if (team&&!ps.length) { const tm=tradeMode(team), pr=teamProfile(team); return `${open}The ${esc(team.name)} are ${team.record.w}–${team.record.l} and ${esc(tm.label.toLowerCase())}s. ${f3(pr.ops)} team OPS, ${pr.spEra!=null?pr.spEra.toFixed(2):'–'} rotation ERA. ${['sell','hold'].includes(tm.k)?`They'd listen on most of their veterans${(()=>{ const v=team.roster.map(id=>P.get(id)).filter(p=>p&&p.ovr>=78&&p.age>=28).sort((a,b)=>b.ovr-a.ovr).slice(0,2); return v.length?`: ${v.map(p=>plink(p)).join(' and ')} stand${v.length===1?'s':''} out`:''; })()}.`:'They are buying, not selling.'} Open the <a href="#series/t${team.id}">game plan against them</a> for the full scouting report.`; }
+  if (ps.length) return open+agmPlayer(ps[0],r);
+  return `${pickR(r,['Not sure I follow.','I didn\'t catch that one.','Try me another way.'])} You can ask things like <i>${esc(pickR(r,AGM_HELP))}</i> or <i>${esc(pickR(r,AGM_HELP))}</i>.`;
+}
+// ---- chat state (per franchise, this PC) ----
+let AGMCHAT=[];
+const agmKey = () => 'ch-agm:'+fkey();
+function agmChatLoad(){ try { AGMCHAT=JSON.parse(localStorage.getItem(agmKey())||'[]'); } catch { AGMCHAT=[]; } }
+function agmChatSave(){ try { localStorage.setItem(agmKey(), JSON.stringify(AGMCHAT.slice(-60))); } catch {} }
+function agmSend(q){
+  q=String(q||'').trim(); if (!q) return;
+  AGMCHAT.push({who:'me', html:esc(q)});
+  let a; try { a=agmAnswer(q); } catch (e) { console.error(e); a='I hit a snag on that one. Try asking it another way.'; }
+  AGMCHAT.push({who:'agm', html:a}); agmChatSave(); render(true);
+  setTimeout(()=>{ const box=document.querySelector('.agm-log'); if (box) box.scrollTop=box.scrollHeight; const inp=document.getElementById('agmq'); if (inp) inp.focus(); }, 0);
+}
+const AGMF={cat:''};
+Object.assign(views, {
+  agm(){
+    applyTheme(T[ME]); if (!AGMCHAT.length) agmChatLoad();
+    const a=agmOf(), notes=agmNotes(), cats=[...new Set(notes.map(x=>x.cat))], shown=notes.filter(x=>!AGMF.cat||x.cat===AGMF.cat);
+    const pri=['','Worth knowing','Important','Act on this'];
+    const credit=a.credit?(a.credit.source==='Your photo'?'Your photo':a.credit.source==='Wikimedia Commons'?`Photo: ${esc(a.credit.author||'Wikimedia Commons')}, ${esc(a.credit.license||'')}`:esc(a.credit.source)):'';
+    return `<div class="page-h"><div><div class="kicker">Front office</div><h2>Assistant GM</h2></div></div>
+      <div class="agm">
+        <div class="agm-l">
+          <section class="card agm-card">${agmPic(88)}<div><small>${esc(a.title)} · ${esc(T[ME].name)}</small><h3>${esc(a.name)}</h3>
+            <p class="muted">${a.confirmed||a.edited?'':'Front offices change: if this isn\'t your club\'s assistant GM anymore, '}<button class="linkbtn" data-act="agm-edit">${a.confirmed||a.edited?'Edit':'change him'}</button>${a.confirmed||a.edited?'':'.'}</p>
+            ${credit?`<p class="agm-credit">${credit}</p>`:''}</div></section>
+          <section class="card flush"><div class="card-h"><h2>Your briefing</h2><span class="aside">${notes.length} item${notes.length===1?'':'s'}</span></div>
+            ${cats.length>1?`<div class="scchips agm-chips"><button class="scchip ${!AGMF.cat?'on':''}" data-agmcat="">All</button>${cats.map(c=>`<button class="scchip ${AGMF.cat===c?'on':''}" data-agmcat="${esc(c)}">${esc(c)}</button>`).join('')}</div>`:''}
+            <ul class="agm-notes">${shown.map(x=>`<li class="p${x.pri}"><span class="agm-tag">${esc(x.cat)} · ${pri[x.pri]}</span><div>${x.html}</div>${x.link?`<a class="more" href="${x.link}">Open ›</a>`:''}</li>`).join('')||'<li><div>Nothing pressing. I\'ll flag things as they come up.</div></li>'}</ul></section>
+        </div>
+        <section class="card agm-chat"><div class="card-h"><h2>Ask ${esc(agmFirst())}</h2><button class="btn ghost sm" data-act="agm-clear">Clear chat</button></div>
+          <div class="agm-log">${AGMCHAT.length?AGMCHAT.map(m=>`<div class="msg ${m.who}">${m.who==='agm'?agmPic(30):''}<div class="bub">${m.html}</div></div>`).join(''):`<div class="msg agm">${agmPic(30)}<div class="bub">${esc(agmFirst())} here. Ask me about the roster, trades, contracts, arbitration, free agents or the farm. I answer from what's in your save.</div></div>`}</div>
+          <div class="agm-sugg">${AGM_HELP.slice(0,6).map(x=>{ const fill=x.replace('[player]', (myRoster().sort((a,b)=>b.ovr-a.ovr)[0]||{}).last||'').replace(' for [player]','').replace(' and [player]',''); return `<button class="scchip" data-agmask="${esc(fill)}">${esc(fill)}</button>`; }).join('')}</div>
+          <form class="agm-in" data-agmform><input id="agmq" type="text" placeholder="Ask about a player, a trade, a contract…" autocomplete="off" aria-label="Ask your assistant GM"><button class="btn sm" type="submit">Ask</button></form>
+          <p class="agm-note">${esc(a.name)}'s answers are Clubhouse's analysis of your save, written in his voice. They're not the real person's views.</p></section>
+      </div>`;
+  },
+});
+function agmEditModal(){
+  const a=agmOf();
+  $('#modal').innerHTML=`<div class="modal" data-act="agm-bg"><div class="box" style="max-width:520px;width:92vw" role="dialog" aria-label="Edit assistant GM">
+    <div class="press-head" style="padding:18px 22px"><div><small style="opacity:.75">${esc(T[ME].name)}</small><h2 style="margin:2px 0 0">Assistant GM</h2></div></div>
+    <div style="padding:16px 22px;display:grid;gap:10px">
+      <label class="fld"><span>Name</span><input id="agmn" class="sel" value="${esc(a.name)}"></label>
+      <label class="fld"><span>Title</span><input id="agmt" class="sel" value="${esc(a.title)}"></label>
+      <div style="display:flex;align-items:center;gap:12px">${agmPic(56)}<button class="btn ghost sm" data-act="agm-photo">Choose photo…</button>${a.credit&&a.credit.source==='Your photo'?'<button class="btn ghost sm" data-act="agm-nophoto">Remove photo</button>':''}</div>
+      <p class="muted" style="margin:0;font-size:12px">Changes are saved on this PC only.</p></div>
+    <div class="press-foot"><button class="btn ghost sm" data-act="agm-reset">Reset to default</button><span><button class="btn ghost sm" data-act="agm-close">Cancel</button> <button class="btn sm" data-act="agm-save">Save</button></span></div></div></div>`;
+}
+document.addEventListener('submit',e=>{ if (e.target.matches('[data-agmform]')){ e.preventDefault(); const i=document.getElementById('agmq'); agmSend(i.value); } });
+document.addEventListener('click',async e=>{
+  const ask=e.target.closest('[data-agmask]'); if (ask){ agmSend(ask.dataset.agmask); return; }
+  const cat=e.target.closest('[data-agmcat]'); if (cat){ AGMF.cat=cat.dataset.agmcat; render(true); return; }
+  const b=e.target.closest('[data-act^="agm-"]'); if (!b) return;
+  const act=b.dataset.act, abbr=T[ME].abbr;
+  if (act==='agm-bg'&&e.target!==b) return;
+  if (act==='agm-edit') agmEditModal();
+  if (act==='agm-clear'){ AGMCHAT=[]; agmChatSave(); render(true); }
+  if (act==='agm-close'||act==='agm-bg') $('#modal').innerHTML='';
+  if (act==='agm-save'){ await api().set_agm(abbr, document.getElementById('agmn').value, document.getElementById('agmt').value); await agmLoad(); $('#modal').innerHTML=''; render(true); }
+  if (act==='agm-reset'){ await api().set_agm(abbr,'',''); await api().clear_agm_portrait(abbr); await agmLoad(); $('#modal').innerHTML=''; render(true); }
+  if (act==='agm-photo'){ const r=await api().choose_agm_portrait(abbr); if (r&&r.ok){ await agmLoad(); agmEditModal(); render(true); } else if (r&&r.error) toast(esc(r.error),'err'); }
+  if (act==='agm-nophoto'){ await api().clear_agm_portrait(abbr); await agmLoad(); agmEditModal(); render(true); }
+});
+function agmHomeCard(){
+  if (!AGMS) return '';
+  const n=agmNotes().slice(0,2); if (!n.length) return '';
+  return `<a class="agm-home" href="#agm">${agmPic(44)}<div><small>From ${esc(agmOf().name)}</small>${n.map(x=>`<p>${x.html.replace(/<a [^>]*>|<\/a>/g,'')}</p>`).join('')}</div><span class="btn ghost sm">Briefing ›</span></a>`;
+}
+
+/* ---------- playoffs (#playoffs) ----------
+   Opens on September 1 (or 135 games) and stays through the end of the season. Until a postseason save shows how the
+   game stores playoff rounds (D_PLAYOFFS / D_PLAYOFF_ROUND are empty in-season), the bracket is the projected or final
+   seeding, never invented results. Odds come from simulating the rest of the real schedule and the bracket. */
+const PO_GAMES=162;
+function poPhase(){
+  if (!L||springPhase()) return null;
+  if (L.season.phase==='postseason'||POST()) return 'post';
+  if (T.every(t=>t.games.length>=PO_GAMES)) return 'final';
+  return (L.season.day>=SEPT_DAY||teamGames()>=135) ? 'race' : null;
+}
+/* ---- the real postseason, from the save's own bracket (D_PLAYOFF_ROUND, exported as L.playoffs) ---- */
+const POST = () => (L&&L.playoffs&&L.playoffs.length) ? L.playoffs : null;
+const PO_BEST={wc:3, ds:5, lcs:7, ws:7};
+const PO_NAME={wc:'Wild Card Series', ds:'Division Series', lcs:'League Championship Series', ws:'World Series'};
+const poShort = (s) => s.round==='ws'?'World Series':s.round==='lcs'?`${T[s.t1].league}CS`:s.round==='ds'?`${T[s.t1].league}DS`:`${T[s.t1].league} Wild Card`;
+function poScore(s){ const w1=s.games.filter(g=>g.s1>g.s2).length; return {w1, w2:s.games.length-w1, need:Math.ceil(PO_BEST[s.round]/2), done:s.winner!=null}; }
+function poScoreTxt(s){ const c=poScore(s), a=T[s.t1], b=T[s.t2];
+  if (c.done){ const w=T[s.winner], l=s.winner===s.t1?b:a; return `${w.name} beat ${l.name} ${Math.max(c.w1,c.w2)}–${Math.min(c.w1,c.w2)}`; }
+  if (!s.games.length) return `${a.name} vs ${b.name}: Game 1 next`;
+  return c.w1===c.w2 ? `Series tied ${c.w1}–${c.w2}` : `${(c.w1>c.w2?a:b).name} lead ${Math.max(c.w1,c.w2)}–${Math.min(c.w1,c.w2)}`; }
+const poMine = s => s.t1===ME||s.t2===ME;
+const poOpp = s => s.t1===ME?s.t2:s.t1;
+function poMyCurrent(){ const ps=POST(); return ps ? ps.find(s=>poMine(s)&&s.winner==null)||null : null; }
+function poMyFate(){ const ps=POST()||[];
+  if (ps.some(s=>s.round==='ws'&&s.winner===ME)) return 'champion';
+  if (ps.some(s=>poMine(s)&&s.winner!=null&&s.winner!==ME)) return 'out';
+  if (poMyCurrent()) return 'alive';
+  return playoff(T[ME].league).seeds.includes(T[ME]) ? 'waiting' : 'missed'; }
+// chance A wins a best-of-n when the series stands a-b
+function seriesWinFrom(p, n, a, b){ const need=Math.ceil(n/2), memo={};
+  const f=(x,y)=>{ if (x>=need) return 1; if (y>=need) return 0; const k=x+','+y; return memo[k]??(memo[k]=p*f(x+1,y)+(1-p)*f(x,y+1)); };
+  return f(a,b); }
+// The bracket as it stands: known series from the save, plus the slots still to be filled (by standard seeding).
+function poLiveBracket(lg){
+  const ps=(POST()||[]).filter(s=>T[s.t1].league===lg), seeds=playoff(lg).seeds;
+  const wc=ps.filter(s=>s.round==='wc'), ds=ps.filter(s=>s.round==='ds'), lcs=ps.find(s=>s.round==='lcs')||null;
+  const wcFor=seed=>wc.find(s=>[s.t1,s.t2].includes((seeds[seed-1]||{}).id));
+  const dsPairs=[[seeds[0],[4,5]],[seeds[1],[3,6]]].map(([top,feed])=>{
+    const real=ds.find(s=>top&&(s.t1===top.id||s.t2===top.id));
+    return real?{real}:{top, feedSeries:wcFor(feed[0])||wcFor(feed[1])||null};
+  });
+  return {wc, ds:dsPairs, lcs};
+}
+function poOddsPost(){
+  if (CACHE.popost) return CACHE.popost;
+  const N=1000, r=rng('popost'+L.season.day+fkey()), out={}, str={}; T.forEach(t=>{ out[t.id]={adv:0,pen:0,ws:0}; str[t.id]=poStrength(t); });
+  const gp=(a,b)=>Math.min(.75,Math.max(.25,log5(str[a.id],str[b.id])));
+  const play=(s)=>{ if (s.winner!=null) return T[s.winner]; const c=poScore(s), a=T[s.t1], b=T[s.t2]; return r()<seriesWinFrom(gp(a,b),PO_BEST[s.round],c.w1,c.w2)?a:b; };
+  const fresh=(a,b,n)=>r()<seriesWinFrom(gp(a,b),n,0,0)?a:b;
+  const wsReal=(POST()||[]).find(s=>s.round==='ws');
+  for (let i=0;i<N;i++){
+    const champ={};
+    ['AL','NL'].forEach(lg=>{
+      const B=poLiveBracket(lg);
+      const dsW=B.ds.map(d=>d.real?play(d.real):d.top?fresh(d.top, d.feedSeries?play(d.feedSeries):d.top, 5):null).filter(Boolean);
+      const pen=B.lcs?play(B.lcs):dsW.length===2?fresh(dsW[0],dsW[1],7):dsW[0];
+      if (pen){ out[pen.id].pen++; champ[lg]=pen; }
+    });
+    const w=wsReal?play(wsReal):champ.AL&&champ.NL?fresh(champ.AL,champ.NL,7):null;
+    if (w) out[w.id].ws++;
+  }
+  Object.values(out).forEach(o=>{ o.pen/=N; o.ws/=N; });
+  return CACHE.popost=out;
+}
+const poStrength = t => { const g=t.games.length, py=power().find(x=>x.t.id===t.id).py; return .5+(py-.5)*(g/(g+75))*.8; };
+const log5 = (a,b) => (a-a*b)/((a+b-2*a*b)||1);
+function seriesWin(p, n){   // chance of winning a best-of-n with single-game chance p
+  const need=Math.ceil(n/2); let s=0;
+  for (let k=0;k<need;k++){ let c=1; for (let j=1;j<=k;j++) c=c*(need-1+j)/j; s+=c*Math.pow(p,need)*Math.pow(1-p,k); }
+  return s;
+}
+const PO_ROUNDS=[['wc','Wild Card Series',3],['ds','Division Series',5],['lcs','League Championship Series',7],['ws','World Series',7]];
+function poSeeds(wins, lg){   // seeds from a win table (ties broken by current record, then id)
+  const ts=T.filter(t=>t.league===lg), w=t=>wins[t.id], cmp=(a,b)=>w(b)-w(a)||byRec(a,b);
+  const divs=[...new Set(ts.map(t=>t.division))], leaders=divs.map(d=>ts.filter(t=>t.division===d).sort(cmp)[0]).sort(cmp);
+  return [...leaders, ...ts.filter(t=>!leaders.includes(t)).sort(cmp).slice(0,3)];
+}
+function poRemaining(){
+  if (CACHE.porem) return CACHE.porem;
+  const rem=[]; T.forEach(t=>teamSched(t.id).forEach(([d,gm,opp,home])=>{ if (gm>t.games.length && opp<T.length && t.id<opp) rem.push([t.id,opp,!!home]); }));
+  return CACHE.porem=rem;
+}
+function poOdds(){
+  if (CACHE.poodds) return CACHE.poodds;
+  const N=800, r=rng('poodds'+L.season.day+fkey()), str={}, rem=poRemaining();
+  T.forEach(t=>str[t.id]=poStrength(t));
+  const out={}; T.forEach(t=>out[t.id]={po:0,div:0,bye:0,pen:0,ws:0});
+  const gp=(a,b,home)=>Math.min(.75,Math.max(.25,log5(str[a.id],str[b.id])+(home==null?0:home?.02:-.02)));
+  const series=(a,b,n)=>r()<seriesWin(gp(a,b,null),n)?a:b;
+  for (let s=0;s<N;s++){
+    const wins={}; T.forEach(t=>wins[t.id]=t.record.w);
+    rem.forEach(([a,b,home])=>{ if (r()<gp(T[a],T[b],home)) wins[a]++; else wins[b]++; });
+    const champ={};
+    ['AL','NL'].forEach(lg=>{
+      const sd=poSeeds(wins,lg);
+      sd.forEach((t,i)=>{ out[t.id].po++; if (i<3) out[t.id].div++; if (i<2) out[t.id].bye++; });
+      const w36=series(sd[2],sd[5],3), w45=series(sd[3],sd[4],3);
+      const d1=series(sd[0],w45,5), d2=series(sd[1],w36,5), pen=series(d1,d2,7);
+      out[pen.id].pen++; champ[lg]=pen;
+    });
+    out[series(champ.AL,champ.NL,7).id].ws++;
+  }
+  Object.values(out).forEach(o=>Object.keys(o).forEach(k=>o[k]/=N));
+  return CACHE.poodds=out;
+}
+// Clinched / eliminated, with no assumptions about results: worst case vs best case for everyone else.
+function poClinch(t){
+  const lg=T.filter(x=>x.league===t.league), left=x=>PO_GAMES-x.games.length, max=x=>x.record.w+left(x);
+  const threats=lg.filter(x=>x!==t&&max(x)>=t.record.w).length;
+  const ahead=lg.filter(x=>x!==t&&x.record.w>max(t)).length;
+  const div=lg.filter(x=>x.division===t.division&&x!==t);
+  return {clinched:threats<=5, eliminated:ahead>=6, divClinched:div.every(x=>max(x)<t.record.w), divOut:div.some(x=>x.record.w>max(t))};
+}
+function poMagic(t){   // magic number over the first team out (or, if out, the tragic number vs the last team in)
+  const p=playoff(t.league), seed=p.seeds.indexOf(t);
+  if (seed>=0){ const rival=p.firstOut; return rival?{kind:'magic', n:Math.max(0,PO_GAMES+1-t.record.w-rival.record.l), vs:rival}:null; }
+  const cut=p.cut; return cut?{kind:'tragic', n:Math.max(0,PO_GAMES+1-cut.record.w-t.record.l), vs:cut}:null;
+}
+const pctTxt = v => v>=.995?'>99%':v<=.005&&v>0?'<1%':v===0?'–':Math.round(v*100)+'%';
+function poBracket(lg){
+  const s=playoff(lg).seeds, od=poOdds();
+  const tm=(t,seed)=>t?`<a class="bt ${t.id===ME?'mine':''}" href="#team/${t.id}"><span class="sd">${seed}</span>${logo(t,24)}<span class="nm">${esc(t.name)}</span><span class="muted">${t.record.w}–${t.record.l}</span><span class="pood">${pctTxt(od[t.id].pen)}</span></a>`:'';
+  const slot=txt=>`<div class="bt tbd"><span class="nm muted">${txt}</span></div>`;
+  return `<div class="pobr">
+    <div class="bcol"><h4>Wild Card Series · best of 3</h4><div class="match">${tm(s[5],6)}${tm(s[2],3)}</div><div class="match">${tm(s[4],5)}${tm(s[3],4)}</div></div>
+    <div class="bcol"><h4>Division Series · best of 5</h4><div class="match">${tm(s[0],1)}${slot('Winner of 4 vs 5')}</div><div class="match">${tm(s[1],2)}${slot('Winner of 3 vs 6')}</div></div>
+    <div class="bcol"><h4>${lg}CS · best of 7</h4><div class="match">${slot('Division Series winners')}</div><h4 style="margin-top:14px">Pennant odds</h4>${s.slice().sort((a,b)=>od[b.id].pen-od[a.id].pen).slice(0,3).map(t=>`<div class="pobar"><span>${logo(t,18)} ${esc(t.name)}</span><i style="width:${od[t.id].pen*100}%"></i><b>${pctTxt(od[t.id].pen)}</b></div>`).join('')}</div>
+  </div>`;
+}
+// A playoff-sized plan against one opponent: rotation shortened to four, high-leverage arms, edges both ways.
+function poPlan(opp, rd, cur){
+  const me=T[ME], rotU=projRotation(me).slice().sort((a,b)=>b.ovr-a.ovr).slice(0,4), rotT=projRotation(opp).slice().sort((a,b)=>b.ovr-a.ovr).slice(0,4);
+  const games=Array.from({length:Math.min(rd[2],4)},(_,i)=>({us:rotU[i%Math.max(1,rotU.length)]||null, them:rotT[i%Math.max(1,rotT.length)]||null, home:null, hyp:true}));
+  const p=winChance(me,opp,null,null,null), c=cur?poScore(cur):null, mineW=c?(cur.t1===ME?c.w1:c.w2):0, theirW=c?(cur.t1===ME?c.w2:c.w1):0;
+  const sw=cur?seriesWinFrom(p,rd[2],mineW,theirW):seriesWin(p,rd[2]);
+  const eu=seriesEdges(me,opp,games,'us').slice(0,3), et=seriesEdges(opp,me,games,'them').slice(0,3);
+  const pen=bullpen(me).arms.slice(0,4);
+  return `<div class="poplan">
+    <div class="poplan-h">${logo(opp,40)}<div><small>${rd[1]} · best of ${rd[2]}</small><h3>vs ${esc(opp.name)} <span class="muted">${opp.record.w}–${opp.record.l}</span></h3></div>
+      <div class="poplan-o"><b>${Math.round(sw*100)}%</b><small>to win the series</small></div><a class="btn ghost sm" href="#series/t${opp.id}">Full game plan ›</a></div>
+    <div class="grid g-2" style="gap:14px">
+      <div><h4>Your playoff rotation</h4><ol class="porot">${rotU.map((x,i)=>`<li>${plinkH(x,26)} <span class="muted">${x.throws}HP · ${x.ovr}</span>${games[i]&&games[i].them?` <span class="muted">vs ${esc(games[i].them.last)}</span>`:''}</li>`).join('')}</ol>
+        <h4>High-leverage arms</h4><p class="muted" style="margin:0">${pen.map(x=>`${plink(x)} (${x.throws}HP, ${x.ovr})`).join(', ')}. In October the top relievers pitch more: lean on them from the 6th on.</p></div>
+      <div><h4>Your edges</h4><ul class="edge-list">${eu.map(x=>`<li><span>${x.txt}</span></li>`).join('')||'<li><span>No clear edge.</span></li>'}</ul>
+        <h4>Their edges</h4><ul class="edge-list bad">${et.map(x=>`<li><span>${x.txt}</span></li>`).join('')||'<li><span>Nothing stands out.</span></li>'}</ul></div>
+    </div></div>`;
+}
+function poRoad(){
+  const me=T[ME], p=playoff(me.league), s=p.seeds, seed=s.indexOf(me)+1, od=poOdds()[me.id];
+  if (!seed){
+    const mg=poMagic(me), cl=poClinch(me), next=seriesList(3);
+    return `<section class="card"><h3>${cl.eliminated?'Eliminated from the race':'Chasing October'}</h3>
+      <p>${playoffStatus(me)} ${mg?`Tragic number: <b>${mg.n}</b> (any combination of ${esc(mg.vs.name)} wins and ${esc(me.name)} losses).`:''} Playoff odds: <b>${pctTxt(od.po)}</b>.</p>
+      ${next.length?`<p class="muted">Next up: ${next.map(x=>`${x.home?'vs':'at'} ${esc(T[x.opp].name)} (${T[x.opp].record.w}–${T[x.opp].record.l})`).join(', ')}.</p>`:''}</section>
+      ${s[5]?`<div class="lg-h" style="margin-top:18px">If you get in: Wild Card Series</div>${poPlan(s[2],PO_ROUNDS[0])}`:''}`;
+  }
+  const lgOther=me.league==='AL'?'NL':'AL', od2=poOdds(), str=t=>poStrength(t);
+  const plans=[];
+  if (seed>=3){ const opp=s[seed===3?5:seed===4?4:seed===5?3:2]; plans.push(['Wild Card Series',poPlan(opp,PO_ROUNDS[0])]); }
+  const dsOpp = seed===1?[s[3],s[4]]:seed===2?[s[2],s[5]]:seed===3||seed===6?[s[1]]:[s[0]];
+  const ds=dsOpp.slice().sort((a,b)=>str(b)-str(a))[0]; if (ds) plans.push([`Division Series${dsOpp.length>1?' (most likely opponent)':''}`, poPlan(ds,PO_ROUNDS[1])]);
+  const other=(seed===1||seed===4||seed===5)?[s[1],s[2],s[5]]:[s[0],s[3],s[4]];
+  const lcs=other.slice().sort((a,b)=>od2[b.id].pen-od2[a.id].pen)[0]; if (lcs) plans.push(['League Championship Series (most likely opponent)', poPlan(lcs,PO_ROUNDS[2])]);
+  const ws=T.filter(t=>t.league===lgOther).sort((a,b)=>od2[b.id].pen-od2[a.id].pen)[0]; if (ws) plans.push(['World Series (most likely opponent)', poPlan(ws,PO_ROUNDS[3])]);
+  const mg=poMagic(me);
+  return `<p class="explain">${playoffStatus(me)} ${mg&&mg.n>0?`Magic number to clinch a spot: <b>${mg.n}</b> over ${esc(mg.vs.name)}.`:mg?'<b>Clinched a playoff spot.</b>':''} Odds: playoffs ${pctTxt(od.po)}, division ${pctTxt(od.div)}, bye ${pctTxt(od.bye)}, pennant ${pctTxt(od.pen)}, World Series ${pctTxt(od.ws)}. Each round below is planned against the most likely opponent; open the full game plan for game-by-game detail.</p>
+    ${plans.map(([t,h])=>`<div class="lg-h" style="margin-top:14px">${t}</div>${h}`).join('')}`;
+}
+/* ---- postseason pages (real bracket) ---- */
+const poTeamRow = (s,id,w) => `<a class="bt ${id===ME?'mine':''} ${s&&s.winner!=null&&s.winner!==id?'lost':''}" href="#team/${id}">${logo(T[id],24)}<span class="nm">${esc(T[id].name)}</span><span class="muted">${T[id].record.w}–${T[id].record.l}</span><span class="pood">${w??''}</span></a>`;
+const poMatch = s => { const c=poScore(s); return `<div class="match">${poTeamRow(s,s.t1,c.w1)}${poTeamRow(s,s.t2,c.w2)}</div>`; };
+function poBracketPost(lg){
+  const B=poLiveBracket(lg), od=poOddsPost(), tbd=t=>`<div class="bt tbd"><span class="nm muted">${t}</span></div>`;
+  const dsCol=B.ds.map(d=>d.real?poMatch(d.real):`<div class="match">${d.top?poTeamRow(null,d.top.id,''):tbd('TBD')}${tbd(d.feedSeries?`Winner of ${esc(T[d.feedSeries.t1].abbr)} vs ${esc(T[d.feedSeries.t2].abbr)}`:'Wild Card winner')}</div>`).join('');
+  const alive=T.filter(t=>t.league===lg&&od[t.id].pen>0).sort((a,b)=>od[b.id].pen-od[a.id].pen);
+  return `<div class="pobr">
+    <div class="bcol"><h4>Wild Card Series · best of 3</h4>${B.wc.map(poMatch).join('')||tbd('Not set')}</div>
+    <div class="bcol"><h4>Division Series · best of 5</h4>${dsCol}</div>
+    <div class="bcol"><h4>${lg}CS · best of 7</h4>${B.lcs?poMatch(B.lcs):tbd('Division Series winners')}<h4 style="margin-top:14px">Pennant odds</h4>${alive.slice(0,4).map(t=>`<div class="pobar"><span>${logo(t,18)} ${esc(t.name)}</span><i style="width:${od[t.id].pen*100}%"></i><b>${pctTxt(od[t.id].pen)}</b></div>`).join('')||'<p class="muted">Decided.</p>'}</div>
+  </div>`;
+}
+function poRoadPost(){
+  const me=T[ME], fate=poMyFate(), od=poOddsPost()[ME], mine=(POST()||[]).filter(poMine);
+  const recap=mine.filter(s=>s.winner!=null).map(s=>`<li><span><b>${esc(PO_NAME[s.round])}:</b> ${esc(poScoreTxt(s))} (${s.games.map(g=>s.t1===ME?`${g.s1}–${g.s2}`:`${g.s2}–${g.s1}`).join(', ')}).</span></li>`).join('');
+  const recapCard=recap?`<section class="card" style="margin-top:14px"><div class="card-h"><h2>Your October so far</h2></div><ul class="edge-list">${recap}</ul></section>`:'';
+  if (fate==='champion') return `<section class="card"><h3>World Series champions</h3><p>${esc(me.name)} won it all. Enjoy the parade.</p></section>${recapCard}`;
+  if (fate==='out'){ const last=mine.find(s=>s.winner!=null&&s.winner!==ME); return `<section class="card"><h3>Season over</h3><p>${esc(poScoreTxt(last))} in the ${esc(PO_NAME[last.round])}. The offseason starts now: the <a href="#agm">assistant GM</a> has the contract and arbitration picture, and <a href="#fa">free agency</a> has the market.</p></section>${recapCard}`; }
+  if (fate==='missed') return `<section class="card"><h3>Not in the postseason this year</h3><p>${esc(me.name)} finished ${me.record.w}–${me.record.l}. Follow the bracket on the other tabs, and start on next year with the <a href="#agm">assistant GM</a>.</p></section>`;
+  const plans=[], cur=poMyCurrent();
+  if (cur){ plans.push([`Now: ${PO_NAME[cur.round]} · ${poScoreTxt(cur)}`, poPlan(T[poOpp(cur)],[cur.round,PO_NAME[cur.round],PO_BEST[cur.round]],cur)+
+      (cur.games.length?`<section class="card" style="margin-top:10px"><div class="card-h"><h2>Results so far</h2></div><ul class="edge-list">${cur.games.map((g,i)=>{ const us=cur.t1===ME?g.s1:g.s2, th=cur.t1===ME?g.s2:g.s1, w=g.w!=null&&P.get(g.w); return `<li><span><b>Game ${i+1}:</b> ${us>th?'Won':'Lost'} ${us}–${th}${w?` · W: ${plink(w)}`:''}</span></li>`; }).join('')}</ul></section>`:'')]); }
+  else {   // bye: the opponent is still being decided in the Wild Card round
+    const B=poLiveBracket(me.league), d=B.ds.find(x=>x.top&&x.top.id===ME), fs=d&&d.feedSeries;
+    if (fs){ const a=T[fs.t1], b=T[fs.t2], pa=poOddsPost()[a.id].pen, pb=poOddsPost()[b.id].pen, likely=pa>=pb?a:b;
+      plans.push([`Division Series: waiting on ${esc(a.name)} vs ${esc(b.name)} (${esc(poScoreTxt(fs))})`, poPlan(likely,['ds',PO_NAME.ds,5])+`<p class="explain" style="margin-top:8px">Planned against ${esc(likely.name)}, the likelier winner. If ${esc((likely===a?b:a).name)} win, open <a href="#series/t${(likely===a?b:a).id}">a game plan against them</a>.</p>`]); }
+  }
+  // the next round from the live bracket: the other Division Series in your league, then the other league
+  const B=poLiveBracket(me.league), oth=B.ds.map(d=>d.real||null).find(s=>s&&!poMine(s));
+  if (cur&&cur.round!=='lcs'&&cur.round!=='ws'&&oth){ const opp=oth.winner!=null?T[oth.winner]:[T[oth.t1],T[oth.t2]].sort((a,b)=>poOddsPost()[b.id].pen-poOddsPost()[a.id].pen)[0];
+    plans.push([`${me.league}CS: ${oth.winner!=null?esc(opp.name)+' are waiting':`likely ${esc(opp.name)} (${esc(poScoreTxt(oth))})`}`, poPlan(opp,['lcs',PO_NAME.lcs,7])]); }
+  const other=me.league==='AL'?'NL':'AL', wsOpp=T.filter(t=>t.league===other).sort((a,b)=>poOddsPost()[b.id].pen-poOddsPost()[a.id].pen)[0];
+  if (cur&&cur.round!=='ws'&&wsOpp&&poOddsPost()[wsOpp.id].pen>0) plans.push([`World Series: most likely ${esc(wsOpp.name)}`, poPlan(wsOpp,['ws',PO_NAME.ws,7])]);
+  return `<p class="explain">From your save's own postseason bracket. Odds: pennant ${pctTxt(od.pen)}, World Series ${pctTxt(od.ws)}. Open the full game plan for game-by-game detail; the series plan always follows the real series.</p>
+    ${plans.map(([t,h])=>`<div class="lg-h" style="margin-top:14px">${t}</div>${h}`).join('')}${recapCard}`;
+}
+function poWirePost(){
+  const r=rng('powp'+L.season.day+fkey()), items=[], od=poOddsPost();
+  (POST()||[]).forEach(s=>{ const a=T[s.t1], b=T[s.t2], c=poScore(s), last=s.games[s.games.length-1], nm=poShort(s);
+    const lastTxt=last?` Last game: ${last.s1>last.s2?a.name:b.name} ${Math.max(last.s1,last.s2)}–${Math.min(last.s1,last.s2)}${last.w!=null&&P.get(last.w)?`, ${P.get(last.w).first} ${P.get(last.w).last} the winner`:''}.`:'';
+    if (c.done){ const w=T[s.winner], l=s.winner===s.t1?b:a; items.push({t:w,tag:nm,w:s.round==='ws'?10:5,head:s.round==='ws'?`${w.name} win the World Series`:pickR(r,[`${w.name} advance past ${l.name}`,`${w.name} send ${l.name} home`,`${l.name} eliminated by ${w.name}`]),body:`${poScoreTxt(s)}.${lastTxt}`}); }
+    else if (s.games.length) items.push({t:c.w1>=c.w2?a:b,tag:nm,w:8,head:poScoreTxt(s),body:`${a.name} vs ${b.name}.${lastTxt} ${a.name} win the series ${Math.round(seriesWinFrom(Math.min(.75,Math.max(.25,log5(poStrength(a),poStrength(b)))),PO_BEST[s.round],c.w1,c.w2)*100)}% of the time from here in Clubhouse's sims.`});
+    else { const e=seriesEdges(a,b,[],'us')[0], f=seriesEdges(b,a,[],'them')[0]; items.push({t:a,tag:nm,w:7,head:`${nm}: ${b.name} vs ${a.name}`,body:`Game 1 is next. ${e?a.name+': '+e.txt.replace(/<[^>]+>/g,'')+' ':''}${f?b.name+': '+f.txt.replace(/<[^>]+>/g,''):''}`}); }
+  });
+  items.sort((x,y)=>y.w-x.w);
+  return `<p class="explain">The postseason as it stands in your save: results, series scores and previews of what's next. Odds are Clubhouse's simulations.</p>
+    <ul class="wire powire">${items.map(x=>`<li>${logo(x.t,36)}<div><div class="tg">${esc(x.tag)}<em>${esc(fmtDate(today()))}</em></div><b>${esc(x.head)}</b><p>${esc(x.body)}</p></div></li>`).join('')}</ul>`;
+}
+function poOddsTablePost(){
+  const od=poOddsPost(), rows=T.filter(t=>od[t.id].pen>0||od[t.id].ws>0).map(t=>({t,...od[t.id],mine:t.id===ME}));
+  return `<p class="explain">Each remaining series is simulated 1,000 times from its current score. Team strength is run differential regressed toward .500.</p>
+    <section class="card flush">${gtable('popost',[{k:'team',l:'Team',cls:'l',v:x=>x.t.name,f:x=>teamLink(x.t),asc:true},{k:'lg',l:'Lg',cls:'l',v:x=>x.t.league},
+      {k:'rec',l:'W–L',v:x=>pctv(x.t),f:x=>`${x.t.record.w}–${x.t.record.l}`},{k:'pen',l:'Pennant',v:x=>x.pen,f:x=>pctTxt(x.pen)},{k:'ws',l:'World Series',v:x=>x.ws,f:x=>pctTxt(x.ws)}],rows,{sort:'ws',size:20})}</section>`;
+}
+function poWire(){
+  const r=rng('powire'+L.season.day+fkey()), items=[], od=poOdds();
+  const add=(t,tag,head,body,w)=>items.push({t,tag,head,body,w});
+  T.forEach(t=>{ const c=poClinch(t), o=od[t.id];
+    if (c.divClinched) add(t,'Clinched',pickR(r,[`${t.name} clinch the ${t.division}`,`${t.name} wrap up the ${t.division}`]),`${t.record.w}–${t.record.l}. The division is theirs; now it's about seeding.`,9);
+    else if (c.clinched) add(t,'Clinched',pickR(r,[`${t.name} punch their October ticket`,`${t.name} are in`]),`A playoff spot is locked up at ${t.record.w}–${t.record.l}.`,8);
+    else if (c.eliminated&&t.games.length<PO_GAMES&&o.po===0&&t.record.w/Math.max(1,t.games.length)>.45) add(t,'Eliminated',`${t.name} eliminated`,`The math finally caught up with them at ${t.record.w}–${t.record.l}.`,4); });
+  ['AL','NL'].forEach(lg=>{ const p=playoff(lg);
+    p.leaders.forEach(l=>{ const second=T.filter(x=>x.division===l.division&&x!==l).sort(byRec)[0]; const gb=second?gbv(l,second):9;
+      if (second&&gb<=3) add(l,'Race',pickR(r,[`${l.division} down to the wire`,`Dogfight in the ${l.division}`]),gb===0?`${l.name} and ${second.name} are tied atop the ${l.division} with ${PO_GAMES-l.games.length} to play.`:`${l.name} lead ${second.name} by ${half(gb)} game${gb===1?'':'s'} with ${PO_GAMES-l.games.length} to play.`,7); });
+    if (p.cut&&p.firstOut){ const gb=gbv(p.cut,p.firstOut); if (gb<=2.5) add(p.firstOut,'Wild card',pickR(r,[`${lg} wild card race tightens`,`One spot, ${p.rest.filter(x=>gbv(p.cut,x)<=4).length} teams`]),`${p.firstOut.name} sit ${half(gb)} back of ${p.cut.name} for the last ${lg} wild card.`,7); }
+    p.seeds.forEach((t,i)=>{ const l10=t.record.last10.filter(Boolean).length;
+      if (l10>=8) add(t,'Hot',pickR(r,[`${t.name} rolling into October`,`Nobody wants to see ${t.name} right now`]),`${l10}–${t.record.last10.length-l10} in their last ${t.record.last10.length}.`,5);
+      if (l10<=3) add(t,'Slump',pickR(r,[`${t.name} limping toward the finish`,`Alarm bells for ${t.name}?`]),`Just ${l10}–${t.record.last10.length-l10} in the last ${t.record.last10.length}, holding the ${ord(i+1)} seed.`,5);
+      const hurt=t.roster.map(id=>P.get(id)).filter(x=>x&&x.injury&&x.injury.days>10&&x.ovr>=85).sort((a,b)=>b.ovr-a.ovr)[0];
+      if (hurt) add(t,'Injury',hurt.injury.days>PO_GAMES-t.games.length+40?`${t.name} without ${hurt.last} in October`:`${t.name} sweating out ${hurt.last}`,hurt.injury.days>PO_GAMES-t.games.length+40?`${hurt.first} ${hurt.last} (${hurt.ovr}) is out for the season.`:`${hurt.first} ${hurt.last} (${hurt.ovr}) is out about ${hurt.injury.days} days, right into October.`,6);
+      const ace=projRotation(t).slice().sort((a,b)=>b.ovr-a.ovr)[0];
+      if (ace&&ace.ovr>=90&&i<4) add(t,'Ace',pickR(r,[`${ace.last} lines up for ${t.name}`,`The ${ace.last} factor`]),`${t.name}' ace (${ace.ovr}, ${ace.stats.season&&ace.stats.season.era!=null?ace.stats.season.era.toFixed(2)+' ERA':'no ERA yet'}) is the kind of arm that steals a short series.`,4); });
+    const s=p.seeds; [[s[2],s[5]],[s[3],s[4]]].forEach(([a,b])=>{ if (!a||!b) return;
+      const e=seriesEdges(a,b,[],'us')[0], f=seriesEdges(b,a,[],'them')[0], pw=seriesWin(winChance(a,b,null,null,null),3);
+      add(a,'Preview',`${lg} Wild Card: ${b.name} at ${a.name}`,`${a.name} win it ${Math.round(pw*100)}% of the time in Clubhouse's sims. ${e?a.name+': '+e.txt.replace(/<[^>]+>/g,'')+' ':''}${f?b.name+': '+f.txt.replace(/<[^>]+>/g,''):''}`,6); });
+  });
+  items.sort((a,b)=>b.w-a.w+(r()-.5));
+  return `<p class="explain">The stretch run and the postseason picture, from your save. Clinches and eliminations are mathematical; previews and odds are Clubhouse's projections.</p>
+    <ul class="wire powire">${items.slice(0,24).map(x=>`<li>${logo(x.t,36)}<div><div class="tg">${esc(x.tag)}<em>${dayLbl()}</em></div><b>${esc(x.head)}</b><p>${esc(x.body)}</p></div></li>`).join('')||'<li><div><p>Quiet around the league.</p></div></li>'}</ul>`;
+}
+function poOddsTable(){
+  const od=poOdds(), rows=T.map(t=>({t,...od[t.id],mine:t.id===ME, c:poClinch(t)}));
+  return `<p class="explain">Clubhouse simulates the rest of your save's real schedule 800 times, then plays out the bracket. Team strength is run differential regressed toward .500. A projection, not the game's.</p>
+    <section class="card flush">${gtable('poodds',[
+      {k:'team',l:'Team',cls:'l',v:x=>x.t.name,f:x=>teamLink(x.t),asc:true},{k:'lg',l:'Lg',cls:'l',v:x=>x.t.league},
+      {k:'rec',l:'W–L',v:x=>pctv(x.t),f:x=>`${x.t.record.w}–${x.t.record.l}`},
+      {k:'st',l:'Status',cls:'l',v:x=>x.c.divClinched?3:x.c.clinched?2:x.c.eliminated?0:1,f:x=>x.c.divClinched?'<span class="chipx good">Clinched division</span>':x.c.clinched?'<span class="chipx good">Clinched</span>':x.c.eliminated?'<span class="chipx cold">Eliminated</span>':'<span class="muted">–</span>'},
+      {k:'po',l:'Playoffs',v:x=>x.po,f:x=>pctTxt(x.po)},{k:'div',l:'Division',v:x=>x.div,f:x=>pctTxt(x.div)},{k:'bye',l:'Bye',v:x=>x.bye,f:x=>pctTxt(x.bye)},
+      {k:'pen',l:'Pennant',v:x=>x.pen,f:x=>pctTxt(x.pen)},{k:'ws',l:'World Series',v:x=>x.ws,f:x=>pctTxt(x.ws)},
+    ],rows,{sort:'po',size:30})}</section>`;
+}
+Object.assign(views, {
+  playoffs(tab){
+    applyTheme(T[ME]);
+    tab=['road','wire','odds'].includes(tab)?tab:'';
+    const ph=poPhase(), left=PO_GAMES-T[ME].games.length;
+    if (ph==='post'){
+      const head=t=>`<div class="page-h"><div><div class="kicker">The ${L.season.year} postseason</div><h2>${t}</h2></div>${tabs('playoffs',[['','Bracket'],['road','Your road'],['wire','Playoff wire'],['odds','Odds']],tab)}</div>`;
+      if (tab==='road') return head('Your road')+poRoadPost();
+      if (tab==='wire') return head('Playoff wire')+poWirePost();
+      if (tab==='odds') return head('Odds')+poOddsTablePost();
+      const ws=(POST()||[]).find(s=>s.round==='ws');
+      return head('Postseason bracket')+`<p class="explain">The real bracket from your save, with series scores. Pennant and World Series odds are Clubhouse's simulations from the current scores.</p>`
+        +['AL','NL'].map(lg=>`<div class="lg-h">${lg==='AL'?'American League':'National League'}</div><section class="card" style="margin-bottom:18px">${poBracketPost(lg)}</section>`).join('')
+        +`<section class="card"><div class="card-h"><h2>World Series</h2></div>${ws?poMatch(ws):''}${T.filter(t=>poOddsPost()[t.id].ws>0).sort((a,b)=>poOddsPost()[b.id].ws-poOddsPost()[a.id].ws).slice(0,8).map(t=>`<div class="pobar"><span>${logo(t,18)} ${esc(t.name)}</span><i style="width:${poOddsPost()[t.id].ws*100*2}%"></i><b>${pctTxt(poOddsPost()[t.id].ws)}</b></div>`).join('')}</section>`;
+    }
+    const kick=ph==='final'?'The regular season is over':ph?`The race for October · ${left} game${left===1?'':'s'} left`:'Postseason';
+    const head=t=>`<div class="page-h"><div><div class="kicker">${kick}</div><h2>${t}</h2></div>${ph?tabs('playoffs',[['','Bracket'],['road','Your road'],['wire','Playoff wire'],['odds','Odds']],tab):''}</div>`;
+    if (!ph) return head('Playoffs')+`<section class="card"><h3>The postseason opens in September</h3><p class="muted">Playoffs open on September 1 with the projected bracket, odds, your road through October with a game plan for each round, and the playoff wire. Until then, the current picture is on <a href="#standings/wildcard">Wild card race</a>.</p></section>`;
+    if (tab==='road') return head('Your road to October')+poRoad();
+    if (tab==='wire') return head('Playoff wire')+poWire();
+    if (tab==='odds') return head('Playoff odds')+poOddsTable();
+    const note=ph==='final'?'Final seeding. Postseason results will show here once Clubhouse can read them from a postseason save.':'Projected: if the season ended today. The percentages are each team\'s pennant odds.';
+    return head('Playoff bracket')+`<p class="explain">${note}</p>`+['AL','NL'].map(lg=>`<div class="lg-h">${lg==='AL'?'American League':'National League'}</div><section class="card" style="margin-bottom:18px">${poBracket(lg)}</section>`).join('')
+      +`<section class="card"><div class="card-h"><h2>World Series odds</h2></div>${T.slice().sort((a,b)=>poOdds()[b.id].ws-poOdds()[a.id].ws).slice(0,8).map(t=>`<div class="pobar"><span>${logo(t,18)} ${esc(t.name)}</span><i style="width:${poOdds()[t.id].ws*100*2}%"></i><b>${pctTxt(poOdds()[t.id].ws)}</b></div>`).join('')}</section>`;
+  },
+});
+function playoffBanner(){
+  const ph=L&&poPhase(); if (!ph) return '';
+  if (ph==='post'){ const cur=poMyCurrent(), fate=poMyFate(), od=poOddsPost()[ME];
+    const big=fate==='champion'?'World Series champions':fate==='out'?'Season over':fate==='missed'?'The postseason':cur?`${poShort(cur)} vs ${T[poOpp(cur)].name}`:'First-round bye';
+    const sub=cur?`${poScoreTxt(cur)} · pennant ${pctTxt(od.pen)} · World Series ${pctTxt(od.ws)}`:fate==='alive'||fate==='waiting'?`Waiting on the Wild Card round · World Series ${pctTxt(od.ws)}`:'Follow the bracket';
+    return `<a class="spban" href="#playoffs${cur?'/road':''}"><div><small>The ${L.season.year} postseason</small><b>${esc(big)}</b><span>${esc(sub)}</span></div><span class="btn sm">${cur?'Game plan ›':'Open playoffs ›'}</span></a>`; }
+  const me=T[ME], od=poOdds()[me.id], mg=poMagic(me), seed=playoff(me.league).seeds.indexOf(me)+1;
+  return `<a class="spban" href="#playoffs"><div><small>${ph==='final'?'The postseason is here':'The race for October'}</small>
+    <b>${seed?(seed<=2?`${ord(seed)} seed · first-round bye`:seed===3?'3rd seed · division winner':`Wild card ${seed-3}`):'Outside the field'}</b>
+    <span>Playoff odds ${pctTxt(od.po)} · pennant ${pctTxt(od.pen)}${mg?` · ${mg.kind==='magic'?'magic number':'tragic number'} ${mg.n}`:''}</span></div>
+    <span class="btn sm">Open playoffs ›</span></a>`;
+}
 
 /* ---------- spring training (#spring) ----------
    Spring is told apart by the save's date (slot label) against its own spring calendar (D_SCHED_CONST, exported as
@@ -3975,8 +4854,8 @@ function sprWatch(bt){
     if (ra.conR-rb.conR>=6&&rb.conL-ra.conL>=6) out.push(`Could be a platoon: ${a.last} against right-handers, ${b.last} against lefties.`);
     else if (rb.conR-ra.conR>=6&&ra.conL-rb.conL>=6) out.push(`Could be a platoon: ${b.last} against right-handers, ${a.last} against lefties.`);
   }
-  if (b.pot-a.pot>=6) out.push(`${b.last} has the higher ceiling (${b.pot} potential to ${a.pot}). A strong spring could tip it his way.`);
-  else if (a.pot-b.pot>=6) out.push(`${a.last} has the higher ceiling (${a.pot} potential to ${b.pot}).`);
+  if (potV(b)-potV(a)>=6) out.push(`${b.last} looks to have the higher ceiling (${potTxt(b)} potential to ${potTxt(a)}). A strong spring could tip it his way.`);
+  else if (potV(a)-potV(b)>=6) out.push(`${a.last} looks to have the higher ceiling (${potTxt(a)} potential to ${potTxt(b)}).`);
   if (b.level&&b.level!=='MLB') out.push(`${b.last} is at ${b.level} and not on the 40-man roster. Giving him the job means opening a spot.`);
   const la=sprLast(a), lb=sprLast(b);
   if (la&&!lb) out.push(`${a.last} has the big-league track record; ${b.last} doesn't, so his spring at-bats tell you more.`);
@@ -3988,7 +4867,7 @@ function springLook(tid){
   const pr=springProj(tid), sc=pr.sc, items=new Map();
   const add=(p,tag,cls,why)=>{ const x=items.get(p.id); if (x){ x.tags.push([tag,cls]); x.why.push(why); } else items.set(p.id,{p,tags:[[tag,cls]],why:[why]}); };
   pr.camp.forEach(p=>{ const [st]=pr.status(p); if (st==='Bubble') add(p,'On the bubble','hot',pr.on.has(p.id)?'Holds one of the last spots on the projected 26-man, barely.':'Just outside the projected 26-man.'); });
-  pr.camp.filter(p=>p.age<=25&&p.pot-p.ovr>=7&&pr.status(p)[0]!=='Lock').forEach(p=>add(p,'Upside','good',`${p.ovr} now, ${p.pot} potential at ${p.age}. Is he ready?`));
+  pr.camp.filter(p=>p.age<=25&&p.pot-p.ovr>=7&&pr.status(p)[0]!=='Lock').forEach(p=>add(p,'Upside','good',`${p.ovr} now, ${potTxt(p)} potential at ${p.age}. Is he ready?`));
   // last season's numbers against his ratings, by league percentile
   const lg=L.players.filter(p=>p.team!=null&&p.stats.last);
   const hs=lg.filter(p=>p.pos!=='P'&&sprPA(p.stats.last)>=200&&opsOf(p.stats.last)!=null), ps=lg.filter(p=>p.pos==='P'&&(p.stats.last.outs||0)>=120&&p.stats.last.era!=null);
@@ -4057,7 +4936,7 @@ Object.assign(views, {
 const sprGapChip = b => { const g=Math.round(b.gap);
   return g===0?'<span class="chipx hot">Dead even</span>':g>0?`<span class="chipx ${g<=1?'hot':''}">${esc(b.a.last)} by ${g}</span>`:`<span class="chipx good">${esc(b.b.last)} rates ${-g} higher</span>`; };
 const sprPchip = p => `<div class="pchip">${head(p,34,true)}<div><a class="pl" href="#p/${p.id}" data-pid="${p.id}">${esc(p.first)} ${esc(p.last)}</a>
-  <small>${esc(p.role)} · ${p.level&&p.level!=='MLB'?esc(p.level):'in camp'} · age ${p.age}</small></div><span class="spr-r">${rt(p.ovr,1)}<small>Pot ${p.pot}</small></span></div>`;
+  <small>${esc(p.role)} · ${p.level&&p.level!=='MLB'?esc(p.level):'in camp'} · age ${p.age}</small></div><span class="spr-r">${rt(p.ovr,1)}<small>Pot ${potTxt(p)}</small></span></div>`;
 function springBanner(){
   const ph=L&&springPhase(); if (!ph) return '';
   const pr=springProj(ME), bt=springBattles(ME);
@@ -4103,7 +4982,7 @@ function springBattlesView(tid){
   if (!bt.length) return `<section class="card"><h3>No close battles</h3><p class="muted">Every projected job has a clear favorite by at least 4 points. Check <a href="#spring/look">Who needs a look</a> for players worth testing anyway.</p></section>`;
   const side=(p,edges)=>`<div class="spb-side">${head(p,64,true)}<div><a class="pl" href="#p/${p.id}" data-pid="${p.id}">${esc(p.first+' '+p.last)}</a>
       <small>${esc(p.role)} · age ${p.age} · ${p.level&&p.level!=='MLB'?esc(p.level)+' · not on the 40-man':'in camp'}</small>
-      <div class="spb-r">${rt(p.ovr)}<span class="muted">Pot</span>${rt(p.pot,1)}</div>
+      <div class="spb-r">${rt(p.ovr)}<span class="muted">Pot</span>${potRt(p,1)}</div>
       ${edges.length?`<ul>${edges.map(([l,v,o])=>`<li><b>${esc(l)}</b> ${v} <span class="muted">vs ${o}</span></li>`).join('')}</ul>`:'<p class="muted" style="margin:6px 0 0;font-size:12.5px">No clear rating edge.</p>'}
       ${sprLast(p)?`<p class="spb-l">${esc(sprLast(p))}</p>`:''}${sprLine(p)?`<p class="spb-l"><b>${esc(sprLine(p))}</b></p>`:''}</div></div>`;
   return `<p class="explain">Jobs where the favorite leads by 4 points or less (3 for the last bullpen and bench spots), counting players in camp and your minor leaguers. Points are overall ratings${springProj(tid).camp.some(sprStat)?' plus a small spring-results nudge':''}. The left side is Clubhouse's current pick.</p>
@@ -4126,14 +5005,14 @@ function springNRIView(tid){
       {k:'name',l:'Player',cls:'l',v:x=>x.p.last,f:x=>plinkH(x.p),asc:true},
       {k:'lvl',l:'Level',cls:'l',v:x=>LV_ORDER.indexOf(x.p.level),f:x=>orgCell(x.p),asc:true},
       {k:'pos',l:'Pos',cls:'l',v:x=>x.p.role,f:x=>`<span class="posb">${x.p.role}</span>`,asc:true},
-      {k:'age',l:'Age',v:x=>x.p.age},{k:'ovr',l:'Ovr',v:x=>x.p.ovr,f:x=>rt(x.p.ovr,1)},{k:'pot',l:'Pot',v:x=>x.p.pot,f:x=>rt(x.p.pot,1)},
+      {k:'age',l:'Age',v:x=>x.p.age},{k:'ovr',l:'Ovr',v:x=>x.p.ovr,f:x=>rt(x.p.ovr,1)},{k:'pot',l:'Pot',v:x=>potV(x.p),f:x=>potRt(x.p,1)},
       {k:'rk',l:'Org rank',v:x=>x.rk,f:x=>x.rk?'No. '+x.rk:'–',asc:true},
       {k:'gap',l:'Vs. the cut',v:x=>x.gap,f:x=>`<span class="${x.gap>=0?'pos':x.gap>=-3?'':'neg'}">${x.gap>=0?'+':''}${x.gap.toFixed(0)}</span>`},
       {k:'v',l:'Verdict',cls:'l',v:x=>x.gap,f:x=>`<span class="chipx ${x.v[1]}">${x.v[0]}</span>`},
       {k:'eta',l:'ETA',cls:'l',v:x=>eta(x.p).k,f:x=>etaChip(eta(x.p)),asc:true},
     ],rows,{sort:'gap'})}</section>
     <section class="card flush" style="margin-top:14px"><div class="card-h"><h2>If you need a 40-man spot</h2><span class="aside">Projected to start in the minors, 26 or older, little growth left</span></div>
-      ${squeeze.map(p=>`<div class="sprow"><span class="posb">${p.pos==='P'?p.role:p.pos}</span>${plinkH(p,28)}<span class="sprow-x"><small class="muted">age ${p.age} · ${p.ovr}/${p.pot}</small></span>${rt(p.ovr,1)}${sprChip(pr,p)}</div>`).join('')||'<p class="muted" style="padding:0 16px 14px">Nobody obvious: every 40-man player outside the projected 26 is young or still growing.</p>'}</section>`;
+      ${squeeze.map(p=>`<div class="sprow"><span class="posb">${p.pos==='P'?p.role:p.pos}</span>${plinkH(p,28)}<span class="sprow-x"><small class="muted">age ${p.age} · ${p.ovr} · pot ${potTxt(p)}</small></span>${rt(p.ovr,1)}${sprChip(pr,p)}</div>`).join('')||'<p class="muted" style="padding:0 16px 14px">Nobody obvious: every 40-man player outside the projected 26 is young or still growing.</p>'}</section>`;
 }
 function springPlanView(tid){
   const pr=springProj(tid);
@@ -4234,7 +5113,7 @@ function minorsLeaders(){
 function minorsStats(){
   const lv=MINF.lvl, b=lvlB(lv), g=lvlGames(lv), s=p=>p.stats[b], keep=p=>p.org!=null&&L.clubs[p.club]&&s(p)&&s(p).g&&(MINF.org===''||p.org===+MINF.org);
   const orgSel=`<select class="sel" data-minorg aria-label="Organization"><option value="">All organizations</option>${T.map(t=>`<option value="${t.id}" ${String(MINF.org)===String(t.id)?'selected':''}>${esc(fullName(t))}</option>`).join('')}</select>`;
-  const who=[{k:'name',l:'Player',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},{k:'club',l:'Club',cls:'l',v:p=>L.clubs[p.club].abbr,f:p=>`<span class="tm">${clubBadge(L.clubs[p.club],20)}<span class="muted" style="font-size:12px">${esc(T[p.org].abbr)}</span></span>`,asc:true},{k:'age',l:'Age',v:p=>p.age},{k:'pot',l:'Pot',v:p=>p.pot,f:p=>rt(p.pot,1)}];
+  const who=[{k:'name',l:'Player',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},{k:'club',l:'Club',cls:'l',v:p=>L.clubs[p.club].abbr,f:p=>`<span class="tm">${clubBadge(L.clubs[p.club],20)}<span class="muted" style="font-size:12px">${esc(T[p.org].abbr)}</span></span>`,asc:true},{k:'age',l:'Age',v:p=>p.age},{k:'pot',l:'Pot',v:p=>potV(p),f:p=>potRt(p,1)}];
   const n=(k,l,fn,fmt,asc)=>({k,l,v:fn,f:fmt?(r=>{const v=fn(r);return v==null?'–':fmt(v);}):null,asc});
   const bat=L.players.filter(p=>keep(p)&&p.pos!=='P').map(p=>({...p,mine:p.org===ME}));
   const pit=L.players.filter(p=>keep(p)&&p.pos==='P').map(p=>({...p,mine:p.org===ME}));
@@ -4286,7 +5165,7 @@ const prospectCols = mineOnly => [
   ...(mineOnly?[]:[{k:'org',l:'Org',cls:'l',v:p=>T[p.org].abbr,f:p=>`<span class="tm">${logo(T[p.org],20)}${esc(T[p.org].abbr)}</span>`,asc:true}]),
   {k:'pos',l:'Pos',cls:'l',v:p=>p.role,f:p=>`<span class="posb">${p.role}</span>`,asc:true},
   {k:'lvl',l:'Level',cls:'l',v:p=>LV_ORDER.indexOf(p.level),f:p=>p.level,asc:true},
-  {k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr,1)},{k:'pot',l:'Pot',v:p=>p.pot,f:p=>rt(p.pot,1)},
+  {k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>p.ovr,f:p=>rt(p.ovr,1)},{k:'pot',l:'Pot',v:p=>potV(p),f:p=>potRt(p,1)},
   {k:'line',l:'This season',cls:'l',v:p=>perfZ(p),f:p=>{const s=lvlStats(p);return s&&(p.pos==='P'?s.outs:s.ab)?`<span class="muted" style="font-size:12px">${p.pos==='P'?`${s.era!=null?s.era.toFixed(2):'–'} ERA · ${s.ip} IP · ${s.so} SO`:`${f3(s.avg)}/${f3(s.obp)}/${f3(s.slg)} · ${s.hr} HR`}</span>`:'<span class="muted">–</span>';}},
   {k:'eta',l:'ETA',cls:'l',v:p=>eta(p).k,f:p=>etaChip(eta(p)),asc:true},
 ];
@@ -4325,7 +5204,7 @@ function perfList(list, empty){
   if (!list.length) return `<p class="muted" style="padding:14px 16px;margin:0">${empty}</p>`;
   return `<ul class="pwfeed">${list.map(x=>{ const c=L.clubs[x.p.club];
     return `<li><a class="badge pl" href="#p/${x.p.id}" data-pid="${x.p.id}">${esc(x.p.role)}</a><div><div class="tg">${esc(x.lvl)} · ${c?esc(c.abbr):''} · ${esc(T[x.p.org]?T[x.p.org].abbr:'')}${x.p.org===ME?'<em>Your system</em>':''}${x.d.g>1?`<em>${x.d.g} games</em>`:''}</div>
-      <b>${esc(perfHeadline(x))}</b><p>${plink(x.p)}: ${esc(lineTxt(x))}. <span class="muted">${(()=>{ const lr=prospectRank(x.p), orr=orgRank(x.p); return lr&&lr<=100?`No. ${lr} prospect · `:orr&&orr<=30?`No. ${orr} in the ${esc(T[x.p.org].name)} system · `:''; })()}${x.p.ovr}/${x.p.pot}</span></p></div></li>`; }).join('')}</ul>`;
+      <b>${esc(perfHeadline(x))}</b><p>${plink(x.p)}: ${esc(lineTxt(x))}. <span class="muted">${(()=>{ const lr=prospectRank(x.p), orr=orgRank(x.p); return lr&&lr<=100?`No. ${lr} prospect · `:orr&&orr<=30?`No. ${orr} in the ${esc(T[x.p.org].name)} system · `:''; })()}${x.p.ovr} · pot ${potTxt(x.p)}</span></p></div></li>`; }).join('')}</ul>`;
 }
 function perfWatch(){
   const rec=L.recent, all=perfLines(null), mine=perfLines(ME);
@@ -4341,10 +5220,10 @@ function minorsClub(id, head){
   const hit=ros.filter(p=>p.pos!=='P'), arm=ros.filter(p=>p.pos==='P');
   const sel=`<select class="sel" data-minclub aria-label="Club">${['AAA','AA','A'].map(l=>`<optgroup label="${l}">${L.clubs.filter(x=>x.level===l).sort((a,b)=>a.city.localeCompare(b.city)).map(x=>`<option value="${x.id}" ${x.id===c.id?'selected':''}>${esc(x.city+' '+x.name)} (${esc(T[x.org].abbr)})</option>`).join('')}</optgroup>`).join('')}</select>`;
   const s=p=>p.stats[b];
-  const hcols=[{k:'name',l:'Player',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},{k:'pos',l:'Pos',cls:'l',v:p=>p.pos,f:p=>`<span class="posb">${p.pos}</span>`,asc:true},{k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>FOGSET().has(p.id)?null:p.ovr,f:p=>fogRt(p,'ovr')},{k:'pot',l:'Pot',v:p=>FOGSET().has(p.id)?null:p.pot,f:p=>fogRt(p,'pot')},
+  const hcols=[{k:'name',l:'Player',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},{k:'pos',l:'Pos',cls:'l',v:p=>p.pos,f:p=>`<span class="posb">${p.pos}</span>`,asc:true},{k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>FOGSET().has(p.id)?null:p.ovr,f:p=>fogRt(p,'ovr')},{k:'pot',l:'Pot',v:p=>FOGSET().has(p.id)?null:potV(p),f:p=>fogRt(p,'pot')},
     ...(c.level==='A'?[]:[{k:'avg',l:'AVG',v:p=>s(p)&&s(p).avg,f:p=>s(p)?f3(s(p).avg):'–'},{k:'ops',l:'OPS',v:p=>s(p)&&opsOf(s(p)),f:p=>s(p)?f3(opsOf(s(p))):'–'},{k:'hr',l:'HR',v:p=>s(p)?s(p).hr:null},{k:'rbi',l:'RBI',v:p=>s(p)?s(p).rbi:null}]),
     {k:'eta',l:'ETA',cls:'l',v:p=>eta(p).k,f:p=>FOGSET().has(p.id)?'<span class="muted">Just drafted</span>':etaChip(eta(p)),asc:true}];
-  const pcols=[{k:'name',l:'Player',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},{k:'role',l:'Role',cls:'l',v:p=>p.role,f:p=>`<span class="posb">${p.role}</span>`,asc:true},{k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>FOGSET().has(p.id)?null:p.ovr,f:p=>fogRt(p,'ovr')},{k:'pot',l:'Pot',v:p=>FOGSET().has(p.id)?null:p.pot,f:p=>fogRt(p,'pot')},
+  const pcols=[{k:'name',l:'Player',cls:'l',v:p=>p.last,f:p=>plinkH(p),asc:true},{k:'role',l:'Role',cls:'l',v:p=>p.role,f:p=>`<span class="posb">${p.role}</span>`,asc:true},{k:'age',l:'Age',v:p=>p.age},{k:'ovr',l:'Ovr',v:p=>FOGSET().has(p.id)?null:p.ovr,f:p=>fogRt(p,'ovr')},{k:'pot',l:'Pot',v:p=>FOGSET().has(p.id)?null:potV(p),f:p=>fogRt(p,'pot')},
     ...(c.level==='A'?[]:[{k:'era',l:'ERA',v:p=>s(p)&&s(p).era,f:p=>s(p)&&s(p).era!=null?s(p).era.toFixed(2):'–',asc:true},{k:'ip',l:'IP',v:p=>s(p)?s(p).outs:null,f:p=>s(p)?s(p).ip:'–'},{k:'so',l:'SO',v:p=>s(p)?s(p).so:null},{k:'sv',l:'SV',v:p=>s(p)?s(p).sv:null}]),
     {k:'eta',l:'ETA',cls:'l',v:p=>eta(p).k,f:p=>FOGSET().has(p.id)?'<span class="muted">Just drafted</span>':etaChip(eta(p)),asc:true}];
   const r=c.record;
@@ -4395,7 +5274,7 @@ function fogRange(p, v, key){
 }
 const potGrade = v => v>=80?'A':v>=70?'B':v>=60?'C':'D';
 // a rating cell that respects fog of war for just-drafted players
-const fogRt = (p, k) => { if (!FOGSET().has(p.id)) return rt(k==='pot'?p.pot:p.ovr, 1);
+const fogRt = (p, k) => { if (!FOGSET().has(p.id)) return k==='pot'?potRt(p,1):rt(p.ovr, 1);
   if (k==='pot') return `<b class="g${potGrade(p.pot)}" title="Potential grade">${potGrade(p.pot)}</b>`;
   const [a,b]=fogRange(p,p.ovr,'ovr'); return `<span class="muted" title="Scouting range">${a}–${b}</span>`; };
 const DCF={year:null};
@@ -4439,7 +5318,7 @@ function pastDraftClass(y, picks){
   const mine=picks.filter(r=>r.team===ME), byName=new Map(L.players.map(p=>[nameKey(p.first,p.last),p]));
   const row=r=>{ const p=byName.get(nameKey(r.first,r.last));
     return `<tr class="${r.team===ME?'mine':''}"><td>${r.pick}</td><td class="l">${T[r.team]?logo(T[r.team],18)+' '+esc(T[r.team].abbr):'–'}</td><td class="l">${p?plink(p):esc(r.first+' '+r.last)}</td><td class="l"><span class="posb">${esc(p?p.role:r.pos||'')}</span></td>
-      <td class="l">${p?orgCell(p):'<span class="muted">Not in the league</span>'}</td><td>${p?rt(p.ovr,1):'–'}</td><td>${p?rt(p.pot,1):'–'}</td><td class="l">${p&&p.level&&p.level!=='MLB'?etaChip(eta(p)):p&&p.level==='MLB'?'<span class="pos">In the majors</span>':''}</td></tr>`; };
+      <td class="l">${p?orgCell(p):'<span class="muted">Not in the league</span>'}</td><td>${p?rt(p.ovr,1):'–'}</td><td>${p?potRt(p,1):'–'}</td><td class="l">${p&&p.level&&p.level!=='MLB'?etaChip(eta(p)):p&&p.level==='MLB'?'<span class="pos">In the majors</span>':''}</td></tr>`; };
   const head=`<thead><tr><th>Pick</th><th class="l">Club</th><th class="l">Player</th><th class="l">Pos</th><th class="l">Now</th><th>Ovr</th><th>Pot</th><th class="l">ETA</th></tr></thead>`;
   return `<p class="explain">The ${y} draft as Clubhouse recorded it, with where each player is today. A season on, their ratings are no longer fogged.</p>
     <section class="card flush"><div class="card-h"><h2>Your ${y} picks</h2></div><div class="tablewrap"><table>${head}<tbody>${mine.map(row).join('')||'<tr><td class="muted" colspan="8">No picks recorded.</td></tr>'}</tbody></table></div></section>
@@ -4528,7 +5407,7 @@ const scSecMove = p => { const s=scSecondaries(p); return s.length?Math.round(s.
 const scModelTrait = (p,k) => { const r=rng('sctrait'+k+scKey(p)+fkey()); return Math.round(30+r()*60); };
 const SC_CATS = {
   overall:  {label:'Present ability', skill:p=>p.pos==='P'?'pitch':'hit', v:p=>p.ovr},
-  ceiling:  {label:'Ceiling',          skill:()=>'proj', v:p=>p.pot},
+  ceiling:  {label:'Ceiling',          skill:()=>'proj', v:p=>potV(p)},
   contact:  {label:'Contact',          skill:()=>'hit', v:p=>avg2(p.ratings.batting.conR,p.ratings.batting.conL)},
   power:    {label:'Power',            skill:()=>'hit', v:p=>avg2(p.ratings.batting.powR,p.ratings.batting.powL)},
   eye:      {label:'Approach',         skill:()=>'hit', v:p=>avg2(p.ratings.batting.vision,p.ratings.batting.discipline)},
@@ -6040,6 +6919,9 @@ async function loadLeague(){
   rememberClass();   // keep this year's draft class names so signed picks can be recognized after the draft
   try { await scLoad(); scSync(); } catch (e) { console.error('scouting', e); }   // scouting department: load, reconcile, play out elapsed weeks
   if (teamView==null || !T[teamView]) teamView = ME;
+  { const np=$('#navpo'); if (np) np.hidden=!poPhase(); }   // the Playoffs header appears as the regular season winds down
+  if (!AGMS) await agmLoad();
+  AGMCHAT=[]; agmChatLoad();
   renderBrand(); renderSlot();
   const pid=openPid;
   if (!routed){ window.addEventListener('hashchange',route); routed=true; }

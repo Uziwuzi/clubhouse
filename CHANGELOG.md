@@ -1,5 +1,45 @@
 # Clubhouse changelog
 
+## 1.9.0 (November 21, 2026)
+
+### Assistant GM
+- **A new Assistant GM page** (Front office → Assistant GM), with your club's real assistant GM as the persona. If your club's assistant GM has changed, you can change the name, title and photo; it's saved on your PC.
+- **Briefing:** what you might miss.
+  - Roster: injuries with the next man up, slumping regulars, minor leaguers who are ready, your weakest spot, a taxed bullpen and struggling starters.
+  - Contracts: expiring deals with projected price tags, and arbitration costs with tender advice.
+  - Calendar and the rest: the trade deadline, call-ups, the playoff race, hitting streaks and home-run pace, the draft, payroll and scouting.
+  - The top items also show on Home.
+- **Ask him anything** about the roster, trades ("Should I trade X for Y?", "What can I get for X?", "What would X cost?"), contracts and arbitration, free agents, needs, the lineup, rotation and bullpen, call-ups, prospects, the playoff picture, injuries or payroll, or compare two players. He answers from your save, offline, and never reveals hidden prospect ratings.
+
+### Playoffs
+- **A Playoffs header** appears in September and stays through the end of the season.
+- **Bracket:** the projected (or final) bracket for both leagues, with pennant and World Series odds from 800 simulations of the rest of your real schedule.
+- **Your road:** a plan for every round you're likely to play, with your playoff rotation, high-leverage arms, edges for both sides, series odds and a link to the full game plan. If you're outside the field, it shows the chase instead, with a tragic number.
+- **Playoff wire:** clinches, eliminations, division and wild card races, hot and slumping contenders, injuries, aces lining up and wild card previews.
+- **Odds:** playoff, division, bye, pennant and World Series odds for all 30 teams, plus mathematical clinch and elimination.
+
+### Match report
+- **Fairer win chances.** Records are discounted toward .500 (heavily early in the season), and a single game stays between 30% and 70%. Each game shows what drove the number.
+- **Edges for both teams, measured the same way.** About 20 kinds are checked, including how a team hits the hands it will actually face this series, short rest, hitting with runners in scoring position, running on a weak-armed catcher, walks against a wild staff, a tired closer, the season series, home and road records, injuries and double-play chances against sinkerballers.
+- **A scouting report for each team** (identity, threats, platoon, approach, rotation, bullpen, defense, form, injuries) and a series preview.
+- **Pitching tips built from each hitter's profile and your starter's real pitches**, written in many different ways rather than "pitch away" every time.
+- **New: an at-bat plan for each of your hitters** against their starter, a bullpen plan matching your relievers to their best hitters, and how to attack their bullpen.
+
+### The real postseason
+- **Clubhouse reads the postseason from your save:** every series, game scores and winning and losing pitchers. In October the Playoffs pages follow the real bracket instead of a projection.
+- **Your game plan is always against your actual opponent.** If your likely opponent loses in the Wild Card round, the plan switches to the team that beat them, with the series score and game numbers.
+- **Your road:** your current series, results so far and the likely next opponents from the live bracket. Plus a recap of your October, and a season-over or champions page when it's done.
+- **Bracket and odds:** the real bracket with series scores, and pennant and World Series odds simulated from the current series scores.
+- **Playoff wire:** real results, series scores and previews of the next series.
+- **Fixed: stats during the postseason.** The game swaps season stats for playoff stats in October. Clubhouse now rebuilds each player's regular season, so leaders, reports and edges keep working, and keeps playoff stats separately.
+
+### Fog of war on potential
+- **Every player's and prospect's potential is now an estimated range** instead of an exact number: tables, player cards, prospect lists, spring camp, the assistant GM and the match report. Ranges are wider for young players and tighter for veterans and your own organization, and they always contain the true value. Draft prospects stay hidden.
+
+### Fixes
+- Rookie of the Year only counts real MLB rookies (career at-bats, innings and service time), so veterans like Shohei Ohtani are out.
+- The season series between two teams reads the same on every page.
+
 ## 1.8.2 (November 21, 2026)
 
 ### Fixed: updates didn't install

@@ -185,6 +185,11 @@ Each has four 3,335-row copies, in file order:
 - Hitting fields include splits vs RHP/LHP, with RISP (`_RSP`), home and away, this month (`_TMON`), last month (`_LMON`) and this series (`_SERIES`).
 - `P_IP` is stored as **outs**.
 - Platoon splits: hitters `AT_BATS_RHP/LHP`, `HITS_*`, `HR_*`, `STRIKEOUTS_*`; pitchers `P_AB_RHB/LHB`, `P_H_*`, `P_SO_*`. This month: `*_TMON`. (`TOTAL_BASES_TMON` gives nonsense values: **UNKNOWN**.)
+- **More splits** (exported Nov 21, 2026):
+  - **Home/away:** hitters `HITS_HOME/AWAY`, `HR_HOME/AWAY`, `RBI_HOME/AWAY`; pitchers `P_ER_HOME/AWAY`, `P_IP_HOME/AWAY` (outs). VERIFIED: home plus away equals the season total (Harper 49 + 64 = 113 hits; Wheeler 18 + 26 = 44 ER, 296 + 183 = 479 outs).
+  - **Runners in scoring position:** `AT_BATS_RSP`/`HITS_RSP` and `P_AB_RSP`/`P_H_RSP`/`P_SO_RSP`. LIKELY (plausible values).
+  - **Other:** `GROUNDED_DP` and `P_WILDPITCHES`. LIKELY.
+  - **Not used, values look wrong:** `RBI_RSP` (Harper 17 of 61 RBI), `CAUGHT_STEALING` and `P_B_SAVES` (closers read 0): UNKNOWN.
 - `PITCHES_TODAY`, `PITCHES_1D_AGO` … `PITCHES_6D_AGO` in the current-season pitcher copy: pitches on each of the last 7 game days, most recent first. VERIFIED: starters show one outing about every 5–6 days.
 
 ### Upcoming games and probable starters (VERIFIED on two saves)
@@ -212,6 +217,20 @@ These describe the **two teams of the game the save is set up to play next**, `D
 - **`D_SEASON_INFO` → `D_SEAS_PIT_INFO`** (162 rows per team): `WIN`, `LOSS`, `SAVE` = **`D_PLR_PROFILE` row numbers** (65535 = none). VERIFIED: Burke W / Pfaadt L in the White Sox's 3-2 win at Arizona.
 - **`*_SERIES` stats** (`AT_BATS_SERIES`, `HITS_SERIES`, `HR_SERIES`, `RBI_SERIES`, `P_IP_SERIES`, `P_SO_SRS` …) = the current or just-finished series. VERIFIED (Soto 6-for-13, 2 HR vs CIN).
 - **`D_SCHED_CONST`:** `ALLSTAR_MONTH` (**0-based**) / `ALLSTAR_DATE` = July 14, 2026; also the season, spring training and half-season dates. VERIFIED on the Royals Feb 20, 2026 save: `ST_START` Feb 20 (the save's own date), `ST_END` Mar 24, `SEAS_START` Mar 25 (= `SEASONDATE` 0), `SEAS_END` Sep 27. Exported as `season.calendar`.
+
+### Postseason (Dodgers Oct 3, 2026 save)
+
+- **`MODESTATE` 7 = postseason.** `SEASONDATE` keeps counting from Opening Day (192 = Oct 3). Exported as `season.phase = "postseason"`.
+- **`D_PLAYOFF_ROUND`** (VERIFIED):
+  - **Rows:** 0–3 are the Wild Card Series, 4–7 the Division Series, 8–9 the LCS and 10 the World Series. LCS and WS row order is LIKELY, since those rows were still empty. Rows 11 and up are the minor-league playoffs (club ids).
+  - **Fields:** `TEAM1` is the higher seed and home team. `WINNER` is a team index, or 255 while undecided; both teams read 255 until the round is set. `DATA1`/`DATA2` are UNKNOWN.
+  - **Children of each row:** `D_PLAYOFF_GAME` (7 rows: `SCORE1/2`, `HITS1/2`, `ERRORS1/2`; unplayed games are all zero) and `D_SEAS_PIT_INFO` (W/L/S pitchers per game).
+  - **Checks:** the Wild Card results matched the winners (Mets over Diamondbacks 1–0 and 8–3; Phillies over Braves 3–5, 9–1, 6–3).
+- **Stats in the postseason** (VERIFIED):
+  - The "this season" stats copy [1] holds playoff games only, and copy [0] still holds last season.
+  - The regular season survives only in `D_CAREER_STATS` (Judge 2026: 144 G, 548 AB).
+  - The exporter rebuilds `stats.season` from the career row (no splits) and puts the playoff line in `stats.post`.
+- `D_SCHED_INFO` is empty in the postseason.
 
 ### Spring training (Royals Feb 20 and Mar 13, 2026 saves; Mets Feb 20)
 

@@ -420,6 +420,76 @@ class Api:
             old.unlink()
         return {"ok": True}
 
+    # ---- assistant GM: shipped roster (app/ui/agm/agms.json) plus the user's own edits and photos ----
+    @staticmethod
+    def _agm_dir() -> Path:
+        return CONFIG_PATH.parent / "agm"
+
+    def get_agms(self) -> dict:
+        """{abbr: {name, title, confirmed, portrait (url or data URL), credit}} with the user's overrides applied."""
+        try:
+            base = json.loads((HERE / "ui" / "agm" / "agms.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            base = {}
+        d = self._agm_dir()
+        try:
+            custom = json.loads((d / "custom.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            custom = {}
+        for abbr, c in custom.items():
+            e = base.setdefault(abbr, {})
+            for k in ("name", "title"):
+                if c.get(k):
+                    e[k] = c[k]; e["edited"] = True
+        if d.is_dir():
+            for p in d.iterdir():
+                if p.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
+                    try:
+                        base.setdefault(p.stem.upper(), {})["portrait"] = self._data_url(p)
+                        base[p.stem.upper()]["credit"] = {"source": "Your photo"}
+                    except OSError:
+                        pass
+        return base
+
+    def set_agm(self, abbr: str, name: str, title: str) -> dict:
+        import re
+        abbr = re.sub(r"[^A-Za-z]", "", abbr).upper()[:4]
+        d = self._agm_dir(); d.mkdir(parents=True, exist_ok=True)
+        f = d / "custom.json"
+        try:
+            custom = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            custom = {}
+        custom[abbr] = {"name": str(name or "").strip()[:60], "title": str(title or "").strip()[:80]}
+        if not custom[abbr]["name"] and not custom[abbr]["title"]:
+            custom.pop(abbr)
+        f.write_text(json.dumps(custom, indent=1), encoding="utf-8")
+        return {"ok": True}
+
+    def choose_agm_portrait(self, abbr: str) -> dict:
+        """Pick a photo for the assistant GM; it's copied into Clubhouse's folder (the original stays put)."""
+        import re, shutil
+        abbr = re.sub(r"[^A-Za-z]", "", abbr).upper()[:4]
+        picked = self._window.create_file_dialog(webview.FileDialog.OPEN, file_types=("Images (*.png;*.jpg;*.jpeg;*.webp)",))
+        if not picked:
+            return {"ok": False, "cancelled": True}
+        src = Path(picked[0])
+        if src.stat().st_size > 4 * 1024 * 1024:
+            return {"ok": False, "error": "That image is over 4 MB. Pick a smaller one."}
+        d = self._agm_dir(); d.mkdir(parents=True, exist_ok=True)
+        for old in d.glob(abbr + ".*"):
+            old.unlink()
+        dest = d / (abbr + src.suffix.lower())
+        shutil.copyfile(src, dest)
+        return {"ok": True, "url": self._data_url(dest)}
+
+    def clear_agm_portrait(self, abbr: str) -> dict:
+        import re
+        abbr = re.sub(r"[^A-Za-z]", "", abbr).upper()[:4]
+        for old in self._agm_dir().glob(abbr + ".*"):
+            old.unlink()
+        return {"ok": True}
+
     def get_prefs(self) -> dict:
         cfg = load_config()
         return {"autoLoad": bool(cfg.get("autoLoad", False)), "updateCheck": bool(cfg.get("updateCheck", True))}

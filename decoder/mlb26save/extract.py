@@ -133,6 +133,11 @@ def _bat_line(s: dict) -> dict:
         # the current (or just finished) series. VERIFIED: Soto 6-for-13, 2 HR vs CIN in the Mets save
         "series": {"ab": s.get("AT_BATS_SERIES", 0), "h": s.get("HITS_SERIES", 0), "hr": s.get("HR_SERIES", 0),
                    "rbi": s.get("RBI_SERIES", 0), "2b": s.get("DOUBLES_SERIES", 0), "sb": s.get("SB_SERIES", 0)},
+        # LIKELY (self-describing field names; 1-byte counters): runners in scoring position, home / away, extras
+        "rsp": {"ab": s.get("AT_BATS_RSP", 0), "h": s.get("HITS_RSP", 0), "rbi": s.get("RBI_RSP", 0)},
+        "home": {"h": s.get("HITS_HOME", 0), "hr": s.get("HR_HOME", 0), "rbi": s.get("RBI_HOME", 0)},
+        "away": {"h": s.get("HITS_AWAY", 0), "hr": s.get("HR_AWAY", 0), "rbi": s.get("RBI_AWAY", 0)},
+        "gdp": s.get("GROUNDED_DP", 0), "hbp": hbp, "sh": s.get("SAC_HITS", 0), "cs": s.get("CAUGHT_STEALING", 0),
     }
 
 
@@ -153,6 +158,11 @@ def _pit_line(s: dict) -> dict:
         # pitches thrown on each of the last 7 game days, most recent first (this season's copy only)
         "series": {"outs": s.get("P_IP_SERIES", 0), "so": s.get("P_SO_SRS", 0), "er": s.get("P_ER_SER", 0),
                    "g": s.get("P_G_SERIES", 0), "sv": s.get("P_SV_SER", 0)},
+        # LIKELY (self-describing field names): opponents with runners in scoring position, home / away, blown saves
+        "rsp": {"ab": s.get("P_AB_RSP", 0), "h": s.get("P_H_RSP", 0), "so": s.get("P_SO_RSP", 0)},
+        "home": {"er": s.get("P_ER_HOME", 0), "outs": s.get("P_IP_HOME", 0)},
+        "away": {"er": s.get("P_ER_AWAY", 0), "outs": s.get("P_IP_AWAY", 0)},
+        "bs": s.get("P_B_SAVES", 0), "wp": s.get("P_WILDPITCHES", 0),
         "pitches7": [s.get(k, 0) for k in ("PITCHES_TODAY", "PITCHES_1D_AGO", "PITCHES_2D_AGO", "PITCHES_3D_AGO",
                                             "PITCHES_4D_AGO", "PITCHES_5D_AGO", "PITCHES_6D_AGO")],
     }
@@ -373,6 +383,70 @@ def _upcoming(db: Database, prof_t, year: int, user_team: int, away: int, home: 
     return {"games": mine, "opp": mine[0]["opp"], "oppGames": theirs}
 
 
+def _line_from_career(row: dict, pos: str) -> dict:
+    """A season stat line in the same shape as _bat_line / _pit_line, from a compact career row. Splits (vs L/R,
+    month, series, RISP, home/away) aren't in the career table, so they come back empty."""
+    empty = {"ab": 0, "h": 0, "hr": 0, "so": 0}
+    if pos == "P" and row.get("p"):
+        g, gs, w, l, sv, hld, outs, h, er, hr, bb, so = row["p"][:12]
+        ip = outs / 3
+        return {"g": g, "gs": gs, "w": w, "l": l, "sv": sv, "hld": hld, "ip": f"{outs // 3}.{outs % 3}", "outs": outs,
+                "h": h, "er": er, "bb": bb, "so": so, "hr": hr,
+                "era": round(9 * er / ip, 2) if outs else None, "whip": round((h + bb) / ip, 2) if outs else None,
+                "vsR": dict(empty), "vsL": dict(empty), "series": {"outs": 0, "so": 0, "er": 0, "g": 0, "sv": 0},
+                "rsp": {"ab": 0, "h": 0, "so": 0}, "home": {"er": 0, "outs": 0}, "away": {"er": 0, "outs": 0},
+                "bs": 0, "wp": 0, "pitches7": [0] * 7, "fromCareer": True}
+    b = row.get("b")
+    if not b:
+        return {"g": 0, "ab": 0, "h": 0, "hr": 0, "fromCareer": True}
+    g, ab, r, h, d2, d3, hr, rbi, bb, so, sb, cs, hbp, sf = (b + [0] * 14)[:14]
+    pa, tb = ab + bb + hbp + sf, h + d2 + 2 * d3 + 3 * hr
+    return {"g": g, "ab": ab, "h": h, "2b": d2, "3b": d3, "hr": hr, "r": r, "rbi": rbi, "bb": bb, "so": so, "sb": sb,
+            "hitStreak": 0, "avg": round(h / ab, 3) if ab else None, "obp": round((h + bb + hbp) / pa, 3) if pa else None,
+            "slg": round(tb / ab, 3) if ab else None, "vsR": dict(empty), "vsL": dict(empty),
+            "month": {"ab": 0, "h": 0, "hr": 0, "bb": 0}, "series": {"ab": 0, "h": 0, "hr": 0, "rbi": 0, "2b": 0, "sb": 0},
+            "rsp": {"ab": 0, "h": 0, "rbi": 0}, "home": {"h": 0, "hr": 0, "rbi": 0}, "away": {"h": 0, "hr": 0, "rbi": 0},
+            "gdp": 0, "hbp": hbp, "sh": 0, "cs": cs, "fromCareer": True}
+
+
+PO_ROUND_OF_ROW =["wc"] * 4 + ["ds"] * 4 + ["lcs"] * 2 + ["ws"]
+
+
+def _playoffs(db: Database):
+    """MLB postseason series from D_PLAYOFF_ROUND (VERIFIED on the Dodgers Oct 3, 2026 save, MODESTATE 7).
+
+    Rows 0-3 Wild Card Series, 4-7 Division Series, 8-9 LCS, 10 World Series (rows 11+ are the minor-league
+    playoffs). TEAM1 is the higher seed (home), WINNER is a team index or 255 while undecided; both teams are 255
+    before the round is set. Each row's child D_PLAYOFF_GAME holds the game scores (SCORE1 = TEAM1's runs) and
+    D_SEAS_PIT_INFO the W/L/S pitchers. LCS/WS row order is LIKELY (empty in that save). DATA1/DATA2: UNKNOWN.
+    """
+    if not db.find("D_PLAYOFF_ROUND"):
+        return None
+    t = db.largest("D_PLAYOFF_ROUND")
+    out = []
+    for i, rnd in enumerate(PO_ROUND_OF_ROW):
+        if i >= len(t.rows):
+            break
+        r = t.rows[i]
+        a, b = r["TEAM1"], r["TEAM2"]
+        if a >= MLB_TEAMS or b >= MLB_TEAMS:
+            continue
+        kids = t.children[i] if i < len(t.children) else {}
+        g = kids.get("D_PLAYOFF_GAME")
+        pit = kids.get("D_SEAS_PIT_INFO")
+        games = []
+        for k, x in enumerate(g.rows if g else []):
+            if not (x["SCORE1"] or x["SCORE2"] or x["HITS1"] or x["HITS2"]):
+                continue
+            p = pit.rows[k] if pit and k < len(pit.rows) else {}
+            nn = lambda v: None if v in (None, 0xFFFF) else v
+            games.append({"s1": x["SCORE1"], "s2": x["SCORE2"], "h1": x["HITS1"], "h2": x["HITS2"],
+                          "w": nn(p.get("WIN")), "l": nn(p.get("LOSS")), "sv": nn(p.get("SAVE"))})
+        out.append({"round": rnd, "slot": i, "t1": a, "t2": b,
+                    "winner": r["WINNER"] if r["WINNER"] < MLB_TEAMS else None, "games": games})
+    return out or None
+
+
 def _calendar(db: Database, year: int):
     """Spring training and season dates from D_SCHED_CONST (months are 0-based). VERIFIED on the Royals
     Feb 20, 2026 save: spring training Feb 20 - Mar 24, Opening Day Mar 25 (matches SEASONDATE 0), All-Star
@@ -404,7 +478,8 @@ def export_league(db: Database) -> dict:
     # MODESTATE: 2 = spring training, 4 = regular season. VERIFIED on 8 saves (3 spring: Royals Feb 20 and Mar 13,
     # Mets Feb 20; 5 in season). In spring, SEASONDATE counts days from the start of camp (Royals Mar 13 = 21), and
     # the "this season" stats copy and D_SEASON_RECORD hold spring games (the Royals were 12-8 after 20).
-    phase = {2: "spring", 4: "season"}.get(go.get("MODESTATE"))
+    # MODESTATE 7 = postseason (VERIFIED on the Dodgers Oct 3, 2026 save; SEASONDATE 192 = Oct 3 from Opening Day).
+    phase = {2: "spring", 4: "season", 7: "postseason"}.get(go.get("MODESTATE"))
     cal = _calendar(db, year)
     if phase == "spring" and cal:
         date = dt.date.fromisoformat(cal["springStart"]) + dt.timedelta(days=day)
@@ -520,12 +595,19 @@ def export_league(db: Database) -> dict:
                 st = line(tabs[idx].rows[pid])
                 if label in ("last", "season") or st["g"]:
                     stats[label] = st
+        car = _career(career_t, pid, pos) if career_t else []
+        if phase == "postseason":
+            # VERIFIED (Dodgers Oct 3, 2026 save): in the postseason the "this season" copy holds playoff games only
+            # and the regular season survives only in D_CAREER_STATS (Judge 2026: 144 G, 548 AB there, 0 in copy 1).
+            stats["post"] = stats.get("season")
+            row = next((c for c in car if c.get("y") == year), None)
+            stats["season"] = _line_from_career(row, pos) if row else stats["season"]
         players.append({
             "id": pid, "first": p["FIRST_NAME"], "last": p["LAST_NAME"],
             "pos": pos, "role": role, "team": team, "club": club,
             "level": "MLB" if team is not None else level_of.get(club, (None, None))[0],
             "org": team if team is not None else level_of.get(club, (None, None))[1],
-            "career": _career(career_t, pid, pos) if career_t else [],
+            "career": car,
             "bats": _bats(p), "throws": _throws(p),
             "num": _number(p), "height": _height(p), "weight": _weight(p),
             "quirks": _quirks(kids),
@@ -544,6 +626,7 @@ def export_league(db: Database) -> dict:
                    "calendar": cal, "phase": phase},
         "upcoming": _upcoming(db, prof_t, year, user_team, go.get("AWAYTEAM"), go.get("HOMETEAM"), date - dt.timedelta(days=day)),
         "schedule": _schedule(db),
+        "playoffs": _playoffs(db),
         "allStar": _all_star(db, year),
         "draft": _draft(db, user_team),
         "draftResults": _draft_results(db),
