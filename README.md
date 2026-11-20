@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/logo.png" alt="Clubhouse" width="260"></p>
+
 # Clubhouse
 
 **A companion app for MLB The Show 26 franchise mode.** Clubhouse reads your franchise save and puts the whole

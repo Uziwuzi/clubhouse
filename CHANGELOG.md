@@ -1,5 +1,10 @@
 # Clubhouse changelog
 
+## 1.8.1 (November 21, 2026)
+
+### New Clubhouse logo
+- The new Clubhouse emblem replaces the old baseball mark everywhere: the app and window icon, the top bar, the welcome screen and the loading screen.
+
 ## 1.8.0 (November 21, 2026)
 
 ### Updates inside the app

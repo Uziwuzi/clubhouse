@@ -27,3 +27,6 @@ __pycache__/
 .pytest_cache/
 .claude/
 *.log
+
+# original logo upload (the master copy lives in packaging/brand/)
+Clubhouse logo/
