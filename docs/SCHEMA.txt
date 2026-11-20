@@ -1,0 +1,1648 @@
+D_AWARD_WINNERS  (0 fields, 0 bytes/row)
+D_AWARD_INFO  (0 fields, 0 bytes/row)
+D_AWARD_STRUCT  (9 fields, 70 bytes/row)
+    +0    PLAYER                   2B
+    +2    POS_INDEX                1B
+    +3    TEAM                     1B
+    +4    STAT_TOTAL               4B
+    +8    STAT_VAL                 4B x 7
+    +36   FIRST_NAME               1B x 16
+    +52   LAST_NAME                1B x 16
+    +68   HISTORICAL_REC           1B
+    +69   HITTING_BASED            1B
+D_GIP_DATA  (16 fields, 43 bytes/row)
+    +0    PACKED_32                4B
+    +4    SCORES                   8B
+    +12   RUNNERS                  3B
+    +15   RUNNERPITCHER            3B
+    +18   RUNNEREARNED             3B
+    +21   STARTINGPITCHER          2B
+    +23   CURRENTPITCHER           2B
+    +25   LASTPITCHER              2B
+    +27   WINNINGPITCHER           1B
+    +28   LOSINGPITCHER            1B
+    +29   SAVINGPITCHER            1B
+    +30   SAVEQUALIFY              1B
+    +31   PTR_BALL_CNT             2B
+    +33   PTR_STRK_CNT             2B
+    +35   BULLPEN_PTR_INX          4B
+    +39   BULLPEN_PTR_WRM          4B
+D_GAME_OPTIONS  (100 fields, 236 bytes/row)
+    +0    PLAYMODE                 1B
+    +1    HOMETEAM                 1B
+    +2    AWAYTEAM                 1B
+    +3    INNINGSPLAYED            1B
+    +4    INNINGS                  1B
+    +5    TEMPERATURE              1B
+    +6    CLOUD_COVER              1B
+    +7    DHOPTION                 1B
+    +8    DHFLAG                   1B
+    +9    STADIUM                  1B
+    +10   CRIT_SITUATION           1B
+    +11   NUMPLAYERS               1B
+    +12   CC_SUBSTITUTIONS         1B
+    +13   FEMALE_ROSTERS           1B
+    +14   FRAN_MODE                1B
+    +15   JOYPAD0                  1B
+    +16   JOYPAD1                  1B
+    +17   JOYPAD2                  1B
+    +18   JOYPAD3                  1B
+    +19   GAMEMODE                 1B
+    +20   MODESTATE                1B
+    +21   MANAGERMODE              1B
+    +22   TRAININGMODE             1B
+    +23   TRAININGPLAYER           1B
+    +24   TRAININGDATA             1B
+    +25   TRAININGPITCHES          1B
+    +26   CURRENTTEAM              1B
+    +27   VIEWEDORG                1B
+    +28   CURLEAGUETYPE            1B
+    +29   SEASONTYPE               1B
+    +30   CPUTRADING               1B
+    +31   INSTANT_TRADES           1B
+    +32   PLAYOFFROUND             1B
+    +33   PA_ANNOUNCER             1B
+    +34   FANTASY_DRAFT            1B
+    +35   FORCE_TRADES             1B
+    +36   IGNORE_BUDGETS           1B
+    +37   STADIUM_SELECT           1B
+    +38   CPU_ROSTER_CTRL          1B
+    +39   OFFSEAS_NEW_YEAR         1B
+    +40   COMM_CREW                1B
+    +41   REUSE_41                 1B
+    +42   REUSE_42                 1B
+    +43   REUSE_43                 1B
+    +44   REUSE_44                 1B
+    +45   CO_OP_BAT_HOME           1B
+    +46   CO_OP_PIT_HOME           1B
+    +47   CO_OP_CAT_HOME           1B
+    +48   CO_OP_INF_HOME           1B
+    +49   CO_OP_OUT_HOME           1B
+    +50   CO_OP_BAT_AWAY           1B
+    +51   CO_OP_PIT_AWAY           1B
+    +52   CO_OP_CAT_AWAY           1B
+    +53   CO_OP_INF_AWAY           1B
+    +54   CO_OP_OUT_AWAY           1B
+    +55   TM_CAPTAIN_AWAY          1B
+    +56   TM_CAPTAIN_HOME          1B
+    +57   PLAYOFFS_DS_LEN          1B
+    +58   PLAYOFFS_CS_LEN          1B
+    +59   PLAYOFFS_WS_LEN          1B
+    +60   GEN_PITCH_COUNT          1B
+    +61   HRD_TIME                 1B
+    +62   HRD_TIMEOUT              1B
+    +63   PRES_THEME               1B
+    +64   GM_CONTRACTS             1B
+    +65   REUSE_65                 1B
+    +66   ALLOW_NA_FA              1B
+    +67   TIME_OF_YEAR             1B
+    +68   TIME_OF_DAY              1B
+    +69   RETRACTABLE_ROOF         1B
+    +70   HUMIDITY                 1B
+    +71   EIGHT_BIT                1B
+    +72   RETRO_MODE               1B
+    +73   FOG                      1B
+    +74   SOCKS_HOME_TEAM          1B
+    +75   SOCKS_AWAY_TEAM          1B
+    +76   REUSE_76                 1B
+    +77   PLAY_STYLE               1B
+    +78   EX_INNING_RUNNER         1B
+    +79   LEVERAGE_INDEX           1B
+    +80   PLAYER_MOMENTS           1B
+    +81   MIN_INNING               1B
+    +82   MIN_PHM_INNING           1B
+    +83   PRES_SUBTHEME            1B
+    +84   START_YEAR               2B
+    +86   SEASONYEAR               2B
+    +88   SEASONDATE               2B
+    +90   OFFSEASONDATE            2B
+    +92   CAREER_FLAGS             4B
+    +96   MINIGM_CTRL_INFO         1B x 10
+    +106  MINIGM_LEAG_INFO         1B x 10
+    +116  USER_TEAM_FLAGS          4B
+    +120  PROF_ASSOCIATION         1B x 30
+    +150  SF_SPLASH_COUNT          2B
+    +152  BUCCO_BLAST_CNT          2B
+    +154  MIL_STRIKE_COUNT         2B
+    +156  HR_DERBY_WINNER          2B
+    +158  START_TIME               2B
+    +160  UUID_STR                 1B x 40
+    +200  RTTS_ANYWHERE_PL         4B x 9
+D_ONE_INN_STATS  (19 fields, 19 bytes/row)
+    +0    HITS                     1B
+    +1    RUNS                     1B
+    +2    ERRORS                   1B
+    +3    WALKS                    1B
+    +4    STRIKEOUTS               1B
+    +5    HOMERUNS                 1B
+    +6    LEFT_ON_BASE             1B
+    +7    MOUND_VISITS             1B
+    +8    BALKS                    1B
+    +9    PICKOFFS                 1B
+    +10   PICKOFFS_D               1B
+    +11   LEADOFFS_1ST             1B
+    +12   LEADOFFS_2ND             1B
+    +13   STEAL_1ST                1B
+    +14   STEAL_2ND                1B
+    +15   HITANDRUNS               1B
+    +16   PITCHOUTS                1B
+    +17   BUNTATTEMPTS             1B
+    +18   PITCHESTHROWN            1B
+D_LLEADER_INFO  (0 fields, 0 bytes/row)
+D_LEAGUE_LEADER  (8 fields, 42 bytes/row)
+    +0    FIRST_NAME               1B x 16
+    +16   LAST_NAME                1B x 16
+    +32   STAT_VAL                 4B
+    +36   PLAYER_NUM               2B
+    +38   POSITION                 1B
+    +39   TEAM                     1B
+    +40   PLACE                    1B
+    +41   TIED                     1B
+D_MLB_RECORDS  (0 fields, 0 bytes/row)
+D_MLB_RECORD  (6 fields, 39 bytes/row)
+    +0    RECORD_YEAR              2B
+    +2    RECORD_AMOUNT            2B
+    +4    RECORD_ORG               1B
+    +5    PLAYER_NUM               2B
+    +7    FIRST_NAME               1B x 16
+    +23   LAST_NAME                1B x 16
+D_PLAYER_INFO  (1 fields, 2 bytes/row)
+    +0    PLAYER_NUM               2B
+D_PLAYER_ACC  (15 fields, 86 bytes/row)
+    +0    PACKED_U32               4B x 3
+    +12   BAT                      2B
+    +14   ACCESSORY_COLORS         1B x 60
+    +74   BAT_GRIP                 1B
+    +75   BATTING_GLOVES           1B
+    +76   CATCHER_MASK             1B
+    +77   CATCHER_SHN_GRD          1B
+    +78   CHEST_PROTECTOR          1B
+    +79   COMP_SLEEVES             1B
+    +80   ELBOW_GUARD              1B
+    +81   GLASSES                  1B
+    +82   GLOVE                    1B
+    +83   SHOES                    1B
+    +84   SHIN_GUARD               1B
+    +85   WRIST_BRACES             1B
+D_PLAYER_APP  (34 fields, 241 bytes/row)
+    +0    PACKED_U32               4B x 3
+    +12   FACE_HAIR_STYLE          1B x 4
+    +16   SKIN_U                   1B
+    +17   SKIN_V                   1B
+    +18   WEIGHT_ADJUST            1B
+    +19   HEAD_SCALE               1B
+    +20   NECK_SCALE               1B
+    +21   SHOULDERS_SCALE          1B
+    +22   SLEEVES_SCALE            1B
+    +23   SPINE_SCALE              1B
+    +24   COLLARBONE_SCALE         1B
+    +25   HIPS_SCALE               1B
+    +26   THIGHS_SCALE             1B
+    +27   GLUTES_SCALE             1B
+    +28   ARMS_SCALE               1B
+    +29   BROW_COLOR_U             1B
+    +30   BROW_COLOR_V             1B
+    +31   FACIAL_H_COLOR_U         1B
+    +32   FACIAL_H_COLOR_V         1B
+    +33   HAIR_COLOR_U             1B
+    +34   HAIR_COLOR_V             1B
+    +35   COLOR_CONTRAST           1B
+    +36   HAIR_ROUGHNESS           1B
+    +37   HEAD_SHAPE               1B
+    +38   HAIR_STYLE               1B
+    +39   PIMPLES                  1B
+    +40   MOLES                    1B
+    +41   HC_STRAND_U              1B
+    +42   HC_STRAND_V              1B
+    +43   HC_STRAND_TYPE           1B
+    +44   HC_STRAND_SLIDER         1B
+    +45   HC_STRAND_ALPHA          1B
+    +46   APPEAR_VALUES            1B x 194
+    +240  CURR_SKIN_EFF            1B
+D_PLAYER_ATTS  (67 fields, 78 bytes/row)
+    +0    BAT_PRC_FLY_GB           1B
+    +1    BAT_PRC_L_FIELD          1B
+    +2    BAT_PRC_R_FIELD          1B
+    +3    RANK                     1B
+    +4    CONTACT_LEFT             1B
+    +5    CONTACT_RIGHT            1B
+    +6    POWER_LEFT               1B
+    +7    POWER_RIGHT              1B
+    +8    BATTING_CLUTCH           1B
+    +9    BUNTING_ABILITY          1B
+    +10   DRG_BUNTING_ABLT         1B
+    +11   PLATE_VISION             1B
+    +12   PLATE_DISCIPLINE         1B
+    +13   POTENTIAL                1B
+    +14   DURABILITY               1B
+    +15   SPEED                    1B
+    +16   BASE_STEALING            1B
+    +17   BASERUNNING_AGG          1B
+    +18   ARM_STRENGTH             1B
+    +19   ARM_ACCURACY             1B
+    +20   FIELDING_ABILITY         1B
+    +21   REACTION_TIME            1B
+    +22   REACTION_RIGHT           1B
+    +23   REACTION_FORWARD         1B
+    +24   REACTION_BACK            1B
+    +25   BLOCKING                 1B
+    +26   POP_TIME                 1B
+    +27   WAR_MOD_RANK             1B
+    +28   HIT_ZONES                4B x 3
+    +40   STAMINA                  1B
+    +41   PITCHING_CLUTCH          1B
+    +42   HITS_PER_BF              1B
+    +43   HITS_PER_BF_RGHT         1B
+    +44   HR_PER_BF                1B
+    +45   K_PER_BF_LEFT            1B
+    +46   K_PER_BF_RIGHT           1B
+    +47   BB_PER_BF                1B
+    +48   CCONTROL_0               1B
+    +49   CCONTROL_1               1B
+    +50   CCONTROL_2               1B
+    +51   CCONTROL_3               1B
+    +52   CCONTROL_4               1B
+    +53   CCONTROL_5               1B
+    +54   VELOCITY_0               1B
+    +55   VELOCITY_1               1B
+    +56   VELOCITY_2               1B
+    +57   VELOCITY_3               1B
+    +58   VELOCITY_4               1B
+    +59   VELOCITY_5               1B
+    +60   PITCH_MOVEMENT_0         1B
+    +61   PITCH_MOVEMENT_1         1B
+    +62   PITCH_MOVEMENT_2         1B
+    +63   PITCH_MOVEMENT_3         1B
+    +64   PITCH_MOVEMENT_4         1B
+    +65   PITCH_MOVEMENT_5         1B
+    +66   PITCH_USAGE_0            1B
+    +67   PITCH_USAGE_1            1B
+    +68   PITCH_USAGE_2            1B
+    +69   PITCH_USAGE_3            1B
+    +70   PITCH_USAGE_4            1B
+    +71   PITCH_USAGE_5            1B
+    +72   PITCH_TYPE_0             1B
+    +73   PITCH_TYPE_1             1B
+    +74   PITCH_TYPE_2             1B
+    +75   PITCH_TYPE_3             1B
+    +76   PITCH_TYPE_4             1B
+    +77   PITCH_TYPE_5             1B
+D_PITCHER_ATTS  (2 fields, 30 bytes/row)
+    +0    PITCH_TYPES              1B x 6
+    +6    PITCHER_ATTS             1B x 24
+D_GAME_NOTABLE  (3 fields, 10 bytes/row)
+    +0    PACKED_DATA              2B
+    +2    STAT_TYPE                1B x 4
+    +6    STAT_VAL                 1B x 4
+D_PLR_PROFILE  (18 fields, 89 bytes/row)
+    +0    UNSIGNED_PACK            4B x 7
+    +28   SIGNED_PACK              4B
+    +32   PLAYER_ID                2B
+    +34   FIRST_NAME_ID            2B
+    +36   LAST_NAME_ID             2B
+    +38   FIRST_NAME               1B x 16
+    +54   LAST_NAME                1B x 16
+    +70   DATABASE_INDEX           2B
+    +72   ENERGY                   1B
+    +73   CONFIDENCE               1B
+    +74   INJURY_DUR               1B
+    +75   DL_TIME                  1B
+    +76   MLB_SD_SEASON            1B
+    +77   MLB_SERVICE_DAYS         1B
+    +78   WAIVER_CLAIMS            4B
+    +82   ONLINE_ID                4B
+    +86   INJ_DATE                 2B
+    +88   POSITION                 1B
+D_PLYR_ANIMS  (7 fields, 12 bytes/row)
+    +0    BATTING_STYLE            2B
+    +2    HOME_RUN_CELEB           2B
+    +4    PITCHING_STYLE           2B
+    +6    HOME_RUN_LEFT            1B
+    +7    HOME_RUN_RIGHT           1B
+    +8    BASE_HIT_CELEB           2B
+    +10   CLOSER_ENTRANCE          2B
+D_PLYR_AUDIO  (6 fields, 9 bytes/row)
+    +0    HOMERUN_HANDLE           2B
+    +2    MOUND_MUSIC_HNDL         2B
+    +4    WALKUP_MUS_HNDL          2B
+    +6    HOMERUN_START            1B
+    +7    MOUND_MUS_START          1B
+    +8    WALKUP_START             1B
+D_PLYR_FLAGS  (1 fields, 4 bytes/row)
+    +0    FLAGS                    4B
+D_QUIRKS  (1 fields, 4 bytes/row)
+    +0    DATA                     1B x 4
+D_PLYR_CONTRACT  (4 fields, 11 bytes/row)
+    +0    DATA                     2B
+    +2    TOTAL_SAL                4B
+    +6    CURR_SALARY              4B
+    +10   DATA_BYTE                1B
+D_LINEUP  (2 fields, 19 bytes/row)
+    +0    ROSTER                   1B x 10
+    +10   BATTING_ORDER            1B x 9
+D_ROSTER_HLPR  (5 fields, 388 bytes/row)
+    +0    DB_TYPE                  4B
+    +4    PLAYER_NUMS              380B
+    +384  ROT_INDEX                1B
+    +385  BG_PLAYER_ID             2B
+    +387  BG_ROT_INDEX             1B
+D_PLAYER_STATS  (84 fields, 103 bytes/row)
+    +0    GAMES                    1B
+    +1    AT_BATS                  2B
+    +3    AT_BATS_RHP              2B
+    +5    AT_BATS_LHP              2B
+    +7    AT_BATS_RSP              1B
+    +8    AT_BATS_H                2B
+    +10   AT_BATS_A                2B
+    +12   AT_BATS_TMON             1B
+    +13   AT_BATS_TMON_RHP         1B
+    +14   AT_BATS_TMON_LHP         1B
+    +15   AT_BATS_LMON             1B
+    +16   AT_BATS_SERIES           1B
+    +17   HITS                     2B
+    +19   HITS_RHP                 2B
+    +21   HITS_LHP                 2B
+    +23   HITS_RSP                 1B
+    +24   HITS_HOME                1B
+    +25   HITS_AWAY                1B
+    +26   HITS_TMON                1B
+    +27   HITS_TMON_RHP            1B
+    +28   HITS_TMON_LHP            1B
+    +29   HITS_LMON                1B
+    +30   HITS_SERIES              1B
+    +31   DOUBLES                  1B
+    +32   DOUBLES_TMON             1B
+    +33   DOUBLES_LMON             1B
+    +34   DOUBLES_SERIES           1B
+    +35   TRIPLES                  1B
+    +36   TRIPLES_TMON             1B
+    +37   TRIPLES_LMON             1B
+    +38   TRIPLES_SERIES           1B
+    +39   HR                       1B
+    +40   HR_RHP                   1B
+    +41   HR_LHP                   1B
+    +42   HR_HOME                  1B
+    +43   HR_AWAY                  1B
+    +44   HR_TMON                  1B
+    +45   HR_TMON_RHP              1B
+    +46   HR_TMON_LHP              1B
+    +47   HR_LMON                  1B
+    +48   HR_SERIES                1B
+    +49   RUNS                     2B
+    +51   RBI                      2B
+    +53   RBI_RHP                  1B
+    +54   RBI_LHP                  1B
+    +55   RBI_RSP                  1B
+    +56   RBI_HOME                 1B
+    +57   RBI_AWAY                 1B
+    +58   RBI_TMON                 1B
+    +59   RBI_LMON                 1B
+    +60   RBI_SERIES               1B
+    +61   STRIKEOUTS               2B
+    +63   STRIKEOUTS_RHP           1B
+    +64   STRIKEOUTS_LHP           1B
+    +65   STRIKEOUTS_TMON          1B
+    +66   STRIKEOUTS_SRS           1B
+    +67   BASE_on_BALLS            1B
+    +68   BB_TMON                  1B
+    +69   BB_LMON                  1B
+    +70   IBB                      1B
+    +71   HIT_BY_PITCH             1B
+    +72   SAC_FLY                  1B
+    +73   SAC_HITS                 1B
+    +74   GROUNDED_DP              1B
+    +75   ASSISTS                  2B
+    +77   ASSISTS_TMON             1B
+    +78   PUTOUTS                  2B
+    +80   PUTOUTS_TMON             1B
+    +81   ERRORS                   1B
+    +82   ERRORS_TMON              1B
+    +83   INNINGS                  2B
+    +85   PASSED_BALLS             1B
+    +86   TOTAL_BASES              2B
+    +88   TOTAL_BASES_TMON         2B
+    +90   TOTAL_BASES_LMON         2B
+    +92   EXTRA_BASE_HITS          2B
+    +94   TPA                      2B
+    +96   STOLEN_BASES             1B
+    +97   SB_TMON                  1B
+    +98   SB_SERIES                1B
+    +99   CAUGHT_STEALING          1B
+    +100  CS_TMON                  1B
+    +101  HIT_STRK_DATA            1B
+    +102  HIT_STRK_GAMES           1B
+D_PITCHER_STATS  (80 fields, 102 bytes/row)
+    +0    P_GAMES                  1B
+    +1    P_G_HOME                 1B
+    +2    P_G_AWAY                 1B
+    +3    P_G_TMON                 1B
+    +4    P_G_SERIES               1B
+    +5    P_G_STARTED              1B
+    +6    P_COMPLETEGAMES          1B
+    +7    P_SHUTOUTS               1B
+    +8    P_QUALITYSTARTS          1B
+    +9    P_WINS                   1B
+    +10   P_W_STREAK               1B
+    +11   P_W_HOME                 1B
+    +12   P_W_AWAY                 1B
+    +13   P_W_TMON                 1B
+    +14   P_W_LMON                 1B
+    +15   P_LOSSES                 1B
+    +16   P_L_STREAK               1B
+    +17   P_L_HOME                 1B
+    +18   P_L_AWAY                 1B
+    +19   P_L_TMON                 1B
+    +20   P_L_LMON                 1B
+    +21   P_SAVES                  1B
+    +22   P_SV_STREAK              1B
+    +23   P_SV_HOME                1B
+    +24   P_SV_AWAY                1B
+    +25   P_SV_TMON                1B
+    +26   P_SV_LMON                1B
+    +27   P_SV_SER                 1B
+    +28   P_BLOWNSAVES             1B
+    +29   P_B_SAVES_TMON           1B
+    +30   P_B_SAVES_LMON           1B
+    +31   P_HOLDS                  1B
+    +32   P_ATBATS                 2B
+    +34   P_AB_RHB                 2B
+    +36   P_AB_LHB                 2B
+    +38   P_AB_RSP                 2B
+    +40   P_HITS                   2B
+    +42   P_H_RHB                  2B
+    +44   P_H_LHB                  2B
+    +46   P_H_RSP                  2B
+    +48   P_H_TMON                 1B
+    +49   P_H_LMON                 1B
+    +50   P_RUNS                   2B
+    +52   P_EARNEDRUNS             2B
+    +54   P_ER_HOME                2B
+    +56   P_ER_AWAY                2B
+    +58   P_ER_TMON                1B
+    +59   P_ER_LMON                1B
+    +60   P_ER_SER                 1B
+    +61   P_HOMERUNS               1B
+    +62   P_HOMERUNS_TMON          1B
+    +63   P_HOMERUNS_LMON          1B
+    +64   P_BASEONBALLS            1B
+    +65   P_BB_TMON                1B
+    +66   P_BB_LMON                1B
+    +67   P_STRIKEOUTS             2B
+    +69   P_SO_RHB                 2B
+    +71   P_SO_LHB                 2B
+    +73   P_SO_RSP                 2B
+    +75   P_SO_HOME                2B
+    +77   P_SO_AWAY                2B
+    +79   P_SO_TMON                1B
+    +80   P_SO_LMON                1B
+    +81   P_SO_SRS                 1B
+    +82   P_TOTAL_BF               2B
+    +84   P_IP                     2B
+    +86   P_IP_HOME                2B
+    +88   P_IP_AWAY                2B
+    +90   P_IP_TMON                1B
+    +91   P_IP_LMON                1B
+    +92   P_IP_SERIES              1B
+    +93   P_WILDPITCHES            1B
+    +94   P_HIT_BATSMEN            1B
+    +95   PITCHES_TODAY            1B
+    +96   PITCHES_1D_AGO           1B
+    +97   PITCHES_2D_AGO           1B
+    +98   PITCHES_3D_AGO           1B
+    +99   PITCHES_4D_AGO           1B
+    +100  PITCHES_5D_AGO           1B
+    +101  PITCHES_6D_AGO           1B
+D_TEAM_PROF  (14 fields, 64 bytes/row)
+    +0    CITY_NAME                1B x 20
+    +20   TEAM_NAME                1B x 20
+    +40   SHORT_NAME               1B x 5
+    +45   LEAGUE_INX               1B
+    +46   DIVISION_INX             1B
+    +47   TEAM_INX                 4B
+    +51   LONGITUDE                1B
+    +52   DATA_8_BIT               1B
+    +53   CUSTOM_TYPE              1B
+    +54   AUDIO_LOCATION           2B
+    +56   AUDIO_NAME               2B
+    +58   STADIUM_LASTGEN          2B
+    +60   STADIUM_NEXTGEN          2B
+    +62   YEAR_EDITED              2B
+D_TRADING_BLOCK  (0 fields, 0 bytes/row)
+D_TEAM_TRD_BLK  (4 fields, 53 bytes/row)
+    +0    NUM_PLAYERS              1B
+    +1    PLAYERS                  2B x 20
+    +41   CATEGORIES               4B
+    +45   TARGETS                  2B x 4
+D_TEAM_STATS  (157 fields, 314 bytes/row)
+    +0    GAMES                    2B
+    +2    AT_BATS                  2B
+    +4    AT_BATS_RHP              2B
+    +6    AT_BATS_LHP              2B
+    +8    AT_BATS_RSP              2B
+    +10   AT_BATS_H                2B
+    +12   AT_BATS_A                2B
+    +14   AT_BATS_TMON             2B
+    +16   AT_BATS_TMON_RHP         2B
+    +18   AT_BATS_TMON_LHP         2B
+    +20   AT_BATS_LMON             2B
+    +22   AT_BATS_SERIES           2B
+    +24   HITS                     2B
+    +26   HITS_RHP                 2B
+    +28   HITS_LHP                 2B
+    +30   HITS_RSP                 2B
+    +32   HITS_HOME                2B
+    +34   HITS_AWAY                2B
+    +36   HITS_TMON                2B
+    +38   HITS_TMON_RHP            2B
+    +40   HITS_TMON_LHP            2B
+    +42   HITS_LMON                2B
+    +44   HITS_SERIES              2B
+    +46   DOUBLES                  2B
+    +48   DOUBLES_TMON             2B
+    +50   DOUBLES_LMON             2B
+    +52   DOUBLES_SERIES           2B
+    +54   TRIPLES                  2B
+    +56   TRIPLES_TMON             2B
+    +58   TRIPLES_LMON             2B
+    +60   TRIPLES_SERIES           2B
+    +62   HR                       2B
+    +64   HR_RHP                   2B
+    +66   HR_LHP                   2B
+    +68   HR_HOME                  2B
+    +70   HR_AWAY                  2B
+    +72   HR_TMON                  2B
+    +74   HR_TMON_RHP              2B
+    +76   HR_TMON_LHP              2B
+    +78   HR_LMON                  2B
+    +80   HR_SERIES                2B
+    +82   RUNS                     2B
+    +84   RBI                      2B
+    +86   RBI_RHP                  2B
+    +88   RBI_LHP                  2B
+    +90   RBI_RSP                  2B
+    +92   RBI_HOME                 2B
+    +94   RBI_AWAY                 2B
+    +96   RBI_TMON                 2B
+    +98   RBI_LMON                 2B
+    +100  RBI_SERIES               2B
+    +102  STRIKEOUTS               2B
+    +104  STRIKEOUTS_RHP           2B
+    +106  STRIKEOUTS_LHP           2B
+    +108  STRIKEOUTS_TMON          2B
+    +110  STRIKEOUTS_SRS           2B
+    +112  BASE_on_BALLS            2B
+    +114  BB_TMON                  2B
+    +116  BB_LMON                  2B
+    +118  IBB                      2B
+    +120  HIT_BY_PITCH             2B
+    +122  SAC_FLY                  2B
+    +124  SAC_HITS                 2B
+    +126  GROUNDED_DP              2B
+    +128  ASSISTS                  2B
+    +130  ASSISTS_TMON             2B
+    +132  PUTOUTS                  2B
+    +134  PUTOUTS_TMON             2B
+    +136  ERRORS                   2B
+    +138  ERRORS_TMON              2B
+    +140  INNINGS                  2B
+    +142  PASSED_BALLS             2B
+    +144  STOLEN_BASES             2B
+    +146  SB_TMON                  2B
+    +148  SB_SERIES                2B
+    +150  CAUGHT_STEALING          2B
+    +152  CS_TMON                  2B
+    +154  HIT_STRK_DATA            2B
+    +156  HIT_STRK_GAMES           2B
+    +158  TOTAL_BASES              2B
+    +160  TOTAL_BASES_TMON         2B
+    +162  TOTAL_BASES_LMON         2B
+    +164  EXTRA_BASE_HITS          2B
+    +166  PLATE_APP                2B
+    +168  P_GAMES                  2B
+    +170  P_G_HOME                 2B
+    +172  P_G_AWAY                 2B
+    +174  P_G_TMON                 2B
+    +176  P_G_SERIES               2B
+    +178  P_G_STARTED              2B
+    +180  P_COMPLETEGAMES          2B
+    +182  P_SHUTOUTS               2B
+    +184  P_QUALITYSTARTS          2B
+    +186  P_WINS                   2B
+    +188  P_W_STREAK               2B
+    +190  P_W_HOME                 2B
+    +192  P_W_AWAY                 2B
+    +194  P_W_TMON                 2B
+    +196  P_W_LMON                 2B
+    +198  P_LOSSES                 2B
+    +200  P_L_STREAK               2B
+    +202  P_L_HOME                 2B
+    +204  P_L_AWAY                 2B
+    +206  P_L_TMON                 2B
+    +208  P_L_LMON                 2B
+    +210  P_SAVES                  2B
+    +212  P_SV_STREAK              2B
+    +214  P_SV_HOME                2B
+    +216  P_SV_AWAY                2B
+    +218  P_SV_TMON                2B
+    +220  P_SV_LMON                2B
+    +222  P_SV_SERIES              2B
+    +224  P_BLOWNSAVES             2B
+    +226  P_B_SAVES_TMON           2B
+    +228  P_B_SAVES_LMON           2B
+    +230  P_HOLDS                  2B
+    +232  P_ATBATS                 2B
+    +234  P_AB_RHB                 2B
+    +236  P_AB_LHB                 2B
+    +238  P_AB_RSP                 2B
+    +240  P_HITS                   2B
+    +242  P_H_RHB                  2B
+    +244  P_H_LHB                  2B
+    +246  P_H_RSP                  2B
+    +248  P_HITS_TMON              2B
+    +250  P_HITS_LMON              2B
+    +252  P_RUNS                   2B
+    +254  P_EARNEDRUNS             2B
+    +256  P_ER_HOME                2B
+    +258  P_ER_AWAY                2B
+    +260  P_ER_TMON                2B
+    +262  P_ER_LMON                2B
+    +264  P_ER_SER                 2B
+    +266  P_HOMERUNS               2B
+    +268  P_HOMERUNS_TMON          2B
+    +270  P_HOMERUNS_LMON          2B
+    +272  P_BASEONBALLS            2B
+    +274  P_BB_TMON                2B
+    +276  P_BB_LMON                2B
+    +278  P_STRIKEOUTS             2B
+    +280  P_SO_RHB                 2B
+    +282  P_SO_LHB                 2B
+    +284  P_SO_RSP                 2B
+    +286  P_SO_HOME                2B
+    +288  P_SO_AWAY                2B
+    +290  P_SO_TMON                2B
+    +292  P_SO_LMON                2B
+    +294  P_SO_SRS                 2B
+    +296  P_TOTAL_BF               2B
+    +298  P_IP                     2B
+    +300  P_IP_HOME                2B
+    +302  P_IP_AWAY                2B
+    +304  P_IP_TMON                2B
+    +306  P_IP_LMON                2B
+    +308  P_IP_SERIES              2B
+    +310  P_WILDPITCHES            2B
+    +312  P_HIT_BATSMEN            2B
+D_ROSTER_MOVES  (1 fields, 2 bytes/row)
+    +0    NUM_MOVES                2B
+D_ROSTER_MV_INFO  (5 fields, 7 bytes/row)
+    +0    PLAYER_NUM               2B
+    +2    OLD_TEAM                 1B
+    +3    NEW_TEAM                 1B
+    +4    DATE                     1B
+    +5    REASON                   2B
+D_BOX_SCORE  (5 fields, 84 bytes/row)
+    +0    PITCHERS                 2B x 40
+    +80   NUM_BATTERS              1B
+    +81   NUM_PITCHERS             1B
+    +82   NUM_HITTER_SUBS          1B
+    +83   NUM_RUNNER_SUBS          1B
+D_LINEUP_P_INFO  (6 fields, 8 bytes/row)
+    +0    PLAYER                   2B
+    +2    PLYR_REPLACED            2B
+    +4    INNING                   1B
+    +5    POS                      1B
+    +6    SUB_INDEX                1B
+    +7    SUB_TYPE                 1B
+D_AISLIDERS  (39 fields, 39 bytes/row)
+    +0    S_CONTACT_CPU            1B
+    +1    S_CONTACT_HUM            1B
+    +2    S_POWER_CPU              1B
+    +3    S_POWER_HUM              1B
+    +4    S_TIMING_CPU             1B
+    +5    S_TIMING_HUM             1B
+    +6    S_FOULS_CPU              1B
+    +7    S_FOULS_HUM              1B
+    +8    S_WEAK_HITS_CPU          1B
+    +9    S_WEAK_HITS_HUM          1B
+    +10   S_START_FAT_CPU          1B
+    +11   S_START_FAT_HUM          1B
+    +12   S_REL_FAT_CPU            1B
+    +13   S_REL_FAT_HUM            1B
+    +14   S_PITCH_CNT_CPU          1B
+    +15   S_PITCH_CNT_HUM          1B
+    +16   S_PITCH_CNS_CPU          1B
+    +17   S_PITCH_CNS_HUM          1B
+    +18   S_STRIKES_CPU            1B
+    +19   S_MANAGER_CPU            1B
+    +20   S_PICKOFFS_CPU           1B
+    +21   S_PITCH_SPEED            1B
+    +22   S_FIELD_ERROR            1B
+    +23   S_THROW_ERROR            1B
+    +24   S_FIELD_RUNSPD           1B
+    +25   S_FIELD_REACT            1B
+    +26   S_FIELD_ARMSTR           1B
+    +27   S_BR_SPEED               1B
+    +28   S_BR_STEAL_ABIL          1B
+    +29   S_BR_STEAL_FREQ          1B
+    +30   S_WIND                   1B
+    +31   S_INJURY_FREQ            1B
+    +32   S_DYN_DIFF_SENS          1B
+    +33   S_FLD_ERRORS_OF          1B
+    +34   S_THRW_ERRORS_OF         1B
+    +35   S_FLD_ARM_OF             1B
+    +36   S_TRADE_FREQ             1B
+    +37   S_OFFSPEED_P_SP          1B
+    +38   SIM_INJURY_FREQ          1B
+D_SERIES_RECAP  (6 fields, 294 bytes/row)
+    +0    SEASON_DATE              1B
+    +1    TEAMS                    1B x 2
+    +3    SCORES                   1B x 2
+    +5    HOME                     1B
+    +6    PITCHER_NAMES            1B x 32
+    +38   NOTABLE_STR              1B x 256
+D_SERIESINFO  (1 fields, 4 bytes/row)
+    +0    NUM_UINT8_DATA           1B x 4
+D_GAMEINFO  (8 fields, 98 bytes/row)
+    +0    WIND_VECTOR_X            4B
+    +4    WIND_VECTOR_Y            4B
+    +8    WIND_VECTOR_Z            4B
+    +12   NUM_DL_PLYRS             1B x 2
+    +14   TEAM_RANKINGS            1B x 24
+    +38   UPCMG_GM_DATES           2B x 14
+    +66   ATTRIBUTE_MODS           1B x 26
+    +92   PARTNERSHIPS             1B x 6
+D_SCHED_INFO  (7 fields, 11 bytes/row)
+    +0    ACTIVE                   1B
+    +1    TIME                     4B
+    +5    HOME                     1B
+    +6    OPPONENT                 2B
+    +8    GAME                     1B
+    +9    ROUND                    1B
+    +10   PACKEDDATA               1B
+D_UPCOMING_PI  (5 fields, 44 bytes/row)
+    +0    NAME                     1B x 36
+    +36   ERA                      4B
+    +40   PLAYER_ID                2B
+    +42   WINS                     1B
+    +43   LOSSES                   1B
+D_PREV_TEAM_GD  (8 fields, 11 bytes/row)
+    +0    PLAYED                   1B
+    +1    OUR_SCORE                2B
+    +3    OPP_SCORE                2B
+    +5    NIGHT                    1B
+    +6    OPPONENT                 2B
+    +8    HOME                     1B
+    +9    OUR_HITS                 1B
+    +10   OPP_HITS                 1B
+D_MINORS_STATS  (3 fields, 14 bytes/row)
+    +0    PLAYER_NUM               1B
+    +1    UINT8_DATA               1B x 5
+    +6    FLOAT_DATA               4B x 2
+D_SCREEN_STACK  (3 fields, 192 bytes/row)
+    +0    SCREEN_ID                4B x 32
+    +128  SCREEN_INDEX             1B x 32
+    +160  KEEP_ALIVE               1B x 32
+D_FRANOPTIONS  (12 fields, 12 bytes/row)
+    +0    LINEUPS                  1B
+    +1    ROSTER_MOVES             1B
+    +2    40_MAN_ROSTER            1B
+    +3    WAIVERS                  1B
+    +4    INJURIES                 1B
+    +5    MANAGEMENT               1B
+    +6    TRADES                   1B
+    +7    FREEAGENCY               1B
+    +8    CONTRACTS                1B
+    +9    SCOUTING                 1B
+    +10   ARBITRATION              1B
+    +11   RENEWABLES               1B
+D_COACH_PROF  (28 fields, 91 bytes/row)
+    +0    SALARY_VAL               4B
+    +4    YRS_REMAINING            1B
+    +5    ID                       2B
+    +7    COACH_NUM                2B
+    +9    FIRST_NAME               1B x 16
+    +25   LAST_NAME                1B x 16
+    +41   AGE                      1B
+    +42   EXPERIENCE               1B
+    +43   TEAM                     2B
+    +45   DATA                     1B
+    +46   HEIGHT                   1B
+    +47   WEIGHT                   2B
+    +49   JERSEY_NUM               1B
+    +50   COACH_FLAGS              1B
+    +51   CAREER_WINS              2B
+    +53   CAREER_LOSSES            2B
+    +55   PLAYOFF_APP              1B
+    +56   DIV_SERIES_VIC           1B
+    +57   CHAMP_SERIES_VIC         1B
+    +58   WRLD_SERIES_VIC          1B
+    +59   BATTING_ATTR             1B x 4
+    +63   BATTING_MODS             1B x 4
+    +67   PITCHING_ATTR            1B x 4
+    +71   PITCHING_MODS            1B x 4
+    +75   MISC_ATTR                1B x 4
+    +79   MISC_MODS                1B x 4
+    +83   MANAGER_ATTR             1B x 4
+    +87   MANAGER_MODS             1B x 4
+D_COACH_STAFF  (2 fields, 13 bytes/row)
+    +0    DB_TYPE                  1B
+    +1    COACH_NUMS               12B
+D_LEAGUE_SCORES  (1 fields, 1 bytes/row)
+    +0    NUM_GAMES                1B
+D_LS_GAME_DATA  (6 fields, 117 bytes/row)
+    +0    GAME_TIME                2B
+    +2    SCORES                   1B x 56
+    +58   HOME_TEAM                1B
+    +59   AWAY_TEAM                1B
+    +60   INNINGS_PLAYED           1B
+    +61   JERSEY_NUM               1B x 56
+D_LS_NOTABLE  (7 fields, 38 bytes/row)
+    +0    NAME                     1B x 31
+    +31   PITCHER                  1B
+    +32   16_BIT_DATA              2B
+    +34   8_BIT_DATA_1             1B
+    +35   8_BIT_DATA_2             1B
+    +36   8_BIT_DATA_3             1B
+    +37   8_BIT_DATA_4             1B
+D_TRADEHISTORY  (1 fields, 30 bytes/row)
+    +0    NUM_TRADES               1B x 30
+D_TRADE_BASIC  (4 fields, 22 bytes/row)
+    +0    ASKING_PLAYERS           2B x 4
+    +8    OFFERING_PLAYERS         2B x 4
+    +16   DATE_OFFERED             4B
+    +20   PACKED_DATA              2B
+D_USER_SETTINGS  (222 fields, 237 bytes/row)
+    +0    HITTING_DIFF             1B
+    +1    PITCHING_DIFF            1B
+    +2    PITCHING_INT             1B
+    +3    BATTING_INT              1B
+    +4    GUESS_PITCH              1B
+    +5    SWING_ANALYSIS           1B
+    +6    PITCHER_CONF             1B
+    +7    BATTING_CURSOR           1B
+    +8    BATTER_WALKUP            1B
+    +9    UMP_TENDENCIES           1B
+    +10   ABS_CHALLENGE            1B
+    +11   UMP_CLOSEPLAYS           1B
+    +12   CHECKSWING_APP           1B
+    +13   BALKS                    1B
+    +14   API                      1B
+    +15   RTTS_FLD                 1B
+    +16   BATTINGVIEW              1B
+    +17   PITCHING_VIEW            1B
+    +18   FIELDINGVW_OFF           1B
+    +19   FIELDINGVW_DEF           1B
+    +20   MM_BAT_VIEW              1B
+    +21   MM_FLD_VIEW              1B
+    +22   STRIKEZONES              1B
+    +23   HOTZONES                 1B
+    +24   BALLMARKER_FLD           1B
+    +25   BALLMARKER_PIT           1B
+    +26   CALLTEXT                 1B
+    +27   AUTO_BASE_RUN            1B
+    +28   AUTOSLIDING              1B
+    +29   AUTO_THROWING            1B
+    +30   FIELDER_ASSIST           1B
+    +31   FIELDER_DJ               1B
+    +32   CROWDSOUND               1B
+    +33   SOUNDEFFECTS             1B
+    +34   ANNOUNCER1               1B
+    +35   PA_VOLUME                1B
+    +36   CDVOLUME                 1B
+    +37   DUALSHOCKFLAG            1B
+    +38   BROADCAST_VIEWS          1B
+    +39   BASERUNNINGWIND          1B
+    +40   BASERUN_CTRL             1B
+    +41   HR_CEL_CAMERA            1B
+    +42   HEADSET                  1B
+    +43   THROWING_METER           1B
+    +44   RTTS_FIELDOPPS           1B
+    +45   RTTS_BASERUNOPPS         1B
+    +46   RTTS_CPUTTEAMHIT         1B
+    +47   AUTO_WARM_UP             1B
+    +48   PITCH_DELAY              1B
+    +49   CATCHER_OPP              1B
+    +50   RTTS_BASERUNNING         1B
+    +51   HR_DERBY_CAMERA          1B
+    +52   THROW_INTERFACE          1B
+    +53   THROW_CANCELLING         1B
+    +54   EJECTIONS                1B
+    +55   INJURIES                 1B
+    +56   TICK_PSN_UPDATES         1B
+    +57   AUTO_SAVING              1B
+    +58   FOUL_BALL_CAMERA         1B
+    +59   MOTION_BAT_STYLE         1B
+    +60   MOTION_BAT_STNCE         1B
+    +61   MOTION_PIT_TYPE          1B
+    +62   MOTION_FLDG_CTRL         1B
+    +63   MN_FLDG_CTRL_DIF         1B
+    +64   PN_HITTING_DIFF          1B
+    +65   PN_PITCHING_DIFF         1B
+    +66   PN_GUESS_PITCH           1B
+    +67   PN_STRIKEZONES           1B
+    +68   PN_HOTZONES              1B
+    +69   PN_UMPIRE_TEND           1B
+    +70   PN_EJECTIONS             1B
+    +71   PN_INJURIES              1B
+    +72   PN_BCAST_VIEWS           1B
+    +73   PN_BALKS                 1B
+    +74   PITCH_INFO               1B
+    +75   BACK_TOUCH               1B
+    +76   DEFENSIVE_SHIFT          1B
+    +77   GR_HITTING_DIFF          1B
+    +78   GR_PITCHING_DIFF         1B
+    +79   GR_INNINGS               1B
+    +80   GR_GUESS_PITCH           1B
+    +81   GR_STRIKEZONES           1B
+    +82   GR_HOTZONES              1B
+    +83   GR_EJECTIONS             1B
+    +84   GR_INJURIES              1B
+    +85   GR_BCAST_VIEWS           1B
+    +86   GR_GAME_MODE             1B
+    +87   GR_BALKS                 1B
+    +88   PULSE_METER_DISP         1B
+    +89   PCI_TRANSPARENCY         1B
+    +90   GAME_LOG_ORDER           1B
+    +91   SCOREBAR_DISPLAY         1B
+    +92   PITCH_SELECT_DIS         1B
+    +93   BEGINNER_SLIDER          1B
+    +94   DECISION_TIMER           1B
+    +95   BEGINNERSLIDER_P         1B
+    +96   SIM_SPEED                1B
+    +97   DYNAMIC_PROG_B           1B
+    +98   DYNAMIC_PROG_P           1B
+    +99   PLAYNOW_GPC              1B
+    +100  GAMEROOM_GPC             1B
+    +101  DIR_HIT_INDCATR          1B
+    +102  BAT_INT_INPUT            1B
+    +103  BAT_INT_CAMSHIFT         1B
+    +104  LEADERBOARD_DISP         1B
+    +105  LDRBRD_DSPLY_TYP         1B
+    +106  AUDIO_PRESETS            1B
+    +107  DYN_DIFF_UPDATES         1B
+    +108  GT_BATTING               1B
+    +109  GT_BASERUNNING           1B
+    +110  GT_PITCHING              1B
+    +111  GT_FIELDING              1B
+    +112  SHOWTIME_DISPLAY         1B
+    +113  RTTS_THROW_IFACE         1B
+    +114  PCI_ANCHOR_RESET         1B
+    +115  PITCH_FEEDBACK           1B
+    +116  GAME_RESOLUTION          1B
+    +117  HDR_MODE                 1B
+    +118  RTTS_IF_FLD_RCTN         1B
+    +119  SOTS_VOLUME              1B
+    +120  PREPITCH_CAMERAS         1B
+    +121  PREPITCH_TYPES           1B
+    +122  PRE_PITCH_FREQ           1B
+    +123  WALL_RIBBON              1B
+    +124  AUTO_INF_JUMP            1B
+    +125  AUTO_INF_DIVE            1B
+    +126  PCI_CENTER               1B
+    +127  PCI_INNER                1B
+    +128  PCI_OUTER                1B
+    +129  PCI_COLOR                1B
+    +130  PCI_FADEOUT              1B
+    +131  CROSS_PLAT_PLAY          1B
+    +132  WIND                     1B
+    +133  V_CAM_MOVEMENT           1B
+    +134  H_CAM_MOVEMENT           1B
+    +135  JUKEBOX_MUSIC            1B
+    +136  CRAS_TUTORIAL            1B
+    +137  FIELDING_DIFF            1B
+    +138  ROUTE_BALL_IND           1B
+    +139  BASE_PLAY_ICON           1B
+    +140  NO_MARKER_DRIFT          1B
+    +141  GAME_BALANCE             1B
+    +142  RTTS_GAME_FLOW           1B
+    +143  CAMERA_SPEED             1B
+    +144  PROP_SORTING             1B
+    +145  PROP_SEARCHING           1B
+    +146  PROP_ROTATION            1B
+    +147  PROP_MOVEMENT            1B
+    +148  WALL_SORTING             1B
+    +149  RAISE_WALL               1B
+    +150  ACCESSIBILITY            1B
+    +151  PCI_ANCHOR               1B
+    +152  PCI_ANCHOR_DOTS          1B
+    +153  PLAYER_NAME_DIS          1B
+    +154  GT_NEW_FEATURE           1B
+    +155  IG_NOTIFICATIONS         1B
+    +156  BAT_CNTRLS_DSPLY         1B
+    +157  MOB_HITTING_DIFF         1B
+    +158  MOB_PITCH_DIFF           1B
+    +159  MOB_HIT_CAM              1B
+    +160  MOB_PITCH_CAM            1B
+    +161  PITCH_CLOCK              1B
+    +162  RTTS_BFP_PROMPT          1B
+    +163  RTTS_BR_PROMPT           1B
+    +164  PCI_ANC_RHP_RHH          1B
+    +165  PCI_ANC_RHP_LHH          1B
+    +166  BUG_ANC_LHP_RHH          1B
+    +167  BUG_ANC_LHP_LHH          1B
+    +168  AUTO_BULLPEN             1B
+    +169  INTERACTIVESTORY         1B
+    +170  REACTION_DISPLAY         1B
+    +171  AMBUSH_HIT_CTRLS         1B
+    +172  PITCH_HIST_DIS           1B
+    +173  PM_RING_COLOR            1B
+    +174  PITCHER_DELIVERY         1B
+    +175  HR_CAM                   1B
+    +176  PITCH_COM                1B
+    +177  PITCHCOM_AUDIO           1B
+    +178  PITCHCOM_VOLUME          1B
+    +179  MOTION_BLUR              1B
+    +180  FAN_YELLS                1B
+    +181  PA_MUSIC                 1B
+    +182  PA_SFX                   1B
+    +183  MENU_SFX                 1B
+    +184  UMP_VOLUME               1B
+    +185  PL_YELLS                 1B
+    +186  PL_YELLS_VOL             1B
+    +187  PCI_SENSITIVITY          1B
+    +188  PCI_ZF_SENS              1B
+    +189  PCI_ANCHOR_MIR           1B
+    +190  PLOT_COLORS              1B
+    +191  PLOT_FILL                1B
+    +192  PLOT_TEXT                1B
+    +193  PLOT_FILTER              1B
+    +194  PLOT_SITUATION           1B
+    +195  MONO_AUDIO               1B
+    +196  CC                       1B
+    +197  LEAGUE_UPD               1B
+    +198  P_FIXED_LOC              1B
+    +199  P_PLOT_COLORS            1B
+    +200  P_PLOT_FILL              1B
+    +201  P_PLOT_TEXT              1B
+    +202  P_PLOT_FILTER            1B
+    +203  P_PLOT_SITUATION         1B
+    +204  COOP_BR_CAM              1B
+    +205  MAS_VOL                  1B
+    +206  MONO_AUD_BAL             1B
+    +207  OFF_P_HIS                1B
+    +208  DEF_P_HIS                1B
+    +209  PLOC_SENS                1B
+    +210  STICK_DRIFT_P            1B
+    +211  STICK_DRIFT              1B
+    +212  BZ_HIT_INDCATR           1B
+    +213  C_FIXED_LOC              1B
+    +214  CLOC_SENS                1B
+    +215  STICK_DRIFT_C            1B
+    +216  H_DOF                    1B
+    +217  BZ_COLOR                 1B
+    +218  BZ_TRANSPARENCY          1B
+    +219  BZ_CDISPLAY              1B
+    +220  BZ_FADEOUT               1B
+    +221  GAME_TIPS                1B x 16
+D_WAIVERDATA  (1 fields, 30 bytes/row)
+    +0    ORDER                    1B x 30
+D_GAME_RESULT  (2 fields, 55 bytes/row)
+    +0    RESULTS_DATA             1B x 54
+    +54   RESULTS_NUM              1B
+D_GAME_BAT_STATS  (1 fields, 8 bytes/row)
+    +0    STAT_VAL                 4B x 2
+D_SIM_HISTORY  (1 fields, 4 bytes/row)
+    +0    NUM_RESULTS              2B x 2
+D_SIM_HIS_RESULT  (13 fields, 31 bytes/row)
+    +0    PACKED_DATA              4B x 3
+    +12   FIELDERS_SCORED          1B x 8
+    +20   INNING                   1B
+    +21   RUNS_AWAY                1B
+    +22   RUNS_HOME                1B
+    +23   PITCHER_INDEX            1B
+    +24   BATTER_INDEX             1B
+    +25   RUNNER_1ST_INDEX         1B
+    +26   RUNNER_2ND_INDEX         1B
+    +27   RUNNER_3RD_INDEX         1B
+    +28   SUB_PLAYER_IN            1B
+    +29   SUB_PLAYER_OUT           1B
+    +30   FIELDER_INDEX            1B
+D_RECENT_GAMES  (0 fields, 0 bytes/row)
+D_SINGLE_G_DATA  (1 fields, 12 bytes/row)
+    +0    UNSIGNED_PACK            4B x 3
+D_TEAM_RECORD  (3 fields, 3 bytes/row)
+    +0    WINS                     1B
+    +1    GAMES                    1B
+    +2    FLAGS                    1B
+D_CAREER_TOTALS  (41 fields, 86 bytes/row)
+    +0    INNINGS                  4B
+    +4    GAMES_PLAYED             2B
+    +6    ERRORS                   2B
+    +8    AT_BATS                  2B
+    +10   HITS                     2B
+    +12   DOUBLES                  2B
+    +14   TRIPLES                  2B
+    +16   HOME_RUNS                2B
+    +18   RUNS                     2B
+    +20   RBIS                     2B
+    +22   WALKS                    2B
+    +24   INT_WALKS                2B
+    +26   STOLEN_BASES             2B
+    +28   CAUGHT_STEALING          2B
+    +30   GIDP                     2B
+    +32   SAC_HITS                 2B
+    +34   SAC_FLIES                2B
+    +36   STRIKEOUTS               2B
+    +38   HIT_BY_PITCH             2B
+    +40   ASSISTS                  2B
+    +42   PUT_OUTS                 2B
+    +44   WINS                     2B
+    +46   LOSSES                   2B
+    +48   GAMES_STARTED            2B
+    +50   COMPLETE_GAMES           2B
+    +52   SHUTOUTS                 2B
+    +54   SAVES                    2B
+    +56   HITS_ALLOWED             2B
+    +58   RUNS_ALLOWED             2B
+    +60   EARNED_RUNS              2B
+    +62   HOME_RUNS_ALLOWD         2B
+    +64   WALKS_ALLOWED            2B
+    +66   P_STRIKEOUTS             2B
+    +68   HIT_BATSMEN              2B
+    +70   WILD_PITCHES             2B
+    +72   HOLDS                    2B
+    +74   BATTERS_FACED            2B
+    +76   QUALITY_STARTS           2B
+    +78   BLOWN_SAVES              2B
+    +80   INNINGS_PITCHED          4B
+    +84   GAMES_PITCHED            2B
+D_CAREER_STATS  (43 fields, 54 bytes/row)
+    +0    AT_BATS                  2B
+    +2    B_STRIKEOUTS             2B
+    +4    HITS                     2B
+    +6    ASSISTS                  2B
+    +8    INNINGS_PLAYED           2B
+    +10   PUTOUTS                  2B
+    +12   INNINGS_PITCHED          2B
+    +14   BATTERS_FACED            2B
+    +16   HITS_ALLOWED             2B
+    +18   P_STRIKEOUTS             2B
+    +20   YEAR                     2B
+    +22   ERRORS                   1B
+    +23   ORG                      1B
+    +24   CAUGHT_STEALING          1B
+    +25   DOUBLES                  1B
+    +26   GAMES_PLAYED             1B
+    +27   GIDP                     1B
+    +28   HIT_BY_PITCH             1B
+    +29   HOME_RUNS                1B
+    +30   INTENTIONAL_WALK         1B
+    +31   RUNS                     1B
+    +32   RBIS                     1B
+    +33   SAC_FLIES                1B
+    +34   SAC_HITS                 1B
+    +35   STOLEN_BASES             1B
+    +36   TRIPLES                  1B
+    +37   WALKS                    1B
+    +38   BLOWN_SAVES              1B
+    +39   COMPLETE_GAMES           1B
+    +40   EARNED_RUNS              1B
+    +41   GAMES_PITCHED            1B
+    +42   GAMES_STARTED            1B
+    +43   HIT_BATSMEN              1B
+    +44   HOLDS                    1B
+    +45   HOMERUNS_ALLOWED         1B
+    +46   LOSSES                   1B
+    +47   QUALITY_STARTS           1B
+    +48   RUNS_ALLOWED             1B
+    +49   SAVES                    1B
+    +50   SHUTOUTS                 1B
+    +51   WALKS_ALLOWED            1B
+    +52   WILD_PITCHES             1B
+    +53   WINS                     1B
+D_CAREER_AWARDS  (1 fields, 4 bytes/row)
+    +0    AWARDS_DATA              4B
+D_MATCHUP_STATS  (1 fields, 6 bytes/row)
+    +0    MATCHUP_DATA             2B x 3
+D_STANCE_DATA  (12 fields, 12 bytes/row)
+    +0    HAND_OFFSET_X            1B
+    +1    HAND_OFFSET_Y            1B
+    +2    HAND_OFFSET_Z            1B
+    +3    HAND_ROT_Z               1B
+    +4    HAND_WAG_ROT_Z           1B
+    +5    R_ELBOW_OFFSET_Y         1B
+    +6    L_ELBOW_OFFSET_Y         1B
+    +7    HIPS_OFFSET_X            1B
+    +8    HIPS_OFFSET_Y            1B
+    +9    HIPS_OFFSET_Z            1B
+    +10   L_FOOT_OFFSET_X          1B
+    +11   L_FOOT_OFFSET_Z          1B
+D_TEAM_COLORS  (1 fields, 4 bytes/row)
+    +0    COLORS                   1B x 4
+D_UNIFORM_DATA  (4 fields, 16 bytes/row)
+    +0    JERSEYS                  2B x 2
+    +4    PANTS                    2B x 2
+    +8    HATS                     2B x 2
+    +12   SOCKS                    2B x 2
+D_SEASON_RECORD  (18 fields, 28 bytes/row)
+    +0    GAMES                    1B
+    +1    GAMESDAY                 1B
+    +2    GAMESHOME                1B
+    +3    GAMESGRASS               1B
+    +4    GAMESEXTRA               1B
+    +5    GAMESONE                 1B
+    +6    GAMESDIV                 1B
+    +7    GAMESMONTH               1B
+    +8    WINS                     1B
+    +9    WINSDAY                  1B
+    +10   WINSHOME                 1B
+    +11   WINSGRASS                1B
+    +12   WINSEXTRA                1B
+    +13   WINSONE                  1B
+    +14   WINSDIV                  1B
+    +15   WINSMONTH                1B
+    +16   STREAK                   2B
+    +18   LAST_10                  1B x 10
+D_PARTNER_INFO  (1 fields, 12 bytes/row)
+    +0    PARTNERSHIPS             4B x 3
+D_GM_GOALS  (8 fields, 72 bytes/row)
+    +0    SUB_GOALS                1B x 33
+    +33   SUB_GOAL_COUNT           1B x 33
+    +66   SECURITY                 1B
+    +67   RATING                   1B
+    +68   YEAR_START_SEC           1B
+    +69   YEAR_START_RATE          1B
+    +70   CONT_START_RATE          1B
+    +71   CONTRACT_YEARS           1B
+D_GM_HISTORY  (4 fields, 4 bytes/row)
+    +0    YEAR                     1B
+    +1    TEAM                     1B
+    +2    EXPECTATION              1B
+    +3    EXPECTATION_RES          1B
+D_GM_EXPECTATION  (5 fields, 5 bytes/row)
+    +0    GOAL                     1B
+    +1    PROGRESS                 1B
+    +2    DIVISION_RANK            1B
+    +3    OVERALL_RANK             1B
+    +4    COMPLETED_GOAL           1B
+D_CUSTOM_TEAM_D  (0 fields, 0 bytes/row)
+D_CUSTOM_UNIS  (0 fields, 0 bytes/row)
+D_CUSTOM_LOGOS  (0 fields, 0 bytes/row)
+D_LOGO_DATA  (0 fields, 0 bytes/row)
+D_LOGO_HEADER  (9 fields, 36 bytes/row)
+    +0    HEADER_SIZE              4B
+    +4    SIZE_LAYER_INFO          4B
+    +8    TOT_LAYER_STORED         4B
+    +12   TOT_GROUP_STORED         4B
+    +16   NUM_MODELS               4B
+    +20   NUM_ART                  4B
+    +24   CUR_LAYER                4B
+    +28   NUM_USED_LAYERS          4B
+    +32   NUM_USED_GROUPS          4B
+D_LAYER_INFO  (11 fields, 20 bytes/row)
+    +0    UNION_DATA               2B
+    +2    TX                       2B
+    +4    TY                       2B
+    +6    SX                       2B
+    +8    SY                       2B
+    +10   RZ                       2B
+    +12   SHX                      2B
+    +14   SHY                      2B
+    +16   EXPAND                   2B
+    +18   DRAW_MODE                1B
+    +19   FLAGS                    1B
+D_GROUP_INFO  (6 fields, 24 bytes/row)
+    +0    CENTER_X                 4B
+    +4    CENTER_Y                 4B
+    +8    MIN_X                    4B
+    +12   MIN_Y                    4B
+    +16   MAX_X                    4B
+    +20   MAX_Y                    4B
+D_HSVA  (4 fields, 4 bytes/row)
+    +0    H_VAL                    1B
+    +1    S_VAL                    1B
+    +2    V_VAL                    1B
+    +3    A_VAL                    1B
+D_UNIFORM_DESC  (0 fields, 0 bytes/row)
+D_UNIFORM_HEADER  (3 fields, 8 bytes/row)
+    +0    TYPE_ID                  4B
+    +4    DATA_SIZE                2B
+    +6    VERSION                  2B
+D_CAP_DESC  (4 fields, 4 bytes/row)
+    +0    STRIPES_STYLE            1B
+    +1    SPECIAL_TYPE             1B
+    +2    LOGO_FINISH_STYL         1B
+    +3    BASE_STYLE               1B
+D_JERSEY_DESC  (6 fields, 6 bytes/row)
+    +0    PINSTRIPES_STYLE         1B
+    +1    PIPING_STYLE             1B
+    +2    SHOULDER_STYLE           1B
+    +3    COLLAR_STYLE             1B
+    +4    LOGO_FINISH_STYL         1B
+    +5    BASE_STYLE               1B
+D_SLEEVE_DESC  (5 fields, 28 bytes/row)
+    +0    PINSTRIPES_STYLE         1B
+    +1    PIPING_STYLE             1B
+    +2    BASE_STYLE               1B
+    +3    NUM_PATCHES              1B
+    +4    PATCHES_SHOWN            1B x 24
+D_NAME_NUM_DESC  (5 fields, 5 bytes/row)
+    +0    NAME_FONT                1B
+    +1    NUMBER_FONT              1B
+    +2    FRONT_NUM_STYLE          1B
+    +3    SLEEVE_NUM_STYLE         1B
+    +4    FINISH_STYLE             1B
+D_PANTS_DESC  (2 fields, 2 bytes/row)
+    +0    PINSTRIPES_STYLE         1B
+    +1    PIPING_STYLE             1B
+D_SOCKS_DESC  (3 fields, 3 bytes/row)
+    +0    STRIPE_STYLE             1B
+    +1    STIR_STRIPE_STYL         1B
+    +2    STANCE_TYPE              1B
+D_SHOES_DESC  (0 fields, 0 bytes/row)
+D_BAT_HELMET  (7 fields, 7 bytes/row)
+    +0    NUMBER_STYLE             1B
+    +1    NAME_STYLE               1B
+    +2    NUM_FONT_STYLE           1B
+    +3    NAME_FONT_STYLE          1B
+    +4    FINISH_STYLE             1B
+    +5    LOGO_FINISH              1B
+    +6    BASE_STYLE               1B
+D_BAT_GLOVES  (0 fields, 0 bytes/row)
+D_JACKET_DESC  (0 fields, 0 bytes/row)
+D_CATCHER_GEAR  (0 fields, 0 bytes/row)
+D_OTHER_ITEMS  (0 fields, 0 bytes/row)
+D_HSV  (3 fields, 3 bytes/row)
+    +0    H_VAL                    1B
+    +1    S_VAL                    1B
+    +2    V_VAL                    1B
+D_INBOX  (1 fields, 30 bytes/row)
+    +0    NUM_MESSAGES             1B x 30
+D_INBOX_MESSAGE  (10 fields, 343 bytes/row)
+    +0    MESSAGE                  1B x 256
+    +256  FROM                     1B x 48
+    +304  SUBJECT                  1B x 32
+    +336  DAY                      1B
+    +337  MONTH                    1B
+    +338  YEAR                     1B
+    +339  GO_TO_SCREEN             1B
+    +340  CATEGORY                 1B
+    +341  TUTORIAL                 1B
+    +342  PACK                     1B
+D_INBOXDATA  (5 fields, 605 bytes/row)
+    +0    TUTORIAL_FLAGS           4B x 30
+    +120  CRITICAL_MESSAGE         1B x 30
+    +150  MSG_NOTIFICATION         1B x 450
+    +600  VWD_CRITICAL_MSG         1B
+    +601  G_NOTIFICATIONS          4B
+D_CSTM_SETTINGS  (4 fields, 19 bytes/row)
+    +0    PROFILE_NAME             1B x 16
+    +16   ORG_ID                   1B
+    +17   LOADED                   1B
+    +18   DEFAULT                  1B
+D_ORTCOUNTERS  (1 fields, 238 bytes/row)
+    +0    ORT_COUNTERS             1B x 238
+D_SEASBOXSCORES  (3 fields, 6676 bytes/row)
+    +0    NUM_BOX_SCORES           4B
+    +4    BOXSCRINDEX              4B x 18050
+    +6668 TEMP_BOXSCRTEAM          4B x 2
+D_SBS_LINEUP  (1 fields, 16 bytes/row)
+    +0    PACKED_DATA              4B x 4
+D_SBS_PITCHERS  (1 fields, 12 bytes/row)
+    +0    PACK_PIT_DATA            4B x 3
+D_STBS_INFO  (0 fields, 0 bytes/row)
+D_SLS_INFO  (2 fields, 18 bytes/row)
+    +0    INNINGS                  1B x 9
+    +9    INNING_RUNS              1B x 9
+D_TMP_STBS_INFO  (0 fields, 0 bytes/row)
+D_TMP_SLS_INFO  (2 fields, 18 bytes/row)
+    +0    INNINGS                  1B x 9
+    +9    INNING_RUNS              1B x 9
+D_DRAFT_PICKS  (10 fields, 55 bytes/row)
+    +0    FIRST_NAME               1B x 16
+    +16   LAST_NAME                1B x 16
+    +32   AMATEUR_INX_16BT         2B
+    +34   DATA_BLOCK               4B x 2
+    +42   WEIGHT                   2B
+    +44   REGION                   1B
+    +45   PICK_SELECTED            1B
+    +46   SALARY                   4B
+    +50   BONUS_OFFER              4B
+    +54   HEIGHT                   1B
+D_DRAFTPICKLIST  (1 fields, 10 bytes/row)
+    +0    PICKS                    1B x 10
+D_ROSTERCHANGES  (3 fields, 1380 bytes/row)
+    +0    CHANGES_PLAYER           2B x 450
+    +900  CHANGES_TYPE             1B x 450
+    +1350 NUM_CHANGES              1B x 30
+D_DRAFT_DATA  (4 fields, 214 bytes/row)
+    +0    DRAFT_ORDER              1B x 150
+    +150  COMP_PICKS               1B x 30
+    +180  PPI_PICKS                1B x 30
+    +210  QUAL_FA_SAL              4B
+D_COACH_DATA  (1 fields, 2 bytes/row)
+    +0    LAST_TEAM                2B
+D_COACH_CT_OFFER  (3 fields, 9 bytes/row)
+    +0    DATA                     4B
+    +4    INTEREST                 4B
+    +8    TEAM                     1B
+D_SEASON_NEWS  (13 fields, 40 bytes/row)
+    +0    WS_WINNER                2B
+    +2    WS_LOSER                 2B
+    +4    BT_WINNER                2B
+    +6    BT_LOSER                 2B
+    +8    SL_WINNER                2B
+    +10   SL_LOSER                 2B
+    +12   EL_WINNER                2B
+    +14   EL_LOSER                 2B
+    +16   TL_WINNER                2B
+    +18   TL_LOSER                 2B
+    +20   FUTURES_WINNER           2B
+    +22   FUTURES_LOSER            2B
+    +24   HR_DERBY_LINEUP          2B x 8
+D_ALL_STAR_INFO  (12 fields, 15 bytes/row)
+    +0    WINNING_PIT              2B
+    +2    LOSING_PIT               2B
+    +4    SAVING_PIT               2B
+    +6    HOME_SCORE               1B
+    +7    AWAY_SCORE               1B
+    +8    HOME_HITS                1B
+    +9    AWAY_HITS                1B
+    +10   HOME_ERRORS              1B
+    +11   AWAY_ERRORS              1B
+    +12   HOST                     1B
+    +13   HOME                     1B
+    +14   AWAY                     1B
+D_SCHEDULE  (2 fields, 2 bytes/row)
+    +0    SCHED_LOADED             1B
+    +1    START_DATE               1B
+D_SCHED_CONST  (18 fields, 19 bytes/row)
+    +0    ALLSTAR_DATE             1B
+    +1    ALLSTAR_MONTH            1B
+    +2    MILB_END_DATE            1B
+    +3    MILB_START_DATE          1B
+    +4    MILB_START_MONTH         1B
+    +5    SEAS_END_DATE            1B
+    +6    SEAS_END_MONTH           1B
+    +7    SEAS_START_DATE          1B
+    +8    SEAS_START_MONTH         1B
+    +9    S_HALF_END_DATE          1B
+    +10   S_HALF_END_MONTH         1B
+    +11   ST_END_DATE              1B
+    +12   ST_END_MONTH             1B
+    +13   ST_START_DATE            1B
+    +14   ST_START_MONTH           1B
+    +15   T_HALF_END_DATE          1B
+    +16   T_HALF_END_MONTH         1B
+    +17   EXPORT_YEAR              2B
+D_SCHEDULE_DATA  (2 fields, 6 bytes/row)
+    +0    DATE_TIME                2B
+    +2    PACKED_DATA              4B
+D_TEAM_ACHIEV  (6 fields, 840 bytes/row)
+    +0    NUM_ACHIEVMENTS          1B x 330
+    +330  TEAM_AVG                 4B x 30
+    +450  TEAM_ERA                 4B x 30
+    +570  SEAS_END_AVG             4B x 30
+    +690  SEAS_END_ERA             4B x 30
+    +810  PLACE_FINISHED           1B x 30
+D_TEAM_HISTORY  (0 fields, 0 bytes/row)
+D_PREV_TEAM_STAT  (10 fields, 23 bytes/row)
+    +0    BATTING_AVG              4B
+    +4    ERA                      4B
+    +8    RUNS                     2B
+    +10   HITS                     2B
+    +12   HOME_RUNS                2B
+    +14   RBI                      2B
+    +16   PITCHING_KS              2B
+    +18   HR_ALLOWED               2B
+    +20   PICTHING_BB              2B
+    +22   SAVES                    1B
+D_PROG_ATTRS  (2 fields, 295 bytes/row)
+    +0    INIT_VALUES              1B x 59
+    +59   CURR_VALUES              4B x 59
+D_STRATEGIES  (10 fields, 2642 bytes/row)
+    +0    STRATEGIES               4B x 30
+    +120  BUDGET                   4B x 30
+    +240  BANK                     4B x 30
+    +360  CASH_FLOW                4B x 30
+    +480  INITIAL_BUDGET           2B x 30
+    +540  QUALITY_FACTOR           2B
+    +542  PENALTIES                4B x 300
+    +1742 BGT_TRANSACTIONS         4B x 210
+    +2582 CBT_VIOLATIONS           1B x 30
+    +2612 FA_OPP_USED              1B x 30
+D_TWOWAY_PLAYERS  (1 fields, 3335 bytes/row)
+    +0    QUALIFYING_GAMES         1B x 3335
+D_EPISODE_DATA  (2 fields, 1026 bytes/row)
+    +0    PLAYED                   1B x 1024
+    +1024 EPISODDE_ID              2B
+D_TRAN_DATA  (3 fields, 5 bytes/row)
+    +0    NUM_TRANS                2B
+    +2    NUM_PLAYER_TRANS         2B
+    +4    NUM_TRADES               1B
+D_TRANSACTION  (4 fields, 5 bytes/row)
+    +0    INDEX                    2B
+    +2    TYPE                     1B
+    +3    MONTH                    1B
+    +4    DAY                      1B
+D_TRADE_TRANS  (4 fields, 18 bytes/row)
+    +0    TEAM1_PLYRS              2B x 4
+    +8    TEAM2_PLYRS              2B x 4
+    +16   TEAM1                    1B
+    +17   TEAM2                    1B
+D_PLAYER_TRANS  (3 fields, 4 bytes/row)
+    +0    PLAYER                   2B
+    +2    TEAM                     1B
+    +3    UNION_DATA               1B
+D_HOF_PLAYER  (2 fields, 3 bytes/row)
+    +0    INDUCTION_YEAR           2B
+    +2    TYPE                     1B
+D_PLAYOFFS  (0 fields, 0 bytes/row)
+D_PLAYOFF_ROUND  (5 fields, 5 bytes/row)
+    +0    TEAM1                    1B
+    +1    TEAM2                    1B
+    +2    WINNER                   1B
+    +3    DATA1                    1B
+    +4    DATA2                    1B
+D_PLAYOFF_GAME  (6 fields, 6 bytes/row)
+    +0    SCORE1                   1B
+    +1    SCORE2                   1B
+    +2    HITS1                    1B
+    +3    HITS2                    1B
+    +4    ERRORS1                  1B
+    +5    ERRORS2                  1B
+D_SEAS_PIT_INFO  (3 fields, 6 bytes/row)
+    +0    WIN                      2B
+    +2    LOSS                     2B
+    +4    SAVE                     2B
+D_AMATUER_PLAYER  (14 fields, 193 bytes/row)
+    +0    SCOUTED_VALUE            1B x 30
+    +30   INTEREST_LEVEL           1B x 30
+    +60   SCOUTED_CERT             1B x 30
+    +90   PLAYER_NUM               2B
+    +92   CLASS                    1B
+    +93   PHYSICAL_RESULT          1B
+    +94   PRESTIGE                 1B
+    +95   REGENERATE               1B
+    +96   REGION                   1B
+    +97   DRAFT_RANK               2B
+    +99   PERCEIVED_OFFSET         1B x 30
+    +129  PERCEIVED_RANGE          1B x 30
+    +159  PREV_BB_TARGET           1B x 30
+    +189  BONUS_DEMAND             4B
+D_FREE_AGENTS  (7 fields, 14 bytes/row)
+    +0    DATA                     4B
+    +4    DATABASE_INDEX           2B
+    +6    MOTIV_CAP                1B
+    +7    CAP_PENALTY              1B
+    +8    PREV_MOTIV               1B
+    +9    CONTRACT_TERM            1B
+    +10   CONTRACT_AAV             4B
+D_TEAM_NEEDS  (2 fields, 4 bytes/row)
+    +0    POSITION_DATA            2B
+    +2    TEAM_DATA                2B
+D_SCOUT  (13 fields, 47 bytes/row)
+    +0    ATTRIBUTE_DATA           1B x 4
+    +4    TEAM                     1B
+    +5    YEARS_EXP                1B
+    +6    SCOUT_NUM                1B
+    +7    FIRST_NAME_DATA          1B x 16
+    +23   LAST_NAME_DATA           1B x 16
+    +39   SCOUT_REG                1B
+    +40   DIRECTIVE                1B
+    +41   PRIM_FOC                 1B
+    +42   IND_FOC                  2B
+    +44   REG_FOC                  1B
+    +45   BB_PRIORITY              1B
+    +46   NUM_SCOUTED              1B
+D_SCOUT_INFO  (2 fields, 7 bytes/row)
+    +0    SCOUTS                   2B x 3
+    +6    TEAM                     1B
+D_FRANCHISERANKS  (2 fields, 60 bytes/row)
+    +0    FARMSYSTEMS              1B x 30
+    +30   OPENING_DAY              1B x 30
+D_GAMETIMEDEC  (2 fields, 240 bytes/row)
+    +0    REASONS                  1B x 80
+    +80   PLAYERS_REPLACED         2B x 80
+D_AFFILIATIONS  (3 fields, 90 bytes/row)
+    +0    AAA_AFFILIATES           1B x 30
+    +30   AA_AFFILIATES            1B x 30
+    +60   A_AFFILIATES             1B x 30
+D_POM_DATA  (0 fields, 0 bytes/row)
+D_POM_STRUCT  (5 fields, 29 bytes/row)
+    +0    STAT_VAL                 4B x 6
+    +24   PLAYER                   2B
+    +26   POS_IDX                  1B
+    +27   TEAM                     1B
+    +28   PLAYER_NUM               1B
+D_OFFSEASON_PD  (7 fields, 72 bytes/row)
+    +0    ARB_OFFER                4B
+    +4    PREV_SAL                 4B
+    +8    ARB_DATE                 2B
+    +10   PREV_ORG                 1B
+    +11   ATTR_PROG                1B x 59
+    +70   RET_REASON               1B
+    +71   DATA_8_BIT               1B
+D_CONTRACT_OFFER  (3 fields, 6 bytes/row)
+    +0    INTEREST                 4B
+    +4    TEAM                     1B
+    +5    AGE                      1B
+D_SEASON_INFO  (0 fields, 0 bytes/row)
+D_SEASON_SCORES  (6 fields, 6 bytes/row)
+    +0    US                       1B
+    +1    OPPONENT                 1B
+    +2    US_HITS                  1B
+    +3    OPPONENT_HITS            1B
+    +4    US_ERR                   1B
+    +5    OPPONENT_ERR             1B
+D_TRADE_METRIC  (1 fields, 6 bytes/row)
+    +0    WAR                      2B x 3

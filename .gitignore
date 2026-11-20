@@ -1,0 +1,29 @@
+# --- personal: never public ---
+CLAUDE.md
+HANDOFF.md
+test-saves/
+sample-data/
+Faces/
+Roster/
+Inspiration/
+CFB INSPO/
+Scouting/
+ui-prototype/
+mlb logos/
+*.SAV
+SAVE_000
+SAVEINFO
+
+# --- images ship inside release zips only, not in the source ---
+app/ui/teams/
+app/ui/heads/
+
+# --- build output and tooling ---
+.venv/
+build/
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/
+*.log
