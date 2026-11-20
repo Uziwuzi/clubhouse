@@ -130,6 +130,7 @@ class Updater:
         script = WORK / "install.ps1"
         q = lambda p: str(p).replace("'", "''")
         script.write_text(f"""$ErrorActionPreference = 'Stop'
+Start-Transcript -LiteralPath '{q(WORK / 'install.log')}' -Force | Out-Null
 try {{ Wait-Process -Id {os.getpid()} -Timeout 60 -ErrorAction SilentlyContinue }} catch {{}}
 Start-Sleep -Milliseconds 800
 $cur = '{q(cur)}'; $new = '{q(new)}'; $bak = '{q(backup)}'
@@ -146,9 +147,14 @@ for ($i = 0; $i -lt 20; $i++) {{
     Start-Sleep -Milliseconds 700
   }}
 }}
-Start-Process -FilePath (Join-Path $cur 'Clubhouse.exe') -WorkingDirectory $cur {('-ArgumentList ' + repr(args)) if args else ''}
+Start-Process -FilePath (Join-Path $cur 'Clubhouse.exe') -WorkingDirectory $cur {("-ArgumentList '" + args.replace("'", "''") + "'") if args else ''}
 """, encoding="utf-8")
-        flags = getattr(subprocess, "DETACHED_PROCESS", 0) | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0) | getattr(subprocess, "CREATE_NO_WINDOW", 0)
-        subprocess.Popen(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-WindowStyle", "Hidden", "-File", str(script)],
-                         creationflags=flags, close_fds=True)
-        return {"ok": True}
+        cmd = ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-WindowStyle", "Hidden", "-File", str(script)]
+        # A hidden window, not DETACHED_PROCESS: PowerShell started detached exits at once without running the script.
+        base = getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0) | getattr(subprocess, "CREATE_NO_WINDOW", 0)
+        # Break away from any job object Clubhouse runs in, or closing Clubhouse can take the helper down with it.
+        try:
+            proc = subprocess.Popen(cmd, creationflags=base | 0x01000000, close_fds=True)   # CREATE_BREAKAWAY_FROM_JOB
+        except OSError:
+            proc = subprocess.Popen(cmd, creationflags=base, close_fds=True)
+        return {"ok": True, "helper": proc.pid}

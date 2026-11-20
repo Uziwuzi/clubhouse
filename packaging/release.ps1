@@ -29,9 +29,10 @@ Set-Text 'packaging\version_info.txt' $vi
 Set-Text 'packaging\README.txt' ([regex]::Replace([IO.File]::ReadAllText("$root\packaging\README.txt"), '^CLUBHOUSE [\d.]+', "CLUBHOUSE $Version"))
 
 # 3. Build (into build\out: a running Clubhouse can lock dist\Clubhouse)
-& .venv\Scripts\python.exe packaging\make_icon.py
-& .venv\Scripts\python.exe -m PyInstaller packaging\clubhouse.spec --noconfirm --distpath build\out --workpath build\work
-if ($LASTEXITCODE -ne 0) { throw "PyInstaller failed" }
+# (through cmd so PyInstaller's INFO lines on stderr don't trip $ErrorActionPreference)
+cmd /c ".venv\Scripts\python.exe packaging\make_icon.py 2>&1"
+cmd /c ".venv\Scripts\python.exe -m PyInstaller packaging\clubhouse.spec --noconfirm --distpath build\out --workpath build\work > build\pyi.log 2>&1"
+if ($LASTEXITCODE -ne 0) { Get-Content build\pyi.log -Tail 20; throw "PyInstaller failed" }
 Copy-Item packaging\README.txt build\out\Clubhouse\README.txt -Force
 Copy-Item CHANGELOG.md build\out\Clubhouse\CHANGELOG.md -Force
 New-Item -ItemType Directory -Force dist | Out-Null
