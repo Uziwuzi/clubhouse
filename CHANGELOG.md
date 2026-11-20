@@ -1,5 +1,12 @@
 # Clubhouse changelog
 
+## 1.8.2 (November 21, 2026)
+
+### Fixed: updates didn't install
+- **Restarting after an update reopened the old version.** The installer couldn't replace the Clubhouse folder while Windows considered it "in use", and that included its own working folder.
+- It now runs from outside the Clubhouse folder. If the folder still can't be swapped (for example, it's open in File Explorer), it copies the new files in place instead, after backing up the old ones.
+- **Install this version by hand once.** 1.8.0 and 1.8.1 have the old installer, so they can't install updates themselves. From 1.8.2 on, updates install from the banner.
+
 ## 1.8.1 (November 21, 2026)
 
 ### New Clubhouse logo

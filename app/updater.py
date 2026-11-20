@@ -130,31 +130,44 @@ class Updater:
         script = WORK / "install.ps1"
         q = lambda p: str(p).replace("'", "''")
         script.write_text(f"""$ErrorActionPreference = 'Stop'
+Set-Location -LiteralPath '{q(WORK)}'   # never stand inside the folder being replaced
 Start-Transcript -LiteralPath '{q(WORK / 'install.log')}' -Force | Out-Null
 try {{ Wait-Process -Id {os.getpid()} -Timeout 60 -ErrorAction SilentlyContinue }} catch {{}}
 Start-Sleep -Milliseconds 800
 $cur = '{q(cur)}'; $new = '{q(new)}'; $bak = '{q(backup)}'
-$moved = $false
-for ($i = 0; $i -lt 20; $i++) {{
+$done = $false; $moved = $false
+# 1) Swap whole folders: quick, and the old version stays intact as the backup.
+for ($i = 0; $i -lt 10 -and -not $done; $i++) {{
   try {{
     if (Test-Path -LiteralPath $bak) {{ Remove-Item -LiteralPath $bak -Recurse -Force }}
     Move-Item -LiteralPath $cur -Destination $bak
     $moved = $true
     Move-Item -LiteralPath $new -Destination $cur
-    break
+    $done = $true
   }} catch {{
+    Write-Output "swap attempt $i failed: $_"
     if ($moved -and -not (Test-Path -LiteralPath $cur)) {{ Move-Item -LiteralPath $bak -Destination $cur; $moved = $false }}
     Start-Sleep -Milliseconds 700
   }}
 }}
+# 2) The folder can't be renamed (open in Explorer, or a program's working folder): copy the files in place instead.
+if (-not $done) {{
+  Write-Output 'folder swap failed; copying files in place'
+  robocopy $cur $bak /MIR /R:2 /W:1 /NFL /NDL /NJH /NJS /NP | Out-Null
+  robocopy $new $cur /MIR /R:5 /W:1 /NFL /NDL /NJH /NJS /NP | Out-Null
+  if ($LASTEXITCODE -lt 8) {{ $done = $true; Remove-Item -LiteralPath $new -Recurse -Force -ErrorAction SilentlyContinue }}
+  else {{ Write-Output "in-place copy failed: robocopy $LASTEXITCODE; restoring"; robocopy $bak $cur /MIR /R:5 /W:1 /NFL /NDL /NJH /NJS /NP | Out-Null }}
+}}
+Write-Output "update installed: $done"
 Start-Process -FilePath (Join-Path $cur 'Clubhouse.exe') -WorkingDirectory $cur {("-ArgumentList '" + args.replace("'", "''") + "'") if args else ''}
 """, encoding="utf-8")
         cmd = ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-WindowStyle", "Hidden", "-File", str(script)]
         # A hidden window, not DETACHED_PROCESS: PowerShell started detached exits at once without running the script.
         base = getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0) | getattr(subprocess, "CREATE_NO_WINDOW", 0)
         # Break away from any job object Clubhouse runs in, or closing Clubhouse can take the helper down with it.
+        # cwd: a process whose working folder is the app folder (Clubhouse's own, inherited) blocks renaming it.
         try:
-            proc = subprocess.Popen(cmd, creationflags=base | 0x01000000, close_fds=True)   # CREATE_BREAKAWAY_FROM_JOB
+            proc = subprocess.Popen(cmd, creationflags=base | 0x01000000, close_fds=True, cwd=str(WORK))   # CREATE_BREAKAWAY_FROM_JOB
         except OSError:
-            proc = subprocess.Popen(cmd, creationflags=base, close_fds=True)
+            proc = subprocess.Popen(cmd, creationflags=base, close_fds=True, cwd=str(WORK))
         return {"ok": True, "helper": proc.pid}
