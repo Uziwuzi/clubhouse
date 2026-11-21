@@ -1348,7 +1348,7 @@ const headNorm = s => String(s||'').normalize('NFKD').replace(/[̀-ͯ]/g,'').toL
 function assignHeads(){
   const by=new Map();
   (HEADS||[]).forEach(h=>new Set(h.n.map(headNorm)).forEach(n=>{ if(!by.has(n)) by.set(n,[]); by.get(n).push(h); }));
-  const yr=L.season.year||2026;
+  const yr=L.season.year||2026;   // ages are on the league's year (the 2027 rosters age everyone a year)
   L.players.forEach(p=>{
     p.head=null;
     const c=by.get(headNorm(p.first+' '+p.last)); if (!c) return;
@@ -2254,7 +2254,12 @@ function seriesPreview(me, them, games, home, key){
 }
 
 /* schedule: L.schedule[team] = [[day, game, opp, home, time], ...] for all 162 games */
-const dayDate = d => { const x=new Date(L.season.year,2,25+d,12); return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`; };
+/* Rolled-over leagues (Clubhouse's 2027 rosters): L.season.year is the league's year (2027) and calYear() the game's
+   calendar (2026), which dates and weekdays follow. Labels the game writes ("White Sox April 1, 2026") show the league year. */
+const calYear = () => (L && (L.season.calendarYear || L.season.year)) || 2026;
+const yrLabel = (s, off) => { off = off == null ? ((L && L.season.yearOffset) || 0) : off;
+  return off ? String(s || '').replace(/((?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, )(\d{4})/, (m, a, y) => a + (+y + off)) : (s || ''); };
+const dayDate = d => { const x=new Date(calYear(),2,25+d,12); return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`; };
 const teamSched = tid => (L.schedule&&L.schedule[tid])||[];
 // MLB rookie status (used by the Rookie of the Year race and the assistant GM).
 function isRookie(p){
@@ -2632,13 +2637,13 @@ function renderNewSave(){
   const el=$('#newsave'); if(!el) return;
   if (!NEWSAVE){ el.innerHTML=''; return; }
   const at=new Date(NEWSAVE.savedAt).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
-  el.innerHTML=`<div class="newsave"><b>New save found</b><span>${esc(NEWSAVE.label)} · saved ${at}</span><span class="sp"></span>
+  el.innerHTML=`<div class="newsave"><b>New save found</b><span>${esc(yrLabel(NEWSAVE.label))} · saved ${at}</span><span class="sp"></span>
     <button class="btn sm" data-act="loadnew">Load it</button><button class="btn ghost sm" data-act="later">Later</button></div>`;
 }
 async function loadNewSave(){
   const b=document.querySelector('[data-act="loadnew"]'); if(b){ b.disabled=true; b.textContent='Loading…'; }
   const res=await api().load_latest(); setFranchises(res);
-  if (res.ok){ NEWSAVE=null; renderNewSave(); await loadLeague(); toast(`<b>New save loaded</b>${esc(L.slot.label)}`,'ok'); slotNote=`<span class="flash">Loaded ${esc(L.slot.label)}</span>`; renderSlot(); clearTimeout(flashTimer); flashTimer=setTimeout(()=>{slotNote=''; renderSlot();},8000); }
+  if (res.ok){ NEWSAVE=null; renderNewSave(); await loadLeague(); toast(`<b>New save loaded</b>${esc(yrLabel(L.slot.label))}`,'ok'); slotNote=`<span class="flash">Loaded ${esc(yrLabel(L.slot.label))}</span>`; renderSlot(); clearTimeout(flashTimer); flashTimer=setTimeout(()=>{slotNote=''; renderSlot();},8000); }
   else if (b){ b.disabled=false; b.textContent='Try again'; }
 }
 
@@ -3763,7 +3768,7 @@ async function openSettings(){
   document.querySelector('#pf .drawer').setAttribute('style', themeVars(T&&T[ME]));
   $('#pfbody').innerHTML=`<div class="set-body"><h2>Settings</h2>
     <section class="set-sec"><h3>Save</h3>
-      <p>Reading <b>${esc(L?L.slot.label:'nothing yet')}</b>${L?` from<br><code>${esc(L.slot.folder||'')}</code>`:''}</p>
+      <p>Reading <b>${esc(L?yrLabel(L.slot.label):'nothing yet')}</b>${L?` from<br><code>${esc(L.slot.folder||'')}</code>`:''}</p>
       <button class="btn ghost sm" data-act="setup">Change save folder</button></section>
     <section class="set-sec"><h3>New saves</h3>
       <p>When you save in the game, Clubhouse notices and asks before loading it. Turn this on to load new saves straight away instead.</p>
@@ -6894,7 +6899,7 @@ let routed=false, flashTimer=null, slotNote='';
 let FRS={list:[], cur:null};
 const today = () => (L && (L.slot.labelDate || L.season.date));   // the save's own date (spring training too)
 const frTeam = f => ({abbr:f.abbr, colors:[], city:f.city, name:f.name});
-const frWhen = f => `${f.labelDate?new Date(f.labelDate+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):esc(f.label)} · ${f.saves} save${f.saves>1?'s':''}`;
+const frWhen = f => `${f.labelDate?new Date(f.labelDate+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})+', '+(+f.labelDate.slice(0,4)+(f.yearOffset||0)):esc(yrLabel(f.label,f.yearOffset||0))} · ${f.saves} save${f.saves>1?'s':''}`;
 function setFranchises(meta){ if(meta && meta.franchises){ FRS.list=meta.franchises; FRS.cur=meta.franchise; } }
 function renderBrand(){
   const t=T&&T[ME]; if(!t) return;
@@ -6927,7 +6932,7 @@ function renderSlot(){
   if (!L){ el.innerHTML=''; return; }
   const saved=new Date(L.slot.savedAt).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
   el.classList.toggle('bad', !L.slot.checksumOk || /err/.test(slotNote));
-  el.title=`Reading "${L.slot.label}"\nSaved ${saved}\n${L.slot.checksumOk?'Checksum OK':'Checksum mismatch'}\nWatching for new saves`;
+  el.title=`Reading "${yrLabel(L.slot.label)}"\nSaved ${saved}\n${L.slot.checksumOk?'Checksum OK':'Checksum mismatch'}\nWatching for new saves`;
   el.innerHTML=slotNote || `<span>Live · saved ${saved}</span>`;
 }
 function renderTicker(){
@@ -6989,7 +6994,7 @@ function showSetup(state, error){
       <button class="btn ghost" data-act="browse">Browse…</button>
     </div>
     ${error?`<p class="err" style="margin:14px 0 0">${esc(error)}</p>`:''}
-    ${L?`<p style="margin:18px 0 0"><button class="linkbtn" data-act="back">Back to ${esc(L.slot.label)}</button></p>`:''}
+    ${L?`<p style="margin:18px 0 0"><button class="linkbtn" data-act="back">Back to ${esc(yrLabel(L.slot.label))}</button></p>`:''}
   </section></div>`;
 }
 

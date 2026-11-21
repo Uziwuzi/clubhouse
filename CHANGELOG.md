@@ -1,5 +1,11 @@
 # Clubhouse changelog
 
+## 1.11.0 (November 21, 2026)
+
+- **2027 roster support.** Clubhouse spots franchises started on rosters that already include the real 2026 season, and treats them as the 2027 season even though the game's calendar says 2026. Seasons, free agency, the draft class, awards and history all use 2027, and the years keep counting up as your franchise advances. Dates and weekdays still follow the game.
+- **Player cards keep real history.** Real seasons keep their real years, the 2026 season counts as last season, and last year's rookies are no longer treated as rookies.
+- Normal franchises are unchanged.
+
 ## 1.10.0 (November 21, 2026)
 
 - **Discover in game.** Prospects your Clubhouse scouts found but the game hasn't are now marked "Hidden in game". One click puts them on the game's draft list (as NR), from Scouting → Discoveries or the prospect's profile.

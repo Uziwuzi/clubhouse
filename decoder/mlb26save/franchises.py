@@ -35,13 +35,19 @@ def slot_summary(save: Path, info: Path) -> dict | None:
         go = db.read(db.find("D_GAME_OPTIONS")[0][0]).rows[0]
         team = go["CURRENTTEAM"]
         teams = db.largest("D_TEAM_PROF").rows
+        from .extract import rolled_over_fast
+        try:   # a franchise on Clubhouse's rolled-over ("2027") rosters shows a year later than the game's calendar
+            n = max(c for _, c in db.find("D_PLR_PROFILE"))
+            off = 1 if rolled_over_fast(db, n, go["START_YEAR"]) else 0
+        except Exception:
+            off = 0
         t = teams[team] if team < len(teams) else {}
         out = {
             "id": _text(go["UUID_STR"]) or str(save.parent.name),
             "slot": str(save.parent), "save": str(save), "info": str(info),
             "label": si.label, "labelDate": label_date(si.label), "savedAt": si.saved_at.isoformat(), "ts": si.timestamp,
             "team": team, "abbr": t.get("SHORT_NAME", ""), "city": t.get("CITY_NAME", ""), "name": t.get("TEAM_NAME", ""),
-            "year": go["START_YEAR"] + go["SEASONYEAR"], "day": go["SEASONDATE"],
+            "year": go["START_YEAR"] + go["SEASONYEAR"] + off, "yearOffset": off, "day": go["SEASONDATE"],
         }
     except Exception as e:   # half-written or unreadable slot: skip it this round
         out = {"error": str(e), "slot": str(save.parent)}

@@ -1,3 +1,3 @@
 """Clubhouse's version and where its updates are published. packaging/release.ps1 bumps VERSION."""
-VERSION = "1.10.0"
+VERSION = "1.11.0"
 REPO = "Uziwuzi/clubhouse"   # GitHub owner/repo whose Releases carry the update zips

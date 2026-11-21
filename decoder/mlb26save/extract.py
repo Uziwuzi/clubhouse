@@ -180,17 +180,78 @@ MINOR_DIVS = {6: "East", 7: "West", 8: "East", 9: "West", 10: "Northeast", 11: "
 CAREER_SLOTS = 28
 
 
-def _career(t, pid: int, pos: str) -> list:
+def rolled_over(career_t, n_players: int, start_year: int) -> bool:
+    """True for a franchise started on a roster rolled past start_year (Clubhouse's "2027" roster mod): those
+    roster files already hold each player's real start_year season, and at franchise start the game adds its own
+    start_year row on top, so hundreds of players carry two rows labeled start_year. A normal franchise never
+    has two rows with the same year. VERIFIED on the White Sox April 1, 2026 save (Judge: 2026 5 G live, 2026 66 G real)."""
+    if career_t is None or len(career_t.rows) != CAREER_SLOTS * n_players:
+        return False
+    dup = 0
+    for pid in range(n_players):
+        c = 0
+        for k in range(CAREER_SLOTS):
+            if career_t.rows[pid * CAREER_SLOTS + k]["YEAR"] == start_year:
+                c += 1
+                if c == 2:
+                    dup += 1
+                    break
+        if dup >= 100:
+            return True
+    return False
+
+
+def rolled_over_fast(db: Database, n_players: int, start_year: int) -> bool:
+    """rolled_over() for the franchise list, reading only the YEAR bytes: each career row is a fixed-size row
+    followed by the same one-row awards child, so rows sit at a fixed stride (measured on the first row)."""
+    import struct as _st
+    locs = db.find("D_CAREER_STATS")
+    if not locs:
+        return False
+    off, cnt = max(locs, key=lambda x: x[1])
+    if cnt != CAREER_SLOTS * n_players or cnt < 2:
+        return False
+    st = db.structs["D_CAREER_STATS"]
+    p0 = off + 20
+    p = p0 + st.row_size
+    while db._is_header(p) and db._name_at(p) != "D_CAREER_STATS":
+        p = db.read(p).end
+    stride, yoff, raw = p - p0, st.offsets["YEAR"], db.raw
+    dup = 0
+    for pid in range(n_players):
+        base = p0 + pid * CAREER_SLOTS * stride + yoff
+        c = 0
+        for k in range(CAREER_SLOTS):
+            if _st.unpack_from("<H", raw, base + k * stride)[0] == start_year:
+                c += 1
+                if c == 2:
+                    dup += 1
+                    break
+        if dup >= 100:
+            return True
+    return False
+
+
+def _career(t, pid: int, pos: str, start_year: int | None = None) -> list:
     """Every MLB season on file for a player, oldest first, as compact rows.
     Hitters: [year, org, g, ab, r, h, 2b, 3b, hr, rbi, bb, so, sb, cs, hbp, sf]
     Pitchers: [year, org, g, gs, w, l, sv, hld, outs, h, er, hr, bb, so, cg, sho, qs, bf]
-    (pitchers who also hit, like Ohtani, get "bat" rows too)."""
+    (pitchers who also hit, like Ohtani, get "bat" rows too).
+    start_year (rolled-over leagues only): real seasons keep their years, and every season the game itself plays
+    shows one year later. The real start_year row is the oldest of the rows labeled start_year."""
     out = []
+    real_slot = None
+    if start_year is not None:
+        same = [k for k in range(CAREER_SLOTS) if t.rows[pid * CAREER_SLOTS + k]["YEAR"] == start_year]
+        real_slot = max(same) if len(same) >= 2 else None
     for k in range(CAREER_SLOTS):
         r = t.rows[pid * CAREER_SLOTS + k]
         if not r["GAMES_PLAYED"] and not r["GAMES_PITCHED"]:
             continue
-        row = {"y": r["YEAR"], "org": r["ORG"]}
+        y = r["YEAR"]
+        if start_year is not None and (y > start_year or (y == start_year and k != real_slot)):
+            y += 1
+        row = {"y": y, "org": r["ORG"]}
         if r["GAMES_PITCHED"]:
             row["p"] = [r["GAMES_PITCHED"], r["GAMES_STARTED"], r["WINS"], r["LOSSES"], r["SAVES"], r["HOLDS"],
                         r["INNINGS_PITCHED"], r["HITS_ALLOWED"], r["EARNED_RUNS"], r["HOMERUNS_ALLOWED"],
@@ -528,6 +589,11 @@ def export_league(db: Database) -> dict:
     career_t = db.largest("D_CAREER_STATS") if db.find("D_CAREER_STATS") else None
     if career_t and len(career_t.rows) != CAREER_SLOTS * len(prof_t.rows):
         career_t = None   # layout differs from the verified one: leave history out rather than misread it
+    # A franchise started on Clubhouse's rolled-over ("2027") rosters: the game's calendar says start_year, but the
+    # league is really a year later. Everything Clubhouse shows uses the real year; dates keep the game's calendar.
+    start_year = go["START_YEAR"]
+    rolled = rolled_over(career_t, len(prof_t.rows), start_year)
+    year_off = 1 if rolled else 0
 
     # ---- teams --------------------------------------------------------------
     teams = []
@@ -595,12 +661,17 @@ def export_league(db: Database) -> dict:
                 st = line(tabs[idx].rows[pid])
                 if label in ("last", "season") or st["g"]:
                     stats[label] = st
-        car = _career(career_t, pid, pos) if career_t else []
+        car = _career(career_t, pid, pos, start_year if rolled else None) if career_t else []
+        if rolled and go["SEASONYEAR"] == 0:
+            # first season on rolled-over rosters: "last season" is the real one in the career table, not the
+            # game's own last-season copy (that still holds the year before)
+            real = next((c for c in car if c.get("y") == start_year), None)
+            stats["last"] = _line_from_career(real, pos) if real else _line_from_career({}, pos)
         if phase == "postseason":
             # VERIFIED (Dodgers Oct 3, 2026 save): in the postseason the "this season" copy holds playoff games only
             # and the regular season survives only in D_CAREER_STATS (Judge 2026: 144 G, 548 AB there, 0 in copy 1).
             stats["post"] = stats.get("season")
-            row = next((c for c in car if c.get("y") == year), None)
+            row = next((c for c in car if c.get("y") == year + year_off), None)
             stats["season"] = _line_from_career(row, pos) if row else stats["season"]
         players.append({
             "id": pid, "first": p["FIRST_NAME"], "last": p["LAST_NAME"],
@@ -622,8 +693,9 @@ def export_league(db: Database) -> dict:
 
     return {
         "format": "mlb26save/0.2",
-        "season": {"year": year, "day": day, "date": date.isoformat(), "userTeam": user_team,
-                   "calendar": cal, "phase": phase},
+        # year = the league's year as Clubhouse shows it; calendarYear = the game's calendar (dates, weekdays)
+        "season": {"year": year + year_off, "calendarYear": year, "yearOffset": year_off, "day": day,
+                   "date": date.isoformat(), "userTeam": user_team, "calendar": cal, "phase": phase},
         "upcoming": _upcoming(db, prof_t, year, user_team, go.get("AWAYTEAM"), go.get("HOMETEAM"), date - dt.timedelta(days=day)),
         "schedule": _schedule(db),
         "playoffs": _playoffs(db),

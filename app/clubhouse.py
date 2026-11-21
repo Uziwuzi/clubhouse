@@ -207,6 +207,7 @@ class League:
             "franchise": self.franchise,
             "franchises": [{"id": f["id"], "abbr": f["abbr"], "city": f["city"], "name": f["name"],
                             "label": f["latest"]["label"], "labelDate": f["latest"]["labelDate"],
+                            "yearOffset": f["latest"].get("yearOffset", 0),
                             "savedAt": f["latest"]["savedAt"], "day": f["latest"]["day"], "year": f["latest"]["year"],
                             "saves": len(f["slots"])} for f in self.franchises],
             "loadedAt": time.time(),
