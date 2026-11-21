@@ -1,5 +1,9 @@
 # Clubhouse changelog
 
+## 1.12.1 (November 21, 2026)
+
+- **Fixed:** after updating, Clubhouse could keep showing the previous version's pages, so the Salary cap and Draft lottery from 1.12.0 didn't appear. Clubhouse now clears its page cache on every start. Your settings, boards and cap records are kept.
+
 ## 1.12.0 (November 21, 2026)
 
 A salary cap and floor for your franchise, with real draft-pick penalties written into the game, plus a draft lottery for 2027 rosters. Everything here is optional and off until you use it. New and still being tested: **keep a copy of your franchise save before using any "in-game" button.**

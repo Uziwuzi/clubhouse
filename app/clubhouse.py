@@ -748,6 +748,11 @@ def main():
     # still taken (a second Clubhouse?): a random port for this run, which means empty page storage
     store = CONFIG_PATH.parent / ("webview" if not args.save else "webview-copies")
     store.mkdir(parents=True, exist_ok=True)
+    # The page is a local file, so the window's HTTP cache only ever serves a stale copy: after the 1.12.0 update
+    # it kept showing the 1.11 page (no lottery, Nov 21, 2026). Clear it on every start; local storage is kept.
+    import shutil
+    for sub in ("Cache", "Code Cache", "GPUCache"):
+        shutil.rmtree(store / "EBWebView" / "Default" / sub, ignore_errors=True)
     webview.start(startup, debug=args.debug, http_server=True, http_port=port, private_mode=False, storage_path=str(store))
 
 
