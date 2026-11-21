@@ -1116,6 +1116,8 @@ table.career tr.tot td{border-top:1px solid var(--line-2);font-weight:700}
 .scv .scrange .track,.scv .scrange .track i,.scv .sccap-bar,.scv .sccap-bar i,.scv .scbar i,.scv .scbar em{border-radius:999px}
 .scv .sccap-units i{border-radius:4px}
 .scdiscs{display:grid;gap:12px}
+.scingame{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 12px;padding:12px 16px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:3px}
+.scingame>div{display:grid;gap:3px;min-width:0;flex:1 1 320px}.scingame span{color:var(--muted);font-size:13px}
 .scdisc{padding:16px 18px;background:var(--panel);border:1px solid var(--line)}
 .scdisc.dim{opacity:.55}
 .scdisc header{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center}
@@ -6444,7 +6446,7 @@ function scProspectView(id, head){
   const header=`<section class="scph">${scPortrait(k,p,92)}<div class="scph-id"><small>${POSFULL[p.pos]||p.pos} · ${p.bats}/${p.throws} · age ${p.age} · ${scFtIn(p.height)}, ${p.weight} lbs</small><h3>${esc(p.first+' '+p.last)}</h3>
       <span>${esc(b.school)} (${scLevel(p)}) · ${esc(scTerritory(p))} · public rank ${p.rank?'No. '+p.rank:'unranked'} · ${scStatShort(p)}</span></div>
     <div class="scph-k">${sum?`<div><small>Present</small>${scRangeBar(sum.o)}</div><div><small>Ceiling</small>${scRangeBar(sum.c)}</div><div><small>Confidence</small>${scConfTxt(sum.conf)}</div>`:'<div><small>Status</small><b>Not scouted</b></div>'}</div>
-    <div class="scph-a"><button class="iconbtn" data-sc="watch|${k}" title="${w?'On your watchlist':'Add to watchlist'}">${w?'★':'☆'}</button><button class="btn ghost sm" data-sc="portrait|${k}">${SC_PORTRAITS[k]?'Change photo':'Add photo'}</button></div></section>`;
+    <div class="scph-a"><button class="iconbtn" data-sc="watch|${k}" title="${w?'On your watchlist':'Add to watchlist'}">${w?'★':'☆'}</button><button class="btn ghost sm" data-sc="portrait|${k}">${SC_PORTRAITS[k]?'Change photo':'Add photo'}</button>${scHiddenInGame(p)&&(kn||SC.disc.some(d=>d.key===k))?`<button class="btn ghost sm" data-sc="ingame|${k}" title="He isn't on the game's draft list yet">Discover in game</button>`:''}</div></section>`;
   const nav=`<nav class="wtabs" style="margin:14px 0">${[['summary','Summary'],['attributes','Attributes'],['stats','Stats'],['reports',`Reports (${reps.length})`],['history','History']].map(([t,l])=>`<a href="#" data-sc="ptab|${t}" ${t===tab?'aria-current="page"':''}>${l}</a>`).join('')}</nav>`;
   let body='';
   if (tab==='summary'){
@@ -6714,7 +6716,8 @@ function scDiscRecord(sid){
 function scDiscCard(d, compact){
   const p=scProspectOf(d.key), s=scScoutById(d.sid), out=scDiscOutcome(d), c=scConsensus(d.key,'ceiling'), busy=SC.assignments.some(a=>a.key===d.key&&a.status==='active');
   if (!p) return '';
-  const badge = out==='hit'?'<span class="scbadge good">Looks like a real find</span>':out==='miss'?'<span class="scbadge bad">Not what he hoped</span>':busy?'<span class="scbadge">Being scouted</span>':d.status==='new'?'<span class="scbadge new">New</span>':'';
+  const badge = (out==='hit'?'<span class="scbadge good">Looks like a real find</span>':out==='miss'?'<span class="scbadge bad">Not what he hoped</span>':busy?'<span class="scbadge">Being scouted</span>':d.status==='new'?'<span class="scbadge new">New</span>':'')
+    + (scHiddenInGame(p)?'<span class="scbadge">Hidden in game</span>':'');
   return `<article class="scdisc ${d.status==='dismissed'?'dim':''}">
     <header>${scPortrait(d.key,p,52)}<div><a class="pl" href="#scouting/p${p.id}">${esc(p.first+' '+p.last)}</a><small>${p.pos} · age ${p.age} · ${esc(prospectBio(p).school)} · ${esc(scTerritory(p))} · ${p.rank?'public No. '+p.rank:'not on the public board'}</small></div>${badge}</header>
     <blockquote>${esc(d.note)}</blockquote>
@@ -6722,9 +6725,45 @@ function scDiscCard(d, compact){
       <span class="scdisc-tip">His gut: ceiling <b>${d.tip.lo}–${d.tip.hi}</b>${c?` · Our read now: <b>${c.lo}–${c.hi}</b>`:''}</span></div>
     ${compact?'':`<div class="scdisc-a">${!scKnow(d.key)&&!busy?`<button class="btn sm" data-sc="disc-scout|${d.id}">Scout to confirm · ${SC_TYPES.initial.sp} SP</button>`:`<a class="btn ghost sm" href="#scouting/p${p.id}">Open his profile</a>`}
       <button class="btn ghost sm" data-sc="watch|${d.key}">${scWatched(d.key)?'★ On watchlist':'☆ Watchlist'}</button>
+      ${scHiddenInGame(p)&&d.status!=='dismissed'?`<button class="btn ghost sm" data-sc="ingame|${d.key}" title="He isn't on the game's draft list yet">Discover in game</button>`:''}
       ${d.status!=='dismissed'?`<button class="btn ghost sm" data-sc="disc-dismiss|${d.id}">Dismiss</button>`:`<button class="btn ghost sm" data-sc="disc-restore|${d.id}">Restore</button>`}</div>`}
   </article>`;
 }
+/* ---------- discover in game: the one save write (mlb26save/discover.py). VERIFIED Nov 21, 2026: the game lists a
+   prospect only once your club's SCOUTED_CERT for him is above 0; setting 0 -> 5 made Eric Mateo appear (as NR). ---------- */
+const scHiddenInGame = p => !!p && p.prospect && p.cert===0 && !p.drafted;
+function scIngameList(){
+  const keys=new Set([...(SC.disc||[]).filter(d=>d.status!=='dismissed').map(d=>d.key), ...Object.keys(SC.know||{})]);
+  return [...keys].map(k=>({k,p:scProspectOf(k)})).filter(x=>scHiddenInGame(x.p));
+}
+function scIngameBar(){
+  const l=scIngameList(); if (!l.length) return '';
+  return `<div class="scingame"><div><b>${l.length} player${l.length>1?'s':''} your scouts know about ${l.length>1?"aren't":"isn't"} on the game's draft list</b>
+    <span>${l.slice(0,8).map(x=>esc(x.p.first+' '+x.p.last)).join(', ')}${l.length>8?` and ${l.length-8} more`:''}. The game hides prospects until its own scouts find them.</span></div>
+    <button class="btn sm" data-sc="ingame|all">Discover ${l.length>1?`all ${l.length} `:''}in game</button></div>`;
+}
+function scIngameModal(keys){
+  const l=keys.map(k=>({k,p:scProspectOf(k)})).filter(x=>scHiddenInGame(x.p)); if (!l.length) return;
+  SCA.ingame=l.map(x=>x.k);
+  $('#modal').innerHTML=`<div class="modal" data-act="sc-bg"><div class="box scmodal" style="max-width:540px" role="dialog" aria-label="Discover in game">
+    <div class="scm-h"><div><small>Discover in game</small><h3>${l.length===1?esc(l[0].p.first+' '+l[0].p.last):`${l.length} players`}</h3></div></div>
+    <div class="scm-b"><p>This writes to your save so ${l.length===1?'he appears':'they appear'} on the game's draft list (as NR, like any prospect the game's scouts have found). Nothing else in the save changes, and the game's own ratings and rankings stay as they are.</p>
+      ${l.length>1?`<p class="muted">${l.map(x=>esc(x.p.first+' '+x.p.last)).join(', ')}</p>`:''}
+      <p class="scm-cap"><b>Close the game and the emulator first.</b> Clubhouse backs up your current save before writing (Clubhouse\\save-backups), and checks the save afterward.</p></div>
+    <div class="press-foot"><span></span><span><button class="btn ghost sm" data-sc="as-close">Cancel</button> <button class="btn sm" data-sc="ingame-ok">Write to my save</button></span></div></div></div>`;
+}
+async function scIngameGo(){
+  const players=(SCA.ingame||[]).map(k=>scProspectOf(k)).filter(scHiddenInGame).map(p=>({row:p.id-100000, name:p.first+' '+p.last}));
+  const btn=$('#modal [data-sc="ingame-ok"]'); if (btn){ btn.disabled=true; btn.textContent='Writing…'; }
+  let r; try { r=await api().discover_in_game(players); } catch(e){ r={ok:false,error:String(e)}; }
+  $('#modal').innerHTML='';
+  if (!r||!r.ok){ toast(`<b>Nothing written</b>${esc((r&&r.error)||'Something went wrong.')}`); return; }
+  if (!r.written){ toast('<b>Nothing to change</b>They are already on the game\'s list.'); return; }
+  const skipped=(r.results||[]).filter(x=>x.skip);
+  await loadLeague();
+  toast(`<b>Discovered in game</b>${r.written} player${r.written>1?'s':''} now on your draft list. Open the game to see ${r.written>1?'them':'him'}.${skipped.length?` Skipped ${skipped.length}.`:''}`,'ok');
+}
+
 function scDiscView(){
   const f=SCF.discShow||'open';
   const list=SC.disc.slice().reverse().filter(d=>scProspectOf(d.key)&&(f==='all'||(f==='open'?d.status!=='dismissed'&&!scDiscOutcome(d):f==='hits'?scDiscOutcome(d)==='hit':f==='dismissed'?d.status==='dismissed':true)));
@@ -6732,6 +6771,7 @@ function scDiscView(){
   const rec=SC.staff.map(s=>({s,...scDiscRecord(s.id)})).sort((a,b)=>b.s.r.disc-a.s.r.disc);
   const chip=(v,l)=>`<button class="scchip ${f===v?'on':''}" data-sc="disc-show|${v}">${l}</button>`;
   return `<p class="explain">Your scouts keep their eyes open. Each week any scout can bring you a player who isn't on the public board, at most ${SCX.discPerWeek} a week. Scouts with a higher <b>discovery</b> rating bring players more often and are right more often, but nobody is guaranteed a find, and anyone can surprise you. Some finds are real hidden gems; some are false alarms. Scout them to find out.</p>
+    ${scIngameBar()}
     <div class="scchips">${chip('open','Waiting on you')}${chip('hits','Real finds')}${chip('all','Everything')}${chip('dismissed','Dismissed')}</div>
     <div class="grid g-2" style="gap:14px;align-items:start">
       <div class="scdiscs">${list.map(d=>scDiscCard(d)).join('')||`<div class="scempty"><b>${f==='open'?'Nothing waiting':'Nothing here'}</b><p>New discoveries arrive as weeks pass in your save. The better your scouts' discovery ratings, the more often they turn someone up.</p></div>`}</div>
@@ -6805,6 +6845,8 @@ async function scAction(spec){
   if (act==='assign'){ SCA.type=null; scAssignModal(arg); return; }
   if (act==='quick'){ scQuick(arg); return; }
   if (act==='disc-show'){ SCF.discShow=arg; render(true); return; }
+  if (act==='ingame'){ scIngameModal(arg==='all'?scIngameList().map(x=>x.k):[arg]); return; }
+  if (act==='ingame-ok'){ scIngameGo(); return; }
   if (act==='disc-dismiss'||act==='disc-restore'){ const d=SC.disc.find(x=>x.id===arg); if (d){ d.status=act==='disc-dismiss'?'dismissed':'seen'; scSave(); render(true); } return; }
   if (act==='disc-scout'){ const d=SC.disc.find(x=>x.id===arg); if (!d) return; const p=scProspectOf(d.key); if (!p) return;
     const t=SC_TYPES.initial; if (t.sp>SC.sp.avail){ toast(`<b>Not enough SP</b>A first look costs ${t.sp}; you have ${SC.sp.avail}.`); return; }

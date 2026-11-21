@@ -338,6 +338,31 @@ class Api:
         """Load the newest save of the current franchise (after the page's "new save" prompt)."""
         return self._league.reload()
 
+    def discover_in_game(self, players: list) -> dict:
+        """Put prospects Clubhouse discovered on the game's draft list (SCOUTED_CERT 0 -> 5 for your club).
+        The one save write Clubhouse makes: the game must be closed, the loaded save must still be the newest,
+        and the save is backed up first. players = [{"row": amateur row, "name": "First Last"}]."""
+        from mlb26save.discover import discover
+        lg = self._league
+        with lg.lock:
+            slot, loaded = lg.slot, lg.loaded_sig
+            fs = lg.franchises
+        if not slot or lg.json is None:
+            return {"ok": False, "error": "No save loaded."}
+        if _signature(slot) != loaded:
+            return {"ok": False, "error": "The save changed since Clubhouse loaded it. Load the new save, then try again."}
+        f = next((f for f in fs if f["id"] == lg.franchise), None)
+        if f and Path(f["latest"]["save"]) != slot[0]:
+            return {"ok": False, "error": "There's a newer save of this franchise. Load it, then try again."}
+        try:
+            team = json.loads(lg.json)["season"]["userTeam"]
+        except (KeyError, ValueError, TypeError):
+            return {"ok": False, "error": "Couldn't tell which club you control."}
+        res = discover(slot[0], slot[1], int(team), list(players or []), CONFIG_PATH.parent / "save-backups")
+        if res.get("ok") and res.get("written"):
+            res["reload"] = lg.reload()
+        return res
+
     # -- scouting department: the page owns the logic; Python keeps it safe on disk, per franchise.
     #    Stored outside the save, so imports never touch it. Each write is atomic and keeps the previous copy as .bak.
     def _scout_dir(self) -> Path:

@@ -1,5 +1,10 @@
 # Clubhouse changelog
 
+## 1.10.0 (November 21, 2026)
+
+- **Discover in game.** Prospects your Clubhouse scouts found but the game hasn't are now marked "Hidden in game". One click puts them on the game's draft list (as NR), from Scouting → Discoveries or the prospect's profile.
+- Only that one value changes in your save, and only after you confirm. The game must be closed. Clubhouse backs up your save first and checks it afterward.
+
 ## 1.9.0 (November 21, 2026)
 
 ### Assistant GM
