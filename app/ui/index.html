@@ -167,6 +167,30 @@ main{padding:20px 24px 56px;max-width:1760px;width:100%;margin:0 auto}
 .rec-sub{margin-top:12px;font-size:13px;font-weight:600;color:rgba(255,255,255,.8);letter-spacing:.04em}
 
 /* ---------- tiles ---------- */
+.capbar{position:relative;display:inline-block;width:180px;height:10px;background:var(--line);border-radius:2px;vertical-align:middle}
+.capbar i{position:absolute;left:0;top:0;bottom:0;background:var(--good,#3fae6a);border-radius:2px}
+.capbar.warn i{background:#d9a441}.capbar.viol i{background:var(--bad,#d9534f)}
+.capbar b{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+.capbar b.fl{background:var(--ink-2)}
+.capst{display:inline-block;padding:2px 8px;border-radius:3px;font-size:12px;font-weight:600;background:var(--line)}
+.capst.ok{color:var(--good,#3fae6a)}.capst.warn{color:#d9a441}.capst.viol{color:#fff;background:var(--bad,#d9534f)}
+.capbig{display:flex;align-items:baseline;gap:12px;margin:0 0 12px}.capbig b{font:700 40px/1 'Barlow Condensed',sans-serif}.capbig small{color:var(--ink-2)}
+.card .capbar{width:100%;height:14px}
+.caplegend{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-2);margin-top:6px}
+.capbud{display:flex;flex-wrap:wrap;gap:6px}.capbud span{font-size:12px;padding:3px 8px;border:1px solid var(--line);border-radius:3px}
+.capbud span.hi{border-color:#d9a441}.capbud span.me{opacity:.6}
+.capdr{display:grid;gap:12px;padding:0 16px 16px}.capdr-g h4{margin:6px 0;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2)}
+.capdr ol{list-style:none;margin:0;padding:0;columns:2;column-gap:14px}
+.capdr li{display:flex;align-items:center;gap:6px;padding:3px 0;font-size:13px;break-inside:avoid}
+.capdr li .n{width:24px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.capdr li.lost{text-decoration:line-through;opacity:.55}.capdr li.lot-hide b,.capdr li.lot-hide img,.capdr li.lot-hide small{visibility:hidden}.capdr li.lot-hide::after{content:'?';color:var(--ink-2)}.capdr ol.lot li{font-size:15px;padding:5px 0}.capdr ol.lot li b{font-family:'Barlow Condensed',sans-serif;font-size:18px}.capdr li.moved{color:var(--accent)}.capdr li small{color:var(--ink-2)}
+.capsets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;padding:0 16px 12px}
+.capset{display:flex;align-items:center;gap:8px;font-size:14px}.capset span{min-width:170px;color:var(--ink-2)}
+.capset input[type=number],.capset select{padding:6px 10px;border:1px solid var(--line-2);background:#0f1114;border-radius:2px;font:500 14px/1.2 var(--text);color:var(--ink)}
+.capset input[type=number]{width:90px}.capset select{max-width:300px}
+.capset input:focus,.capset select:focus{border-color:var(--accent);outline:0}
+.capset input[type=checkbox]{accent-color:var(--accent);width:16px;height:16px}
+@media (max-width:900px){.capsets{grid-template-columns:1fr}}
 .tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-bottom:22px}
 .tile{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;animation:rise .5s both;animation-delay:calc(var(--i,0)*45ms + 80ms)}
 .tile span{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
@@ -1227,8 +1251,8 @@ table.career tr.tot td{border-top:1px solid var(--line-2);font-weight:700}
       <a href="#playoffs" data-nav="playoffs" id="navpo" hidden>Playoffs</a>
       <div class="dd" data-nav="team series press spring"><button>My team <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <div class="drop"><a href="#team">Team page</a><a href="#spring">Spring training</a><a href="#series">Series plan</a><a href="#press">Press room</a><a href="#fa/contracts">Contracts</a></div></div>
-      <div class="dd" data-nav="agm trade callups history"><button>Front office <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-        <div class="drop"><a href="#agm">Assistant GM</a><a href="#trade">Trade evaluator</a><a href="#callups">September call-ups</a><a href="#minors/prospects">Top prospects</a><a href="#draft/class">Draft class</a><a href="#history">Franchise history</a></div></div>
+      <div class="dd" data-nav="agm trade callups cap history"><button>Front office <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        <div class="drop"><a href="#agm">Assistant GM</a><a href="#trade">Trade evaluator</a><a href="#callups">September call-ups</a><a href="#cap">Salary cap</a><a href="#minors/prospects">Top prospects</a><a href="#draft/class">Draft class</a><a href="#history">Franchise history</a></div></div>
       <div class="dd" data-nav="standings grades"><button>League <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <div class="drop"><a href="#standings">Standings</a><a href="#standings/wildcard">Wild card race</a><a href="#standings/power">Power rankings</a><a href="#grades">Team grades</a></div></div>
       <div class="dd" data-nav="players"><button>Players <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
@@ -1240,7 +1264,7 @@ table.career tr.tot td{border-top:1px solid var(--line-2);font-weight:700}
       <div class="dd" data-nav="scouting"><button>Scouting <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <div class="drop"><a href="#scouting">This week</a><a href="#scouting/prospects">Find players</a><a href="#scouting/disc">Discoveries</a><a href="#scouting/reports">Reports</a><a href="#scouting/watch">Watchlist</a><a href="#scouting/staff">My scouts</a><a href="#scouting/pool">Hire scouts</a><a href="#scouting/guide">How scouting works</a></div></div>
       <div class="dd" data-nav="draft"><button>Draft <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
-        <div class="drop"><a href="#draft">Draft board</a><a href="#draft/watch">Prospect watch</a><a href="#draft/watchmine">My board watch</a><a href="#draft/mine">My board</a><a href="#draft/class">Draft class</a></div></div>
+        <div class="drop"><a href="#draft">Draft board</a><a href="#draft/watch">Prospect watch</a><a href="#draft/watchmine">My board watch</a><a href="#draft/mine">My board</a><a href="#draft/class">Draft class</a><a href="#draft/lottery">Draft lottery</a></div></div>
       <div class="dd" data-nav="fa"><button>Free agency <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <div class="drop"><a href="#fa">Upcoming class</a><a href="#fa/contracts">Contracts</a><a href="#fa/available">Available now</a><a href="#fa/offseason">Offseason</a></div></div>
     </nav>
@@ -1735,7 +1759,7 @@ const STF={lg:'',team:'',qual:true,inj:'mlb'};   // stats/injury filters
 const views = {
   home(){
     const t=T[ME]; applyTheme(t);
-    return franchiseStrip() + springBanner() + playoffBanner() + agmHomeCard() + `<div class="dash">
+    return franchiseStrip() + capBudgetBanner() + springBanner() + playoffBanner() + agmHomeCard() + `<div class="dash">
       <div class="dcol">${homePower()}</div>
       <div class="dcol">${homeSpotlight()}<div class="grid g-eq" style="gap:14px">${homeWire()}${homeDraft()}</div></div>
       <div class="dcol">${homeNextGame()}${homeLeaders('bat')}${homeLeaders('pit')}</div>
@@ -2423,11 +2447,12 @@ const money2 = n => n>=1e6 ? `$${(n/1e6).toFixed(1)}M` : `$${Math.round(n/1e3)}K
 Object.assign(views, {
   draft(tab){
     applyTheme(T[ME]);
-    tab = ['mine','watch','watchmine','class'].includes(tab) ? tab : '';
+    tab = ['mine','watch','watchmine','class','lottery'].includes(tab) ? tab : '';
     const d=L.draft;
     const isWatch=tab==='watch'||tab==='watchmine';
-    const head=`<div class="page-h"><div><div class="kicker">${L.season.year} draft class</div><h2>${tab==='mine'?'My board':isWatch?'Prospect watch':tab==='class'?'Draft class':'Draft board'}</h2></div>${tabs('draft',[['','All prospects'],['watch','Prospect watch'],['mine','My board'],['class','Draft class']],isWatch?'watch':tab)}</div>`;
+    const head=`<div class="page-h"><div><div class="kicker">${L.season.year} draft class</div><h2>${tab==='mine'?'My board':isWatch?'Prospect watch':tab==='class'?'Draft class':tab==='lottery'?'Draft lottery':'Draft board'}</h2></div>${tabs('draft',[['','All prospects'],['watch','Prospect watch'],['mine','My board'],['class','Draft class'],['lottery','Lottery']],isWatch?'watch':tab)}</div>`;
     if (tab==='class') return draftClassView(head);
+    if (tab==='lottery'){ if (!views.draft._doLoaded){ views.draft._doLoaded=true; capLoadDO().then(()=>render(true)); } return head+lotteryView(); }
     if (!d || !d.prospects.length) return head+`<p class="explain">This save doesn’t have a draft class right now.</p>`;
     if (isWatch){
       const ids=myBoard();
@@ -2533,6 +2558,400 @@ function payroll(t){
     else if (st.k==='fa') leaving+=p.contract.salary; });
   return {now, committed, arb, pre, leaving, next:committed+arb+pre};
 }
+/* ---------- salary cap and floor (spec: "Salary cap and floor/salary-cap-floor-proposal.md") ----------
+   Payroll = the average annual value (total / years) of every player in the organization on a major-league
+   contract: the stand-in for the 40-man roster, which isn't decoded (minor leaguers carry no major-league deal).
+   Dead money and salary retained in trades aren't in the save, so they don't count.
+   Compliance is recorded per franchise at the first save on or after each checkpoint (Opening Day, the trade
+   deadline, season end) and never rewinds; a team is penalized once a season. Penalties are Clubhouse's adjusted
+   draft order (read-only): the save is never changed by this module. The only save edit is the opt-in
+   "apply the cap to AI budgets" (Api.apply_cap_budgets), which can be undone with "restore original budgets". */
+const CAP_DEF = {on:true, floorOn:true, floorPenalty:false, cap:245.3e6, floor:171.2e6, growth:3, rounds:2, start:null, keepBudgets:false,
+  cps:{od:true, dl:false, end:false}, exempt:false, maxYears:5, maxPct:15};
+function capCfg(){ try { const c=JSON.parse(localStorage.getItem('ch-cap-cfg')||'{}'); delete c.fill; if (!c.rowsV && c.rounds>2) c.rounds=2; c.rowsV=true; if (c.keepBudgets===true) c.keepBudgets='ask'; if (!c.odOnly){ c.cps={...(c.cps||{}), dl:false, end:false}; c.odOnly=true; } return {...CAP_DEF, ...c, cps:{...CAP_DEF.cps, ...(c.cps||{})}}; } catch { return {...CAP_DEF}; } }
+function capSaveCfg(c){ try { localStorage.setItem('ch-cap-cfg', JSON.stringify(c)); } catch {} }
+const capKey = () => 'ch-cap:'+fkey();
+// The records live on disk (Api.get_cap_store/save_cap_store), loaded in loadLeague before capSync. Local storage is
+// only the fallback: it's per port, and a run on a fallback port once re-took Opening Day from a July save.
+let CAPS = null, CAPS_KEY = null;
+function capLocal(){ try { return JSON.parse(localStorage.getItem(capKey())||'null'); } catch { return null; } }
+async function capLoadStore(){
+  let s=null; try { const t=await api().get_cap_store(); s=t?JSON.parse(t):null; } catch {}
+  if (!s){ s=capLocal(); if (s) { try { await api().save_cap_store(JSON.stringify(s)); } catch {} } }
+  CAPS=s||{base:null, seasons:{}}; CAPS_KEY=capKey();
+}
+function capStore(){ if (!CAPS || CAPS_KEY!==capKey()) { CAPS=capLocal()||{base:null, seasons:{}}; CAPS_KEY=capKey(); } return JSON.parse(JSON.stringify(CAPS)); }
+function capPut(s){ CAPS=JSON.parse(JSON.stringify(s)); CAPS_KEY=capKey(); try { localStorage.setItem(capKey(), JSON.stringify(s)); } catch {} try { api().save_cap_store(JSON.stringify(s)); } catch {} }
+function capBase(){ const s=capStore(); if (s.base==null){ s.base=L.season.year; capPut(s); } return s.base; }
+function capFor(y){ const c=capCfg(), n=Math.max(0, y-capBase()), g=Math.pow(1+c.growth/100, n); return {cap:c.cap*g, floor:c.floor*g}; }
+const capAAV = p => p.contract && p.contract.years ? p.contract.total/p.contract.years : 0;
+const CAP_ML_MIN = 500e3;   // below this a deal is a minor-league contract
+function capPay(tid){
+  const rows=L.players.filter(p=>p.org===tid && capAAV(p)>=CAP_ML_MIN).map(p=>({p, aav:capAAV(p), yrs:p.contract.years})).sort((a,b)=>b.aav-a.aav);
+  return {total:rows.reduce((s,x)=>s+x.aav,0), rows};
+}
+function capStatus(pay, y){
+  const {cap,floor}=capFor(y), c=capCfg();
+  if (c.on && pay>cap) return {k:'viol', l:'Over the cap', d:pay-cap};
+  if (c.floorOn && pay<floor) return {k:'viol', l:'Under the floor', d:floor-pay};
+  if ((c.on && cap-pay<5e6) || (c.floorOn && pay-floor<5e6)) return {k:'warn', l:'Near a limit', d:0};
+  return {k:'ok', l:'Compliant', d:0};
+}
+const CAP_CP = {od:'Opening Day', dl:'Trade deadline', end:'Season end'};
+function capDeadlineDay(){   // July 31, in days from Opening Day (SEASONDATE counts from Opening Day)
+  const od=(L.season.calendar&&L.season.calendar.openingDay) ? new Date(L.season.calendar.openingDay+'T12:00:00') : new Date(calYear(),2,25,12);
+  return Math.round((new Date(calYear(),6,31,12)-od)/864e5)+1;
+}
+function capLastDay(){ let m=0; (L.schedule||[]).forEach(s=>(s||[]).forEach(g=>{ if (g[0]>m) m=g[0]; })); return m||186; }
+function capReached(){   // checkpoints this save has reached, in order
+  const ph=L.season.phase, d=L.season.day;
+  if (ph==='spring') return [];
+  if (ph==='postseason' || d>=capLastDay()) return ['od','dl','end'];
+  if (d>=capDeadlineDay()) return ['od','dl'];
+  return ['od'];
+}
+function capSync(){   // record each checkpoint once (from the first save on or after it), decide violations once a season
+  if (!L || !L.players) return;
+  const c=capCfg(), s=capStore(), y=L.season.year; capBase();
+  const st=s.seasons[y] || (s.seasons[y]={cp:{}, viol:{}});
+  let changed=false;
+  capReached().forEach(cp=>{
+    if (!c.cps[cp] || st.cp[cp]) return;
+    const pay={}; for (let t=0;t<30;t++) pay[t]=Math.round(capPay(t).total);
+    st.cp[cp]={day:L.season.day, label:yrLabel(L.slot.label), pay}; changed=true;
+    const {cap,floor}=capFor(y);
+    for (let t=0;t<30;t++){
+      if (y<capStart() || st.viol[t] || (c.exempt && t===ME)) continue;
+      const over=c.on && pay[t]>cap, under=c.floorOn && c.floorPenalty && cp!=='dl' && pay[t]<floor;
+      if (over||under) st.viol[t]={cp, type:over?'cap':'floor', amt:over?pay[t]-cap:floor-pay[t], draft:cp==='od'?y:y+1, rounds:c.rounds};
+    }
+  });
+  if (changed) capPut(s);
+}
+// Penalties count from this season on (none in a franchise's first season, so a rolled league's 2027 draft stays clean).
+function capStart(){ const c=capCfg(); return c.start!=null&&c.start!=='' ? +c.start : capBase()+1; }
+// Only checkpoints that are switched on count (Opening Day only by default).
+function capViolators(draftYear){ const s=capStore(), out=[], st0=capStart(), on=capCfg().cps; Object.entries(s.seasons).forEach(([y,st])=>{ if (+y<st0) return; Object.entries(st.viol||{}).forEach(([t,v])=>{ if (v.draft===draftYear && on[v.cp]) out.push({t:+t, y:+y, ...v}); }); }); return out; }
+let CAPDO = null;   // the season's original draft order when Clubhouse has written penalties into the save
+async function capLoadDO(){ try { const r=await api().draft_penalty_state(); CAPDO=r&&r.original&&r.original.season===L.season.year ? r.original.order : null; } catch { CAPDO=null; } }
+function capBaseOrder(){
+  const d=L.draft||{};
+  if (CAPDO) return {slots:CAPDO.DRAFT_ORDER.slice(), comp:CAPDO.COMP_PICKS.filter(t=>t<30), ppi:CAPDO.PPI_PICKS.filter(t=>t<30)};
+  return {slots:(d.slots||[]).slice(), comp:(d.comp||[]).slice(), ppi:(d.ppi||[]).slice()};
+}
+/* The draft order Clubhouse writes, in the game's layout: DRAFT_ORDER = 5 rows x 30 slots, each row packed (clubs
+   first, 255 = "no pick" only at the end: the game reads a row as its first N slots, and a 255 mid-row showed up
+   in-game as a blank Baltimore pick that pushed the last clubs out, Nov 21, 2026). Built from the season's original
+   order: a drawn lottery reorders round 1 and the standings reorder the other rows, keeping the game's own forfeits
+   (qualifying-offer signings); then cap violators' picks come out of rows 1..rounds and everyone behind moves up.
+   COMP_PICKS are the qualifying-offer compensation picks (not competitive balance: the game makes Competitive
+   Balance A/B itself, from nothing in the save) and PPI_PICKS the prospect promotion picks; violators lose those too. */
+// Which save rows feed which in-game round (VERIFIED Nov 21, 2026 with marker orders on the White Sox save):
+// row 0 = Round 1, row 2 = Round 2, row 4 = Round 3 and every later round (3-8 all matched it). Rows 1 and 3 feed
+// no round we could see. So a penalty can't take Round 3 alone: rounds >= 3 means every round from 3 on.
+const CAP_ROW = {1:0, 2:2, 3:4};
+const capRoundsTxt = R => R>=3 ? 'every round (the game uses one order for every round after Round 2)' : R===2 ? 'rounds 1 and 2' : 'Round 1';
+function capPenRows(R){ return [1,2,3].filter(k=>k<=R).map(k=>CAP_ROW[k]); }
+function capDraftArrays(year){
+  const c=capCfg(), R=c.rounds, b=capBaseOrder(), vio=new Set(capViolators(year).map(v=>v.t)), lot=lotFor(year);
+  const pad=a=>a.concat(Array(30-a.length).fill(255)).slice(0,30);
+  const rows=[];
+  for (let r=0;r<5;r++){
+    let row=b.slots.slice(r*30,r*30+30).filter(t=>t<30);
+    const ord=lot ? (r===0 ? lot.order : lot.rounds) : null;
+    if (ord) row=ord.filter(t=>row.includes(t));
+    if (capPenRows(R).includes(r)) row=row.filter(t=>!vio.has(t));
+    rows.push(...pad(row));
+  }
+  return {DRAFT_ORDER:rows, COMP_PICKS:pad(b.comp.filter(t=>!vio.has(t))), PPI_PICKS:pad(b.ppi.filter(t=>!vio.has(t)))};
+}
+/* ---------- draft lottery (MLB's 2023 CBA format) ----------
+   The 18 clubs that missed the playoffs draw for picks 1-6, with odds by reverse winning percentage (ties: the
+   worse record the season before gets the better odds). Picks 7-18 follow reverse record; the 12 playoff clubs
+   take 19-30 by how far they went (Wild Card Series losers first, the champion last), then reverse record. Later
+   rounds use the same order without the lottery. MLB's revenue-sharing limits on repeat lottery picks aren't
+   applied: revenue-sharing status isn't in the save. A draft year's order comes from the season before: for a
+   rolled-over league's first draft that's the real 2026 season (REAL2026), after that the franchise history. */
+// Real 2026 final standings, 2025 records (tiebreaks) and postseason exit: 1 Wild Card Series, 2 Division Series,
+// 3 LCS, 4 lost the World Series, 5 champion. From the MLB Stats API, Nov 21, 2026.
+const REAL2026 = {"TB": {"w": 98, "l": 64, "w25": 77, "l25": 85, "post": 4}, "NYY": {"w": 93, "l": 68, "w25": 94, "l25": 68, "post": 2}, "BOS": {"w": 87, "l": 75, "w25": 89, "l25": 73, "post": 1}, "BAL": {"w": 79, "l": 82, "w25": 75, "l25": 87, "post": 0}, "TOR": {"w": 79, "l": 83, "w25": 94, "l25": 68, "post": 0}, "CLE": {"w": 85, "l": 77, "w25": 88, "l25": 74, "post": 3}, "CWS": {"w": 84, "l": 78, "w25": 60, "l25": 102, "post": 2}, "MIN": {"w": 77, "l": 85, "w25": 70, "l25": 92, "post": 0}, "DET": {"w": 76, "l": 86, "w25": 87, "l25": 75, "post": 0}, "KC": {"w": 69, "l": 93, "w25": 82, "l25": 80, "post": 0}, "HOU": {"w": 81, "l": 81, "w25": 87, "l25": 75, "post": 1}, "TEX": {"w": 80, "l": 82, "w25": 81, "l25": 81, "post": 0}, "SEA": {"w": 76, "l": 86, "w25": 90, "l25": 72, "post": 0}, "ATH": {"w": 64, "l": 98, "w25": 76, "l25": 86, "post": 0}, "LAA": {"w": 62, "l": 100, "w25": 72, "l25": 90, "post": 0}, "ATL": {"w": 94, "l": 68, "w25": 76, "l25": 86, "post": 2}, "PHI": {"w": 88, "l": 74, "w25": 96, "l25": 66, "post": 1}, "MIA": {"w": 80, "l": 82, "w25": 79, "l25": 83, "post": 0}, "WSH": {"w": 77, "l": 85, "w25": 66, "l25": 96, "post": 0}, "NYM": {"w": 74, "l": 88, "w25": 83, "l25": 79, "post": 0}, "MIL": {"w": 103, "l": 59, "w25": 97, "l25": 65, "post": 5}, "CHC": {"w": 89, "l": 73, "w25": 92, "l25": 70, "post": 1}, "PIT": {"w": 82, "l": 80, "w25": 71, "l25": 91, "post": 0}, "STL": {"w": 77, "l": 85, "w25": 78, "l25": 84, "post": 0}, "CIN": {"w": 75, "l": 87, "w25": 83, "l25": 79, "post": 0}, "LAD": {"w": 100, "l": 62, "w25": 93, "l25": 69, "post": 3}, "SD": {"w": 91, "l": 71, "w25": 90, "l25": 72, "post": 2}, "AZ": {"w": 86, "l": 76, "w25": 80, "l25": 82, "post": 0}, "SF": {"w": 65, "l": 97, "w25": 81, "l25": 81, "post": 0}, "COL": {"w": 58, "l": 104, "w25": 43, "l25": 119, "post": 0}};
+const LOT_ODDS = [16.5,16.5,16.5,13.2,10,7.5,5.5,3.9,2.7,1.8,1.4,1.1,0.9,0.8,0.6,0.5,0.4,0.2];
+const LOT_DRAWN = 6;
+function lotStandings(season){   // {t:{w,l,w0,l0,post}} for a finished season, or null
+  const byAbbr = {}; T.forEach((t,i)=>{ if (i<30) byAbbr[t.abbr]=i; });
+  const h=L.history||{}, real=(L.season.yearOffset||0)>0 && season===2026;
+  if (real){ const o={}; Object.entries(REAL2026).forEach(([a,v])=>{ if (byAbbr[a]!=null) o[byAbbr[a]]={w:v.w,l:v.l,w0:v.w25,l0:v.l25,post:v.post}; }); return Object.keys(o).length===30?o:null; }
+  const e=h[season]; if (!e || !e.standings || !e.post) return null;
+  const prev=h[season-1], o={}; e.standings.forEach(([t,w,l])=>{ if (t<30) o[t]={w,l,w0:0,l0:0,post:+(e.post[t]||0)}; });
+  if (season-1===2026 && (L.season.yearOffset||0)>0) Object.entries(REAL2026).forEach(([a,v])=>{ const t=byAbbr[a]; if (o[t]){ o[t].w0=v.w; o[t].l0=v.l; } });
+  else if (prev && prev.standings) prev.standings.forEach(([t,w,l])=>{ if (o[t]){ o[t].w0=w; o[t].l0=l; } });
+  return Object.keys(o).length===30?o:null;
+}
+function lotBase(year){   // the order before the draw: {non:[worst first], po:[...], rec}
+  const rec=lotStandings(year-1); if (!rec) return null;
+  const pct=(w,l)=>(w+l)?w/(w+l):.5, tie=rng('lottie'+fkey()+year);
+  const key={}; for (let t=0;t<30;t++) key[t]=tie();
+  const cmp=(a,b)=>pct(rec[a].w,rec[a].l)-pct(rec[b].w,rec[b].l) || pct(rec[a].w0,rec[a].l0)-pct(rec[b].w0,rec[b].l0) || key[a]-key[b];
+  const ids=[...Array(30).keys()];
+  return {rec, non:ids.filter(t=>!rec[t].post).sort(cmp), po:ids.filter(t=>rec[t].post).sort((a,b)=>rec[a].post-rec[b].post || cmp(a,b))};
+}
+// Only a rolled-over league's first draft needs Clubhouse's lottery: that order is real life's (the 2026 draft).
+// From the next season on the game runs its own lottery (VERIFIED: its 2028 Round 1 opened CIN, ATH, PHI... not
+// reverse record) and handles forfeits and compensation, so Clubhouse leaves those orders alone.
+const lotOffered = year => (L.season.yearOffset||0)>0 && year-1===2026;
+function lotFor(year){ if (!lotOffered(year)) return null; const s=capStore(); return s.lottery && s.lottery[year] || null; }
+function lotDraw(year){
+  const base=lotBase(year); if (!base) return null;
+  const pool=base.non.map((t,i)=>({t, o:LOT_ODDS[i]||0})), won=[];
+  for (let k=0;k<LOT_DRAWN && pool.length;k++){
+    const tot=pool.reduce((a,x)=>a+x.o,0); let r=Math.random()*tot, i=0;
+    for (; i<pool.length-1; i++){ r-=pool[i].o; if (r<0) break; }
+    won.push(pool.splice(i,1)[0].t);
+  }
+  const order=won.concat(base.non.filter(t=>!won.includes(t)), base.po);
+  const s=capStore(); s.lottery=s.lottery||{}; s.lottery[year]={won, order, rounds:base.non.concat(base.po), at:yrLabel(L.slot.label)}; capPut(s);
+  return s.lottery[year];
+}
+function lotInSave(year){ const d=L.draft||{}, a=capDraftArrays(year), live=x=>(x||[]).filter(t=>t<30).join(',');
+  return (d.slots||[]).join(',')===a.DRAFT_ORDER.join(',') && live(d.comp)===live(a.COMP_PICKS) && live(d.ppi)===live(a.PPI_PICKS); }
+let LOTREVEAL = null;   // picks still to reveal after a draw (6 down to 1)
+function lotteryView(){
+  const y=L.season.year, done=(L.draftResults||[]).length>0, base=lotBase(y), lot=lotFor(y);
+  if (done) return `<p class="explain">The ${y} draft is done. The ${y+1} lottery opens once the ${y} season is over and the game has set up the ${y+1} draft.</p>`;
+  if (!lotOffered(y)){ const d=L.draft||{}, r1=(d.slots||[]).slice(0,30).filter(t=>t<30);
+    return `<p class="explain">The game ran its own lottery for the ${y} draft, so there's nothing to draw here. Clubhouse's lottery is only for a rolled-over league's first draft, whose order still came from real life. Cap penalties for this draft are on <a href="#cap/draft">Salary cap → Draft penalties</a>.</p>
+    ${r1.length?`<section class="card"><div class="card-h"><h2>Round 1 in your save</h2><span class="aside">${r1.length} picks</span></div><div class="capdr"><div class="capdr-g"><ol>${r1.map((t,i)=>`<li><span class="n">${i+1}</span>${logo(T[t],20)} ${esc(T[t].name)}</li>`).join('')}</ol></div></div></section>`:''}`; }
+  if (!base) return `<p class="explain">Clubhouse needs the final ${y-1} standings and playoff results to run the ${y} lottery. Open a save from the end of the ${y-1} postseason once, so the franchise history has them.</p>`;
+  const rec=base.rec, pct=t=>{ const r=rec[t]; return ((r.w+r.l)?r.w/(r.w+r.l):0).toFixed(3).replace(/^0/,''); };
+  const hidden=new Set(LOTREVEAL||[]);
+  const row=(n,t,extra)=>`<li${hidden.has(n)?' class="lot-hide"':''}><span class="n">${n}</span>${logo(T[t],22)} <b>${esc(T[t].name)}</b> <small>${rec[t].w}-${rec[t].l}</small>${extra||''}</li>`;
+  const odds=`<section class="card flush"><div class="card-h"><h2>Lottery odds</h2><span class="aside">${y-1} records · the 18 clubs that missed the playoffs</span></div>
+    <table><thead><tr><th class="l">#</th><th class="l">Club</th><th>Record</th><th>Pct</th><th>Odds of No. 1</th>${lot?'<th class="l">Result</th>':''}</tr></thead><tbody>${base.non.map((t,i)=>{ const k=lot?lot.order.indexOf(t)+1:0;
+      return `<tr><td class="l">${i+1}</td><td class="l">${logo(T[t],20)} ${esc(T[t].name)}</td><td>${rec[t].w}-${rec[t].l}</td><td>${pct(t)}</td><td>${LOT_ODDS[i].toFixed(1)}%</td>${lot?`<td class="l">${hidden.has(k)?'…':`No. ${k}${k<=LOT_DRAWN&&k<i+1?' <span class="capst ok">up '+(i+1-k)+'</span>':k>i+1?' <span class="capst viol">down '+(k-i-1)+'</span>':''}`}</td>`:''}</tr>`; }).join('')}</tbody></table></section>`;
+  const inSave=lot && lotInSave(y);
+  const res = lot ? `<section class="card"><div class="card-h"><h2>Round 1 after the lottery</h2>${inSave?'<span class="capst ok">In your save</span>':'<span class="aside">Not in your save yet</span>'}</div>
+      <div class="capdr"><div class="capdr-g"><h4>Lottery picks</h4><ol class="lot">${lot.order.slice(0,LOT_DRAWN).map((t,i)=>row(i+1,t)).join('')}</ol></div>
+      <div class="capdr-g"><h4>Picks 7–18 · reverse record</h4><ol>${lot.order.slice(LOT_DRAWN,18).map((t,i)=>row(i+LOT_DRAWN+1,t)).join('')}</ol></div>
+      <div class="capdr-g"><h4>Picks 19–30 · playoff clubs</h4><ol>${lot.order.slice(18).map((t,i)=>row(i+19,t)).join('')}</ol></div></div>
+      <p style="margin:12px 0 0">${LOTREVEAL&&LOTREVEAL.length?'<button class="btn sm" data-lot="next">Reveal the next pick</button> <button class="btn ghost sm" data-lot="all">Show all</button>':`${inSave?'':'<button class="btn sm" data-cap="dapply">Write this order to my save</button> '}<button class="btn ghost sm" data-lot="draw">Draw again</button>`}</p></section>`
+    : `<section class="card"><div class="card-h"><h2>Run the ${y} lottery</h2></div><p class="explain" style="margin:0 0 12px">Six balls are drawn for picks 1–6, using the odds below. Nobody below the line can move up more than the six drawn spots, and playoff clubs pick 19–30. Clubhouse keeps the result; you can draw again until you write it to your save.</p><p style="margin:0"><button class="btn sm" data-lot="draw">Run the lottery</button></p></section>`;
+  return `<p class="explain">MLB's draft lottery (2023 rules): the 18 clubs that missed the ${y-1} playoffs draw for the top six picks. After the draw, Clubhouse can write the new Round 1 into your save. The other rounds follow reverse ${y-1} record, and the picks clubs already lost in the game (qualifying-offer signings) stay lost. Competitive Balance rounds A and B are set by the game itself and aren't in the save, so they stay as the game has them. MLB's limits on repeat lottery winners aren't applied: revenue-sharing status isn't in the save.</p>
+    ${res}<div style="margin-top:14px">${odds}</div>`;
+}
+function capDraft(year){
+  const b=capBaseOrder(), d=L.draft||{};
+  const adjArr = CAPDO ? {DRAFT_ORDER:(d.slots||[]).slice(), COMP_PICKS:(d.comp||[]), PPI_PICKS:(d.ppi||[])} : capDraftArrays(year);
+  const comp2=adjArr.COMP_PICKS.filter(t=>t<30), ppi2=adjArr.PPI_PICKS.filter(t=>t<30);
+  const lost=[];
+  const groups=(slots, comp, ppi, isAdj)=>{
+    const g=[{name:'Round 1', r:1, t:[]}, {name:'Prospect promotion picks', r:1.2, t:(ppi||[]).map(t=>({t}))}, {name:'Compensation picks', r:1.5, t:(comp||[]).map(t=>({t}))}];
+    // Save rows -> in-game rounds (CAP_ROW, VERIFIED): row 0 = Round 1, row 2 = Round 2, row 4 = Round 3 and every
+    // later round. Rows 1 and 3 feed no round, so they aren't shown.
+    g.push({name:'Round 2', r:2, t:[]}, {name:'Round 3 and later', r:3, t:[]});
+    const GI={0:0, 2:3, 4:4};
+    for (let k=0;k<150;k++){ const row=Math.floor(k/30), gi=GI[row]; if (gi==null) continue;
+      const t=slots[k], bt=b.slots[k], r=row+1;
+      if (!isAdj){ if (t<30) g[gi].t.push({t, gone:!adjArr.DRAFT_ORDER.slice((r-1)*30,r*30).includes(t)}); continue; }
+      if (t<30){ const jumped=!b.slots.slice((r-1)*30,r*30).includes(t); g[gi].t.push({t, moved:jumped, was:bt}); } }
+    if (!isAdj){ g[1].t.forEach(x=>x.gone=!ppi2.includes(x.t)); g[2].t.forEach(x=>x.gone=!comp2.includes(x.t)&&!adjArr.DRAFT_ORDER.slice(0,30).includes(x.t)); }
+    return g.filter(x=>x.t.length);
+  };
+  const orig=groups(b.slots, b.comp, b.ppi, false), adj=groups(adjArr.DRAFT_ORDER, comp2, ppi2, true);
+  orig.forEach(g=>g.t.forEach(x=>{ if (x.gone && !(g.r===1.5 && adjArr.DRAFT_ORDER.slice(0,30).includes(x.t))) lost.push({t:x.t, round:g.name}); }));
+  return {orig, adj, lost, vio:capViolators(year), arrays:capDraftArrays(year)};
+}
+const capBar = (pay, y) => { const {cap,floor}=capFor(y), max=Math.max(cap*1.15, pay*1.05), w=v=>Math.min(100, v/max*100).toFixed(1)+'%', s=capStatus(pay,y);
+  return `<span class="capbar ${s.k}" title="Floor ${money2(floor)} · payroll ${money2(pay)} · cap ${money2(cap)}"><i style="width:${w(pay)}"></i><b class="fl" style="left:${w(floor)}"></b><b class="cp" style="left:${w(cap)}"></b></span>`; };
+const capChip = s => `<span class="capst ${s.k}">${s.l}${s.d?` · ${money2(s.d)}`:''}</span>`;
+function capBudgetPanel(){
+  const c=capCfg(), y=L.season.year, {cap}=capFor(y), b=L.budgets;
+  if (!b) return '';
+  const over=b.map((v,t)=>({t,v})).filter(x=>x.t!==ME && x.v>cap+1);
+  return `<section class="card" style="margin-top:14px"><div class="card-h"><h2>Make the AI respect the cap</h2><span class="aside">Optional · changes your save, reversible</span></div>
+    <p class="explain" style="margin:0 0 10px">The game gives every club a budget and its AI stays within it when signing and trading. Clubhouse can lower every AI club's budget that's above the cap to the cap (${money2(cap)}), so they stop adding payroll past it. Clubs with smaller budgets keep theirs. It can't make them shed contracts they already have, and it doesn't touch your club's budget. The game rebuilds every club's budget at the start of each season, so this lasts one season. To keep it every season, set <a href="#cap/settings">Rules → AI budgets each new season</a> to apply automatically. Close the game first. Clubhouse saves the original budgets and backs up the save, and <b>Restore original budgets</b> puts them back during that season. Untested in-game so far: sim a little and check that AI clubs behave.</p>
+    <div class="capbud">${b.map((v,t)=>`<span class="${t===ME?'me':v>cap+1?'hi':''}">${esc(T[t].abbr)} <b>${money2(v)}</b></span>`).join('')}</div>
+    <p style="margin:12px 0 0"><button class="btn sm" data-cap="apply">Apply the cap to AI budgets</button> <button class="btn ghost sm" data-cap="restore" id="capRestore" hidden>Restore original budgets</button> <span class="muted" id="capBudNote">${over.length} AI club${over.length===1?'':'s'} ${over.length===1?'has':'have'} a budget above the cap.</span></p></section>`;
+}
+function capTeamView(tid, head){
+  const t=T[tid]; if (!t) return head('Team not found');
+  applyTheme(t);
+  const y=L.season.year, {cap,floor}=capFor(y), c=capCfg(), pay=capPay(tid), s=capStatus(pay.total, y);
+  const proj=[1,2,3].map(k=>({y:y+k, v:pay.rows.filter(x=>x.yrs>k).reduce((a,x)=>a+x.aav,0), cap:capFor(y+k).cap, floor:capFor(y+k).floor}));
+  const warn=x=>[x.yrs>c.maxYears?`<span class="chipx" title="More than ${c.maxYears} seasons left">${x.yrs} yrs</span>`:'', x.aav>cap*c.maxPct/100?`<span class="chipx hot" title="More than ${c.maxPct}% of the cap">${Math.round(x.aav/cap*100)}% of cap</span>`:''].join(' ');
+  return `${head(`${t.name} payroll`, 'Salary cap')}
+    <div class="grid g-eq">
+      <section class="card"><div class="card-h"><h2>${y} cap payroll</h2>${capChip(s)}</div>
+        <div class="capbig"><b>${money2(pay.total)}</b><small>${c.on?`${money2(Math.abs(cap-pay.total))} ${cap>=pay.total?'under':'over'} the ${money2(cap)} cap`:''}${c.floorOn?` · ${money2(Math.abs(pay.total-floor))} ${pay.total>=floor?'above':'below'} the ${money2(floor)} floor`:''}</small></div>
+        ${capBar(pay.total, y)}<div class="caplegend"><span>Floor</span><span>Cap</span></div></section>
+      <section class="card"><div class="card-h"><h2>Next three seasons</h2><span class="aside">Contracts already signed</span></div>
+        <table><thead><tr><th class="l">Season</th><th>Committed</th><th>Cap</th><th>Floor</th></tr></thead><tbody>${proj.map(p=>`<tr><td class="l">${p.y}</td><td>${money2(p.v)}</td><td>${money2(p.cap)}</td><td>${money2(p.floor)}</td></tr>`).join('')}</tbody></table>
+        <p class="sccap-n" style="padding:0 16px 14px">Arbitration raises, pre-arbitration renewals and new signings will add to these.</p></section></div>
+    <section class="card flush" style="margin-top:14px"><div class="card-h"><h2>Contracts counted</h2><span class="aside">${pay.rows.length} players on major-league deals</span></div>${gtable('capt',[
+      {k:'name',l:'Player',cls:'l',v:x=>x.p.last,f:x=>plinkH(x.p),asc:true},
+      {k:'lvl',l:'Level',cls:'l',v:x=>LV_ORDER.indexOf(x.p.level),f:x=>orgCell(x.p),asc:true},
+      {k:'aav',l:'Per year',v:x=>x.aav,f:x=>money2(x.aav)},
+      {k:'yrs',l:'Seasons left',v:x=>x.yrs},
+      {k:'tot',l:'Total left',v:x=>x.p.contract.total,f:x=>money2(x.p.contract.total)},
+      {k:'pct',l:'Share of cap',v:x=>x.aav/cap,f:x=>(x.aav/cap*100).toFixed(1)+'%'},
+      {k:'warn',l:'Flags',cls:'l',v:x=>x.yrs>c.maxYears||x.aav>cap*c.maxPct/100?1:0,f:warn},
+    ], pay.rows, {sort:'aav'})}</section>
+    <p class="explain" style="margin-top:12px">Counts every player in the organization on a major-league contract (the save doesn't mark the 40-man roster; minor leaguers carry no major-league deal), at total ÷ seasons left. Dead money and salary kept in trades aren't in the save, so they aren't counted. Flags are information only: more than ${c.maxYears} seasons left, or more than ${c.maxPct}% of the cap a year.</p>`;
+}
+function capDraftView(){
+  const y=L.season.year, done=(L.draftResults||[]).length>0, cur=capDraft(y), next=capViolators(y+1), c=capCfg();
+  const col=groups=>{ let n=0; return groups.map(g=>`<div class="capdr-g"><h4>${g.name}</h4><ol>${g.t.map(x=>{ n++;
+    return `<li class="${x.moved?'moved':''}${x.gone?' lost':''}"><span class="n">${n}</span>${logo(T[x.t],18)} ${esc(T[x.t].abbr)}${x.moved?` <small>moved up · ${esc(T[x.was].abbr)}'s slot</small>`:''}</li>`; }).join('')}</ol></div>`).join(''); };
+  const log=[]; Object.entries(capStore().seasons).filter(([sy])=>+sy>=capStart()).forEach(([sy,st])=>Object.entries(st.viol||{}).forEach(([t,v])=>log.push({sy:+sy, t:+t, ...v})));
+  log.sort((a,b)=>b.sy-a.sy||a.t-b.t);
+  const d0=L.draft||{}, want=cur.arrays, live=a=>(a||[]).filter(t=>t<30).join(',');
+  const stale = !!CAPDO && ((d0.slots||[]).join(',')!==want.DRAFT_ORDER.join(',') || live(d0.comp)!==live(want.COMP_PICKS) || live(d0.ppi)!==live(want.PPI_PICKS));
+  const ingame = CAPDO
+    ? `<section class="card" style="margin-bottom:14px"><div class="card-h"><h2>Penalties are in your save</h2><span class="capst ok">Applied in-game</span></div><p class="explain" style="margin:0 0 10px">The game will draft from the adjusted order below. <b>Restore the original draft order</b> puts the save's order back exactly as it was.${stale?' <b>Your rules have changed since then:</b> <b>Update my save</b> rewrites the order with the current rules.':''}</p><p style="margin:0">${stale&&!done?'<button class="btn sm" data-cap="dapply">Update my save</button> ':''}<button class="btn ghost sm" data-cap="drestore">Restore the original draft order</button></p></section>`
+    : (!done && cur.lost.length ? `<section class="card" style="margin-bottom:14px"><div class="card-h"><h2>Apply in-game</h2><span class="aside">Optional · changes your save, reversible</span></div><p class="explain" style="margin:0 0 10px">Clubhouse can write this adjusted order into your save, so the game itself skips the forfeited picks: the same way it blanks picks clubs lose for signing qualifying-offer free agents. Close the game first. The original order is saved and your save is backed up; <b>Restore the original draft order</b> undoes it. Not yet tested in-game: keep a copy of your franchise save, sim to the draft and check the picks.</p><p style="margin:0"><button class="btn sm" data-cap="dapply">Apply penalties in-game</button></p></section>` : '');
+  return `<p class="explain">A club that's over the cap${c.floorPenalty?' or under the floor':''} ${c.cps.dl||c.cps.end?`at a checkpoint loses its picks in ${capRoundsTxt(c.rounds)} of the next draft (Opening Day: this summer's draft; ${[c.cps.dl&&'trade deadline',c.cps.end&&'season end'].filter(Boolean).join(' and ')}: next year's).`:`on Opening Day loses its picks in ${capRoundsTxt(c.rounds)} of that summer's draft. Opening Day is the only check; turn on the trade deadline or season end in Rules to add them.`} Forfeited picks are removed and every club behind them moves up a pick, in every round; violators lose their compensation and prospect promotion picks too. Penalties count from the ${capStart()} season on.</p>
+    ${done?`<p class="explain"><b>The ${y} draft has already happened.</b> Penalties now count toward the ${y+1} draft${next.length?`: ${next.map(v=>esc(T[v.t].abbr)).join(', ')}`:''}.</p>`:''}
+    ${ingame}
+    ${!done&&(cur.lost.length||CAPDO)?`<div class="grid g-eq"><section class="card"><div class="card-h"><h2>Original order</h2><span class="aside">${CAPDO?'Before Clubhouse changed it':'From the save'}</span></div><div class="capdr">${col(cur.orig)}</div></section>
+      <section class="card"><div class="card-h"><h2>Adjusted order</h2><span class="aside">${cur.lost.length} pick${cur.lost.length===1?'':'s'} forfeited${CAPDO?' · in your save':''}</span></div><div class="capdr">${col(cur.adj)}</div></section></div>`
+      :!done?`<section class="card"><div class="card-h"><h2>${y} draft</h2></div><p class="explain" style="margin:0">No club has forfeited picks for this draft${capStore().seasons[y]&&capStore().seasons[y].cp.od?'':' yet. The first check is Opening Day'}.</p></section>`:''}
+    <section class="card flush" style="margin-top:14px"><div class="card-h"><h2>Penalty log</h2><span class="aside">Every violation on record for this franchise</span></div>
+      ${log.length?`<table><thead><tr><th class="l">Season</th><th class="l">Club</th><th class="l">Checkpoint</th><th class="l">Violation</th><th>By</th><th class="l">Penalty</th></tr></thead><tbody>${log.map(v=>`<tr><td class="l">${v.sy}</td><td class="l">${logo(T[v.t],20)} ${esc(T[v.t].name)}</td><td class="l">${CAP_CP[v.cp]}</td><td class="l">${v.type==='cap'?'Over the cap':'Under the floor'}</td><td>${money2(v.amt)}</td><td class="l">${capRoundsTxt(v.rounds||2).replace(/^./,x=>x.toUpperCase())} of the ${v.draft} draft</td></tr>`).join('')}</tbody></table>`:'<p class="explain" style="padding:0 16px 14px">No violations yet.</p>'}</section>`;
+}
+function capSettingsView(){
+  const c=capCfg(), y=L.season.year, f=capFor(y);
+  const chk=(k,l,v)=>`<label class="capset"><input type="checkbox" data-capcfg="${k}" ${v?'checked':''}> ${l}</label>`;
+  const num=(k,l,v,step,suf)=>`<label class="capset"><span>${l}</span><input type="number" step="${step}" data-capcfg="${k}" value="${v}">${suf||''}</label>`;
+  return `<section class="card"><div class="card-h"><h2>Rules</h2><span class="aside">Saved on this PC for every franchise</span></div><div class="capsets">
+      ${chk('on','Salary cap',c.on)}${num('capM','Cap ($M)',(c.cap/1e6).toFixed(1),.1)}
+      ${chk('floorOn','Salary floor',c.floorOn)}${num('floorM','Floor ($M)',(c.floor/1e6).toFixed(1),.1)}
+      ${chk('floorPenalty','Clubs under the floor lose picks too',c.floorPenalty)}
+      ${num('growth','Growth each season',c.growth,.1,'%')}
+      ${num('rounds','Rounds forfeited (3 = every round)',c.rounds,1)}
+      ${num('start','Penalties start with the season',capStart(),1)}
+      ${chk('cp_od','Check on Opening Day',c.cps.od)}${chk('cp_dl','Check at the trade deadline (cap only)',c.cps.dl)}${chk('cp_end','Check at season end',c.cps.end)}
+      ${chk('exempt','Exempt my club',c.exempt)}
+      <label class="capset"><span>AI budgets each new season</span><select data-capcfg="keepBudgets"><option value="" ${!c.keepBudgets?'selected':''}>Leave them to the game</option><option value="ask" ${c.keepBudgets==='ask'?'selected':''}>Ask me to apply the cap</option><option value="auto" ${c.keepBudgets==='auto'?'selected':''}>Apply the cap automatically</option></select></label>
+      ${num('maxYears','Flag deals longer than',c.maxYears,1,' seasons')}${num('maxPct','Flag deals above',c.maxPct,1,'% of the cap')}
+    </div><p class="explain" style="padding:0 16px 14px">This season (${y}): cap ${money2(f.cap)}, floor ${money2(f.floor)}. Both grow by the set percentage each season from ${capBase()}. Defaults follow MLB's 2027 proposal. ${c.floorPenalty?'':'Floor penalties are off by default: most AI clubs start far below the floor and the game can\'t make them spend.'} Changes apply to checkpoints from now on; violations already recorded stay.</p></section>`;
+}
+views.cap = function(tab){
+  capSync();
+  const head=(title, kick)=>`<div class="page-h"><div><div class="kicker">${kick||L.season.year+' salary cap'}</div><h2>${title}</h2></div>${tabs('cap',[['','League'],['draft','Draft penalties'],['settings','Rules']],tab&&tab[0]==='t'?'':tab)}</div>`;
+  if (tab && /^t\d+$/.test(tab)) return capTeamView(+tab.slice(1), head);
+  if (tab==='draft') return head('Draft penalties')+capDraftView();
+  if (tab==='settings') return head('Cap rules')+capSettingsView();
+  const capBan=capBudgetBanner();
+  applyTheme(T[ME]);
+  const y=L.season.year, {cap,floor}=capFor(y), c=capCfg();
+  const rows=T.slice(0,30).map(t=>{ const p=capPay(t.id).total; return {t, p, s:capStatus(p,y)}; });
+  const over=rows.filter(x=>c.on&&x.p>cap).length, under=rows.filter(x=>c.floorOn&&x.p<floor).length;
+  const st=capStore().seasons[y]||{cp:{}};
+  return head('Salary cap')+capBan+`
+    <div class="tiles">
+      <div class="tile"><span>Cap</span><b>${c.on?money2(cap):'Off'}</b><small>${c.growth}% growth a season</small></div>
+      <div class="tile"><span>Floor</span><b>${c.floorOn?money2(floor):'Off'}</b><small>${c.floorPenalty?'Penalized':'Tracked, not penalized'}</small></div>
+      <div class="tile"><span>Over the cap</span><b>${over}</b><small>club${over===1?'':'s'} right now</small></div>
+      <div class="tile"><span>Under the floor</span><b>${under}</b><small>club${under===1?'':'s'} right now</small></div>
+    </div>
+    <p class="explain">Checkpoints this season: ${Object.keys(CAP_CP).filter(k=>c.cps[k]).map(k=>`${CAP_CP[k]} ${st.cp[k]?`<b>recorded</b> (${esc(st.cp[k].label)})`:'not yet'}`).join(' · ')}. Clubhouse records each one from your first save on or after it.</p>
+    <section class="card flush"><div class="card-h"><h2>All 30 clubs</h2><span class="aside">Major-league contracts at total ÷ seasons left</span></div>${gtable('cap',[
+      {k:'team',l:'Club',cls:'l',v:x=>x.t.name,f:x=>`<a class="pl" href="#cap/t${x.t.id}">${logo(x.t,20)} ${esc(x.t.name)}</a>`,asc:true},
+      {k:'pay',l:'Payroll',v:x=>x.p,f:x=>money2(x.p)},
+      {k:'bar',l:'Floor · payroll · cap',cls:'l',v:x=>x.p,f:x=>capBar(x.p,y)},
+      {k:'room',l:'Cap room',v:x=>cap-x.p,f:x=>`<span class="${cap-x.p<0?'neg':''}">${money2(Math.abs(cap-x.p))}${cap-x.p<0?' over':''}</span>`},
+      {k:'floor',l:'Vs floor',v:x=>x.p-floor,f:x=>`<span class="${x.p-floor<0?'neg':''}">${x.p>=floor?'+':'−'}${money2(Math.abs(x.p-floor))}</span>`},
+      {k:'st',l:'Status',cls:'l',v:x=>({viol:0,warn:1,ok:2})[x.s.k],f:x=>capChip(x.s),asc:true},
+      {k:'bud',l:'Game budget',v:x=>(L.budgets||[])[x.t.id]||0,f:x=>L.budgets?money2(L.budgets[x.t.id]):'–'},
+    ], rows, {sort:'pay'})}</section>
+    ${capBudgetPanel()}`;
+};
+const _capRender = views.cap; views.cap = function(tab){ setTimeout(capRefreshBudgetState, 0); return _capRender(tab); };
+const _capRender2 = views.cap; views.cap = function(tab){ if (tab==='draft' && CAPDO===null && !views.cap._doLoaded){ views.cap._doLoaded=true; capLoadDO().then(()=>render(true)); } return _capRender2(tab); };
+async function capRefreshBudgetState(){
+  try { const r=await api().cap_budget_state(); const b=$('#capRestore'); if (b) b.hidden=!r.changed; } catch {}
+}
+function capConfirm(kind){
+  const y=L.season.year, {cap}=capFor(y), b=L.budgets||[];
+  const ai=[...Array(30).keys()].filter(t=>t!==ME);
+  const txt = kind==='apply'
+    ? `Every AI club with a budget above ${money2(cap)} comes down to ${money2(cap)}; clubs under it keep their budgets. Your club's budget doesn't change. The original budgets are saved first, and your save is backed up.`
+    : `Every club's budget goes back to the one the game set for this season.${capCfg().keepBudgets==='auto'?' This also turns off automatic cap budgets, so they stay normal in later seasons too.':''}`;
+  $('#modal').innerHTML=`<div class="modal" data-act="sc-bg"><div class="box scmodal" style="max-width:540px" role="dialog" aria-label="Team budgets">
+    <div class="scm-h"><div><small>Team budgets</small><h3>${kind==='apply'?'Apply the cap to AI budgets':'Restore original budgets'}</h3></div></div>
+    <div class="scm-b"><p>${txt}</p><p class="scm-cap"><b>Close the game and the emulator first.</b> This writes to your save (${esc(yrLabel(L.slot.label))}).</p></div>
+    <div class="press-foot"><span></span><span><button class="btn ghost sm" data-cap="close">Cancel</button> <button class="btn sm" data-cap="${kind}-ok">Write to my save</button></span></div></div></div>`;
+  return ai;
+}
+document.addEventListener('click', async e=>{
+document.addEventListener('click', e=>{
+  const b=e.target.closest('[data-lot]'); if (!b) return;
+  const a=b.dataset.lot, y=L.season.year;
+  if (a==='draw' && lotFor(y)){   // Clubhouse's own dialog: window.confirm didn't hand OK back in the app window
+    $('#modal').innerHTML=`<div class="modal" data-act="sc-bg"><div class="box scmodal" style="max-width:480px" role="dialog" aria-label="Draw again">
+      <div class="scm-h"><div><small>Draft lottery</small><h3>Draw the lottery again?</h3></div></div>
+      <div class="scm-b"><p>The current result will be replaced.${lotInSave(y)?' Your save keeps the current order until you write the new one.':''}</p></div>
+      <div class="press-foot"><span></span><span><button class="btn ghost sm" data-cap="close">Cancel</button> <button class="btn sm" data-lot="draw-ok">Draw again</button></span></div></div></div>`;
+    return;
+  }
+  if (a==='draw' || a==='draw-ok'){
+    $('#modal').innerHTML='';
+    const r=lotDraw(y); if (!r) return;
+    LOTREVEAL = matchMedia('(prefers-reduced-motion: reduce)').matches ? null : [1,2,3,4,5,6];
+  } else if (a==='next'){ if (LOTREVEAL) LOTREVEAL.pop(); if (LOTREVEAL && !LOTREVEAL.length) LOTREVEAL=null; }
+  else if (a==='all') LOTREVEAL=null;
+  render(true);
+});
+  const b=e.target.closest('[data-cap]'); if (!b) return;
+  const a=b.dataset.cap;
+  if (a==='apply'||a==='restore'){ capConfirm(a); return; }
+  if (a==='close'){ $('#modal').innerHTML=''; return; }
+  if (a==='dapply'||a==='drestore'){
+    const cur=capDraft(L.season.year);
+    $('#modal').innerHTML=`<div class="modal" data-act="sc-bg"><div class="box scmodal" style="max-width:540px" role="dialog" aria-label="Draft order">
+      <div class="scm-h"><div><small>Draft order</small><h3>${a==='dapply'?'Write the draft order to my save':'Restore the original draft order'}</h3></div></div>
+      <div class="scm-b"><p>${a==='dapply'?`${cur.lost.length} forfeited pick${cur.lost.length===1?'':'s'} ${cur.vio.length?`(${[...new Set(cur.vio.map(v=>T[v.t].abbr))].join(', ')}) `:''}${cur.vio.length?'come out of':'are taken from'} the ${L.season.year} draft order in your save${lotFor(L.season.year)?', and Round 1 is set by your lottery; the other rounds follow reverse record':''}. The original order is saved first, and your save is backed up.`:'The draft order goes back to exactly what it was before Clubhouse changed it.'}</p>
+      <p class="scm-cap"><b>Close the game and the emulator first.</b> This writes to your save (${esc(yrLabel(L.slot.label))}).</p></div>
+      <div class="press-foot"><span></span><span><button class="btn ghost sm" data-cap="close">Cancel</button> <button class="btn sm" data-cap="${a}-ok">Write to my save</button></span></div></div></div>`;
+    return;
+  }
+  if (a==='dapply-ok'||a==='drestore-ok'){
+    b.disabled=true; b.textContent='Writing…';
+    let r; try { r = a==='dapply-ok' ? await api().apply_draft_penalties(L.season.year, capDraftArrays(L.season.year)) : await api().restore_draft_order(); } catch(err){ r={ok:false, error:String(err)}; }
+    $('#modal').innerHTML='';
+    if (!r||!r.ok){ toast(`<b>Nothing written</b>${esc((r&&r.error)||'Something went wrong.')}`); return; }
+    if (!r.written){ toast('<b>Nothing to change</b>The draft order already matches.'); return; }
+    await loadLeague(); await capLoadDO();
+    toast(a==='dapply-ok'?'<b>Draft order written</b>The game will draft from this order.':'<b>Draft order restored</b>Your save has its original draft order again.','ok');
+    render(true); return;
+  }
+  if (a==='apply-ok'||a==='restore-ok'){
+    b.disabled=true; b.textContent='Writing…';
+    const {cap}=capFor(L.season.year), ai=[...Array(30).keys()].filter(t=>t!==ME);
+    // Restoring is the manual way back to normal: it ends automatic mode first, or the reload would re-apply the cap.
+    const cfg0=capCfg(), wasAuto=a==='restore-ok' && cfg0.keepBudgets==='auto';
+    if (wasAuto) capSaveCfg({...cfg0, keepBudgets:''});
+    let r; try { r = a==='apply-ok' ? await api().apply_cap_budgets(Math.round(cap), ai) : await api().restore_budgets(); } catch(err){ r={ok:false, error:String(err)}; }
+    $('#modal').innerHTML='';
+    if (wasAuto && !(r&&r.ok)) capSaveCfg(cfg0);
+    if (!r||!r.ok){ toast(`<b>Nothing written</b>${esc((r&&r.error)||'Something went wrong.')}`); return; }
+    if (!r.written){ toast('<b>Nothing to change</b>The budgets already match.'); return; }
+    await loadLeague();
+    toast(a==='apply-ok'?`<b>Budgets set to the cap</b>${r.written} AI clubs came down to ${money2(cap)}; smaller budgets are unchanged.`:`<b>Budgets restored</b>Every club has its original budget again.${wasAuto?' Automatic cap budgets are now off.':''}`,'ok');
+    render(true);
+  }
+});
+document.addEventListener('change', e=>{
+  const el=e.target.closest('[data-capcfg]'); if (!el) return;
+  const c=capCfg(), k=el.dataset.capcfg, v=el.type==='checkbox'?el.checked:el.value;
+  if (k==='capM') c.cap=Math.max(1, +v)*1e6; else if (k==='floorM') c.floor=Math.max(0, +v)*1e6;
+  else if (k.startsWith('cp_')) c.cps[k.slice(3)]=v;
+  else if (['growth','rounds','maxYears','maxPct'].includes(k)) c[k]=Math.max(0, +v);
+  else if (k==='start') c.start=Math.round(+v)||null;
+  else c[k]=v;
+  if (k==='rounds') c.rounds=Math.min(3, Math.max(1, Math.round(c.rounds)));
+  capSaveCfg(c); render(true);
+});
+
 const FAF={pos:'',team:''};
 Object.assign(views, {
   fa(tab){
@@ -4944,6 +5363,34 @@ const sprGapChip = b => { const g=Math.round(b.gap);
   return g===0?'<span class="chipx hot">Dead even</span>':g>0?`<span class="chipx ${g<=1?'hot':''}">${esc(b.a.last)} by ${g}</span>`:`<span class="chipx good">${esc(b.b.last)} rates ${-g} higher</span>`; };
 const sprPchip = p => `<div class="pchip">${head(p,34,true)}<div><a class="pl" href="#p/${p.id}" data-pid="${p.id}">${esc(p.first)} ${esc(p.last)}</a>
   <small>${esc(p.role)} · ${p.level&&p.level!=='MLB'?esc(p.level):'in camp'} · age ${p.age}</small></div><span class="spr-r">${rt(p.ovr,1)}<small>Pot ${potTxt(p)}</small></span></div>`;
+/* "Keep AI budgets at the cap every season": the game rebuilds every budget at the new season, so Clubhouse asks
+   once a season (never writes on its own). Applied = 10+ clubs at this season's cap, as budgets.applied() checks. */
+let CAPBUD_ERR = '', CAPBUD_BUSY = false;
+/* Automatic mode: on each load, if this season's budgets aren't at the cap, apply it (same safe path as the button:
+   refuses while the game runs, backs up, keeps the originals). Stops when the player restores the originals. */
+async function capAutoBudgets(){
+  if (CAPBUD_BUSY || !L || !L.budgets || capCfg().keepBudgets!=='auto' || L.season.phase==='postseason' || capBudApplied()) return;
+  CAPBUD_BUSY=true;
+  try {
+    const y=L.season.year, cap=Math.round(capFor(y).cap), ai=[...Array(30).keys()].filter(t=>t!==ME);
+    let r; try { r=await api().apply_cap_budgets(cap, ai); } catch(err){ r={ok:false, error:String(err)}; }
+    if (r && r.ok && r.written){ CAPBUD_ERR=''; await loadLeague(); render(true); toast(`<b>AI budgets set to the cap</b>The game rebuilt budgets for ${y}; ${r.written} AI clubs came down to ${money2(cap)}; smaller budgets are unchanged. Your save was backed up first.`,'ok'); }
+    else if (r && !r.ok){ const first=CAPBUD_ERR!==r.error; CAPBUD_ERR=r.error||'Something went wrong.'; if (first) render(true); }
+  } finally { CAPBUD_BUSY=false; }
+}
+function capBudApplied(){ const b=L&&L.budgets; if (!b) return false; const cap=Math.round(capFor(L.season.year).cap); return !b.some((v,t)=>t!==ME && v>cap); }   // nothing left above the cap
+function capBudgetBanner(){
+  if (!L || !L.budgets || !capCfg().keepBudgets || L.season.phase==='postseason' || capBudApplied()) return '';
+  const y=L.season.year, st=capStore(); if (st.budAsk && st.budAsk[y]) return '';
+  const auto=capCfg().keepBudgets==='auto';
+  return `<div class="spban" role="region" aria-label="AI budgets"><div><small>New season · ${y}</small><b>${auto?'The cap isn’t in your AI budgets yet':'Apply the cap to AI budgets again?'}</b>
+    <span>The game rebuilt every club's budget for ${y}. ${auto?`Clubhouse applies the ${money2(capFor(y).cap)} cap automatically when it opens a save with the game closed${CAPBUD_ERR?`: last try said "${esc(CAPBUD_ERR)}"`:''}.`:`Applying lowers every AI budget above the ${money2(capFor(y).cap)} cap to the cap for this season. Close the game first.`}</span></div>
+    <span><button class="btn sm" data-cap="apply">Apply the cap</button> <button class="btn ghost sm" data-capbud="later">Not this season</button></span></div>`;
+}
+document.addEventListener('click', e=>{
+  const b=e.target.closest('[data-capbud]'); if (!b) return;
+  const s=capStore(); s.budAsk=s.budAsk||{}; s.budAsk[L.season.year]='later'; capPut(s); render(true);
+});
 function springBanner(){
   const ph=L&&springPhase(); if (!ph) return '';
   const pr=springProj(ME), bt=springBattles(ME);
@@ -6960,6 +7407,9 @@ async function loadLeague(){
   P = new Map(L.players.map(p => [p.id, p])); T = L.teams; ME = L.season.userTeam;
   if (!HEADS) { try { HEADS = await api().get_heads() || []; } catch { HEADS = []; } }
   assignHeads();
+  try { await capLoadStore(); capSync(); } catch (err) { console.error(err); }   // salary cap checkpoints, recorded once
+  setTimeout(()=>{ capAutoBudgets(); }, 0);   // "apply the cap automatically" (runs after this load finishes)
+  CAPDO = null; if (views.cap) views.cap._doLoaded = false; if (views.draft) views.draft._doLoaded = false;   // re-read the stored original draft order for this save
   ((L.draft && L.draft.prospects) || []).forEach(p => P.set(p.id, p));   // prospects open in the profile drawer too
   THEMES.clear(); CACHE = {};
   (L.draftResults||[]).forEach(r=>{ const pr=r.prospect!=null&&P.get(r.prospect); if (pr) pr.drafted={team:r.team, pick:r.pick, signed:r.signed, bonus:r.bonus}; });

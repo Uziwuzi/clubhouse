@@ -18,6 +18,25 @@ _MONTHS = {m: i for i, m in enumerate(("January", "February", "March", "April", 
                                        "September", "October", "November", "December"), 1)}
 
 
+
+ROUND_LEVEL = {"wc": 1, "ds": 2, "lcs": 3, "ws": 4}
+
+
+def _post_exits(playoffs) -> dict | None:
+    """{team: 1 lost the Wild Card Series, 2 Division Series, 3 LCS, 4 World Series, 5 champion} for every club
+    the save has in the postseason; clubs still alive get their current round."""
+    if not playoffs:
+        return None
+    out = {}
+    for s in playoffs:
+        lvl = ROUND_LEVEL.get(s.get("round"))
+        if not lvl:
+            continue
+        for t in (s["t1"], s["t2"]):
+            v = lvl + 1 if lvl == 4 and s.get("winner") == t else lvl
+            out[str(t)] = max(out.get(str(t), 0), v)
+    return out or None
+
 def label_before_opening(label: str | None, data: dict) -> bool:
     """True when a stored slot label ("Royals March 13, 2026") is from spring training of this save's season.
     Clubhouse 1.7 recorded spring saves as the regular season; this lets later loads drop those entries."""
@@ -57,6 +76,9 @@ def update_history(data: dict, folder: Path, franchise: str | None) -> None:
             "farm": [[c["id"], c["level"], c["record"]["w"], c["record"]["l"]] for c in clubs],
             "draft": cur.get("draft") or [],
         }
+        post = _post_exits(data.get("playoffs")) or cur.get("post")
+        if post:
+            entry["post"] = post   # how far each playoff club went: the draft lottery's order needs it
         if data.get("draftResults"):
             pros = {p["id"]: p for p in ((data.get("draft") or {}).get("prospects") or [])}
             entry["draft"] = [{**{k: r[k] for k in ("first", "last", "pick", "team", "signed", "bonus")},

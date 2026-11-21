@@ -265,6 +265,17 @@ def _career(t, pid: int, pos: str, start_year: int | None = None) -> list:
     return sorted(out, key=lambda x: x["y"])
 
 
+def _budgets(db: Database):
+    """Each MLB team's budget from D_STRATEGIES (one u32 per team, dollars). LIKELY: the field is named BUDGET,
+    and its values track market size (Dodgers $533M, Marlins $76.5M on the White Sox Apr 1 save). The game
+    respects budgets unless D_GAME_OPTIONS.IGNORE_BUDGETS is set (0 in every save seen)."""
+    if not db.find("D_STRATEGIES"):
+        return None
+    r = db.largest("D_STRATEGIES").rows[0]
+    b = r.get("BUDGET")
+    return list(b[:MLB_TEAMS]) if isinstance(b, list) else None
+
+
 def _draft_results(db: Database):
     """This year's draft, once it has happened. VERIFIED on the Mets Aug 2, 2026 save:
     - D_DRAFT_PICKS (200 rows, empty before the draft): name, AMATEUR_INX_16BT = row in D_AMATUER_PLAYER
@@ -387,11 +398,19 @@ def _draft(db: Database, user_team: int | None = None):
             "cert": (r["SCOUTED_CERT"][user_team] if user_team is not None and user_team < len(r.get("SCOUTED_CERT") or []) else None),
             "team": None, "club": None, "injury": None, "contract": None, "stats": {},
         })
-    order = []
+    order, slots, comp, ppi = [], [], [], []
     dd = db.find("D_DRAFT_DATA")
     if dd:
-        order = [x for x in db.read(dd[0][0]).rows[0]["DRAFT_ORDER"] if x < MLB_TEAMS]
-    return {"prospects": prospects, "order": order}
+        r = db.read(dd[0][0]).rows[0]
+        order = [x for x in r["DRAFT_ORDER"] if x < MLB_TEAMS]
+        # D_DRAFT_DATA (VERIFIED layout on the Mets Aug 2 and White Sox Apr 1 saves): DRAFT_ORDER = 5 rounds x 30
+        # slots of team indexes, round 1 first; 255 = a forfeited pick (the game itself blanks picks lost for
+        # signing qualifying-offer free agents: NYM/BOS/DET/TOR/LAD in round 3). COMP_PICKS = the compensation /
+        # competitive balance picks after round 1, in order; PPI_PICKS = prospect promotion incentive picks.
+        slots = list(r["DRAFT_ORDER"])
+        comp = [x for x in r["COMP_PICKS"] if x < MLB_TEAMS]
+        ppi = [x for x in r["PPI_PICKS"] if x < MLB_TEAMS]
+    return {"prospects": prospects, "order": order, "slots": slots, "comp": comp, "ppi": ppi}
 
 
 def _upcoming(db: Database, prof_t, year: int, user_team: int, away: int, home: int, day0: dt.date | None = None):
@@ -701,6 +720,7 @@ def export_league(db: Database) -> dict:
         "playoffs": _playoffs(db),
         "allStar": _all_star(db, year),
         "draft": _draft(db, user_team),
+        "budgets": _budgets(db),
         "draftResults": _draft_results(db),
         "quirks": {str(k): {"name": n, "desc": d} for k, (n, d) in QUIRKS.items()},
         "teams": teams,

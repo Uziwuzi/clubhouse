@@ -364,6 +364,86 @@ class Api:
             res["reload"] = lg.reload()
         return res
 
+    # -- salary cap: AI budgets (opt-in, reversible save edit; see mlb26save/budgets.py) ---------------------
+    def _newest_slot(self):
+        lg = self._league
+        with lg.lock:
+            slot, loaded, fs = lg.slot, lg.loaded_sig, lg.franchises
+        if not slot or lg.json is None:
+            return None, "No save loaded."
+        if _signature(slot) != loaded:
+            return None, "The save changed since Clubhouse loaded it. Load the new save, then try again."
+        f = next((f for f in fs if f["id"] == lg.franchise), None)
+        if f and Path(f["latest"]["save"]) != slot[0]:
+            return None, "There's a newer save of this franchise. Load it, then try again."
+        return slot, None
+
+    def cap_budget_state(self) -> dict:
+        from mlb26save import budgets
+        fid = self._league.franchise
+        store = CONFIG_PATH.parent / "budgets"
+        if not fid or not budgets.has_original(fid, store):
+            return {"ok": True, "changed": False}
+        slot, err = self._newest_slot()
+        if err:
+            return {"ok": True, "changed": False}
+        on = budgets.applied(slot[0], slot[1], fid, store)
+        if not on:
+            (store / f"{fid}.json").unlink(missing_ok=True)   # the game rebuilt budgets: the record is stale
+        return {"ok": True, "changed": on}
+
+    def apply_cap_budgets(self, cap: int, teams: list) -> dict:
+        """Set these teams' budgets to the cap (originals saved first, the save backed up, game must be closed)."""
+        from mlb26save import budgets
+        slot, err = self._newest_slot()
+        if err:
+            return {"ok": False, "error": err}
+        res = budgets.apply_cap(slot[0], slot[1], self._league.franchise, int(cap), [int(t) for t in teams],
+                                CONFIG_PATH.parent / "budgets", CONFIG_PATH.parent / "save-backups")
+        if res.get("ok") and res.get("written"):
+            res["reload"] = self._league.reload()
+        return res
+
+    def restore_budgets(self) -> dict:
+        from mlb26save import budgets
+        slot, err = self._newest_slot()
+        if err:
+            return {"ok": False, "error": err}
+        res = budgets.restore(slot[0], slot[1], self._league.franchise, CONFIG_PATH.parent / "budgets", CONFIG_PATH.parent / "save-backups")
+        if res.get("ok") and res.get("written"):
+            res["reload"] = self._league.reload()
+        return res
+
+    # -- salary cap: draft penalties written into the save (opt-in, reversible; mlb26save/draftpen.py) -------
+    def draft_penalty_state(self) -> dict:
+        """The season's original draft order if Clubhouse changed it (the page builds penalties from it)."""
+        from mlb26save import draftpen
+        fid = self._league.franchise
+        kept = draftpen.originals(fid, CONFIG_PATH.parent / "draftorder") if fid else None
+        return {"ok": True, "original": kept}
+
+    def apply_draft_penalties(self, season: int, order: dict) -> dict:
+        from mlb26save import draftpen
+        slot, err = self._newest_slot()
+        if err:
+            return {"ok": False, "error": err}
+        new = {k: [int(v) for v in order.get(k, [])] for k in ("DRAFT_ORDER", "COMP_PICKS", "PPI_PICKS")}
+        res = draftpen.apply(slot[0], slot[1], self._league.franchise, int(season), new,
+                             CONFIG_PATH.parent / "draftorder", CONFIG_PATH.parent / "save-backups")
+        if res.get("ok") and res.get("written"):
+            res["reload"] = self._league.reload()
+        return res
+
+    def restore_draft_order(self) -> dict:
+        from mlb26save import draftpen
+        slot, err = self._newest_slot()
+        if err:
+            return {"ok": False, "error": err}
+        res = draftpen.restore(slot[0], slot[1], self._league.franchise, CONFIG_PATH.parent / "draftorder", CONFIG_PATH.parent / "save-backups")
+        if res.get("ok") and res.get("written"):
+            res["reload"] = self._league.reload()
+        return res
+
     # -- scouting department: the page owns the logic; Python keeps it safe on disk, per franchise.
     #    Stored outside the save, so imports never touch it. Each write is atomic and keeps the previous copy as .bak.
     def _scout_dir(self) -> Path:
@@ -392,6 +472,39 @@ class Api:
             json.loads(blob)
         except ValueError:
             return {"ok": False, "error": "Scouting data was malformed; nothing written."}
+        f.parent.mkdir(parents=True, exist_ok=True)
+        tmp = f.with_suffix(".tmp")
+        tmp.write_text(blob, encoding="utf-8")
+        if f.exists():
+            os.replace(f, f.with_suffix(".bak"))
+        os.replace(tmp, f)
+        return {"ok": True}
+
+    # Salary cap records (checkpoints and violations) live on disk, not in the page's local storage: a run on a
+    # fallback port has empty storage, and on Nov 21, 2026 that re-took the Opening Day check from a July save.
+    def _cap_file(self) -> Path | None:
+        fid = self._league.franchise
+        return CONFIG_PATH.parent / ("cap" if self._league.remember else "cap-copies") / f"{fid}.json" if fid else None
+
+    def get_cap_store(self) -> str | None:
+        f = self._cap_file()
+        for p in (f, f.with_suffix(".bak")) if f else ():
+            try:
+                text = p.read_text(encoding="utf-8")
+                json.loads(text)
+                return text
+            except (OSError, ValueError):
+                continue
+        return None
+
+    def save_cap_store(self, blob: str) -> dict:
+        f = self._cap_file()
+        if not f:
+            return {"ok": False, "error": "No franchise loaded."}
+        try:
+            json.loads(blob)
+        except ValueError:
+            return {"ok": False, "error": "Cap data was malformed; nothing written."}
         f.parent.mkdir(parents=True, exist_ok=True)
         tmp = f.with_suffix(".tmp")
         tmp.write_text(blob, encoding="utf-8")
@@ -621,13 +734,18 @@ def main():
     # Keep the page's local storage between runs (My board, press answers, ranking arrows...): pywebview
     # defaults to a private session, and a random port would also give the page a new origin each time.
     import socket
+    import time
     port = None
-    with socket.socket() as s:
-        try:
-            s.bind(("127.0.0.1", WEB_PORT))
-            port = WEB_PORT
-        except OSError:
-            port = None   # someone has it (a second Clubhouse?): fall back to a random port for this run
+    for _ in range(40):   # a restart can overlap the old window for a few seconds: wait for the port before giving up
+        with socket.socket() as s:
+            try:
+                s.bind(("127.0.0.1", WEB_PORT))
+                port = WEB_PORT
+                break
+            except OSError:
+                pass
+        time.sleep(0.25)
+    # still taken (a second Clubhouse?): a random port for this run, which means empty page storage
     store = CONFIG_PATH.parent / ("webview" if not args.save else "webview-copies")
     store.mkdir(parents=True, exist_ok=True)
     webview.start(startup, debug=args.debug, http_server=True, http_port=port, private_mode=False, storage_path=str(store))

@@ -1,5 +1,68 @@
 # Clubhouse changelog
 
+## 1.12.0 (November 21, 2026)
+
+A salary cap and floor for your franchise, with real draft-pick penalties written into the game, plus a draft lottery for 2027 rosters. Everything here is optional and off until you use it. New and still being tested: **keep a copy of your franchise save before using any "in-game" button.**
+
+### What's new
+
+- **Salary cap (Front office → Salary cap).** Every club's payroll against a $245.3M cap and a $171.2M floor, both growing 3% a season. Payroll counts every major-league contract in the organization at its yearly average.
+  - **League:** all 30 clubs, cap room, status and the game's budget for each club.
+  - **Club pages:** the contracts counted, the next three seasons of commitments and flags for very long or very large deals.
+  - **Rules:** the cap, floor, growth, rounds forfeited, when penalties start and more. Saved on your PC for every franchise.
+- **Draft penalties, in the game itself.** A club over the cap on **Opening Day** loses its **Round 1 and Round 2** picks in that summer's draft. The picks are removed from the game's draft order, and every club behind them moves up.
+  - No penalties in a franchise's first season. They start in the second.
+  - Penalized clubs also lose their compensation and prospect promotion picks.
+  - Competitive Balance rounds A and B are created by the game and can't be changed.
+- **Draft lottery for 2027 rosters (Draft → Draft lottery).** It follows MLB's lottery rules and the real 2026 standings.
+  - The 18 non-playoff clubs draw for picks 1–6, revealed one at a time.
+  - Picks 7–18 go in reverse record. Playoff clubs pick 19–30, by how far they went.
+  - You can draw again until you write the result to your save. From the second season on, the game runs its own lottery.
+- **Make the AI respect the cap (optional).** Lowers every AI club's budget that's above the cap down to the cap, so they stop adding payroll. Clubs under the cap keep their budgets, and yours is never touched.
+  - Choose "Ask me" or "Apply automatically" each new season (Rules → AI budgets each new season).
+  - **Restore original budgets** undoes it and turns automatic mode off.
+  - Untested so far: we don't yet know how strictly the AI follows its budget.
+
+### How to use it, step by step
+
+**Before you start**
+1. Restart Clubhouse after updating.
+2. Pick your franchise from the franchise menu in the top bar.
+3. Optional: set your cap, floor and penalty rules on Salary cap → Rules. If you want AI budgets capped, choose "Apply the cap automatically" there.
+
+**First season (2027 rosters): set up the draft**
+1. In spring or on Opening Day, open Draft → Draft lottery and press **Run the lottery**.
+2. Close the game, then press **Write this order to my save**.
+3. Sim on. Your lottery order is what the game drafts from in July.
+
+**Every Opening Day, from the second season on**
+1. Sim to Opening Day and save.
+2. Close the game (and the emulator), then open Clubhouse. It records every club's payroll for the Opening Day check from the first save it sees on or after Opening Day. Don't skip ahead to May, or May payrolls will be used.
+3. Open Salary cap → Draft penalties. It lists the clubs over the cap and shows the original and adjusted draft orders side by side.
+4. Press **Apply penalties in-game**. Your save is backed up first.
+5. Sim to the draft and check that Rounds 1 and 2 match the adjusted order.
+
+**Each new season, if you use AI budgets**
+1. The game rebuilds every club's budget each season. After the season changes, open Clubhouse once with the game closed.
+2. With "Apply automatically" on, Clubhouse applies the cap by itself and tells you. With "Ask me" on, a banner asks you.
+3. Do this before you sim far into free agency.
+
+**Changing your mind**
+- **Restore the original draft order** (Draft penalties tab) puts the game's order back exactly.
+- **Restore original budgets** puts that season's budgets back.
+- Both need the game closed and work any time before that season's draft.
+
+### Safety
+
+- Every write refuses while the game or an emulator is running. It backs up your save to Clubhouse's settings folder first, then reads the save back to check that only the intended bytes changed.
+- Draft order writes can only remove picks or reorder clubs within a round. They never give a club a pick it didn't have.
+- Writes refuse once that season's draft has started.
+
+### Fixes
+
+- Cap and penalty records are now kept in a file, so they survive restarts and can't be lost or re-taken from a later save.
+- Clubhouse waits for its usual window port after a restart instead of opening with empty page storage.
+
 ## 1.11.0 (November 21, 2026)
 
 - **2027 roster support.** Clubhouse spots franchises started on rosters that already include the real 2026 season, and treats them as the 2027 season even though the game's calendar says 2026. Seasons, free agency, the draft class, awards and history all use 2027, and the years keep counting up as your franchise advances. Dates and weekdays still follow the game.
