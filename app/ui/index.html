@@ -984,7 +984,7 @@ tbody tr{transition:background-color .12s}
 .rtgear>div{display:flex;align-items:center;gap:10px}.rtrew{display:flex;align-items:center;gap:10px}.rtrow .rtimg{margin-right:2px}.rtrow-n{flex:1;min-width:0}.rtrow-n b{display:block}
 .rtrar{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;border:1px solid currentColor;margin-right:8px}.rtrar.diamond{color:#7cc6ff}.rtrar.gold{color:#e3b341}.rtrar.silver{color:#b9c0c8}.rtrar.common{color:var(--ink-2)}
 .rthero{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px 24px;background:var(--banner,var(--panel));border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:3px}.rthero-id{display:flex;align-items:center;gap:18px}.rthero h1{margin:2px 0 4px;font:600 40px/1 'Barlow Condensed',sans-serif;text-transform:uppercase}.rthero h1 b{font-weight:800}.rthero small{color:var(--ink-2);font-size:12px;letter-spacing:.06em;text-transform:uppercase}.rthero span{color:var(--ink-2)}.rthero-ovr{text-align:center}.rthero-ovr small{display:block;margin-bottom:6px}.rthero-ovr .rt{font-size:26px;padding:8px 12px}
-.rtgrid.sm{grid-template-columns:1fr}.rtrat{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.rtgrid.sm{grid-template-columns:1fr}.rtrate input{width:64px;margin-left:auto;margin-right:8px;padding:4px 6px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:3px;font:inherit;text-align:right}.rtrate input.chg{border-color:var(--accent);color:var(--accent)}.rtrat{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 .rtgear{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.rtgear div{padding:10px 12px;background:var(--panel-2,rgba(255,255,255,.03));border:1px solid var(--line);border-radius:3px}.rtgear small,.rtch small,.rtrew small,.rtrow small{display:block;color:var(--ink-2);font-size:11px}.rtgear b{font-size:14px}
 .rtgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.rtch{display:flex;flex-direction:column;gap:6px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:3px}.rtch-h{display:flex;justify-content:space-between;align-items:center}.rtch>b{font-size:16px}.rtbar{height:6px;background:var(--line);border-radius:2px;overflow:hidden}.rtbar i{display:block;height:100%;background:var(--accent)}.rtrew{margin-top:4px;padding-top:8px;border-top:1px solid var(--line)}
 .rtrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}.rtfilter{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}.rtfilter input{padding:6px 10px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:3px;min-width:220px}.rtlist{max-height:520px;overflow:auto}
@@ -2787,13 +2787,18 @@ function rtStatTable(c, side){
     : [s.outs?(s.er*27/s.outs).toFixed(2):'–', s.outs?((s.h+s.bb)*3/s.outs).toFixed(2):'–'];
   return `<table><thead><tr><th class="l">Level</th>${cols.map(([,l])=>`<th>${l}</th>`).join('')}<th>${side==='bat'?'AVG':'ERA'}</th><th>${side==='bat'?'OBP':'WHIP'}</th></tr></thead><tbody>${rows.map(([l,s])=>`<tr${l==='Total'?' class="mine"':''}><td class="l">${l}</td>${cols.map(([k])=>`<td>${k==='outs'?rtFmt({ip:1},s[k]||0):(s[k]||0)}</td>`).join('')}${rate(s).map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 }
+// Ratings editor (rtts.RATINGS, VERIFIED in-game): the game's Tools and Attributes groups. Edits are kept in RTF.edit
+// until "Write to my save"; Reaction is written to all four of its fields.
+const RT_RGROUPS=['Stuff','Contact','Power','Fielding','Throwing','Speed','Other'];
 function rtRatings(c){
-  const r=(c.player||{}).ratings||{}, b=r.batting||{}, p=r.pitching||{}, f=r.fielding||{}, run=r.running||{};
-  const grp=(t,items)=>`<div class="capdr-g"><h4>${t}</h4>${items.filter(([,v])=>v!=null).map(([l,v])=>`<div class="rtrow"><span>${l}</span>${rt(v,1)}</div>`).join('')}</div>`;
-  const sides=rtSides(c);
-  return `<div class="capdr rtrat">${sides.includes('bat')?grp('Hitting',[['Contact vs R',b.conR],['Contact vs L',b.conL],['Power vs R',b.powR],['Power vs L',b.powL],['Vision',b.vision],['Discipline',b.discipline],['Clutch',b.clutch]]):''}
-    ${sides.includes('pit')?grp('Pitching',[['Stamina',p.stamina],['Hits per 9',p.h9],['K per 9',p.k9],['BB per 9',p.bb9],['HR per 9',p.hr9],['Clutch',p.clutch]]):''}
-    ${grp('Fielding and running',[['Fielding',f.fielding],['Arm strength',f.armStr],['Arm accuracy',f.armAcc],['Reaction',f.reaction],['Speed',run.speed],['Stealing',run.stealing],['Durability',r.durability]])}</div>`;
+  const defs=c.ratingDefs||{}, cur=c.ratings||{}, ed=RTF.edit||(RTF.edit={});
+  if (!Object.keys(defs).length) return '<p class="explain">Ratings aren\'t available for this career.</p>';
+  const n=Object.keys(ed).filter(k=>ed[k]!==cur[k]).length;
+  const grp=g=>`<div class="capdr-g"><h4>${g}</h4>${Object.entries(defs).filter(([,d])=>d[0]===g).map(([k,d])=>{ const v=ed[k]!=null?ed[k]:cur[k];
+    return `<div class="rtrow rtrate"><span>${esc(d[1])}</span><input type="number" min="0" max="99" value="${v}" data-rtrate="${k}" aria-label="${esc(d[1])}" class="${ed[k]!=null&&ed[k]!==cur[k]?'chg':''}">${rt(v,1)}</div>`; }).join('')}</div>`;
+  return `<p class="explain" style="margin:0 0 10px">Set any rating from 0 to 99, then write them to your career save. Close the game first; your save is backed up each time. Your overall updates in the game. Reaction is the game's average of four reaction values, so Clubhouse sets all four.</p>
+    <div class="capdr rtrat">${RT_RGROUPS.map(grp).join('')}</div>
+    <p style="margin:14px 0 0"><button class="btn sm" data-rtrw ${n?'':'disabled'}>Write ${n||''} change${n===1?'':'s'} to my save</button> <button class="btn ghost sm" data-rtrreset ${n?'':'disabled'}>Undo changes</button></p>`;
 }
 const rtPosLbl = c => ((c.label||'').match(/\b((?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|P)(?:\/(?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|P))?)\b/)||[])[1] || (c.player&&c.player.pos) || '';
 // Club colours for Road to the Show without a franchise: career saves store every club's colours as black, so this is
@@ -2874,7 +2879,7 @@ function rttsPage(tab){
   const c=rtCar();
   if (!c) return `<p class="explain">No Road to the Show career found in your save folder.</p>`;
   RTS[c.key]=rtMigrate(RTS[c.key]);
-  if (tab==='stats') return rtSides(c).map(sd=>`<section class="card flush" style="margin-bottom:14px"><div class="card-h"><h2>${c.year} ${sd==='bat'?'hitting':'pitching'}</h2><span class="aside">By level, this season</span></div>${rtStatTable(c,sd)}</section>`).join('')+`<section class="card"><div class="card-h"><h2>Ratings</h2></div>${rtRatings(c)}</section>`;
+  if (tab==='stats') return rtSides(c).map(sd=>`<section class="card flush" style="margin-bottom:14px"><div class="card-h"><h2>${c.year} ${sd==='bat'?'hitting':'pitching'}</h2><span class="aside">By level, this season</span></div>${rtStatTable(c,sd)}</section>`).join('')+`<section class="card"><div class="card-h"><h2>Ratings</h2><span class="aside">Editable</span></div>${rtRatings(c)}</section>`;
   if (tab==='challenges') return rtChallenges(c);
   if (tab==='inventory') return rtInventory(c);
   if (tab==='locker') return rtLocker(c);
@@ -2920,6 +2925,19 @@ document.addEventListener('click', async e=>{
   if (pk){ const [dk,i]=pk.dataset.rtpick.split(':'), c=rtCar(), st=RTS[c.key]; if (!st.set || st.set.picked[dk]) return;
     const o=st.set.offers[dk][+i]; st.set.picked[dk]={...o, base:{...rtT(c,o.side)}, from:rtGP(c)}; rtSave(c.key); render(true); return; }
   const op=e.target.closest('[data-rtopen]'); if (op){ rtOpen(op.dataset.rtopen); return; }
+  if (e.target.closest('[data-rtrreset]')){ RTF.edit={}; render(true); return; }
+  if (e.target.closest('[data-rtrw]')){ const c=rtCar(), ed=RTF.edit||{}, defs=c.ratingDefs||{}, ks=Object.keys(ed); if (!ks.length) return;
+    $('#modal').innerHTML=`<div class="modal" data-act="sc-bg"><div class="box scmodal" style="max-width:520px" role="dialog" aria-label="Write ratings">
+      <div class="scm-h"><div><small>Ratings</small><h3>Write ${ks.length} rating change${ks.length===1?'':'s'}</h3></div></div>
+      <div class="scm-b"><p>${ks.map(k=>`${esc(defs[k][1])}: ${c.ratings[k]} → <b>${ed[k]}</b>`).join('<br>')}</p><p class="scm-cap"><b>Close the game and the emulator first.</b> Your career save is backed up before anything is written.</p></div>
+      <div class="press-foot"><span></span><span><button class="btn ghost sm" data-cap="close">Cancel</button> <button class="btn sm" data-rtrwok>Write to my save</button></span></div></div></div>`;
+    return; }
+  const rw=e.target.closest('[data-rtrwok]');
+  if (rw){ const c=rtCar(); rw.disabled=true; rw.textContent='Writing…';
+    let r; try { r=await api().rtts_set_ratings(c.key, c.row, RTF.edit||{}); } catch(err){ r={ok:false, error:String(err)}; }
+    $('#modal').innerHTML='';
+    if (!r||!r.ok){ toast(`<b>Nothing written</b>${esc((r&&r.error)||'Something went wrong.')}`); return; }
+    RTF.edit={}; RT=null; await rtLoad(); toast('<b>Ratings written</b>Load your career in the game to see them.','ok'); return; }
   const vw=e.target.closest('[data-rtview]'); if (vw){ const [slot,s]=vw.dataset.rtview.split(':'); rtView(slot,+s); return; }
   const eq=e.target.closest('[data-rteq]');
   if (eq){ const [slot,s]=eq.dataset.rteq.split(':'), c=rtCar();
@@ -2983,6 +3001,14 @@ document.addEventListener('change', e=>{
   const a=e.target.closest('[data-rtall]'); if (a){ const c=rtCar(); RTS[c.key].unlockAll=a.checked; rtSave(c.key); render(true); return; }
 });
 document.addEventListener('input', e=>{
+  const r=e.target.closest('[data-rtrate]');
+  if (r){ const c=rtCar(); let v=Math.round(+r.value); if (!isFinite(v)) return; v=Math.max(0,Math.min(99,v));
+    RTF.edit=RTF.edit||{}; if (v===c.ratings[r.dataset.rtrate]) delete RTF.edit[r.dataset.rtrate]; else RTF.edit[r.dataset.rtrate]=v;
+    r.classList.toggle('chg', RTF.edit[r.dataset.rtrate]!=null);
+    const badge=r.nextElementSibling; if (badge) badge.outerHTML=rt(v,1);
+    const n=Object.keys(RTF.edit).length, w=document.querySelector('[data-rtrw]'), u=document.querySelector('[data-rtrreset]');
+    if (w){ w.disabled=!n; w.textContent=`Write ${n||''} change${n===1?'':'s'} to my save`; } if (u) u.disabled=!n;
+    return; }
   const q=e.target.closest('[data-rtq]'); if (!q) return; RTF.q=q.value;
   clearTimeout(RTF.t); RTF.t=setTimeout(()=>{ render(true); const el=document.querySelector('[data-rtq]'); if (el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }, 200);
 });

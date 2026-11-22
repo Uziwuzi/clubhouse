@@ -618,6 +618,14 @@ class Api:
         bk = CONFIG_PATH.parent / ("save-backups" if self._league.remember else "save-backups-copies") / "rtts"
         return rtts.equip(c["dir"], int(row), gear or {}, bk)
 
+    def rtts_set_ratings(self, key: str, row: int, values: dict) -> dict:
+        from mlb26save import rtts
+        c = self._rtts_careers().get(key)
+        if not c:
+            return {"ok": False, "error": "That career's save wasn't found."}
+        bk = CONFIG_PATH.parent / ("save-backups" if self._league.remember else "save-backups-copies") / "rtts"
+        return rtts.set_ratings(c["dir"], int(row), values or {}, bk)
+
     def _portrait_dir(self) -> Path:
         return self._scout_dir() / "portraits" / str(self._league.franchise or "none")
 

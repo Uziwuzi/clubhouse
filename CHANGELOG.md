@@ -1,5 +1,14 @@
 # Clubhouse changelog
 
+## 1.14.0 (November 22, 2026)
+
+- **Edit your Road to the Show player's ratings.** Road to the Show → Stats → Ratings lists all 25 ratings in the game's own groups: Stuff, Contact, Power, Fielding, Throwing, Speed, Other. Set any of them from 0 to 99, then press **Write to my save**.
+  - Close the game first. Clubhouse backs up your career save, writes the changes, and checks them.
+  - Every rating was matched to the game's Tools and Attributes screens, and edits stay after games are played or simmed.
+  - Reaction is the game's average of four hidden values, so Clubhouse sets all four.
+  - Pitch ratings and catcher blocking aren't editable yet.
+- **Fastball (the PC port's new launcher):** Clubhouse also counts Fastball.exe as the game running, so it won't write to a save while the game is open.
+
 ## 1.13.3 (November 22, 2026)
 
 - **Fixed: Road to the Show without a franchise.** Menu items and buttons didn't switch pages, so it looked like nothing responded. They work now.

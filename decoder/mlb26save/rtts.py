@@ -40,6 +40,67 @@ SLOTS = {
 }
 # The second group was confirmed in-game on Nov 22, 2026 (test items in all eight slots showed in Edit Player).
 VERIFIED = {"bat", "batgloves", "cleats", "glove", "elbow", "grip", "glasses", "sleeves", "wrist", "shin", "cmask", "cshin", "chest"}
+# Ratings Clubhouse may edit: key -> D_PLAYER_ATTS fields. VERIFIED Nov 22, 2026 by writing a distinct value to each
+# field of the test career and reading the game's Tools and Attributes pages (71..94 all matched their names). The
+# game's Reaction is the average of the four REACTION_* fields (85,40,40,40 showed 51), so it writes all four.
+# BLOCKING isn't shown for a non-catcher, so it isn't offered. Group = the game's page.
+RATINGS = {
+    "h9r": ("Stuff", "H/9 vs R", ["HITS_PER_BF_RGHT"]), "h9l": ("Stuff", "H/9 vs L", ["HITS_PER_BF"]),
+    "k9r": ("Stuff", "K/9 vs R", ["K_PER_BF_RIGHT"]), "k9l": ("Stuff", "K/9 vs L", ["K_PER_BF_LEFT"]),
+    "hr9": ("Stuff", "HR/9", ["HR_PER_BF"]), "pclutch": ("Stuff", "Pitching clutch", ["PITCHING_CLUTCH"]),
+    "conl": ("Contact", "Contact vs L", ["CONTACT_LEFT"]), "conr": ("Contact", "Contact vs R", ["CONTACT_RIGHT"]),
+    "vision": ("Contact", "Plate vision", ["PLATE_VISION"]), "clutch": ("Contact", "Clutch", ["BATTING_CLUTCH"]),
+    "powl": ("Power", "Power vs L", ["POWER_LEFT"]), "powr": ("Power", "Power vs R", ["POWER_RIGHT"]),
+    "fielding": ("Fielding", "Fielding", ["FIELDING_ABILITY"]),
+    "reaction": ("Fielding", "Reaction", ["REACTION_TIME", "REACTION_RIGHT", "REACTION_FORWARD", "REACTION_BACK"]),
+    "armstr": ("Throwing", "Arm strength", ["ARM_STRENGTH"]), "armacc": ("Throwing", "Arm accuracy", ["ARM_ACCURACY"]),
+    "speed": ("Speed", "Speed", ["SPEED"]), "steal": ("Speed", "Stealing", ["BASE_STEALING"]),
+    "bragg": ("Speed", "BR aggressiveness", ["BASERUNNING_AGG"]),
+    "control": ("Other", "Control", ["BB_PER_BF"]), "stamina": ("Other", "Stamina", ["STAMINA"]),
+    "durability": ("Other", "Durability", ["DURABILITY"]), "bunt": ("Other", "Bunting", ["BUNTING_ABILITY"]),
+    "dragbunt": ("Other", "Drag bunting", ["DRG_BUNTING_ABLT"]), "discipline": ("Other", "Plate discipline", ["PLATE_DISCIPLINE"]),
+}
+
+
+def _rating_values(att: dict) -> dict:
+    return {k: round(sum(att[f] for f in fs) / len(fs)) for k, (_, _, fs) in RATINGS.items()}
+
+
+def set_ratings(slot_dir: str | Path, row: int, values: dict, backup_dir: Path) -> dict:
+    """Write {rating key: 0-99} for the career's player (same safeguards as equip)."""
+    g = game_running()
+    if g:
+        return {"ok": False, "error": f"Close the game first ({g} is running). Nothing was written."}
+    d = Path(slot_dir)
+    slot = SaveSlot(d / "SAVE_000", d / "SAVEINFO")
+    if not slot.checksum_ok:
+        return {"ok": False, "error": "The save looks half-written (checksum mismatch). Nothing was written."}
+    db = slot.db
+    if _player_row(db, slot.info.label) != row:
+        return {"ok": False, "error": "That career's save changed since Clubhouse read it. Reload and try again."}
+    t = db.largest("D_PLAYER_ATTS")
+    raw, want = bytearray(slot.raw), {}
+    for k, v in values.items():
+        if k not in RATINGS:
+            return {"ok": False, "error": f"Unknown rating {k}. Nothing was written."}
+        v = int(v)
+        if not 0 <= v <= 99:
+            return {"ok": False, "error": "Ratings go from 0 to 99. Nothing was written."}
+        for f in RATINGS[k][2]:
+            want[f] = v
+            db.patch(raw, t, row, f, v)
+    changed = sum(a != b for a, b in zip(raw, slot.raw))
+    if not changed:
+        return {"ok": True, "written": 0}
+    backup = slot.write(bytes(raw), backup_dir=backup_dir)
+    check = SaveSlot(d / "SAVE_000", d / "SAVEINFO")
+    after = check.db.largest("D_PLAYER_ATTS").rows[row]
+    diff = sum(a != b for a, b in zip(check.raw, slot.raw))
+    if not check.checksum_ok or any(after[f] != v for f, v in want.items()) or diff != changed:
+        return {"ok": False, "error": f"The save didn't read back as expected. Your backup is in {backup}.", "backup": str(backup)}
+    return {"ok": True, "written": changed, "backup": str(backup)}
+
+
 BAT_KEYS = ("g", "ab", "h", "2b", "3b", "hr", "r", "rbi", "bb", "so", "sb", "po", "a", "e")   # po/a/e: fielding (PUTOUTS, ASSISTS, ERRORS)
 PIT_KEYS = ("g", "gs", "w", "l", "sv", "outs", "h", "er", "bb", "so", "hr", "hld")
 
@@ -133,6 +194,8 @@ def read(slot_dir: str | Path) -> dict:
         "bat": {"levels": {k: {x: v.get(x, 0) for x in BAT_KEYS} for k, v in bat.items()}, "total": _sum(list(bat.values()), BAT_KEYS)},
         "pit": {"levels": {k: {x: v.get(x, 0) for x in PIT_KEYS} for k, v in pit.items()}, "total": _sum(list(pit.values()), PIT_KEYS)},
         "gear": {k: acc[f] for k, (f, _) in SLOTS.items()},
+        "ratings": _rating_values(db.largest("D_PLAYER_ATTS").rows[row]),
+        "ratingDefs": {k: [g, l] for k, (g, l, _) in RATINGS.items()},
         "slotsOk": sorted(VERIFIED),
     }
 

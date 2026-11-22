@@ -19,7 +19,8 @@ from pathlib import Path
 from .container import SaveSlot
 
 DISCOVERED = 5
-GAME_PROCESSES = {"mlb.exe", "yuzu.exe", "suyu.exe", "sudachi.exe", "citron.exe", "eden.exe",
+# fastball.exe: the PC port's launcher from 0.2.0 on (Nov 22, 2026); the game itself still runs as mlb.exe.
+GAME_PROCESSES = {"mlb.exe", "fastball.exe", "yuzu.exe", "suyu.exe", "sudachi.exe", "citron.exe", "eden.exe",
                   "ryujinx.exe", "torzu.exe"}
 
 
