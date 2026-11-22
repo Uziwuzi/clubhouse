@@ -956,6 +956,38 @@ tbody tr{transition:background-color .12s}
 .ud .down li::before{content:"–";position:absolute;left:2px;color:var(--loss);font-weight:700}
 .av{font:600 12.5px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--line-2);color:var(--ink-2);white-space:nowrap}
 .av.av10{color:var(--win);border-color:color-mix(in srgb,var(--win) 45%,transparent)} .av.av6{color:#f3d27a;border-color:color-mix(in srgb,#f3d27a 45%,transparent)} .av.av4,.av.av3,.av.av2,.av.av1{color:var(--ink-3)}
+#menu[hidden],#rtmenu[hidden],#ticker[hidden],#modesw[hidden]{display:none!important}
+.rtcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}.rtcards.sm{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.rtcard{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:10px;background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--line);border-radius:3px;color:var(--ink);text-align:left;cursor:pointer;font:inherit}
+.rtcard:hover{border-color:var(--ink-2)}.rtcard .rtimg{width:100%;height:132px;background:#ffffff0d}.rtcard-t small{display:block;color:var(--ink-2);font-size:11px}.rtcard-t b{display:block;font-size:13.5px;line-height:1.25}
+.rtcard.r-silver{border-top-color:#b9c0c8}.rtcard.r-gold{border-top-color:#e3b341}.rtcard.r-diamond{border-top-color:#7cc6ff}.rtcard.on{outline:2px solid var(--accent);outline-offset:-2px}
+.rtsub{margin:14px 0 8px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2)}
+.rtpop{max-width:560px}.rtpop-img{display:grid;place-items:center;padding:18px;background:#ffffff0d;border-bottom:1px solid var(--line)}.rtimg.big{width:min(380px,100%);height:auto;max-height:380px;background:none}
+.rtdiff{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:2px}.rtdiff.easy{background:#2f6f4f;color:#d7f5e5}.rtdiff.medium{background:#7a5a17;color:#ffe9b8}.rtdiff.hard{background:#7a2626;color:#ffd6d6}
+.rtpack-chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:2px;border:1px solid currentColor}.rtpack-chip.silver{color:#b9c0c8}.rtpack-chip.gold{color:#e3b341}.rtpack-chip.diamond{color:#7cc6ff}
+.rtcols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}.rtcol h4{margin:0 0 8px;font-size:13px;font-weight:500;color:var(--ink-2)}.rtcol .rtch{margin-bottom:10px}.rtcol .rtch .btn{align-self:flex-start;margin-top:4px}
+.rtch.done{border-color:#2f6f4f}.rtch.missed{opacity:.6}.rtbar.off i{background:var(--ink-2)}
+.rtset{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:center;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:3px}.rtset>div:first-child small{display:block;color:var(--ink-2);font-size:11px;text-transform:uppercase;letter-spacing:.06em}.rtset>small{grid-column:1/-1;color:var(--ink-2)}
+.rtpacks{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}.rtpackcard{display:flex;flex-direction:column;gap:8px;padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:3px}.rtpackcard>small{color:var(--ink-2);min-height:2.4em}
+.rtpackart{display:grid;place-items:center;align-content:center;height:150px;border-radius:3px;border:2px solid currentColor;background:repeating-linear-gradient(135deg,#ffffff08 0 10px,transparent 10px 20px)}.rtpackart span{font:800 30px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em}.rtpackart small{color:var(--ink-2);text-transform:uppercase;font-size:11px;letter-spacing:.1em}
+.rtpackcard.silver .rtpackart{color:#b9c0c8}.rtpackcard.gold .rtpackart{color:#e3b341}.rtpackcard.diamond .rtpackart{color:#7cc6ff}
+.rtcase{max-width:920px;width:94vw}.rtreel{position:relative;overflow:hidden;margin:6px 0 14px;padding:12px 0;background:#00000040;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rtstrip{display:flex;gap:8px;will-change:transform}.rtslot{flex:none;width:104px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 0;background:var(--panel);border:1px solid var(--line);border-bottom:3px solid currentColor;border-radius:3px}.rtslot small{font-size:10px;color:var(--ink-2)}
+.rtcase.silver .rtslot{color:#b9c0c8}.rtcase.gold .rtslot{color:#e3b341}.rtcase.diamond .rtslot{color:#7cc6ff}.rtslot.lit{background:color-mix(in srgb,currentColor 18%,var(--panel));border-color:currentColor}
+.rtmark{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--accent);z-index:2}
+.rtresult[hidden],.rtcase .press-foot [hidden]{display:none!important}
+.rtresult{display:flex;align-items:center;gap:18px;padding:0 18px 8px}.rtresult .rtimg.big{width:160px;max-height:160px}.rtresult h3{margin:4px 0}.rtresult p{margin:0;color:var(--ink-2)}
+@media (max-width:1100px){ .rtcols{grid-template-columns:1fr} }
+.modesw{display:flex;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin:0 12px 0 auto;flex:none}.modesw button{background:none;border:0;color:var(--ink-2);font:600 12px/1 'Barlow',sans-serif;letter-spacing:.04em;padding:8px 11px;cursor:pointer}.modesw button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink,#111)}
+#rtmenu a.on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent)}
+.rtimg{display:block;flex:none;object-fit:contain;background:#fff1;border-radius:3px}.rtimg.rtph{display:flex;align-items:center;justify-content:center;color:var(--ink-2)}.rtimg.rtph svg{width:45%;height:45%;min-width:22px;min-height:22px;max-width:96px;max-height:96px;flex:none}
+.rtgear>div{display:flex;align-items:center;gap:10px}.rtrew{display:flex;align-items:center;gap:10px}.rtrow .rtimg{margin-right:2px}.rtrow-n{flex:1;min-width:0}.rtrow-n b{display:block}
+.rtrar{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;border:1px solid currentColor;margin-right:8px}.rtrar.diamond{color:#7cc6ff}.rtrar.gold{color:#e3b341}.rtrar.silver{color:#b9c0c8}.rtrar.common{color:var(--ink-2)}
+.rthero{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px 24px;background:var(--banner,var(--panel));border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:3px}.rthero-id{display:flex;align-items:center;gap:18px}.rthero h1{margin:2px 0 4px;font:600 40px/1 'Barlow Condensed',sans-serif;text-transform:uppercase}.rthero h1 b{font-weight:800}.rthero small{color:var(--ink-2);font-size:12px;letter-spacing:.06em;text-transform:uppercase}.rthero span{color:var(--ink-2)}.rthero-ovr{text-align:center}.rthero-ovr small{display:block;margin-bottom:6px}.rthero-ovr .rt{font-size:26px;padding:8px 12px}
+.rtgrid.sm{grid-template-columns:1fr}.rtrat{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.rtgear{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}.rtgear div{padding:10px 12px;background:var(--panel-2,rgba(255,255,255,.03));border:1px solid var(--line);border-radius:3px}.rtgear small,.rtch small,.rtrew small,.rtrow small{display:block;color:var(--ink-2);font-size:11px}.rtgear b{font-size:14px}
+.rtgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.rtch{display:flex;flex-direction:column;gap:6px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:3px}.rtch-h{display:flex;justify-content:space-between;align-items:center}.rtch>b{font-size:16px}.rtbar{height:6px;background:var(--line);border-radius:2px;overflow:hidden}.rtbar i{display:block;height:100%;background:var(--accent)}.rtrew{margin-top:4px;padding-top:8px;border-top:1px solid var(--line)}
+.rtrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line)}.rtfilter{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}.rtfilter input{padding:6px 10px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:3px;min-width:220px}.rtlist{max-height:520px;overflow:auto}
 .spban{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0 0 14px;padding:14px 18px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:3px;color:var(--ink);text-decoration:none;transition:border-color .15s,background .15s}
 .spban:hover{background:color-mix(in srgb,var(--accent) 6%,var(--panel))}
 .spban small{display:block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
@@ -1268,6 +1300,8 @@ table.career tr.tot td{border-top:1px solid var(--line-2);font-weight:700}
       <div class="dd" data-nav="fa"><button>Free agency <svg viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <div class="drop"><a href="#fa">Upcoming class</a><a href="#fa/contracts">Contracts</a><a href="#fa/available">Available now</a><a href="#fa/offseason">Offseason</a></div></div>
     </nav>
+    <nav class="menu" id="rtmenu" aria-label="Road to the Show" hidden><a href="#rtts" data-rt="">Home</a><a href="#rtts/stats" data-rt="stats">Stats</a><a href="#rtts/challenges" data-rt="challenges">Challenges</a><a href="#rtts/inventory" data-rt="inventory">Inventory</a><a href="#rtts/locker" data-rt="locker">Locker</a></nav>
+    <div class="modesw" id="modesw" role="group" aria-label="Mode" hidden><button data-mode="franchise" aria-pressed="true">Franchise</button><button data-mode="rtts" aria-pressed="false">Road to the Show</button></div>
     <div class="season" id="season" role="button" tabindex="0" aria-haspopup="true" title="Switch franchise"></div>
     <div class="savestat" id="slot"></div>
     <button class="iconb" data-act="settings" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
@@ -2558,6 +2592,361 @@ function payroll(t){
     else if (st.k==='fa') leaving+=p.contract.salary; });
   return {now, committed, arb, pre, leaving, next:committed+arb+pre};
 }
+/* ---------- Road to the Show (#rtts; its own mode, see "Franchise | Road to the Show mode" below) ----------
+   Reads the Road to the Show careers (CARR slots) through Api.get_rtts (mlb26save/rtts.py). Offline, the game only
+   lets a created player pick generic "Style 1" gear (the Equipment tab is the online package inventory), so Clubhouse
+   runs its own challenges and equips gear by writing D_PLAYER_ACC (catalog style per slot; VERIFIED in-game Nov 22).
+   Challenges come in sets of RT_SET of the player's games (games hit in + games pitched in). Each set offers three
+   challenges per difficulty and the player picks one of each; finishing one earns a pack of that difficulty's rarity
+   (easy Silver, medium Gold, hard Diamond: the rarity on The Show's item database). Packs wait in the Inventory and
+   open with a case-style spin onto one item of that rarity, which goes to the Locker. Sets roll over by themselves.
+   "Unlock all gear" lets the player equip anything without challenges.
+   State per career in %APPDATA%/Clubhouse/rtts/<slot>.json (Api.get_rtts_store/save_rtts_store), v2:
+   {set:{n,year,start,end,offers:{easy:[3],medium:[3],hard:[3]},picked:{dk:challenge}}, packs, locker, log, unlockAll, seq}. */
+let RT=null, RTGEAR=null, RT_BUSY=false;
+const RTS={}, RTF={key:null, slot:'bat', q:''};
+const RT_SLOTS=[['bat','Bat'],['batgloves','Batting gloves'],['glove','Fielding glove'],['cleats','Cleats'],['elbow','Elbow guard'],['grip','Bat grip'],['glasses','Glasses'],
+  ['sleeves','Compression sleeve'],['wrist','Wrist guard'],['shin','Leg guard'],['cmask','Catcher’s mask'],['cshin','Catcher’s shin guards'],['chest','Chest protector']];
+let RT_OK=new Set(RT_SLOTS.map(([k])=>k));   // slots confirmed in-game (rtts.VERIFIED, sent as slotsOk); any others stay hidden
+const rtSlots = () => RT_SLOTS.filter(([k])=>RT_OK.has(k));
+const RT_SLOTNAME=Object.fromEntries(RT_SLOTS);
+const RT_SET=20;
+const RT_DK=['easy','medium','hard'];
+const RT_D={easy:{l:'Easy',rar:'Silver',m:0.9}, medium:{l:'Medium',rar:'Gold',m:1.25}, hard:{l:'Hard',rar:'Diamond',m:1.6}};
+const RT_RULES=2;   // bump when targets change: offers not yet picked are recalculated (Nov 22, 2026: toned down about 15%)
+// counting stats: default pace per game on that side (hitting games or pitching games) for a regular
+const RT_T=[
+  {side:'bat',kind:'count',k:'h',l:'hits',one:'hit',p:1.1},{side:'bat',kind:'count',k:'hr',l:'home runs',one:'home run',p:.13},
+  {side:'bat',kind:'count',k:'rbi',l:'RBIs',one:'RBI',p:.55},{side:'bat',kind:'count',k:'sb',l:'stolen bases',one:'stolen base',p:.15},
+  {side:'bat',kind:'count',k:'2b',l:'doubles',one:'double',p:.25},{side:'bat',kind:'count',k:'r',l:'runs scored',one:'run scored',p:.55},
+  {side:'bat',kind:'count',k:'bb',l:'walks',one:'walk',p:.35},{side:'bat',kind:'avg',k:'avg',l:'batting average'},
+  {side:'pit',kind:'count',k:'so',l:'strikeouts',one:'strikeout',p:5.5},{side:'pit',kind:'count',k:'w',l:'wins',one:'win',p:.45},
+  {side:'pit',kind:'count',k:'outs',l:'innings pitched',p:16,ip:true},{side:'pit',kind:'era',k:'era',l:'ERA'},
+];
+const rtBlank = () => ({v:2, set:null, packs:[], locker:[], log:[], unlockAll:false, seq:0});
+const rtMigrate = st => (st && st.v===2) ? st : {...rtBlank(), locker:(st&&st.locker)||[], unlockAll:!!(st&&st.unlockAll), seq:(st&&st.seq)||0};
+const rtCar = () => (RT||[]).find(c=>c.key===RTF.key) || (RT||[]).find(c=>!c.error) || null;
+const rtItem = (slot,s) => (RTGEAR||[]).find(i=>i.slot===slot && i.s===s);
+const rtName = (slot,s) => { const i=rtItem(slot,s); return i ? (i.b==='Generic'?`${i.n} (default)`:i.b==='Legends'?`Legends bat · ${i.n}`:`${i.b} ${i.n}`) : (s===0?'Default':`Style ${s}`); };
+const rtFull = (slot,s) => { const i=rtItem(slot,s); return i&&i.full ? i.full : rtName(slot,s); };
+const rtRarOf = (slot,s) => { const i=rtItem(slot,s); return i ? (i.b==='Generic' ? '' : (i.r||'Silver')) : ''; };
+const rtRar = (slot,s) => { const r=rtRarOf(slot,s); return r ? `<span class="rtrar ${r.toLowerCase()}">${r}</span>` : ''; };
+const rtT = (c,side) => ((c[side]||{}).total)||{};
+const rtGP = c => (rtT(c,'bat').g||0) + (rtT(c,'pit').g||0);
+const rtFmt = (t,v) => t.ip ? `${Math.floor(v/3)}${v%3?'.'+v%3:''}` : v;
+const fAvg = v => v.toFixed(3).replace(/^0/,'');
+const RT_ICON = {bat:'<path d="M4 20l2 0 12-14a2.5 2.5 0 0 0-3.5-3.5L4 18z"/>', batgloves:'<path d="M7 21v-8l-2-3V5h2v4h1V3h2v6h1V2h2v7h1V4h2v9l-2 3v5z"/>',
+  glove:'<path d="M5 21c-1-4-1-9 1-13 1-3 4-5 7-5s5 3 5 6v7c0 3-2 5-5 5z"/>', cleats:'<path d="M3 15h9l3-4h3l3 4v3H3zM5 18v2M9 18v2M13 18v2M17 18v2"/>', elbow:'<path d="M8 4h8v6l-4 10-4-10z"/>',
+  grip:'<path d="M8 3h8v18H8zM8 7h8M8 11h8M8 15h8"/>', glasses:'<circle cx="7" cy="13" r="3.5"/><circle cx="17" cy="13" r="3.5"/><path d="M10.5 13h3M3.5 12l1.5-4M20.5 12l-1.5-4"/>',
+  sleeves:'<path d="M8 3h8l-1 18H9z"/>', wrist:'<rect x="6" y="7" width="12" height="10" rx="2"/><path d="M6 12h12"/>', shin:'<path d="M8 3h8v8l-2 10h-4L8 11z"/>',
+  cmask:'<path d="M6 5h12v8a6 6 0 0 1-12 0zM6 9h12M6 13h12M12 5v14"/>', cshin:'<path d="M8 2h8v7l-1 13H9L8 9zM8 9h8"/>', chest:'<path d="M5 4h14v10l-7 7-7-7zM5 9h14"/>'};
+const rtImg = (slot,s,size=56,cls='') => { const i=rtItem(slot,s);
+  return i&&i.img ? `<img class="rtimg ${cls}" src="gear/${esc(i.img)}" alt="" width="${size}" height="${size}"${/eager/.test(cls)?'':' loading="lazy"'}>`
+    : `<span class="rtimg rtph ${cls}" style="width:${size}px;height:${size}px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">${RT_ICON[slot]||'<rect x="5" y="5" width="14" height="14" rx="2"/>'}</svg></span>`; };
+async function rtLoad(){
+  if (RT_BUSY) return; RT_BUSY=true;
+  try {
+    if (!RTGEAR){ try { RTGEAR=(await (await fetch('data/equipment.json')).json()).items||[]; } catch { RTGEAR=[]; } }
+    const r=await api().get_rtts(); RT=(r&&r.careers)||[];
+    for (const c of RT){ if (c.error || RTS[c.key]) continue;
+      let t=null; try { t=await api().get_rtts_store(c.key); } catch {}
+      try { RTS[c.key]=rtMigrate(t?JSON.parse(t):null); } catch { RTS[c.key]=rtBlank(); } }
+    if (!RTF.key || !RT.some(c=>c.key===RTF.key)) RTF.key=(RT.find(c=>!c.error)||{}).key||null;
+    const ok=(RT.find(c=>c.slotsOk)||{}).slotsOk; if (ok) RT_OK=new Set(ok);
+    RT.forEach(c=>{ if (!c.error) rtSync(c); });
+  } catch { RT=RT||[]; }
+  RT_BUSY=false; render(true);
+}
+function rtSave(key){ try { api().save_rtts_store(key, JSON.stringify(RTS[key])); } catch {} }
+function rtSides(c){ const s=[]; const pos=(c.label||'').split(',').slice(1).join(',');
+  if ((rtT(c,'bat').ab||0)>0 || /\b(C|1B|2B|3B|SS|LF|CF|RF|DH|OF|IF)\b/.test(pos)) s.push('bat');
+  if ((rtT(c,'pit').outs||0)>0 || /\b(SP|RP|CP|P)\b/.test(pos)) s.push('pit');
+  return s.length?s:['bat']; }
+function rtShuffle(a, r){ a=a.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+// One offer. sg = the player's expected games on that side in a set. Targets start from his own pace (a default
+// pace until he has 10 games there) and medium and hard ask well above it.
+function rtMake(c, t, dk, sg){
+  const tot=rtT(c,t.side), gs=tot.g||0, m=RT_D[dk].m;
+  const o={id:0, diff:dk, side:t.side, kind:t.kind, k:t.k, l:t.l, ip:!!t.ip};
+  if (t.kind==='count'){
+    const own=gs>=10 ? (tot[t.k]||0)/gs : t.p, rate=Math.max(own, t.p*.8);
+    o.target=Math.max(dk==='easy'?1:dk==='medium'?2:3, Math.round(rate*sg*m));
+    o.text=`${t.ip?rtFmt(t,o.target):o.target} ${o.target===1&&t.one?t.one:t.l} in ${RT_SET} games`;
+  } else if (t.kind==='avg'){
+    const own=(tot.ab||0)>=40 ? tot.h/tot.ab : .270;
+    o.target=Math.round(({easy:Math.max(.250,own-.030), medium:Math.max(.290,own+.020), hard:Math.max(.325,own+.050)})[dk]*1000)/1000;
+    o.min=Math.max(20, Math.round(sg*3.2));
+    o.text=`Hit ${fAvg(o.target)} or better (${o.min}+ at-bats)`;
+  } else {
+    const own=(tot.outs||0)>=60 ? tot.er*27/tot.outs : 4.0;
+    const e=Math.min(4.75, own+1.0), md=Math.min(e-.25, Math.max(1.25, Math.min(3.5, own*.9))), h=Math.min(md-.25, Math.max(.9, Math.min(2.5, own*.7)));
+    o.target=Math.max(.25, Math.round(({easy:e, medium:md, hard:h})[dk]*100)/100);
+    o.min=Math.max(30, Math.round(sg*15));
+    o.text=`ERA of ${o.target.toFixed(2)} or lower (${rtFmt({ip:1},o.min)}+ innings)`;
+  }
+  return o;
+}
+function rtNewSet(c, st){
+  const r=rng('rtset'+c.key+':'+(++st.seq)), sides=rtSides(c);
+  const bg=rtT(c,'bat').g||0, pg=rtT(c,'pit').g||0, tot=bg+pg, two=sides.length>1;
+  const share={bat: tot>=10 ? bg/tot : (two?.8:1), pit: tot>=10 ? pg/tot : (two?.2:1)};
+  const pool=RT_T.filter(t=>sides.includes(t.side) && share[t.side]>0 && !(t.side==='pit' && share.pit*RT_SET<2 && t.kind!=='count'));
+  const offers={};
+  RT_DK.forEach(dk=>{ offers[dk]=rtShuffle(pool,r).slice(0,3).map(t=>({...rtMake(c,t,dk,Math.max(1,share[t.side]*RT_SET)), id:++st.seq})); });
+  const gp=rtGP(c);
+  st.set={n:((st.log[0]||{}).n||0)+1, year:c.year, start:gp, end:gp+RT_SET, offers, picked:{}, rules:RT_RULES};
+}
+function rtProg(c, ch){
+  const t=rtT(c,ch.side), b=ch.base||{}, d=k=>Math.max(0,(t[k]||0)-(b[k]||0));
+  if (ch.kind==='count'){ const v=d(ch.k); return {done:v>=ch.target, pct:Math.min(1,v/ch.target), txt:`${ch.ip?rtFmt(ch,v):v} of ${ch.ip?rtFmt(ch,ch.target):ch.target}`}; }
+  if (ch.kind==='avg'){ const ab=d('ab'), h=d('h'), v=ab?h/ab:0;
+    return {done:ab>=ch.min && v>=ch.target, pct:Math.min(1,ab/ch.min), txt:`${ab?fAvg(v):'.000'} in ${ab} of ${ch.min} at-bats`, ok:v>=ch.target}; }
+  const o=d('outs'), er=d('er'), v=o?er*27/o:0;
+  return {done:o>=ch.min && v<=ch.target, pct:Math.min(1,o/ch.min), txt:`${o?v.toFixed(2):'–'} ERA in ${rtFmt({ip:1},o)} of ${rtFmt({ip:1},ch.min)} innings`, ok:o>0&&v<=ch.target};
+}
+// Settle the set: finished picks earn their pack at once; when the set's games run out (or the season changes) the
+// rest are missed and a new set of offers appears. Progress only moves when you save, so a challenge met by the
+// first save after the set ends still counts.
+function rtSync(c){
+  const st=RTS[c.key]=rtMigrate(RTS[c.key]); let changed=false; const got=[];
+  if (!st.starter){   // one-time starter packs per career: 3 Silver (common), 2 Gold, 1 Diamond
+    ['Silver','Silver','Silver','Gold','Gold','Diamond'].forEach(rar=>st.packs.push({id:++st.seq, rar, from:'Starter pack', at:c.date}));
+    st.starter=true; changed=true;
+    setTimeout(()=>toast('<b>Starter packs</b>3 Silver, 2 Gold and 1 Diamond pack are waiting in your inventory.','ok'),400);
+  }
+  const set=st.set, gp=rtGP(c);
+  if (set && set.rules!==RT_RULES && set.year===c.year){
+    const bg=rtT(c,'bat').g||0, pg=rtT(c,'pit').g||0, tot=bg+pg, two=rtSides(c).length>1;
+    const share={bat: tot>=10 ? bg/tot : (two?.8:1), pit: tot>=10 ? pg/tot : (two?.2:1)};
+    RT_DK.forEach(dk=>{ if (set.picked[dk]) return;
+      set.offers[dk]=set.offers[dk].map(o=>{ const t=RT_T.find(x=>x.side===o.side&&x.k===o.k); return t ? {...rtMake(c,t,dk,Math.max(1,share[t.side]*RT_SET)), id:o.id} : o; }); });
+    set.rules=RT_RULES; changed=true;
+  }
+  if (set){
+    const over = set.year!==c.year || gp>=set.end;
+    RT_DK.forEach(dk=>{ const ch=set.picked[dk]; if (!ch || ch.status) return;
+      if (set.year===c.year && rtProg(c,ch).done){ ch.status='done'; ch.at=c.date; st.packs.push({id:++st.seq, rar:RT_D[dk].rar, dk, from:ch.text, at:c.date}); got.push(RT_D[dk].rar); changed=true; return; }
+      if (over){ ch.status='missed'; changed=true; } });
+    if (over){ st.log.unshift({n:set.n, year:set.year, start:set.start, picks:RT_DK.filter(dk=>set.picked[dk]).map(dk=>({dk, text:set.picked[dk].text, status:set.picked[dk].status}))}); st.log=st.log.slice(0,40); st.set=null; changed=true; }
+  }
+  if (!st.set && c.phase==='season' && (RTGEAR||[]).length){ rtNewSet(c,st); changed=true; }
+  if (changed) rtSave(c.key);
+  if (got.length) setTimeout(()=>toast(`<b>${got.length===1?'Pack':'Packs'} earned</b>${got.join(', ')} · open ${got.length===1?'it':'them'} in your inventory.`,'ok'),300);
+}
+function rtCard(c, slot, s, sub){
+  const on=c && c.gear[slot]===s, r=rtRarOf(slot,s);
+  return `<button class="rtcard ${r?'r-'+r.toLowerCase():''} ${on?'on':''}" data-rtview="${slot}:${s}" title="${esc(rtFull(slot,s))}">${rtImg(slot,s,132)}
+    <span class="rtcard-t"><small>${RT_SLOTNAME[slot]}${r?' · '+r:''}${on?' · Equipped':''}</small><b>${esc(rtFull(slot,s))}</b>${sub?`<small>${sub}</small>`:''}</span></button>`;
+}
+const rtOwned = (st,slot,s) => st.unlockAll || st.locker.some(x=>x.slot===slot&&x.s===s);
+function rtView(slot, s){
+  const c=rtCar(), st=RTS[c.key], own=rtOwned(st,slot,+s), on=c.gear[slot]===+s, src=st.locker.find(x=>x.slot===slot&&x.s===+s);
+  $('#modal').innerHTML=`<div class="modal" data-act="sc-bg"><div class="box scmodal rtpop" role="dialog" aria-label="${esc(rtFull(slot,+s))}">
+    <div class="rtpop-img">${rtImg(slot,+s,380,'big')}</div>
+    <div class="scm-h"><div><small>${esc(RT_SLOTNAME[slot])} ${rtRar(slot,+s)}</small><h3>${esc(rtFull(slot,+s))}</h3></div></div>
+    <div class="scm-b">${src&&src.from?`<p>Earned from: ${esc(src.from)}</p>`:''}${!own?'<p class="muted">Not in your locker yet. Earn it from a pack, or turn on Unlock all gear.</p>':''}</div>
+    <div class="press-foot"><span></span><span><button class="btn ghost sm" data-cap="close">Close</button> ${on?'<span class="capst ok">Equipped</span>':own?`<button class="btn sm" data-rteq="${slot}:${s}">Equip</button>`:''}</span></div></div></div>`;
+}
+
+function rtBrand(){
+  const c=rtCar(), el=$('#season'); if (!el) return;
+  if (!c){ el.innerHTML='<div><b>Road to the Show</b></div>'; return; }
+  const t=rtTeam(c), list=(RT||[]).filter(x=>!x.error), multi=list.length>1;
+  el.innerHTML=`${t?logo(t,36,'','logo'):''}<div><b>${esc(c.first+' '+c.last)} ${multi?'<svg class="chev" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>':''}</b><small>${esc(c.clubInfo?c.clubInfo.name:'')} · ${esc((c.player||{}).level||'')} · ${shortDate(c.date)}</small></div>
+    ${multi?`<div class="frmenu" role="menu"><h4>Your careers</h4>${list.map(x=>`<button class="fr ${x.key===c.key?'cur':''}" data-rtkey="${esc(x.key)}" role="menuitem">${rtTeam(x)?logo(rtTeam(x),36,'','logo'):''}<span><b>${esc(x.first+' '+x.last)}</b><small>${esc(x.label||'')}</small></span></button>`).join('')}</div>`:''}`;
+  el.title = multi ? 'Switch career' : `${c.first} ${c.last}`;
+}
+const RT_BAT_COLS=[['g','G'],['ab','AB'],['h','H'],['2b','2B'],['3b','3B'],['hr','HR'],['r','R'],['rbi','RBI'],['bb','BB'],['so','SO'],['sb','SB']];
+const RT_PIT_COLS=[['g','G'],['gs','GS'],['w','W'],['l','L'],['sv','SV'],['outs','IP'],['h','H'],['er','ER'],['bb','BB'],['so','SO'],['hr','HR']];
+function rtStatTable(c, side){
+  const cols=side==='bat'?RT_BAT_COLS:RT_PIT_COLS, lv=(c[side]||{}).levels||{};
+  const rows=[['mlb','MLB'],['aaa','AAA'],['aa','AA']].filter(([k])=>lv[k]&&lv[k].g).map(([k,l])=>[l,lv[k]]);
+  if (rows.length>1) rows.push(['Total',(c[side]||{}).total||{}]);
+  if (!rows.length) return `<p class="explain" style="padding:0 16px 14px">No ${side==='bat'?'hitting':'pitching'} games yet this season.</p>`;
+  const rate=s=> side==='bat' ? [s.ab?(s.h/s.ab).toFixed(3).replace(/^0/,''):'–', s.ab?((s.h+s.bb)/(s.ab+s.bb)).toFixed(3).replace(/^0/,''):'–']
+    : [s.outs?(s.er*27/s.outs).toFixed(2):'–', s.outs?((s.h+s.bb)*3/s.outs).toFixed(2):'–'];
+  return `<table><thead><tr><th class="l">Level</th>${cols.map(([,l])=>`<th>${l}</th>`).join('')}<th>${side==='bat'?'AVG':'ERA'}</th><th>${side==='bat'?'OBP':'WHIP'}</th></tr></thead><tbody>${rows.map(([l,s])=>`<tr${l==='Total'?' class="mine"':''}><td class="l">${l}</td>${cols.map(([k])=>`<td>${k==='outs'?rtFmt({ip:1},s[k]||0):(s[k]||0)}</td>`).join('')}${rate(s).map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function rtRatings(c){
+  const r=(c.player||{}).ratings||{}, b=r.batting||{}, p=r.pitching||{}, f=r.fielding||{}, run=r.running||{};
+  const grp=(t,items)=>`<div class="capdr-g"><h4>${t}</h4>${items.filter(([,v])=>v!=null).map(([l,v])=>`<div class="rtrow"><span>${l}</span>${rt(v,1)}</div>`).join('')}</div>`;
+  const sides=rtSides(c);
+  return `<div class="capdr rtrat">${sides.includes('bat')?grp('Hitting',[['Contact vs R',b.conR],['Contact vs L',b.conL],['Power vs R',b.powR],['Power vs L',b.powL],['Vision',b.vision],['Discipline',b.discipline],['Clutch',b.clutch]]):''}
+    ${sides.includes('pit')?grp('Pitching',[['Stamina',p.stamina],['Hits per 9',p.h9],['K per 9',p.k9],['BB per 9',p.bb9],['HR per 9',p.hr9],['Clutch',p.clutch]]):''}
+    ${grp('Fielding and running',[['Fielding',f.fielding],['Arm strength',f.armStr],['Arm accuracy',f.armAcc],['Reaction',f.reaction],['Speed',run.speed],['Stealing',run.stealing],['Durability',r.durability]])}</div>`;
+}
+const rtPosLbl = c => ((c.label||'').match(/\b((?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|P)(?:\/(?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|P))?)\b/)||[])[1] || (c.player&&c.player.pos) || '';
+const rtTeam = c => (typeof T!=='undefined' && T && c.player && c.player.org!=null) ? T[c.player.org] : null;
+function rtChCard(c, ch, pick){
+  const p=pick?null:rtProg(c,ch), D=RT_D[ch.diff];
+  const st = ch.status==='done' ? '<span class="capst ok">Done · pack earned</span>' : ch.status==='missed' ? '<span class="capst viol">Missed</span>' : '';
+  return `<div class="rtch ${ch.status||''}"><div class="rtch-h"><span class="rtdiff ${ch.diff}">${D.l}</span><span class="rtpack-chip ${D.rar.toLowerCase()}">${D.rar} pack</span></div>
+    <b>${esc(ch.text)}</b><small>${ch.side==='pit'?'Pitching':'Hitting'}, all levels</small>
+    ${pick?`<button class="btn sm" data-rtpick="${ch.diff}:${pick}">Choose this one</button>`
+      :`<div class="rtbar ${p.ok===false?'off':''}"><i style="width:${(p.pct*100).toFixed(0)}%"></i></div><small>${p.txt}</small>${st}`}</div>`;
+}
+function rtSetBar(c, set){
+  const gp=rtGP(c), done=Math.min(RT_SET, Math.max(0,gp-set.start));
+  return `<div class="rtset"><div><small>Set ${set.n}</small><b>Game ${done} of ${RT_SET}</b></div><div class="rtbar"><i style="width:${done/RT_SET*100}%"></i></div><small>New challenges after game ${RT_SET} of this set. Your games = games you hit in plus games you pitched in.</small></div>`;
+}
+function rtChallenges(c){
+  const st=RTS[c.key], set=st.set;
+  if (!set) return `<p class="explain">${c.phase==='season'?'Your next set of challenges is on its way.':'Challenges run during the regular season. The next set starts once it\'s under way.'}</p>${rtLog(st)}`;
+  const cols=RT_DK.map(dk=>{ const ch=set.picked[dk], D=RT_D[dk];
+    return `<div class="rtcol"><h4><span class="rtdiff ${dk}">${D.l}</span> pays a <b>${D.rar}</b> pack</h4>${ch ? rtChCard(c,ch) : set.offers[dk].map((o,i)=>rtChCard(c,o,String(i))).join('')}</div>`; }).join('');
+  const open=RT_DK.filter(dk=>!set.picked[dk]).length;
+  return `<p class="explain">Every ${RT_SET} of your games you get three challenges at each difficulty. Pick one easy, one medium and one hard; progress counts from when you pick, at every level (AA, AAA and MLB), and updates each time you save in the game and open Clubhouse. Finish one before the set's ${RT_SET} games run out to earn a pack. Then a new set starts.</p>
+    ${rtSetBar(c,set)}${open?`<p class="explain" style="margin-top:10px"><b>Choose ${open===3?'your three challenges':open===1?'one more challenge':'two more challenges'}.</b> Once picked, a challenge can't be swapped.</p>`:''}
+    <div class="rtcols">${cols}</div>${rtLog(st)}`;
+}
+function rtLog(st){
+  if (!st.log.length) return '';
+  return `<section class="card flush" style="margin-top:14px"><div class="card-h"><h2>Earlier sets</h2></div><table><tbody>${st.log.slice(0,20).map(s=>`<tr><td class="l">Set ${s.n} · ${s.year}</td><td class="l">${s.picks.length?s.picks.map(p=>`<span class="rtdiff ${p.dk}">${RT_D[p.dk].l}</span> ${esc(p.text)} <b>${p.status==='done'?'✓':'✗'}</b>`).join(' &nbsp; '):'No challenges picked'}</td></tr>`).join('')}</tbody></table></section>`;
+}
+function rtInventory(c){
+  const st=RTS[c.key];
+  const packs=st.packs.map(p=>`<div class="rtpackcard ${p.rar.toLowerCase()}"><div class="rtpackart"><span>${p.rar}</span><small>${p.from==='Starter pack'?'Starter pack':'Gear pack'}</small></div><small>${esc(p.from||'')}</small><button class="btn sm" data-rtopen="${p.id}">Open pack</button></div>`).join('');
+  const odds=['Silver','Gold','Diamond'].map(r=>`<span class="rtpack-chip ${r.toLowerCase()}">${r}</span> ${rtPool(r).length} items`).join(' &nbsp; ');
+  return `<p class="explain">Packs you've earned from challenges. Opening one spins through that rarity's gear and lands on one item, which goes to your locker. You'll get something new until you own every item of that rarity. ${odds}</p>
+    ${packs?`<div class="rtpacks">${packs}</div>`:'<section class="card"><p class="explain" style="margin:0">No packs right now. Finish a challenge to earn one.</p></section>'}`;
+}
+function rtLocker(c){
+  const st=RTS[c.key];
+  const tog=`<label class="capset" style="margin:0"><input type="checkbox" data-rtall ${st.unlockAll?'checked':''}> Unlock all gear (pick anything, no challenges needed)</label>`;
+  const mine=rtSlots().map(([k,l])=>{ const its=st.locker.filter(x=>x.slot===k); if (!its.length) return '';
+    return `<h4 class="rtsub">${l}</h4><div class="rtcards">${its.map(x=>rtCard(c,x.slot,x.s)).join('')}</div>`; }).join('');
+  let all='';
+  if (st.unlockAll){
+    const q=RTF.q.trim().toLowerCase();
+    const its=(RTGEAR||[]).filter(i=>i.slot===RTF.slot && RT_OK.has(i.slot) && (!q || `${i.b} ${i.n} ${i.full||''}`.toLowerCase().includes(q)));
+    all=`<section class="card" style="margin-top:14px"><div class="card-h"><h2>All gear</h2><span class="aside">${(RTGEAR||[]).length} items from the game's catalog</span></div>
+      <div class="rtfilter"><nav class="wtabs">${rtSlots().map(([k,l])=>`<a href="javascript:void 0" data-rtslot="${k}" ${RTF.slot===k?'aria-current="page"':''}>${l}</a>`).join('')}</nav><input type="search" placeholder="Search brand or model" data-rtq value="${esc(RTF.q)}"></div>
+      <div class="rtcards">${its.map(i=>rtCard(c,i.slot,i.s)).join('')||'<p class="explain">Nothing matches.</p>'}</div></section>`;
+  }
+  return `<section class="card"><div class="card-h"><h2>Your locker</h2><span class="aside">${st.locker.length} item${st.locker.length===1?'':'s'} earned</span></div>
+      <p class="explain" style="margin:0 0 10px">Click any piece to see it full size and equip it. Equipping writes that one item to your career save: close the game first; your save is backed up each time. Colours are set in the game: Edit Player has colour options for each piece, and they work offline. If you pick a different item for that slot in Edit Player, the game replaces it, and you can equip it again here.</p>
+      ${mine||'<p class="explain">Nothing yet. Open a pack from your inventory to get your first piece.</p>'}
+      <p style="margin:14px 0 0">${tog}</p></section>${all}`;
+}
+function rtHome(c){
+  const p=c.player||{}, t=rtTeam(c), ci=c.clubInfo||{}, st=RTS[c.key], set=st.set;
+  const ht=p.height?`${Math.floor(p.height/12)}'${p.height%12}"`:'';
+  const chs=set?RT_DK.map(dk=>set.picked[dk]).filter(Boolean):[];
+  const setBox = set ? `${rtSetBar(c,set)}${chs.length?`<div class="rtgrid sm" style="margin-top:10px">${chs.map(ch=>rtChCard(c,ch)).join('')}</div>`:''}${chs.length<3?`<p style="margin:12px 0 0"><a class="btn sm" href="#rtts/challenges">Choose ${3-chs.length} challenge${3-chs.length===1?'':'s'}</a></p>`:''}`
+    : '<p class="explain">No challenges right now.</p>';
+  return `<section class="rthero"><div class="rthero-id">${t?logo(t,72,'','logo'):''}<div><small>${esc([ci.city,ci.name].filter(Boolean).join(' '))} · ${esc(p.level||'')}${ci.league?' · '+esc(ci.league):''}</small><h1>${esc(c.first)} <b>${esc(c.last)}</b></h1>
+      <span>${p.num!=null?'#'+p.num+' · ':''}${esc(rtPosLbl(c))} · Bats ${esc(p.bats||'–')}, throws ${esc(p.throws||'–')} · ${p.age?p.age+' years old':''}${ht?' · '+ht:''}${p.weight?' · '+p.weight+' lb':''}</span></div></div>
+      <div class="rthero-ovr"><small>Overall</small>${rt(p.ovr)}</div></section>
+    ${st.packs.length?`<a class="spban" href="#rtts/inventory" style="margin-top:14px"><div><small>Inventory</small><b>${st.packs.length} pack${st.packs.length===1?'':'s'} to open</b><span>${st.packs.map(x=>x.rar).join(', ')}</span></div><span class="btn sm">Open packs ›</span></a>`:''}
+    <div class="grid g-eq" style="margin-top:14px">
+      <section class="card"><div class="card-h"><h2>This set</h2><a class="more" href="#rtts/challenges">Challenges ›</a></div>${setBox}</section>
+      <section class="card"><div class="card-h"><h2>Equipped</h2><a class="more" href="#rtts/locker">Locker ›</a></div><div class="rtcards sm">${rtSlots().map(([k])=>rtCard(null,k,c.gear[k])).join('')}</div></section></div>
+    ${rtSides(c).map(sd=>`<section class="card flush" style="margin-top:14px"><div class="card-h"><h2>${c.year} ${sd==='bat'?'hitting':'pitching'}</h2><a class="more" href="#rtts/stats">Stats ›</a></div>${rtStatTable(c,sd)}</section>`).join('')}`;
+}
+function rttsPage(tab){
+  if (RT===null){ rtLoad(); return `<p class="explain">Reading your Road to the Show career…</p>`; }
+  const c=rtCar();
+  if (!c) return `<p class="explain">No Road to the Show career found in your save folder.</p>`;
+  RTS[c.key]=rtMigrate(RTS[c.key]);
+  if (tab==='stats') return rtSides(c).map(sd=>`<section class="card flush" style="margin-bottom:14px"><div class="card-h"><h2>${c.year} ${sd==='bat'?'hitting':'pitching'}</h2><span class="aside">By level, this season</span></div>${rtStatTable(c,sd)}</section>`).join('')+`<section class="card"><div class="card-h"><h2>Ratings</h2></div>${rtRatings(c)}</section>`;
+  if (tab==='challenges') return rtChallenges(c);
+  if (tab==='inventory') return rtInventory(c);
+  if (tab==='locker') return rtLocker(c);
+  return rtHome(c);
+}
+views.rtts = function(tab){
+  tab = ['stats','challenges','inventory','locker'].includes(tab) ? tab : '';
+  const c=rtCar(), t=c&&rtTeam(c); if (t) applyTheme(t);
+  const title={stats:'Stats',challenges:'Challenges',inventory:'Inventory',locker:'Gear locker'}[tab];
+  document.querySelectorAll('#rtmenu [data-rt]').forEach(a=>a.classList.toggle('on', a.dataset.rt===tab));
+  rtBrand();
+  return (title?`<div class="page-h"><div><div class="kicker">Road to the Show</div><h2>${title}</h2></div></div>`:'')+rttsPage(tab);
+};
+// ---- packs: one item of the pack's rarity, something you don't own yet while there is one
+const rtPool = rar => (RTGEAR||[]).filter(i=>RT_OK.has(i.slot) && i.b!=='Generic' && (i.r||'Silver')===rar);
+function rtOpen(id){
+  const c=rtCar(), st=RTS[c.key], k=st.packs.findIndex(p=>p.id===+id); if (k<0) return;
+  const pack=st.packs[k], pool=rtPool(pack.rar); if (!pool.length) return;
+  const fresh=pool.filter(i=>!st.locker.some(x=>x.slot===i.slot&&x.s===i.s));
+  const cand=fresh.length?fresh:pool, rnd=()=>{ const a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]/2**32; };
+  const win=cand[Math.floor(rnd()*cand.length)];
+  // the result is decided and saved before the spin, so closing the window mid-spin can't lose or re-roll it
+  st.packs.splice(k,1);
+  if (!st.locker.some(x=>x.slot===win.slot&&x.s===win.s)) st.locker.push({slot:win.slot, s:win.s, from:`${pack.rar} pack · ${pack.from||''}`, at:c.date, rar:pack.rar});
+  rtSave(c.key);
+  const pics=pool.filter(i=>i.img), strip=[], N=60, W=52;   // pool is confirmed slots only
+  for (let i=0;i<N;i++) strip.push(i===W ? win : (pics.length?pics:pool)[Math.floor(rnd()*(pics.length||pool.length))]);
+  $('#modal').innerHTML=`<div class="modal" data-act="rt-case"><div class="box scmodal rtcase ${pack.rar.toLowerCase()}" role="dialog" aria-label="Opening a ${pack.rar} pack">
+    <div class="scm-h"><div><small>Opening</small><h3>${pack.rar} pack</h3></div></div>
+    <div class="rtreel"><i class="rtmark"></i><div class="rtstrip">${strip.map((it,i)=>`<div class="rtslot ${i===W?'win':''}">${rtImg(it.slot,it.s,104,'eager')}<small>${esc(RT_SLOTNAME[it.slot])}</small></div>`).join('')}</div></div>
+    <div class="rtresult" hidden>${rtImg(win.slot,win.s,160,'big')}<div><small>${esc(RT_SLOTNAME[win.slot])} ${rtRar(win.slot,win.s)}</small><h3>${esc(rtFull(win.slot,win.s))}</h3><p>${fresh.length?'Added to your locker.':'You already own every item of this rarity, so this is a repeat.'}</p></div></div>
+    <div class="press-foot"><span></span><span><button class="btn ghost sm" data-cap="close" hidden>Close</button> <button class="btn sm" data-rteq="${win.slot}:${win.s}" hidden>Equip now</button></span></div></div></div>`;
+  const reel=$('.rtreel'), s=$('.rtstrip'), slotW=112, x=W*slotW + slotW/2 - reel.clientWidth/2 + (rnd()-.5)*(slotW*.7);
+  const done=()=>{ document.querySelector('.rtslot.win')?.classList.add('lit'); const r=$('.rtresult'); if (r) r.hidden=false; document.querySelectorAll('.rtcase .press-foot [hidden]').forEach(b=>b.hidden=false); render(true); };
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){ s.style.transform=`translateX(${-x}px)`; done(); return; }
+  requestAnimationFrame(()=>{ s.style.transition='transform 6.2s cubic-bezier(.07,.82,.16,1)'; s.style.transform=`translateX(${-x}px)`; });
+  s.addEventListener('transitionend', done, {once:true});
+}
+document.addEventListener('click', async e=>{
+  const k=e.target.closest('[data-rtkey]'); if (k){ RTF.key=k.dataset.rtkey; $('#season').classList.remove('open'); render(true); return; }
+  const sl=e.target.closest('[data-rtslot]'); if (sl){ RTF.slot=sl.dataset.rtslot; render(true); return; }
+  const pk=e.target.closest('[data-rtpick]');
+  if (pk){ const [dk,i]=pk.dataset.rtpick.split(':'), c=rtCar(), st=RTS[c.key]; if (!st.set || st.set.picked[dk]) return;
+    const o=st.set.offers[dk][+i]; st.set.picked[dk]={...o, base:{...rtT(c,o.side)}, from:rtGP(c)}; rtSave(c.key); render(true); return; }
+  const op=e.target.closest('[data-rtopen]'); if (op){ rtOpen(op.dataset.rtopen); return; }
+  const vw=e.target.closest('[data-rtview]'); if (vw){ const [slot,s]=vw.dataset.rtview.split(':'); rtView(slot,+s); return; }
+  const eq=e.target.closest('[data-rteq]');
+  if (eq){ const [slot,s]=eq.dataset.rteq.split(':'), c=rtCar();
+    $('#modal').innerHTML=`<div class="modal" data-act="sc-bg"><div class="box scmodal" style="max-width:500px" role="dialog" aria-label="Equip gear">
+      <div class="scm-h"><div><small>${esc(RT_SLOTNAME[slot])}</small><h3>Equip ${esc(rtFull(slot,+s))}</h3></div></div>
+      <div class="scm-b"><p>${esc(c.first+' '+c.last)}'s ${esc(RT_SLOTNAME[slot].toLowerCase())} becomes ${esc(rtFull(slot,+s))}. Only that slot changes in your career save, and it's backed up first.</p><p class="scm-cap"><b>Close the game and the emulator first.</b></p></div>
+      <div class="press-foot"><span></span><span><button class="btn ghost sm" data-cap="close">Cancel</button> <button class="btn sm" data-rteqok="${slot}:${s}">Equip</button></span></div></div></div>`;
+    return; }
+  const ok=e.target.closest('[data-rteqok]');
+  if (ok){ const [slot,s]=ok.dataset.rteqok.split(':'), c=rtCar(); ok.disabled=true; ok.textContent='Writing…';
+    let r; try { r=await api().rtts_equip(c.key, c.row, {[slot]:+s}); } catch(err){ r={ok:false, error:String(err)}; }
+    $('#modal').innerHTML='';
+    if (!r||!r.ok){ toast(`<b>Nothing written</b>${esc((r&&r.error)||'Something went wrong.')}`); return; }
+    RT=null; await rtLoad(); toast(`<b>Equipped</b>${esc(rtFull(slot,+s))}. Load your career in the game to see it.`,'ok'); return; }
+});
+
+/* ---------- Franchise | Road to the Show mode (top bar). The switch only shows when a Road to the Show career is
+   in the save folder; each mode shows only its own menus and pages. Remembered in localStorage ch-mode. ---------- */
+let MODE=(()=>{ try { return localStorage.getItem('ch-mode')==='rtts'?'rtts':'franchise'; } catch { return 'franchise'; } })(), HAS_RT=false;
+const rtMode = () => MODE==='rtts' && HAS_RT;
+function applyMode(){
+  const on=rtMode();
+  document.body.classList.toggle('mode-rtts', on);
+  const m=$('#menu'), r=$('#rtmenu'), tk=$('#ticker'), sw=$('#modesw');
+  if (m) m.hidden=on; if (r) r.hidden=!on; if (tk) tk.hidden=on;
+  if (sw){ sw.hidden=!HAS_RT; sw.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===(on?'rtts':'franchise')))); }
+  if (on) rtBrand(); else if (L && T) renderBrand();
+}
+function setMode(m){
+  MODE=m; try { localStorage.setItem('ch-mode', m); } catch {}
+  applyMode();
+  history.replaceState(null,'', m==='rtts'?'#rtts':'#home');
+  if (m==='franchise' && L && T) applyTheme(T[ME]);
+  render(false);
+}
+async function rtProbe(){
+  try { HAS_RT=!!(await api().has_rtts()); } catch { HAS_RT=false; }
+  applyMode();
+  if (rtMode() || (location.hash||'').startsWith('#rtts')) render(false);
+}
+document.addEventListener('click', e=>{
+  const b=e.target.closest('#modesw [data-mode]'); if (!b) return;
+  if ((b.dataset.mode==='rtts')!==rtMode()) setMode(b.dataset.mode);
+});
+document.addEventListener('change', e=>{
+  const a=e.target.closest('[data-rtall]'); if (a){ const c=rtCar(); RTS[c.key].unlockAll=a.checked; rtSave(c.key); render(true); return; }
+});
+document.addEventListener('input', e=>{
+  const q=e.target.closest('[data-rtq]'); if (!q) return; RTF.q=q.value;
+  clearTimeout(RTF.t); RTF.t=setTimeout(()=>{ render(true); const el=document.querySelector('[data-rtq]'); if (el){ el.focus(); el.setSelectionRange(el.value.length, el.value.length); } }, 200);
+});
+
+
 /* ---------- salary cap and floor (spec: "Salary cap and floor/salary-cap-floor-proposal.md") ----------
    Payroll = the average annual value (total / years) of every player in the organization on a major-league
    contract: the stand-in for the 40-man roster, which isn't decoded (minor leaguers carry no major-league deal).
@@ -4092,7 +4481,10 @@ function countUp(){
 /* ---------- router + events ---------- */
 const NAV_OF={leaders:'stats'};
 function render(keep){
-  const [v,arg]=(location.hash.slice(1)||'home').split('/');
+  let [v,arg]=(location.hash.slice(1)||'home').split('/');
+  // each mode only shows its own pages
+  if (rtMode() && v!=='rtts'){ history.replaceState(null,'','#rtts'); v='rtts'; arg=undefined; }
+  else if (!rtMode() && v==='rtts'){ history.replaceState(null,'','#home'); v='home'; arg=undefined; }
   if (v==='p'){ openProfile(arg); return; }
   const key=views[v]&&v!=='playersAll'?v:'home';
   const y=window.scrollY, vw=$('#view');
@@ -4131,7 +4523,7 @@ document.addEventListener('click',e=>{
   const sp=e.target.closest('[data-spot]'); if(sp){ HOMEF.spot+=+sp.dataset.spot; render(true); return; }
   const fr=e.target.closest('[data-fr]'); if(fr){ switchFranchise(fr.dataset.fr); return; }
   const pa=e.target.closest('[data-press]'); if(pa){ const [k,i,j]=pa.dataset.press.split(':').map(Number); answerPress(k,i,j); return; }
-  const se=e.target.closest('#season'); if(se && !e.target.closest('.frmenu')){ if(FRS.list.length>1) se.classList.toggle('open'); else location.hash='#team/'+ME; return; }
+  const se=e.target.closest('#season'); if(se && !e.target.closest('.frmenu')){ if(rtMode()){ if((RT||[]).filter(c=>!c.error).length>1) se.classList.toggle('open'); return; } if(FRS.list.length>1) se.classList.toggle('open'); else location.hash='#team/'+ME; return; }
   if(!e.target.closest('#season')) { const s=$('#season'); if(s) s.classList.remove('open'); }
 });
 document.addEventListener('change',e=>{
@@ -7349,6 +7741,7 @@ const frTeam = f => ({abbr:f.abbr, colors:[], city:f.city, name:f.name});
 const frWhen = f => `${f.labelDate?new Date(f.labelDate+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})+', '+(+f.labelDate.slice(0,4)+(f.yearOffset||0)):esc(yrLabel(f.label,f.yearOffset||0))} · ${f.saves} save${f.saves>1?'s':''}`;
 function setFranchises(meta){ if(meta && meta.franchises){ FRS.list=meta.franchises; FRS.cur=meta.franchise; } }
 function renderBrand(){
+  if (rtMode()){ rtBrand(); return; }
   const t=T&&T[ME]; if(!t) return;
   const multi=FRS.list.length>1;
   $('#season').innerHTML=`${logo(t,36,'','logo')}<div><b>${L.season.year} ${springPhase()?'spring':'season'} ${multi?'<svg class="chev" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg>':''}</b><small>${dayLbl()} · ${new Date(today()+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'})} · ${t.record.w}–${t.record.l}</small></div>
@@ -7408,6 +7801,7 @@ async function loadLeague(){
   if (!HEADS) { try { HEADS = await api().get_heads() || []; } catch { HEADS = []; } }
   assignHeads();
   try { await capLoadStore(); capSync(); } catch (err) { console.error(err); }   // salary cap checkpoints, recorded once
+  if (!rtProbe.done){ rtProbe.done=true; setTimeout(rtProbe, 0); }
   setTimeout(()=>{ capAutoBudgets(); }, 0);   // "apply the cap automatically" (runs after this load finishes)
   CAPDO = null; if (views.cap) views.cap._doLoaded = false; if (views.draft) views.draft._doLoaded = false;   // re-read the stored original draft order for this save
   ((L.draft && L.draft.prospects) || []).forEach(p => P.set(p.id, p));   // prospects open in the profile drawer too
@@ -7472,6 +7866,12 @@ window.clubhouse = {
       const el=$('#appupdate');
       if (el) el.innerHTML=( `<div class="newsave" id="appupd"><b>Clubhouse was updated</b><span>Restart to use the new version. Your save and settings stay as they are.</span><span class="sp"></span>
         <button class="btn sm" data-act="restart">Restart now</button><button class="btn ghost sm" data-act="restart-later">Later</button></div>`);
+      return;
+    }
+    if (meta.rttsChanged){   // a Road to the Show career has a new save: re-read it (challenge state stays as it is)
+      const was=HAS_RT; HAS_RT=true; RT=null;
+      if (!was) applyMode();
+      if (rtMode()){ rtLoad().then(()=>toast('<b>Road to the Show updated</b>Your latest save is loaded.','ok')); }
       return;
     }
     if (meta.newSave){   // a newer save of this franchise is ready: ask before loading it

@@ -218,6 +218,7 @@ class League:
         """Poll every franchise slot. When the folder settles after a change, reload if the chosen
         franchise has a newer save; otherwise just refresh the franchise list in the page."""
         pending, since, seen = None, 0.0, None
+        rt_seen, rt_pending = None, None
         code_at_start, announced = _code_signature(), False
         while not self._stop.wait(POLL_SECONDS):
             # Clubhouse's own files changed (an update): the running copy still has the old code in memory.
@@ -229,6 +230,28 @@ class League:
                 folder = self.folder
             if not folder:
                 continue
+            # Road to the Show careers (CARR slots) are watched separately: tell the page when one has a new save,
+            # once it has settled (same signature two polls running) and its checksum matches.
+            try:
+                rt_sig = tuple(sorted((d.name, (d / "SAVE_000").stat().st_mtime_ns, (d / "SAVEINFO").stat().st_mtime_ns)
+                                      for d in profile_root(folder).glob("CARR*") if (d / "SAVE_000").exists() and (d / "SAVEINFO").exists()))
+            except OSError:
+                rt_sig = rt_seen
+            if rt_seen is None:
+                rt_seen = rt_sig
+            elif rt_sig != rt_seen:
+                if rt_sig != rt_pending:
+                    rt_pending = rt_sig
+                else:
+                    changed = [n for n, m, i in rt_sig if (n, m, i) not in (rt_seen or ())]
+                    try:
+                        ok = all(SaveSlot(profile_root(folder) / n / "SAVE_000", profile_root(folder) / n / "SAVEINFO").checksum_ok for n in changed)
+                    except Exception:
+                        ok = False
+                    if ok:
+                        rt_seen, rt_pending = rt_sig, None
+                        if self.on_change:
+                            self.on_change({"ok": True, "rttsChanged": changed, **self.meta()})
             try:
                 allsig = tuple(_signature(s) for s in find_franchise_slots(folder))
             except OSError:
@@ -512,6 +535,72 @@ class Api:
             os.replace(f, f.with_suffix(".bak"))
         os.replace(tmp, f)
         return {"ok": True}
+
+    # -- Road to the Show gear (CARR slots; mlb26save/rtts.py). Challenges and the locker live in the page; their
+    # state is kept per career in %APPDATA%/Clubhouse/rtts/<slot>.json. Equipping is a confirmed, backed-up write.
+    def _rtts_careers(self) -> dict:
+        from mlb26save import rtts
+        folder = self._league.folder or load_config().get("saveFolder")
+        if not folder:
+            return {}
+        return {c["key"]: c for c in rtts.careers(profile_root(folder))}
+
+    def get_rtts(self) -> dict:
+        from mlb26save import rtts
+        out = []
+        cache = self.__dict__.setdefault("_rt_cache", {})
+        for key, c in self._rtts_careers().items():
+            hit = cache.get(key)
+            if hit and hit[0] == c["mtime"]:
+                out.append(hit[1]); continue
+            try:
+                data = {**rtts.read(c["dir"]), "mtime": c["mtime"]}
+                cache[key] = (c["mtime"], data)
+                out.append(data)
+            except Exception as e:   # a half-written or unfamiliar slot: list it, don't fail the page
+                out.append({"key": key, "error": str(e)})
+        return {"ok": True, "careers": out}
+
+    def has_rtts(self) -> bool:
+        """Cheap check for the mode switch: is there any Road to the Show career next to the franchises?"""
+        return bool(self._rtts_careers())
+
+    def _rtts_file(self, key: str) -> Path:
+        safe = "".join(ch for ch in str(key) if ch.isalnum())
+        return CONFIG_PATH.parent / ("rtts" if self._league.remember else "rtts-copies") / f"{safe}.json"
+
+    def get_rtts_store(self, key: str) -> str | None:
+        f = self._rtts_file(key)
+        for p in (f, f.with_suffix(".bak")):
+            try:
+                text = p.read_text(encoding="utf-8")
+                json.loads(text)
+                return text
+            except (OSError, ValueError):
+                continue
+        return None
+
+    def save_rtts_store(self, key: str, blob: str) -> dict:
+        try:
+            json.loads(blob)
+        except ValueError:
+            return {"ok": False, "error": "Data was malformed; nothing written."}
+        f = self._rtts_file(key)
+        f.parent.mkdir(parents=True, exist_ok=True)
+        tmp = f.with_suffix(".tmp")
+        tmp.write_text(blob, encoding="utf-8")
+        if f.exists():
+            os.replace(f, f.with_suffix(".bak"))
+        os.replace(tmp, f)
+        return {"ok": True}
+
+    def rtts_equip(self, key: str, row: int, gear: dict) -> dict:
+        from mlb26save import rtts
+        c = self._rtts_careers().get(key)
+        if not c:
+            return {"ok": False, "error": "That career's save wasn't found."}
+        bk = CONFIG_PATH.parent / ("save-backups" if self._league.remember else "save-backups-copies") / "rtts"
+        return rtts.equip(c["dir"], int(row), gear or {}, bk)
 
     def _portrait_dir(self) -> Path:
         return self._scout_dir() / "portraits" / str(self._league.franchise or "none")

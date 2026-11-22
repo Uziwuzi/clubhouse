@@ -1,5 +1,41 @@
 # Clubhouse changelog
 
+## 1.13.0 (November 22, 2026)
+
+Road to the Show comes to Clubhouse, with gear challenges, packs and a locker that equips real branded gear on your player, even offline.
+
+### Two modes
+- A **Franchise | Road to the Show** switch in the top bar. It appears when Clubhouse finds a Road to the Show career in your save folder.
+- **Road to the Show mode** shows only your player: Home, Stats, Challenges, Inventory and Locker, in your organization's colours. Franchise mode is unchanged.
+- Clubhouse picks up new career saves by itself, a few seconds after you save in the game.
+
+### Your player
+- **Home:** your club, level, position, overall, this set's challenges, packs to open, equipped gear and this season's stats.
+- **Stats:** hitting and pitching by level (AA, AAA, MLB) plus your ratings. Two-way players get both.
+
+### Challenges
+- Every **20 of your games** (games you hit in plus games you pitched in) you get three challenges at each difficulty. Pick one easy, one medium and one hard.
+- Targets come from your own pace. Some are counting stats (hits, home runs, RBIs, strikeouts, wins, innings), others are rate stats (hit .350 over 50+ at-bats, an ERA under 2.00).
+- Finish one before the 20 games run out to earn a pack: easy gives **Silver**, medium **Gold**, hard **Diamond**. Then a new set starts.
+- Stats count at every level, and call-ups don't reset anything. Simmed games count too.
+
+### Packs and the locker
+- Every career starts with **3 Silver, 2 Gold and 1 Diamond** pack.
+- **Inventory:** open a pack and a reel spins through that rarity's gear and lands on your item. You get something new until you own every item of that rarity.
+- **Locker:** your gear as big picture cards. Click one to see it full size and **Equip** it.
+- **13 gear slots:** bat, batting gloves, fielding glove, cleats, elbow guard, bat grip, glasses, compression sleeve, wrist guard, leg guard, catcher's mask, catcher's shin guards and chest protector.
+- About 440 items from the game's own catalog, including legend signature bats, with pictures and rarity from The Show's item database.
+- **Unlock all gear** (in the Locker): equip anything without challenges.
+
+### How to use it
+1. Restart Clubhouse after updating, then click **Road to the Show** in the top bar.
+2. Open **Challenges** and pick one easy, one medium and one hard.
+3. Play or sim, then save in the game. Clubhouse updates your progress by itself.
+4. Open your packs in **Inventory**.
+5. To equip gear: **close the game and the emulator**, open the **Locker**, click an item and press **Equip**. Then load your career in the game.
+
+Equipping changes only that one slot in your career save. Clubhouse backs up the save first, then reads it back to check. If you pick a different item for that slot in the game's Edit Player screen, the game replaces it, and you can equip it again from the Locker. Colours stay with the game's Edit Player menus.
+
 ## 1.12.1 (November 21, 2026)
 
 - **Fixed:** after updating, Clubhouse could keep showing the previous version's pages, so the Salary cap and Draft lottery from 1.12.0 didn't appear. Clubhouse now clears its page cache on every start. Your settings, boards and cap records are kept.

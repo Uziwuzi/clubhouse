@@ -18,6 +18,8 @@ SAVEINFO
 # --- images ship inside release zips only, not in the source ---
 app/ui/teams/
 app/ui/heads/
+app/ui/data/equipment.json
+app/ui/gear/
 
 # --- build output and tooling ---
 .venv/
