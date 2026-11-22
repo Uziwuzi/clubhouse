@@ -23,6 +23,7 @@ sys.path.insert(0, str(ROOT / "decoder"))
 import hashlib  # noqa: E402
 from mlb26save.container import SaveInfo, SaveSlot, find_franchise_slots  # noqa: E402
 from mlb26save.franchises import profile_root, scan  # noqa: E402
+from mlb26save.rtts import career_dirs as _career_dirs  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from updater import Updater  # noqa: E402
 from version import REPO, VERSION  # noqa: E402
@@ -117,7 +118,7 @@ class League:
             return {"ok": False, "error": "No folder given."}
         folder = profile_root(Path(str(folder).strip().strip('"'))).resolve()   # a FRAN slot widens to its profile
         fs = scan(folder) if folder.is_dir() else []
-        if not fs and folder.is_dir() and any(folder.glob("CARR*")):
+        if not fs and folder.is_dir() and _career_dirs(folder):
             # Road to the Show only: no franchise to read, but the page opens straight into Road to the Show mode
             with self.lock:
                 self.folder, self.franchises, self.remember = folder, [], remember
@@ -167,7 +168,7 @@ class League:
                 return {"ok": False, "error": "No save folder chosen yet."}
             slot = self._current_slot()
             if not slot:
-                if any(Path(self.folder).glob("CARR*")):
+                if _career_dirs(self.folder):
                     return {"ok": True, "rttsOnly": True, **self.meta()}
                 self.error = f"No franchise save found in {self.folder}."
                 return {"ok": False, "error": self.error}
@@ -225,7 +226,7 @@ class League:
 
     def rtts_only(self) -> bool:
         """A save folder with Road to the Show careers but no franchise."""
-        return bool(self.folder) and not self.franchises and any(Path(self.folder).glob("CARR*"))
+        return bool(self.folder) and not self.franchises and bool(_career_dirs(self.folder))
 
     # -- watching
     def watch(self):
@@ -247,8 +248,9 @@ class League:
             # Road to the Show careers (CARR slots) are watched separately: tell the page when one has a new save,
             # once it has settled (same signature two polls running) and its checksum matches.
             try:
-                rt_sig = tuple(sorted((d.name, (d / "SAVE_000").stat().st_mtime_ns, (d / "SAVEINFO").stat().st_mtime_ns)
-                                      for d in profile_root(folder).glob("CARR*") if (d / "SAVE_000").exists() and (d / "SAVEINFO").exists()))
+                rt_dirs = {d.name: d for d in _career_dirs(folder)}
+                rt_sig = tuple(sorted((n, (d / "SAVE_000").stat().st_mtime_ns, (d / "SAVEINFO").stat().st_mtime_ns)
+                                      for n, d in rt_dirs.items() if (d / "SAVE_000").exists() and (d / "SAVEINFO").exists()))
             except OSError:
                 rt_sig = rt_seen
             if rt_seen is None:
@@ -259,7 +261,7 @@ class League:
                 else:
                     changed = [n for n, m, i in rt_sig if (n, m, i) not in (rt_seen or ())]
                     try:
-                        ok = all(SaveSlot(profile_root(folder) / n / "SAVE_000", profile_root(folder) / n / "SAVEINFO").checksum_ok for n in changed)
+                        ok = all(SaveSlot(rt_dirs[n] / "SAVE_000", rt_dirs[n] / "SAVEINFO").checksum_ok for n in changed)
                     except Exception:
                         ok = False
                     if ok:

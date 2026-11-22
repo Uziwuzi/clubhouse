@@ -1,5 +1,11 @@
 # Clubhouse changelog
 
+## 1.13.3 (November 22, 2026)
+
+- **Fixed: Road to the Show without a franchise.** Menu items and buttons didn't switch pages, so it looked like nothing responded. They work now.
+- **Fixed: Road to the Show-only players weren't offered updates.** Clubhouse now checks for updates for them too. If you're on 1.13.2 without a franchise, get this one through **Settings → Updates → Check now**.
+- **Picking your save folder:** `profile`, `profile\save` or the folder inside it all work now. Road to the Show careers are found from any of them, and the game's own backup and work copies (`save-backup`, `save-tx`) are skipped.
+
 ## 1.13.2 (November 22, 2026)
 
 - **Road to the Show without a franchise:** Clubhouse now works if your save folder has only Road to the Show careers. It opens straight into Road to the Show mode, with your club's logo and colours. If you start a franchise later, the Franchise | Road to the Show switch appears.

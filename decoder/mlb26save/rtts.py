@@ -44,10 +44,35 @@ BAT_KEYS = ("g", "ab", "h", "2b", "3b", "hr", "r", "rbi", "bb", "so", "sb", "po"
 PIT_KEYS = ("g", "gs", "w", "l", "sv", "outs", "h", "er", "bb", "so", "hr", "hld")
 
 
+SKIP_DIRS = ("backup", "-tx", "temp", "cache")   # the game's own save-backup / save-tx copies and scratch folders
+
+
+def career_dirs(folder: str | Path, depth: int = 2) -> list[Path]:
+    """CARR slot folders in `folder` or up to `depth` levels below it (the profile id folder, the save folder, ...),
+    skipping the game's backup and transaction copies."""
+    folder, out = Path(folder), []
+
+    def walk(d: Path, left: int):
+        try:
+            kids = [k for k in d.iterdir() if k.is_dir()]
+        except OSError:
+            return
+        for k in kids:
+            n = k.name.lower()
+            if n.startswith("carr"):
+                out.append(k)
+            elif left > 0 and not any(x in n for x in SKIP_DIRS) and not n.startswith(("fran", "rost", "plya", "sett")):
+                walk(k, left - 1)
+    if folder.name.lower().startswith("carr"):
+        return [folder]
+    walk(folder, depth)
+    return out
+
+
 def careers(profile: Path) -> list[dict]:
-    """Every Road to the Show slot in a profile folder, newest first."""
+    """Every Road to the Show slot in or below a save folder, newest first."""
     out = []
-    for d in Path(profile).glob("CARR*"):
+    for d in career_dirs(profile):
         s, i = d / "SAVE_000", d / "SAVEINFO"
         if s.exists() and i.exists():
             out.append({"key": d.name, "dir": str(d), "mtime": s.stat().st_mtime})

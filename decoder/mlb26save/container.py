@@ -152,7 +152,8 @@ def find_franchise_slots(folder: str | Path, depth: int = 3) -> list[tuple[Path,
             return
         if left:
             for e in entries:
-                if e.is_dir() and not e.name.startswith("_"):
+                # skip the game's own save-backup / save-tx copies (older or half-written slots) and scratch folders
+                if e.is_dir() and not e.name.startswith("_") and not any(x in e.name.lower() for x in ("backup", "-tx", "temp", "cache")):
                     walk(e, left - 1)
 
     walk(folder, depth)

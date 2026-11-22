@@ -2963,6 +2963,11 @@ async function startRttsOnly(){
   const app=document.querySelector('.app'); if (app) app.hidden=false;
   applyMode();
   history.replaceState(null,'','#rtts');
+  // These normally start with the first franchise load, which never happens here: without the hashchange listener
+  // no link or menu item switched pages (a Road to the Show-only user reported "none of the buttons work"), and
+  // without the update check these users were never offered updates.
+  if (!routed){ window.addEventListener('hashchange',route); routed=true; }
+  if (!UPD.checked){ UPD.checked=true; setTimeout(()=>checkForUpdate(false), 1500); }
   RT=null; render(false);
 }
 async function rtProbe(){
