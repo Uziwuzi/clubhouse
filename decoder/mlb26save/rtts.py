@@ -40,7 +40,7 @@ SLOTS = {
 }
 # The second group was confirmed in-game on Nov 22, 2026 (test items in all eight slots showed in Edit Player).
 VERIFIED = {"bat", "batgloves", "cleats", "glove", "elbow", "grip", "glasses", "sleeves", "wrist", "shin", "cmask", "cshin", "chest"}
-BAT_KEYS = ("g", "ab", "h", "2b", "3b", "hr", "r", "rbi", "bb", "so", "sb")
+BAT_KEYS = ("g", "ab", "h", "2b", "3b", "hr", "r", "rbi", "bb", "so", "sb", "po", "a", "e")   # po/a/e: fielding (PUTOUTS, ASSISTS, ERRORS)
 PIT_KEYS = ("g", "gs", "w", "l", "sv", "outs", "h", "er", "bb", "so", "hr", "hld")
 
 
@@ -86,7 +86,8 @@ def read(slot_dir: str | Path) -> dict:
     # Stats copies: [1] this MLB season, [2] this season in AAA, [3] in AA (as in extract.export_league)
     bt, pt = _stat_tables(db, "D_PLAYER_STATS"), _stat_tables(db, "D_PITCHER_STATS")
     lvls = (("mlb", 1), ("aaa", 2), ("aa", 3))
-    bat = {k: _bat_line(bt[i].rows[row]) for k, i in lvls if i < len(bt)}
+    bat = {k: {**_bat_line(bt[i].rows[row]), "po": bt[i].rows[row].get("PUTOUTS", 0), "a": bt[i].rows[row].get("ASSISTS", 0),
+               "e": bt[i].rows[row].get("ERRORS", 0)} for k, i in lvls if i < len(bt)}
     pit = {k: _pit_line(pt[i].rows[row]) for k, i in lvls if i < len(pt)}
     acc = db.largest("D_PLAYER_ACC").rows[row]
     lg = export_league(db)                      # the player's ratings, club and organization (about 3 s; cached by the app)
@@ -97,6 +98,9 @@ def read(slot_dir: str | Path) -> dict:
     return {
         "player": {k: pl.get(k) for k in keep},
         "clubInfo": {k: club.get(k) for k in ("abbr", "city", "name", "level", "league", "division")} if club else None,
+        # the MLB organization, for logos and colours when no franchise is loaded (Road to the Show only)
+        "teamInfo": next(({k: t.get(k) for k in ("id", "abbr", "city", "name", "league", "division", "colors")}
+                          for t in lg.get("teams", []) if t.get("id") == pl.get("org")), None),
         "key": d.name, "label": label, "row": row,
         "first": p["FIRST_NAME"], "last": p["LAST_NAME"],
         "year": year, "date": date.isoformat(), "phase": phase,

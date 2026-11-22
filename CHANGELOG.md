@@ -1,5 +1,15 @@
 # Clubhouse changelog
 
+## 1.13.2 (November 22, 2026)
+
+- **Road to the Show without a franchise:** Clubhouse now works if your save folder has only Road to the Show careers. It opens straight into Road to the Show mode, with your club's logo and colours. If you start a franchise later, the Franchise | Road to the Show switch appears.
+- **Defensive challenges:** fielders now also get defence challenges:
+  - assists for 2B, SS and 3B; putouts for 1B, catchers and outfielders;
+  - an errors cap for every fielder ("no more than 1 error", or error-free on hard). It's judged when the set ends, and you must play most of the set's games.
+- **Challenges follow your position:** pitchers get pitching challenges, position players get hitting and defence, and two-way players get all three. A position player who pitched a mop-up inning no longer gets pitching challenges.
+- **Stats:** the hitting table shows putouts, assists and errors.
+- The welcome screen and Settings now mention Road to the Show saves.
+
 ## 1.13.1 (November 22, 2026)
 
 - **More gear pictures:** 343 of the 409 branded items now have a picture, up from 317, including more legend bats (Buck O'Neil, Hilton Smith, Martin Dihigo, Rube Foster, Ernie Banks, Jimmie Foxx) and the Chandler JAZZ.X. The extra pictures come from The Show's MLB 25 and MLB 24 item databases. Items with no picture anywhere still show a slot icon.

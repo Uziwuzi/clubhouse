@@ -2613,13 +2613,16 @@ const RT_SLOTNAME=Object.fromEntries(RT_SLOTS);
 const RT_SET=20;
 const RT_DK=['easy','medium','hard'];
 const RT_D={easy:{l:'Easy',rar:'Silver',m:0.9}, medium:{l:'Medium',rar:'Gold',m:1.25}, hard:{l:'Hard',rar:'Diamond',m:1.6}};
-const RT_RULES=2;   // bump when targets change: offers not yet picked are recalculated (Nov 22, 2026: toned down about 15%)
+const RT_RULES=3;   // bump when targets change: offers not yet picked are recalculated (Nov 22, 2026: toned down about 15%)
 // counting stats: default pace per game on that side (hitting games or pitching games) for a regular
 const RT_T=[
   {side:'bat',kind:'count',k:'h',l:'hits',one:'hit',p:1.1},{side:'bat',kind:'count',k:'hr',l:'home runs',one:'home run',p:.13},
   {side:'bat',kind:'count',k:'rbi',l:'RBIs',one:'RBI',p:.55},{side:'bat',kind:'count',k:'sb',l:'stolen bases',one:'stolen base',p:.15},
   {side:'bat',kind:'count',k:'2b',l:'doubles',one:'double',p:.25},{side:'bat',kind:'count',k:'r',l:'runs scored',one:'run scored',p:.55},
   {side:'bat',kind:'count',k:'bb',l:'walks',one:'walk',p:.35},{side:'bat',kind:'avg',k:'avg',l:'batting average'},
+  // defence (fielders only): fld = which positions get it
+  {side:'bat',kind:'count',k:'a',l:'assists',one:'assist',p:2.2,fld:'if'},{side:'bat',kind:'count',k:'po',l:'putouts',one:'putout',p:2.4,fld:'po'},
+  {side:'bat',kind:'max',k:'e',l:'errors',fld:'any'},
   {side:'pit',kind:'count',k:'so',l:'strikeouts',one:'strikeout',p:5.5},{side:'pit',kind:'count',k:'w',l:'wins',one:'win',p:.45},
   {side:'pit',kind:'count',k:'outs',l:'innings pitched',p:16,ip:true},{side:'pit',kind:'era',k:'era',l:'ERA'},
 ];
@@ -2658,10 +2661,18 @@ async function rtLoad(){
   RT_BUSY=false; render(true);
 }
 function rtSave(key){ try { api().save_rtts_store(key, JSON.stringify(RTS[key])); } catch {} }
-function rtSides(c){ const s=[]; const pos=(c.label||'').split(',').slice(1).join(',');
-  if ((rtT(c,'bat').ab||0)>0 || /\b(C|1B|2B|3B|SS|LF|CF|RF|DH|OF|IF)\b/.test(pos)) s.push('bat');
-  if ((rtT(c,'pit').outs||0)>0 || /\b(SP|RP|CP|P)\b/.test(pos)) s.push('pit');
+// The player's positions from the slot label ("..., Blue Wahoos SP/2B May 24"), else his roster position.
+const RT_PITCH=['SP','RP','CP','P'], RT_IF=['2B','SS','3B','IF'], RT_PO=['1B','C','LF','CF','RF','OF'];
+function rtPositions(c){ const m=(c.label||'').split(',').slice(1).join(',').match(/\b((?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|OF|IF|P)(?:\/(?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|OF|IF|P))*)\b/);
+  return m ? m[1].split('/') : ((c.player&&c.player.pos) ? [c.player.pos] : []); }
+// Hitting and pitching come from his positions; stats decide only when the save shows none (a mop-up inning
+// doesn't make a position player a pitcher).
+function rtSides(c){ const ps=rtPositions(c), s=[];
+  if (ps.length){ if (ps.some(p=>!RT_PITCH.includes(p))) s.push('bat'); if (ps.some(p=>RT_PITCH.includes(p))) s.push('pit'); }
+  else { const bg=rtT(c,'bat').g||0, pg=rtT(c,'pit').g||0, tot=bg+pg||1; if (bg/tot>=.1 || !pg) s.push('bat'); if (pg/tot>=.1) s.push('pit'); }
   return s.length?s:['bat']; }
+const rtFields = (c,kind) => { const ps=rtPositions(c).filter(p=>!RT_PITCH.includes(p)&&p!=='DH');
+  return kind==='if' ? ps.some(p=>RT_IF.includes(p)) : kind==='po' ? ps.some(p=>RT_PO.includes(p)) : ps.length>0; };
 function rtShuffle(a, r){ a=a.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 // One offer. sg = the player's expected games on that side in a set. Targets start from his own pace (a default
 // pace until he has 10 games there) and medium and hard ask well above it.
@@ -2672,6 +2683,12 @@ function rtMake(c, t, dk, sg){
     const own=gs>=10 ? (tot[t.k]||0)/gs : t.p, rate=Math.max(own, t.p*.8);
     o.target=Math.max(dk==='easy'?1:dk==='medium'?2:3, Math.round(rate*sg*m));
     o.text=`${t.ip?rtFmt(t,o.target):o.target} ${o.target===1&&t.one?t.one:t.l} in ${RT_SET} games`;
+  } else if (t.kind==='max'){
+    // fewest errors: judged when the set ends, and only if he played most of the set's games on that side
+    const own=gs>=10 ? (tot.e||0)/gs : .06, exp=own*sg;
+    o.target=({easy:Math.max(1,Math.round(exp*1.2)), medium:Math.max(0,Math.round(exp*.6)), hard:0})[dk];
+    o.min=Math.max(5, Math.round(sg*.6));
+    o.text=o.target===0 ? `Error-free over the set (${o.min}+ games)` : `No more than ${o.target} error${o.target===1?'':'s'} in the set (${o.min}+ games)`;
   } else if (t.kind==='avg'){
     const own=(tot.ab||0)>=40 ? tot.h/tot.ab : .270;
     o.target=Math.round(({easy:Math.max(.250,own-.030), medium:Math.max(.290,own+.020), hard:Math.max(.325,own+.050)})[dk]*1000)/1000;
@@ -2690,14 +2707,17 @@ function rtNewSet(c, st){
   const r=rng('rtset'+c.key+':'+(++st.seq)), sides=rtSides(c);
   const bg=rtT(c,'bat').g||0, pg=rtT(c,'pit').g||0, tot=bg+pg, two=sides.length>1;
   const share={bat: tot>=10 ? bg/tot : (two?.8:1), pit: tot>=10 ? pg/tot : (two?.2:1)};
-  const pool=RT_T.filter(t=>sides.includes(t.side) && share[t.side]>0 && !(t.side==='pit' && share.pit*RT_SET<2 && t.kind!=='count'));
+  const pool=RT_T.filter(t=>sides.includes(t.side) && share[t.side]>0 && (!t.fld || rtFields(c,t.fld)) && !(t.side==='pit' && share.pit*RT_SET<2 && t.kind!=='count'));
   const offers={};
   RT_DK.forEach(dk=>{ offers[dk]=rtShuffle(pool,r).slice(0,3).map(t=>({...rtMake(c,t,dk,Math.max(1,share[t.side]*RT_SET)), id:++st.seq})); });
   const gp=rtGP(c);
   st.set={n:((st.log[0]||{}).n||0)+1, year:c.year, start:gp, end:gp+RT_SET, offers, picked:{}, rules:RT_RULES};
 }
-function rtProg(c, ch){
+function rtProg(c, ch, over){
   const t=rtT(c,ch.side), b=ch.base||{}, d=k=>Math.max(0,(t[k]||0)-(b[k]||0));
+  if (ch.kind==='max'){ const g=d('g'), e=d('e');
+    return {done:!!over && g>=ch.min && e<=ch.target, pct:Math.min(1,g/ch.min), ok:e<=ch.target,
+      txt:`${e} error${e===1?'':'s'} in ${g} of ${ch.min}+ games${e<=ch.target?' · on track, judged when the set ends':''}`}; }
   if (ch.kind==='count'){ const v=d(ch.k); return {done:v>=ch.target, pct:Math.min(1,v/ch.target), txt:`${ch.ip?rtFmt(ch,v):v} of ${ch.ip?rtFmt(ch,ch.target):ch.target}`}; }
   if (ch.kind==='avg'){ const ab=d('ab'), h=d('h'), v=ab?h/ab:0;
     return {done:ab>=ch.min && v>=ch.target, pct:Math.min(1,ab/ch.min), txt:`${ab?fAvg(v):'.000'} in ${ab} of ${ch.min} at-bats`, ok:v>=ch.target}; }
@@ -2725,7 +2745,7 @@ function rtSync(c){
   if (set){
     const over = set.year!==c.year || gp>=set.end;
     RT_DK.forEach(dk=>{ const ch=set.picked[dk]; if (!ch || ch.status) return;
-      if (set.year===c.year && rtProg(c,ch).done){ ch.status='done'; ch.at=c.date; st.packs.push({id:++st.seq, rar:RT_D[dk].rar, dk, from:ch.text, at:c.date}); got.push(RT_D[dk].rar); changed=true; return; }
+      if (set.year===c.year && rtProg(c,ch,over).done){ ch.status='done'; ch.at=c.date; st.packs.push({id:++st.seq, rar:RT_D[dk].rar, dk, from:ch.text, at:c.date}); got.push(RT_D[dk].rar); changed=true; return; }
       if (over){ ch.status='missed'; changed=true; } });
     if (over){ st.log.unshift({n:set.n, year:set.year, start:set.start, picks:RT_DK.filter(dk=>set.picked[dk]).map(dk=>({dk, text:set.picked[dk].text, status:set.picked[dk].status}))}); st.log=st.log.slice(0,40); st.set=null; changed=true; }
   }
@@ -2756,7 +2776,7 @@ function rtBrand(){
     ${multi?`<div class="frmenu" role="menu"><h4>Your careers</h4>${list.map(x=>`<button class="fr ${x.key===c.key?'cur':''}" data-rtkey="${esc(x.key)}" role="menuitem">${rtTeam(x)?logo(rtTeam(x),36,'','logo'):''}<span><b>${esc(x.first+' '+x.last)}</b><small>${esc(x.label||'')}</small></span></button>`).join('')}</div>`:''}`;
   el.title = multi ? 'Switch career' : `${c.first} ${c.last}`;
 }
-const RT_BAT_COLS=[['g','G'],['ab','AB'],['h','H'],['2b','2B'],['3b','3B'],['hr','HR'],['r','R'],['rbi','RBI'],['bb','BB'],['so','SO'],['sb','SB']];
+const RT_BAT_COLS=[['g','G'],['ab','AB'],['h','H'],['2b','2B'],['3b','3B'],['hr','HR'],['r','R'],['rbi','RBI'],['bb','BB'],['so','SO'],['sb','SB'],['po','PO'],['a','A'],['e','E']];
 const RT_PIT_COLS=[['g','G'],['gs','GS'],['w','W'],['l','L'],['sv','SV'],['outs','IP'],['h','H'],['er','ER'],['bb','BB'],['so','SO'],['hr','HR']];
 function rtStatTable(c, side){
   const cols=side==='bat'?RT_BAT_COLS:RT_PIT_COLS, lv=(c[side]||{}).levels||{};
@@ -2776,12 +2796,18 @@ function rtRatings(c){
     ${grp('Fielding and running',[['Fielding',f.fielding],['Arm strength',f.armStr],['Arm accuracy',f.armAcc],['Reaction',f.reaction],['Speed',run.speed],['Stealing',run.stealing],['Durability',r.durability]])}</div>`;
 }
 const rtPosLbl = c => ((c.label||'').match(/\b((?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|P)(?:\/(?:SP|RP|CP|C|1B|2B|3B|SS|LF|CF|RF|DH|P))?)\b/)||[])[1] || (c.player&&c.player.pos) || '';
-const rtTeam = c => (typeof T!=='undefined' && T && c.player && c.player.org!=null) ? T[c.player.org] : null;
+// Club colours for Road to the Show without a franchise: career saves store every club's colours as black, so this is
+// the game's own team colour table copied from a franchise save.
+const MLB_COLORS={"BAL":["#141213","#ee5d24","#ffffff"],"BOS":["#881724","#16182b","#ffffff"],"NYY":["#090e1a","#909090","#ffffff"],"TB":["#051d3c","#72a2cc","#ffffff"],"TOR":["#08276b","#a5101a","#ffffff"],"CWS":["#151515","#909090","#ffffff"],"CLE":["#8c141f","#0e1522","#ffffff"],"DET":["#060d1b","#e06236","#ffffff"],"KC":["#00285c","#ab8559","#ffffff"],"MIN":["#0e182b","#9e001d","#ffffff"],"HOU":["#001227","#d0422b","#ffffff"],"LAA":["#ad1127","#081429","#ffffff"],"ATH":["#002b23","#efb11e","#ffffff"],"SEA":["#08182e","#0a777d","#ffffff"],"TEX":["#03316e","#af142a","#ffffff"],"ATL":["#ac172c","#111c36","#ffffff"],"MIA":["#121317","#008abb","#ffffff"],"NYM":["#0a2965","#eb4a24","#ffffff"],"PHI":["#990824","#013e6f","#ffffff"],"WSH":["#a61926","#05101f","#ffffff"],"CHC":["#0b2461","#b8131f","#ffffff"],"CIN":["#ae1127","#151515","#ffffff"],"MIL":["#090d1f","#b89467","#ffffff"],"PIT":["#0f0f0f","#f4bb35","#ffffff"],"STL":["#8c0f20","#00152a","#ffffff"],"AZ":["#740e25","#151515","#ffffff"],"COL":["#3a1b6e","#151515","#ffffff"],"LAD":["#0c2f67","#909090","#ffffff"],"SD":["#211b19","#ffc52b","#ffffff"],"SF":["#121317","#f2512c","#ffffff"]};   // the game's own D_TEAM_COLORS (from a franchise save)
+const rtTeam = c => { if (typeof T!=='undefined' && T && c.player && c.player.org!=null && T[c.player.org]) return T[c.player.org];
+  const t=c.teamInfo; if (!t) return null;   // no franchise loaded: the career's own team record, with real colours
+  const flat=!(t.colors||[]).some(x=>x && x.toLowerCase()!=='#000000');
+  return flat && MLB_COLORS[t.abbr] ? {...t, colors:MLB_COLORS[t.abbr]} : t; };
 function rtChCard(c, ch, pick){
   const p=pick?null:rtProg(c,ch), D=RT_D[ch.diff];
   const st = ch.status==='done' ? '<span class="capst ok">Done · pack earned</span>' : ch.status==='missed' ? '<span class="capst viol">Missed</span>' : '';
   return `<div class="rtch ${ch.status||''}"><div class="rtch-h"><span class="rtdiff ${ch.diff}">${D.l}</span><span class="rtpack-chip ${D.rar.toLowerCase()}">${D.rar} pack</span></div>
-    <b>${esc(ch.text)}</b><small>${ch.side==='pit'?'Pitching':'Hitting'}, all levels</small>
+    <b>${esc(ch.text)}</b><small>${ch.side==='pit'?'Pitching':['a','po','e'].includes(ch.k)?'Defence':'Hitting'}, all levels</small>
     ${pick?`<button class="btn sm" data-rtpick="${ch.diff}:${pick}">Choose this one</button>`
       :`<div class="rtbar ${p.ok===false?'off':''}"><i style="width:${(p.pct*100).toFixed(0)}%"></i></div><small>${p.txt}</small>${st}`}</div>`;
 }
@@ -2912,14 +2938,14 @@ document.addEventListener('click', async e=>{
 
 /* ---------- Franchise | Road to the Show mode (top bar). The switch only shows when a Road to the Show career is
    in the save folder; each mode shows only its own menus and pages. Remembered in localStorage ch-mode. ---------- */
-let MODE=(()=>{ try { return localStorage.getItem('ch-mode')==='rtts'?'rtts':'franchise'; } catch { return 'franchise'; } })(), HAS_RT=false;
+let MODE=(()=>{ try { return localStorage.getItem('ch-mode')==='rtts'?'rtts':'franchise'; } catch { return 'franchise'; } })(), HAS_RT=false, RT_ONLY=false;
 const rtMode = () => MODE==='rtts' && HAS_RT;
 function applyMode(){
   const on=rtMode();
   document.body.classList.toggle('mode-rtts', on);
   const m=$('#menu'), r=$('#rtmenu'), tk=$('#ticker'), sw=$('#modesw');
   if (m) m.hidden=on; if (r) r.hidden=!on; if (tk) tk.hidden=on;
-  if (sw){ sw.hidden=!HAS_RT; sw.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===(on?'rtts':'franchise')))); }
+  if (sw){ sw.hidden=!HAS_RT || RT_ONLY; sw.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.mode===(on?'rtts':'franchise')))); }
   if (on) rtBrand(); else if (L && T) renderBrand();
 }
 function setMode(m){
@@ -2928,6 +2954,16 @@ function setMode(m){
   history.replaceState(null,'', m==='rtts'?'#rtts':'#home');
   if (m==='franchise' && L && T) applyTheme(T[ME]);
   render(false);
+}
+// A save folder with Road to the Show careers but no franchise: open straight into Road to the Show mode, with no
+// switch (there's no franchise to switch to). A franchise appearing later loads normally and brings the switch back.
+async function startRttsOnly(){
+  RT_ONLY=true; HAS_RT=true; MODE='rtts';
+  try { ASSETS = await api().get_assets() || {}; } catch { ASSETS = ASSETS || {}; }   // logos (normally loaded with a franchise)
+  const app=document.querySelector('.app'); if (app) app.hidden=false;
+  applyMode();
+  history.replaceState(null,'','#rtts');
+  RT=null; render(false);
 }
 async function rtProbe(){
   try { HAS_RT=!!(await api().has_rtts()); } catch { HAS_RT=false; }
@@ -4579,7 +4615,7 @@ async function openSettings(){
   document.querySelector('#pf .drawer').setAttribute('style', themeVars(T&&T[ME]));
   $('#pfbody').innerHTML=`<div class="set-body"><h2>Settings</h2>
     <section class="set-sec"><h3>Save</h3>
-      <p>Reading <b>${esc(L?yrLabel(L.slot.label):'nothing yet')}</b>${L?` from<br><code>${esc(L.slot.folder||'')}</code>`:''}</p>
+      <p>Reading <b>${esc(L?yrLabel(L.slot.label):RT_ONLY&&rtCar()?`${rtCar().first} ${rtCar().last} (Road to the Show)`:'nothing yet')}</b>${L?` from<br><code>${esc(L.slot.folder||'')}</code>`:''}</p>
       <button class="btn ghost sm" data-act="setup">Change save folder</button></section>
     <section class="set-sec"><h3>New saves</h3>
       <p>When you save in the game, Clubhouse notices and asks before loading it. Turn this on to load new saves straight away instead.</p>
@@ -4595,7 +4631,7 @@ async function openSettings(){
       <p>Shrink everything to fit a smaller screen, or grow it for a big one.</p>
       <div class="seg">${[80,90,100,110,125].map(v=>`<button data-zoom="${v}" aria-pressed="${v===z}">${v}%</button>`).join('')}</div></section>
     <section class="set-sec" style="border:0"><h3>About</h3>
-      <p>Clubhouse ${esc(APPV||'')}. Reads your franchise save and never changes it.</p></section>
+      <p>Clubhouse${APPV?' '+esc(APPV):''}. Reads your franchise and Road to the Show saves. It changes a save only when you ask it to, and backs it up first.</p></section>
   </div>`;
   document.getElementById('pf').classList.add('open');
 }
@@ -7830,8 +7866,8 @@ function showSetup(state, error){
   $('#view').innerHTML=`<div class="setup"><section class="card">
     <img class="setup-logo" src="brand/emblem-lg.png" alt="Clubhouse">
     <div class="kicker" style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Welcome to Clubhouse</div>
-    <h2>Find your franchise save</h2>
-    <p>Choose the folder your emulator keeps MLB The Show 26 saves in. Clubhouse finds the franchise save inside it and reads it again whenever you save in the game. It never changes your save.</p>
+    <h2>Find your save folder</h2>
+    <p>Choose the folder your emulator keeps MLB The Show 26 saves in. Clubhouse finds your franchise and Road to the Show saves inside it and reads them again whenever you save in the game. It only changes a save when you ask it to, and backs it up first.</p>
     <div class="row">
       <input id="folder" type="text" value="${esc(state.suggestion||'')}" placeholder="E:\\MLB 26 FINAL\\profile\\save" aria-label="Save folder" spellcheck="false">
       <button class="btn" data-act="use">Use this folder</button>
@@ -7854,6 +7890,7 @@ async function pickFolder(how){
   if (how==='browse') res = await api().choose_folder();
   else { showLoading(); res = await api().use_folder(typed); }
   if (res.cancelled){ btns.forEach(b=>b.disabled=false); return; }
+  if (res.ok && res.rttsOnly){ startRttsOnly(); return; }
   if (res.ok){ await loadLeague(); return; }
   showSetup(await api().get_state(), res.error);
 }
@@ -7882,7 +7919,9 @@ window.clubhouse = {
       if (L){ renderBrand(); if ((location.hash||'#home').startsWith('#home')||!location.hash) render(true); }
       return;
     }
+    if (meta.rttsOnly && !(meta.franchises||[]).length){ if (!RT_ONLY) startRttsOnly(); return; }
     if (meta.ok){
+      if (RT_ONLY){ RT_ONLY=false; applyMode(); }   // a franchise appeared: load it and bring back the switch
       const first=!L;
       await loadLeague();
       if (!first && !meta.boot){
@@ -7926,6 +7965,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='fold
 async function boot(){
   const state = await api().get_state();
   if (state.hasData) return loadLeague();
+  if (state.rttsOnly) return startRttsOnly();
   if (state.loading) return showLoading();      // Python calls saveChanged when done
   showSetup(state, state.error);
 }

@@ -117,9 +117,16 @@ class League:
             return {"ok": False, "error": "No folder given."}
         folder = profile_root(Path(str(folder).strip().strip('"'))).resolve()   # a FRAN slot widens to its profile
         fs = scan(folder) if folder.is_dir() else []
+        if not fs and folder.is_dir() and any(folder.glob("CARR*")):
+            # Road to the Show only: no franchise to read, but the page opens straight into Road to the Show mode
+            with self.lock:
+                self.folder, self.franchises, self.remember = folder, [], remember
+                self.franchise, self.slot, self.loaded_sig, self.json = None, None, None, None
+            self._remember()
+            return {"ok": True, "rttsOnly": True, **self.meta()}
         if not fs:
-            return {"ok": False, "error": f"No franchise save found in {folder}. "
-                                          "Pick the folder that holds your FRAN… save folders."}
+            return {"ok": False, "error": f"No franchise or Road to the Show save found in {folder}. "
+                                          "Pick the folder that holds your FRAN… or CARR… save folders."}
         saved = load_config().get("franchise")
         with self.lock:
             self.folder, self.franchises, self.remember = folder, fs, remember
@@ -160,6 +167,8 @@ class League:
                 return {"ok": False, "error": "No save folder chosen yet."}
             slot = self._current_slot()
             if not slot:
+                if any(Path(self.folder).glob("CARR*")):
+                    return {"ok": True, "rttsOnly": True, **self.meta()}
                 self.error = f"No franchise save found in {self.folder}."
                 return {"ok": False, "error": self.error}
             sig = _signature(slot)
@@ -211,7 +220,12 @@ class League:
                             "savedAt": f["latest"]["savedAt"], "day": f["latest"]["day"], "year": f["latest"]["year"],
                             "saves": len(f["slots"])} for f in self.franchises],
             "loadedAt": time.time(),
+            "rttsOnly": self.rtts_only(),
         }
+
+    def rtts_only(self) -> bool:
+        """A save folder with Road to the Show careers but no franchise."""
+        return bool(self.folder) and not self.franchises and any(Path(self.folder).glob("CARR*"))
 
     # -- watching
     def watch(self):
