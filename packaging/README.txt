@@ -1,4 +1,4 @@
-CLUBHOUSE 1.13.0
+CLUBHOUSE 1.13.1
 A franchise companion for MLB The Show 26 (Switch version, played through an emulator on a Windows PC).
 
 HOW TO START

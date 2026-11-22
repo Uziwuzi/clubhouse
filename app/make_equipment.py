@@ -81,10 +81,10 @@ def match(cat, api):
     res={k:a for k,a in res.items() if best[a['uuid']]==k}   # one website item = one catalog item
     return res,amb,miss
 
-def fetch_api():
+def fetch_api(year=26):
     out = []
     for p in range(1, 60):
-        req = urllib.request.Request(f"https://mlb26.theshow.com/apis/items.json?type=equipment&page={p}", headers={"User-Agent": "Clubhouse"})
+        req = urllib.request.Request(f"https://mlb{year}.theshow.com/apis/items.json?type=equipment&page={p}", headers={"User-Agent": "Clubhouse"})
         d = json.load(urllib.request.urlopen(req, timeout=30))
         out += d["items"]
         if p >= d["total_pages"]:
@@ -121,6 +121,42 @@ if "--images" in sys.argv:
                 continue
         it["img"] = fn
         got += 1
+    # Items MLB 26's database doesn't list, or shows only as a placeholder: try MLB 25, then MLB 24 (the same site keeps
+    # them). A match whose name another item in that slot already uses is skipped, so no picture appears twice.
+    import hashlib
+    def placeholder(fn):
+        return hashlib.md5((gear / fn).read_bytes()).hexdigest() in shared_ph
+    first = {it["img"]: hashlib.md5((gear / it["img"]).read_bytes()).hexdigest() for it in items if it.get("img")}
+    shared_ph = {h for h, n in collections.Counter(first.values()).items() if n >= 3}
+    for it in items:
+        if it.get("img") and first[it["img"]] in shared_ph:
+            (gear / it.pop("img")).unlink(missing_ok=True); it.pop("full", None); got -= 1
+    for year in (25, 24):
+        todo = [it for it in items if not it.get("img") and it["b"] != "Generic"]
+        if not todo:
+            break
+        older, _, _ = match(todo, fetch_api(year))
+        for it in todo:
+            a = older.get((it["slot"], it["s"]))
+            if not a:
+                continue
+            br, nm = clean(a["brand"]).strip(), clean(a["name"]).strip()
+            full = nm if nm.lower().startswith(br.split()[0].lower()) else f"{br} {nm}"
+            if any(o is not it and o["slot"] == it["slot"] and o.get("full") == full for o in items):
+                continue
+            fn = f"{it['slot']}-{it['s']}.webp"
+            try:
+                req = urllib.request.Request(a["img"], headers={"User-Agent": "Clubhouse"})
+                (gear / fn).write_bytes(urllib.request.urlopen(req, timeout=30).read())
+                from PIL import Image
+                im = Image.open(gear / fn); im.thumbnail((420, 420)); im.save(gear / fn, "WEBP", quality=82)
+                time.sleep(0.15)
+            except OSError:
+                continue
+            if hashlib.md5((gear / fn).read_bytes()).hexdigest() in shared_ph:
+                (gear / fn).unlink(missing_ok=True); continue
+            it["img"], it["full"], it["r"], it["from"] = fn, full, it.get("r") or a.get("rarity"), f"mlb{year}"
+            got += 1
     # The website uses one placeholder picture (crossed bats) for several items: a picture shared by 3+ items isn't
     # the item's own, so those show Clubhouse's slot icon instead.
     import hashlib

@@ -1,5 +1,9 @@
 # Clubhouse changelog
 
+## 1.13.1 (November 22, 2026)
+
+- **More gear pictures:** 343 of the 409 branded items now have a picture, up from 317, including more legend bats (Buck O'Neil, Hilton Smith, Martin Dihigo, Rube Foster, Ernie Banks, Jimmie Foxx) and the Chandler JAZZ.X. The extra pictures come from The Show's MLB 25 and MLB 24 item databases. Items with no picture anywhere still show a slot icon.
+
 ## 1.13.0 (November 22, 2026)
 
 Road to the Show comes to Clubhouse, with gear challenges, packs and a locker that equips real branded gear on your player, even offline.
